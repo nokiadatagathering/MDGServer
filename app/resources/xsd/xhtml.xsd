@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.w3.org/1999/xhtml"
+           xmlns="http://www.w3.org/1999/xhtml"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:h="http://www.w3.org/1999/xhtml"
+           elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="app/resources/xsd/nsxsd.xsd"/>
+  <!--xs:import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="http://www.w3.org/2001/XMLSchema.xsd"/-->
+
+  <xs:simpleType name="Title">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:complexType name="Head">
+    <xs:sequence>
+      <xs:element name="title" type="Title"/>
+      <xs:any minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Body">
+    <xs:sequence>
+      <xs:any minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="html">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="Head" name="head"/>
+        <xs:element type="Body" name="body"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

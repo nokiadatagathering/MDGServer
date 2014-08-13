@@ -1,0 +1,59 @@
+<div class="overlay" ng-click="goState('^')"></div>
+<div class="window">
+    <div class="window-header">
+        <h2>Send this Survey</h2>
+        <div class="close-window" ng-click="goState('^')">&#10006;</div>
+    </div>
+    <div class="window-body" ng-controller="SendSurveyCtrl">
+        <form name="sendSurveyForm" ng-model="sendSurveyForm" id="send-survey-form" ng-submit="sendSms($stateParams.groupId)">
+            <ul class="all">
+                <h4>
+                    <input type="checkbox"
+                           ng-model="allUsers.checked"
+                           ng-checked="allUsers.checked"
+                           ng-change="checkAllUsers(allUsers)">
+                    <label class="expand close"
+                           click="showUsers"
+                           visible="allUsers.isVisible"
+                           ng-click="showUsers()">({{allUsers.length}}) All Users</label>
+                </h4>
+                <div class="all-users" ng-show="allUsers.isVisible">
+                    <li ng-repeat="user in allUsers">
+                        <input type="checkbox" name="{{user.username}}"
+                               ng-model="user.checked"
+                               ng-checked="user.checked"
+                               ng-change="checkUser(allUsers, user, 'allUsers')">
+                        <label>{{user.name}}</label>
+                    </li>
+                </div>
+            </ul>
+            <div class="groups-list">
+                <ul class="group" ng-repeat="group in groups">
+                    <h4>
+                        <input type="checkbox" name="{{group.name}}"
+                               ng-model="group.users.checked"
+                               ng-change="checkAllUsersInGroup(group.users)"
+                               ng-disabled="allUsers.checked || !group.users.length">
+                        <label class="expand close"
+                               click="showUsersInGroup"
+                               visible="group.isVisible"
+                               ng-click="showUsersInGroup()"
+                               ng-class="{void: !group.users.length}">({{group.users.length}}) {{group.name}}</label>
+                    </h4>
+                    <div class="{{group.name}}" ng-show="group.isVisible">
+                        <li ng-repeat="user in group.users">
+                            <input type="checkbox" name="{{user.username}}"
+                                   ng-model="user.checked"
+                                   ng-checked="user.checked"
+                                   ng-change="checkUser(group.users, user, 'group')"
+                                   ng-disabled="allUsers.checked">
+                            <label>{{user.name}}</label>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+
+            <input type="button" class="send-survey" ng-click="sendSurvey($stateParams.surveyId)" value="Send this survey">
+        </form>
+    </div>
+</div>

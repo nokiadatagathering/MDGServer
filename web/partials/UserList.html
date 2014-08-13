@@ -1,0 +1,62 @@
+<div class="users-panel" ng-controller="UsersCtrl">
+        <div class="function-bar">
+            <input class="button-plus left" type="button" value="Add a new User" ng-click="goState('page.users.group.adduser')">
+            <div>
+                <input class="search-field" type="search" placeholder="Search Name or Username..." ng-model="q">
+            </div>
+        </div>
+        <div class="column-header">
+            <div class='name' ng-click="predicate = 'name'; reverse=!reverse">
+                <span>NAME </span>
+            </div>
+            <ul>
+                <li class="permission" ng-click="predicate = 'permission'; reverse=!reverse">PERMISSION</li>
+            </ul>
+
+        </div>
+        <ul class="list-box"
+            ng-model='users'
+                id="sortable">
+            <li ng-repeat="user in filtered = (users | deletedItemsFilter : 'users') | filter:q | orderBy:predicate:reverse"
+                id="{{user._id}}"
+                ng-model="users"
+                class="item"
+                style=" display: {{user.hidden ? 'none' : 'block'}};">
+                <div>
+                    <div class="name">
+                        <h4 title="{{user.username}}">{{user.name}}</h4>
+                        <span class="id">{{user.username}}</span>
+                    </div>
+                    <div class="options">
+                        <input type="button" class="details single" ng-click="showDetails(user._id)">
+                        <span class="caption">View this user contact details</span>
+                        <ul class="button-group">
+                            <li>
+                                <input type="button" class="sms bottom"
+                                       ng-click="goState('page.users.group.smstouser',{userId: user._id})">
+                                <span class="caption">Send an SMS to this user</span>
+                            </li><li>
+                            <input type="button" class="edit"
+                                   ng-disabled="user.permission === 'superAdmin' && loggedInUser.permission !== 'superAdmin'"
+                                   ng-click="goState('page.users.group.edituser',{userId: user._id})">
+                            <span class="caption">Edit this user's details</span>
+                        </li><li>
+                            <input ng-disabled="user.permission === 'superAdmin'"
+                                   type="button" class="delete" ng-click="deleteUser(user._id, user.username)">
+                            <span class="caption">{{user.permission === 'superAdmin' ? "Can't delete this user" : "Delete this user"}}</span>
+                        </li>
+                        </ul>
+                    </div>
+                    <ul class="data">
+                        <li class="permission">{{user.permission}}</li>
+                    </ul>
+                </div>
+                <div class="user-details hide">
+                    <p>PHONE:<span> {{user.phone}}</span> </p>
+                    <p ng-hide="{{!user.email}}">EMAIL:<span>{{user.email}}</span> </p>
+                </div>
+            </li>
+
+        </ul>
+        <div class="modal" ui-view ></div>
+</div>

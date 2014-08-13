@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://openrosa.org/xforms/metadata"
+           xmlns="http://openrosa.org/xforms/metadata"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="app/resources/xsd/nsxsd.xsd"/>
+    <!--xs:import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="http://www.w3.org/2001/XMLSchema.xsd"/-->
+
+    <xs:complexType name="Meta">
+        <xs:sequence>
+            <xs:any processContents="lax" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Data">
+        <xs:sequence>
+            <xs:any processContents="lax" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="data" type="Data"/>
+</xs:schema>

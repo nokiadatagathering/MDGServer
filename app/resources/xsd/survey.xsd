@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.w3.org/2002/xforms"
+           xmlns="http://www.w3.org/2002/xforms"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:h="http://www.w3.org/1999/xhtml"
+           elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="app/resources/xsd/nsxsd.xsd"/>
+  <!--xs:import namespace="http://www.w3.org/2001/XMLSchema" schemaLocation="http://www.w3.org/2001/XMLSchema.xsd"/-->
+  <xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="app/resources/xsd/xhtml.xsd"/>
+  <!--xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"/-->
+
+  <xs:complexType name="Data">
+    <xs:sequence>
+      <xs:any processContents="lax" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:element name="data" type="Data"/>
+
+  <xs:complexType name="Instance">
+    <xs:sequence>
+      <xs:element name="data" type="Data"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="Value">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:complexType name="Text">
+    <xs:sequence>
+      <xs:element name="value" type="Value"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="Translation">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="text" type="Text"/>
+    </xs:sequence>
+    <xs:attribute name="lang" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="IText">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="translation" type="Translation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Bind">
+    <xs:sequence>
+      <xs:any maxOccurs="0" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="nodeset" type="xs:string" use="required"/>
+    <xs:attribute name="type" type="xs:string" use="required"/>
+    <xs:attribute name="required" type="xs:string"/>
+    <xs:attribute name="constraint" type="xs:string"/>
+    <xs:attribute name="relevant" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="Model">
+    <xs:sequence>
+      <xs:element name="instance" type="Instance"/>
+      <xs:element name="itext" type="IText"/>
+      <xs:element name="bind" type="Bind" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="model" type="Model"/>
+
+  <xs:simpleType name="LabelRef">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="jr:itext\('.*'\)"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Label">
+    <xs:sequence>
+      <xs:any maxOccurs="0" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="LabelRef"/>
+  </xs:complexType>
+
+  <xs:complexType name="Input">
+    <xs:sequence>
+      <xs:element name="label" type="Label"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="Upload">
+    <xs:sequence>
+      <xs:element name="label" type="Label"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string" use="required"/>
+    <xs:attribute name="mediatype" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="Item">
+    <xs:sequence>
+      <xs:element name="label" type="Label"/>
+      <xs:element name="value" type="Value"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Select">
+    <xs:sequence>
+      <xs:element name="label" type="Label"/>
+      <xs:element name="item" type="Item" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="Select1">
+    <xs:sequence>
+      <xs:element name="label" type="Label"/>
+      <xs:element name="item" type="Item" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="Group">
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="label" type="Label" minOccurs="1" maxOccurs="1"/>
+      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="input" type="Input" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="upload" type="Upload" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="select" type="Select" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="select1" type="Select1" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:element name="group" type="Group"/>
+
+</xs:schema>

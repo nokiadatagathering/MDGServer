@@ -1,0 +1,79 @@
+<div class="content">
+
+    <div class="survey-panel" ng-controller="SurveysCtrl">
+        <div class="function-bar">
+            <div class="arrow" ng-click="goState('page.surveys')"></div>
+            <div class="title">ARCHIVE</div>
+            <div class="right">
+                <input class="search-field right" type="search" placeholder="Search Name or Publisher..." ng-model="q">
+            </div>
+        </div>
+
+        <div class="column-header">
+            <div>
+                <div class="circle"
+                     ng-click="predicate = 'published'; reverse=!reverse"
+                     ng-class="{green : publishedGreen}"
+                     ng-mouseover="publishedGreen=true;"
+                     ng-mouseout="publishedGreen=false;"></div>
+            </div>
+            <div class='name' ng-click="predicate = 'title'; reverse=!reverse">
+                <span>NAME </span>
+            </div>
+            <ul>
+                <li class="results"
+                    ng-click="predicate = 'resultsCount'; reverse=!reverse">RESULTS</li>
+                <li class="publisher" ng-click="predicate = '_creator.name'; reverse=!reverse">PUBLISHER</li>
+                <li class="date" ng-click="predicate = 'dateCreated'; reverse=!reverse">DATE</li>
+            </ul>
+        </div>
+
+        <ul class="list-box">
+            <li class="item" id="{{survey._id}}"
+                ng-repeat="survey in filtered = (surveys | deletedItemsFilter : 'surveys') | filter:q | orderBy:predicate:reverse"
+                ng-if="(dropdownSelect.text == 'All')||(((dropdownSelect.text == 'Published') && survey.published)||((dropdownSelect.text == 'Unpublished') && !survey.published))"
+                style=" display: {{survey.hidden ? 'none' : 'block'}};">
+                <div>
+                    <div class="circle" ng-class="{green : survey.published}"></div>
+                </div>
+                <div class="name">
+                    <h4 title="{{survey.title}}">{{survey.title}}</h4>
+                    <span class="id" title="{{survey._id}}">ID: {{survey._id}}</span>
+                </div>
+                <div class="options">
+                    <input type="button" class="button-icon single archive restore"
+                           ng-click="archive(survey._id, survey.title)"
+                           ng-show="survey.published">
+                    <span class="caption" ng-show="survey.published">Restore</span>
+
+                    <ul class="button-group">
+                        <li>
+                            <input type="button" class="download"
+                                   ng-click="downloadSurvey(survey._id)">
+                            <span class="caption">Download this survey</span>
+                        </li><li>
+                        <input type="button" class="send"
+                               ng-click="goState('page.archive.sendsurvey',{surveyId: survey._id})">
+                        <span class="caption">Publish this survey</span>
+                    </li><li>
+                        <input type="button" class="copy"
+                               ng-click="duplicateSurvey(survey._id, survey.title)">
+                        <span class="caption">Duplicate this survey</span>
+                    </li>
+                    </ul>
+                </div>
+                <ul class="data">
+                    <li class="results left">
+                        <span class="void" ng-if="survey.resultsCount === 0">0</span>
+                        <a ui-sref="page.results({surveyId: survey._id})"
+                           href="#/survey:{{survey._id}}"
+                           ng-if="survey.resultsCount != 0">{{survey.resultsCount}}</a>
+                    </li>
+                    <li class="publisher">{{survey._creator.name}}</li>
+                    <li class="date">{{survey.dateCreated | date : 'dd/MM/yyyy'}}</li>
+                </ul>
+            </li>
+        </ul>
+        <div ui-view class="modal"></div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="content">
+    <div ng-controller="ResultsCtrl">
+        <div class="topic">
+            <input type="button"
+                   class="schedule-export"
+                   value="Schedule an Export"
+                   ng-click="modalExportSchedule()">
+            <h1> {{survey.resultsCount}} results for <span>{{survey.title}}</span></h1>
+            <p>Sent to <a ng-click="modalSentTo()"> {{survey.sentToUsers.length}} users</a></p>
+
+        </div>
+        <div class="result-panel">
+            <form name="exportForm" ng-submit="exportResults()">
+                <div class="function-bar">
+                    <div class="arrow" ng-click="archive ? goState('page.archive') : goState('page.surveys')"></div>
+                    <ul class="button-group">
+                        <li>
+                            <input type="button" class="map" ng-click="viewMap()">
+                            <span class="caption">View the selected results on map</span>
+                        </li><li>
+                        <input type="button" class="chart" ng-click="modalResultsChart()">
+                        <span class="caption">View the selected results on chart</span>
+                    </li>
+                    </ul>
+                    <input type="button" value="" class="button-icon single export"
+                           dropdown-menu="dropdownList"
+                           dropdown-model="dropdownSelect"
+                           dropdown-onchange="exportResults(dropdownSelect.value)">
+                    <span class="caption">Export the selected results</span>
+                    <input type="button" class="button-icon single delete" ng-click="deleteResults()">
+                    <span class="caption">Delete the selected results</span>
+
+                    <input class="search-field" type="search" placeholder="Search Title or Data Collector..." ng-model="q">
+                </div>
+                <div class="column-header">
+                    <input type="checkbox" ng-model="allChecked" ng-click="formSelectedResults()">
+                    <div class='result-title' ng-click="predicate = 'title'; reverse=!reverse">
+                        <span>RESULT TITLE </span>
+                    </div>
+                    <ul>
+                        <li class="sent" ng-click="predicate = 'timeCreated'; reverse=!reverse">DATE SENT</li>
+                        <li class="gps" ng-click="predicate = 'geostamp'; reverse=!reverse">GPS</li>
+                        <li class="collector" ng-click="predicate = '_user.name'; reverse=!reverse">DATA COLLECTOR</li>
+                    </ul>
+
+                </div>
+                <ul class="list-box">
+                    <li class="item"
+                        ng-repeat="result in filtered = (results | deletedItemsFilter : 'results') | filter:q | orderBy:predicate:reverse"
+                        ng-class="{ active: $state.includes('page.results.details') && $stateParams.resultId === result._id }"
+                        id={{result._id}}
+                        style=" display: {{result.hidden ? 'none' : 'block'}};">
+
+                        <input type="checkbox" ng-click="formSelectedResults(result._id)"
+                               ng-checked="selectedResults.indexOf(result._id) !== -1 ? true : false">
+
+                        <a ui-sref="page.results.details({resultId: result._id})"
+                           href="#/survey:{{$stateParams.surveyId}}/result:{{result._id}}">
+                            <div class="title">
+                                <h4 title="{{result.title}}">{{result.title}}</h4>
+                            </div>
+
+                            <ul class="data">
+                                <li class="sent">{{result.timeCreated | date: 'MM/dd/yy'}}</li>
+                                <li class="gps" ng-class="{ok: result.geostamp}"></li>
+                                <li class="collector">{{result._user.name}}</li>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+            </form>
+
+        </div>
+    </div>
+    <div ui-view="details"></div>
+    <div class="modal" ui-view ></div>
+</div>

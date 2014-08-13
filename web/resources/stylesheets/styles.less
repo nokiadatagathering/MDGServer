@@ -1,0 +1,2913 @@
+/**
+ * Global Reset of all HTML Elements
+ */
+
+html, body {
+  border: 0;
+  font-family: "Helvetica-Neue", "Helvetica", Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+div, span, object, iframe, img, table, caption, thead, tbody,
+tfoot, tr, tr, td, article, aside, canvas, details, figure, hgroup, menu,
+nav, footer, header, section, summary, mark, audio, video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cit, code,
+del, dfn, em, ins, q, samp, small, strong, sub, sup, b, i, hr, dl, dt, dd,
+ol, ul, li, fieldset, legend, label {
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #000000;
+}
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+  display: block;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  caption, th, td {
+    text-align: left;
+    vertical-align: middle;
+  }
+}
+
+a img {
+  border: 0;
+}
+
+:focus {
+  outline: 0;
+}
+/**
+ * Fonts for page
+ */
+@font-face {
+  font-family: 'NokiaPureText';
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.eot);
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NokiaPureTextBold';
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.eot);
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NokiaPureTextLight';
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.eot);
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.ttf) format("truetype");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProximaNovaTextBold';
+  src: url(../fonts/ProximaNovaTextBold/ProximaNovaTextBold.eot);
+  src: url(../fonts/ProximaNovaTextBold/ProximaNovaTextBold.woff) format('woff');
+  src: url(../fonts/ProximaNovaTextBold/ProximaNovaTextBold.svg) format('svg');
+  src: url(../fonts/ProximaNovaTextBold/ProximaNovaTextBold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProximaNovaTextSemibold';
+  src: url(../fonts/ProximaNovaTextSemibold/ProximaNovaTextSemibold.eot);
+  src: url(../fonts/ProximaNovaTextSemibold/ProximaNovaTextSemibold.woff) format('woff');
+  src: url(../fonts/ProximaNovaTextSemibold/ProximaNovaTextSemibold.svg) format('svg');
+  src: url(../fonts/ProximaNovaTextSemibold/ProximaNovaTextSemibold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/**
+ * -------
+ * Variables
+ */
+
+@header-bg: #2468a0;
+
+@column-header-bg: rgba(247, 247, 247, 1);
+
+@even-surveys-bg: rgba(249, 252, 255, 1);
+
+@button-color: rgba(250, 250, 250, 1);
+
+/*
+ * colors
+ */
+@gray: rgba(166, 166, 166, 1);
+@green: rgba(85, 138, 16, 1);
+@light-gray: rgba(166, 166, 166, 0.5);
+
+/**
+ * -------
+ */
+.left  {float: left};
+.right {float: right};
+.hide { display: none !important;}
+.show {visibility: visible !important}
+.hidden { visibility: hidden}
+/*
+ Mixin for notification
+ */
+.notice(@bg-color: rgba(156, 213, 86, 0.8), @text-color: #000000, @link-color: rgba(85, 138, 16, 1)) {
+  background: @bg-color;
+  min-height: 50px;
+  line-height: 22px;
+  font-size: 12px;
+  text-align: center;
+  display: inline-block;
+  padding: 0 10px;
+  border-radius: 5px;
+  font-family: NokiaPureText;
+  margin: 0 0 2px 10px;
+  span {
+    color: @text-color;
+  }
+  a {
+    color: @link-color;
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+      color: lighten(@link-color, 8%);
+    }
+  }
+}
+
+/*
+ * Mixin for function-bar
+ */
+
+.function-bar {
+  background: rgba(235, 235, 235, 1);
+  padding: 10px;
+  height: 35px;
+}
+
+/*
+ * Mixin for column header
+ */
+.column-header {
+  height: 15px;
+  line-height: 15px;
+  background: @column-header-bg;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 2;
+  .name, .result-title {
+    height: 15px;
+    position: relative;
+    float: left;
+    .sort-arrow;
+    span {
+      font-family: NokiaPureTextBold;
+      font-size: 0.9em;
+    }
+  }
+  .result-title {
+    .sort-arrow(95px);
+  }
+  .circle {
+    margin-right: 20px;
+    float: left;
+    cursor: pointer;
+    .circle(rgb(148, 216, 72, 1));
+  }
+  ul {
+    float: right;
+    margin-left: 10px;
+    display: block;
+    li {
+      padding: 0 10px;
+      font-family: NokiaPureTextBold;
+      font-size: 0.9em;
+      display: inline-block;
+      border-left: 1px solid #000000;
+      position: relative;
+      &.results {
+        width: 72px;
+        .sort-arrow(72px);
+      }
+      &.publisher {
+        width: 140px;
+        .sort-arrow(88px);
+      }
+      &.date {
+        width: 72px;
+        .sort-arrow(47px);
+      }
+      &.permission {
+        width: 100px;
+        .sort-arrow(107px);
+      }
+      &.sent {
+        width: 80px;
+        .sort-arrow(85px);
+      }
+      &.gps {
+        width: 35px;
+        .sort-arrow(40px);
+      }
+      &.collector {
+        width: 140px;
+        .sort-arrow(130px);
+      }
+    }
+  }
+}
+
+/*
+ Mixin for inset button-shadow
+ */
+.inset-shadow-active {
+  background-color: rgba(240, 240, 240, 1);
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.inset-shadow {
+  box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+
+  &:not(:disabled):active {
+    .inset-shadow-active;
+  }
+}
+
+
+/*
+ Mixin for inputs button-stylisation
+ */
+.button-stylisation (@height : 35px) {
+  background-color: @button-color;
+  border-radius: 5px;
+  height: @height;
+  font-family: NokiaPureTextBold;
+  font-size: 15px;
+  border: 1px solid @light-gray;
+  cursor: pointer;
+  .inset-shadow;
+  &:hover {
+
+  }
+  &:disabled {
+  }
+}
+
+/*
+ Mixin for small button with icon
+ */
+.button-icon {
+  width: 43px;
+  height: 35px;
+  border: 1px solid @light-gray;
+  background-color: @button-color;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  .inset-shadow;
+  &.single {
+    border-radius: 5px;
+  }
+  &:disabled {
+    opacity: 0.7;
+    cursor: auto;
+  }
+}
+
+/*
+ Styles for buttons icons
+ */
+
+.download       { background-image: url(../icons/download-20px.png);}
+.browse-archive { background-image: url(../icons/browse-archive.png);}
+.restore        { background-image: url(../icons/restore-from-archive.png);}
+.add-to-archive { background-image: url(../icons/move-to-archive.png);}
+.upload         { background-image: url(../icons/upload-20px.png);}
+.send           { background-image: url(../icons/send-20px.png);}
+.copy           { background-image: url(../icons/copy-20px.png);}
+.delete         { background-image: url(../icons/delete-20px.png);}
+.sms            { background-image: url(../icons/sms-20px.png);}
+.edit           { background-image: url(../icons/edit-20px.png);}
+.map            { background-image: url(../icons/map-20px.png);}
+.export         { background-image: url(../icons/export-20px.png);}
+.chart          { background-image: url(../icons/chart-20px.png);}
+.del-option     { background-image: url(../icons/cross-red-13px.png);}
+
+.details        { background-image: url(../icons/details-20px.png);}
+.save           { background-image: url(../icons/circle-tick-22px.png);}
+.alert          { background-image: url(../icons/alert.png);}
+
+/*
+ Mixin for inputs with plus-icon
+ */
+.button-plus {
+  background-image: url(../icons/plus-16px.png);
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  padding: 0 10px 0 30px;
+  .button-stylisation;
+  &:disabled {
+    background-image: url(../icons/plus-gray-16px.png);
+  }
+}
+
+/*
+ Mixin for group of buttons with icons
+ */
+
+.button-group {
+  height: 35px;
+  line-height: 35px;
+  li {
+    display: inline-block;
+    position: relative;
+    input[type="button"]{
+      .button-icon;
+      .tooltip(-45px, 50px);
+      .inset-shadow;
+      border-right: 1px solid transparent;
+      &.sms {
+        .tooltip(-52px, 50px, 160px);
+      }
+    }
+    &:first-of-type {
+      input[type="button"] {
+        border-top-left-radius: 5px ;
+        border-bottom-left-radius: 5px ;
+        &:active{
+          border-left: 1px solid rgba(177, 177, 177, 1);
+        }
+      }
+    }
+    &:last-of-type {
+      input[type="button"] {
+        border-top-right-radius: 5px ;
+        border-bottom-right-radius: 5px ;
+        border-right: 1px solid rgba(177, 177, 177, 1);
+        &:active{
+          border-right: 1px solid rgba(177, 177, 177, 1);
+        }
+      }
+    }
+  }
+}
+
+/*
+ Mixin for tooltips
+ */
+.tooltip (@left: 0, @bottom: 0, @width: 140px) {
+
+  & + span.caption, & + div[errorsblock] span {
+    overflow: visible;
+    position: absolute;
+    width: @width;
+    font-family: NokiaPureTextLight;
+    font-size: 13px;
+    color: #FFFFFF !important;
+    background: #000000;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 6px;
+    z-index: 999;
+    &.surveypublished {
+      width: 360px;
+      left: -155px !important;
+      opacity: 0.6 !important;
+    }
+  }
+  & + span.caption.new-group-tooltip, & + div[errorsblock] span {
+      width: 260px;
+    }
+  & + span.caption:after,
+  & + div[errorsblock] span:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0; height: 0;
+    border-top: 4px solid #000000 ;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+
+  }
+  &:hover + span.caption,
+  & + div[errorsblock] span,
+  &[name="groupName"]:focus + span.caption {
+    visibility: visible;
+    opacity: 0.8;
+    bottom: @bottom;
+    left: @left;
+    margin-left: 0;
+
+  }
+  &[name=groupName]:focus + span.caption {
+    bottom: -23px;
+  }
+
+  &.delete + span.caption {
+    background-color: rgba(200, 89, 80, 1);
+  }
+  &.delete + span.caption:after {
+    border-top: 4px solid rgba(200, 89, 80, 1);
+  }
+  & + div[errorsblock] span {
+    background: #c85950;
+    opacity: 1;
+  }
+}
+
+.tooltip-down (@left: 0, @bottom: 0, @width: 140px) {
+  .tooltip(@arguments);
+  & + span.caption:after,
+  & + div[errorsblock] span:after {
+    top: -33%;
+    border-bottom: 4px solid #000000 ;
+    border-top: 4px solid transparent ;
+  }
+  & + div[errorsblock] span:after {
+    border-bottom: 4px solid #c85950;
+    opacity: 1;
+  }
+  &:hover + span.caption,
+  & + div[errorsblock] span {
+    bottom: -23px;
+  }
+  &.delete + span.caption {
+    background-color: rgba(200, 89, 80, 1);
+  }
+  &.delete + span.caption:after {
+    border-bottom: 4px solid rgba(200, 89, 80, 1);
+    border-top: 4px solid transparent;
+
+  }
+  &.details + span.caption {
+    bottom: -32px;
+    left: -45px;
+  }
+  &.edit.single + span.caption,
+  &.archive.single + span.caption {
+    bottom: -32px;
+    left: -45px;
+  }
+  &:hover + span.caption.error,
+  & + span.caption.error {
+    opacity: 1;
+    visibility: visible;
+    left: @left;
+    bottom: @bottom;
+    width: @width;
+    background-color: rgba(200, 89, 80, 1);
+  }
+  & + span.caption.error:after {
+    border-bottom: 4px solid rgba(200, 89, 80, 1);
+    border-top: 4px solid transparent;
+  }
+}
+
+
+/*
+ Mixin for error-block
+ */
+.validation-field {
+
+  div[errorsblock] {
+    position: relative;
+    span {
+      &.error-message {
+        position: absolute;
+        width: 210px;
+        font-family: NokiaPureTextLight;
+        font-size: 13px;
+        color: rgb(255, 255, 255) !important;
+        background-color: rgb(200, 89, 80);
+        height: 40px;
+        border-radius: 6px;
+        z-index: 999;
+        padding: 5px;
+        top: -42px;
+      }
+      &.error-message:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 6px solid rgba(0, 0, 0, 0);
+        border-bottom: 6px solid rgba(0, 0, 0, 0);
+        top: 38%;
+      }
+    }
+  }
+
+
+  &:nth-of-type(odd) {
+    .error-message {
+      text-align: center;
+      right: 100%;
+      margin-right: 10px;
+    }
+    .error-message:after {
+      border-right: 6px solid rgba(0, 0, 0, 0);
+      border-left: 6px solid rgb(200, 89, 80);
+      left: 100%;
+      margin-left: 0px;
+    }
+    &.long-field {
+      .error-message  {
+        width: 100%;
+        height: 20px;
+        left: -5px;
+        margin-top: 51px;
+        text-align: center;
+
+      }
+      .error-message:after {
+        border-bottom: 6px solid rgb(200, 89, 80);
+        border-right: 6px solid rgba(0, 0, 0, 0);
+        border-left: 6px solid rgba(0, 0, 0, 0);
+        border-top: 6px solid rgba(0, 0, 0, 0);
+        top: -12px;
+        left: 50%;
+      }
+    }
+  }
+  &:nth-of-type(even) {
+    .error-message {
+      text-align: center;
+      left: 100%;
+      margin-left: 10px;
+
+    }
+    .error-message:after {
+      border-left: 6px solid rgba(0, 0, 0, 0);
+      border-right: 6px solid rgb(200, 89, 80);
+      right: 100%;
+      margin-right: 0px;
+    }
+  }
+  &.small-field {
+    input.ng-invalid-required, input[name="confirmpass"]  {
+      & + div[errorsblock]{
+        .error-message {
+          line-height: 40px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+}
+
+
+/*
+ Mixin for select
+ */
+.select-stylisation {
+  background-color: #fafafa;
+  border-radius: 5px;
+  height: 35px;
+  font-family: NokiaPureTextBold;
+  font-size: 15px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  margin-right: 10px;
+  opacity: 0.5;
+}
+
+/*
+ Mixin for inputs field-stylisation
+ */
+.field-stylisation(@height : 13px, @width: auto) {
+  height: @height;
+  border-radius: 5px;
+  border: 1px solid @light-gray;
+  background-color: rgba(248, 248, 248, 1);
+  padding: 10px;
+  font-family: NokiaPureText;
+  font-size: 15px;
+  width: @width;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/*
+ Mixin for inputs search-fields
+ */
+.search-field {
+  width: 264px;
+  height: 35px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid @light-gray;
+  background-image: url(../icons/search-20px.png);
+  background-position: 234px center;
+  background-repeat: no-repeat;
+  padding: 0 30px 0 10px;
+  font-family: NokiaPureTextLight;
+}
+
+/*
+ Mixin for lists of users or surveys
+ */
+.list-box {
+  max-height: ~"calc(100vh - 260px)";
+  overflow-y: auto;
+  border-bottom: 1px solid @light-gray;
+  .item{
+    display: block;
+    padding: 10px 20px;
+    height: 35px;
+    border-bottom: 1px solid @light-gray;
+    &:nth-of-type(even){
+      background: @even-surveys-bg;
+    }
+    &:hover {
+      .options {
+        display: block;
+      }
+    }
+    &.active {
+      background-color: rgba(13, 117, 203, 0.7);
+      h4,li {
+        color: #ffffff;
+      }
+      .gps {
+        background-color: #ffffff !important;
+      }
+    }
+    .name {
+      float: left;
+      display: inline-block;
+      margin-right: 10px;
+      h4 {
+        font-family: NokiaPureText;
+        font-size: 1em;
+        line-height: 1.2em;
+        .long-text;
+      }
+      .id {
+        font-family: NokiaPureText;
+        font-size: 0.8em;
+        line-height: 0.9em;
+        color: @light-gray;
+      }
+    }
+    .options {
+      float: left;
+      display: none;
+      position: relative;
+      & > .edit,
+      & > .archive {
+        .tooltip(-45px, 40px)
+      }
+      .details {
+        .tooltip(-65px, 40px, 180px)
+      }
+      .button-group {
+        float: right;
+      }
+    }
+
+    ul.data {
+      float: right;
+      display:block;
+      li {
+        display: inline-block;
+        padding: 0 10px;
+        position: relative;
+        line-height: 35px;
+        &.results {
+          width: 75px;
+          text-align: center;
+          float: left;
+        }
+        &.publisher,
+        &.collector {
+          width: 140px;
+          height: 35px;
+          .long-text;
+        }
+        &.date {
+          width: 70px;
+          float: right;
+        }
+        &.permission {
+          width: 100px;
+          text-transform: capitalize;
+        }
+        &.sent {
+          width: 80px;
+          float: left;
+        }
+        &.gps {
+          width: 35px;
+        }
+        &.collector {
+          width: 140px;
+          float: right;
+        }
+        a {
+          color: @green;
+          text-decoration: underline;
+          .long-text;
+        }
+        .void {
+          color: @light-gray;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  &>li {
+    &:nth-of-type(1){
+      .options{
+        .details {
+          .tooltip-down(-30px, 53px, 160px);
+        }
+        .button-group {
+          input:not(.edit),
+          input:not(.archive) {
+            .tooltip-down(-52px, 50px, 160px);
+          }
+          input.edit,
+          input.archive {
+            .tooltip-down(-23px, 50px, 160px);
+          }
+        }
+        input.edit,
+        input.archive {
+          .tooltip-down;
+        }
+      }
+    }
+  }
+}
+
+/*
+ Mixin for sort-arrow in column header
+ */
+.sort-arrow(@left: 41px) {
+  cursor: pointer;
+  &:after {
+    content: '';
+    position: absolute;
+    left: @left;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid #000;
+
+  }
+  &.down:after {
+    top: -1px;
+    border-bottom: 5px solid #000;
+    border-top: 5px solid transparent;
+  }
+}
+/*
+ Mixin for open/close arrow in column header
+ */
+.open-arrow(@left: 41px, @size: 5px, @top: 33%, @closetop: 25%) {
+  cursor: pointer;
+  &:after {
+    content: '';
+    position: absolute;
+    left: @left;
+    top: @top;
+    width: 0;
+    height: 0;
+    border-left: @size solid  transparent;
+    border-right: @size solid transparent;
+    border-bottom: @size solid transparent;
+    border-top: @size solid #000;
+  }
+  &.close:after {
+    top: @closetop;
+    border-left: @size solid #000;
+    border-top: @size solid transparent;
+  }
+}
+/*
+ Mixin for green circles in survey list
+ */
+
+.circle(@circle-bg: rgba(124,180,50,1)){
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(166, 166, 166, 0.9);
+  border-radius: 7px;
+  content: '';
+  &.green {
+    border: 2px solid @circle-bg;
+    background: @circle-bg;
+  }
+}
+/*
+ Mixin for overflow long text
+ */
+.long-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+ Mixin for back arrow
+ */
+.arrow {
+  float: left;
+  width: 30px;
+  height: 35px;
+  margin-right: 10px;
+  background-image: url(../icons/arrow-20px.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  &.up {
+    -moz-transform: scale(1,-1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    transform: scale(1, -1);
+    filter: FlipV;
+    -ms-filter: "FlipV";
+  }
+}
+
+/*
+Styles for dropdown-select
+*/
+
+.wrap-dd-select {
+  .button-stylisation(33px);
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+  cursor: pointer;
+  outline: none;
+  padding: 0 10px;
+  line-height: 33px;
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-left: -1px;
+    padding: 10px 0;
+    background: white;
+    border: 1px solid @light-gray;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-weight: normal;
+    transition: all 0.2s ease-in;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    li {
+      &.divider {
+        padding: 2px 0;
+        background: @light-gray;
+      }
+      a {
+        display: block;
+        padding: 0 10px;
+        text-decoration: none;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+        transition: all 0.3s ease-out;
+      }
+      i {
+        float: right;
+        color: inherit;
+      }
+      &:first-of-type a {
+        border-radius: 7px 7px 0 0;
+      }
+      &:last-of-type a {
+        border-radius: 0 0 7px 7px;
+        border: none;
+      }
+    }
+
+  }
+  &:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: black transparent;
+  }
+}
+
+/* Styles for sortable-placeholder */
+.sortable-placeholder {
+  height: 55px;
+  width: 100%;
+  border: 2px dotted #9f9f9f;
+  margin-bottom: 10px ;
+}
+.ui-sortable-helper {
+  opacity: 0.9;
+}
+
+
+/* active state */
+
+.wrap-dd-select {
+  .dropdown {
+    width: 100%;
+    z-index: 10;
+    li:hover a {
+      background: #f3f8f8;
+    }
+  }
+  &.active{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    .inset-shadow-active;
+    .dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+/*
+Styles for dropdown-menu
+*/
+.wrap-dd-menu {
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  .dropdown {
+    z-index: 11;
+    width: 200px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: -1px;
+    padding: 10px 0;
+    background: white;
+    border: 1px solid @light-gray;
+    border-radius: 5px;
+    font-weight: normal;
+    transition: all 0.2s ease-in;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-box-shadow: 0 0 10px 1px @light-gray;
+    box-shadow: 0 0 10px 1px @light-gray;
+    li {
+      &.divider {
+        padding: 2px 0;
+        background: @light-gray;
+      }
+      a {
+        background-color: #fff ;
+        display: block;
+        padding: 0 10px;
+        text-decoration: none;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+        transition: all 0.3s ease-out;
+      }
+      i {
+        float: right;
+        color: inherit;
+      }
+    }
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: 100%;
+      margin-left: 5px;
+      border-width: 0 6px 6px 6px;
+      border-style: solid;
+      border-color: #fff transparent;
+
+    }
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+/* active menu */
+
+.wrap-dd-menu {
+  .dropdown {
+    z-index: 10;
+    li:hover a {
+      background: #f3f8f8;
+    }
+  }
+  &.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    .inset-shadow-active;
+    .dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+.header {
+  height: 60px;
+  line-height: 60px;
+  background: @header-bg;
+  min-width: 1300px;
+  div.home,
+  div.get-started {
+    margin: 0 auto;
+    width: 940px;
+    .logo {
+      display: block;
+      float: left;
+      margin-right: 75px;
+      cursor: pointer;
+      img {
+        float: left;
+        margin: 15px 0;
+      }
+      h1 {
+        float: left;
+        margin-left: 15px;
+        font-family: NokiaPureTextLight;
+        color: #ffffff;
+        span {
+          font-family: NokiaPureTextBold;
+        }
+      }
+    }
+    .main-menu {
+      display: block;
+      float: left;
+      a {
+        color: #fff;
+        margin-right: 35px;
+        font-family: NokiaPureTextLight;
+        position: relative;
+        &.active {
+          font-family: NokiaPureTextBold;
+          &:after {
+            content: '';
+            position: absolute;
+            left: 32%;
+            top: 33px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #ffffff;
+          }
+        }
+
+        li {
+          color: #fff;
+          display: inline-block;
+        }
+      }
+    }
+    .user-menu {
+      display: block;
+      float: right;
+
+      .version {
+        display: inline-block;
+        float: left;
+        margin: 20px;
+        min-width: 50px;
+        padding: 0 10px;
+        background-color: white;
+        border-radius: 10px ;
+        line-height: 20px;
+        text-align: center;
+        color: rgb(36, 104, 160);
+      }
+      div.wrap-dd-menu .dropdown {
+        top: 50px;
+      }
+      div.wrap-dd-menu > a {
+        color: #fff;
+        font-family: NokiaPureTextBold;
+        cursor: pointer;
+        display: inline-block;
+        max-width: 200px;
+        position: relative;
+        padding-right: 15px ;
+        .long-text;
+        &:after {
+          display: inline-block;
+          position: absolute;
+          content: '';
+          width: 0;
+          height: 0;
+          top: 48%;
+          right: 0;
+          margin-left: 5px;
+          border-left: 5px solid transparent;
+          border-top: 5px solid #fff;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+        }
+      }
+    }
+  }
+  div.get-started a {
+      color: #fff;
+      font-family: NokiaPureTextLight;
+      &.active {
+        font-family: NokiaPureTextBold;
+      }
+      li {
+        color: #fff;
+        display: inline-block;
+      }
+
+
+    &.active {
+      &:after {
+        content: none;
+      }
+    }
+  }
+}
+
+.d3-tip {
+  z-index: 2000;
+}
+
+.notifications {
+  position: absolute;
+  left: 0;
+  max-width: 150px;
+  z-index: 100;
+  margin: 30px 0;
+  .event {
+    .notice
+  }
+  .red {
+    .notice(rgba(233, 140, 133, 0.8), rgba(185, 48, 38, 1), rgba(139, 36, 38, 1))
+  }
+  &.fixed {
+    position: fixed;
+    margin: 0;
+    top: 0;
+  }
+}
+
+.timeSelectorDirective {
+  background: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.timeSelectorDirective .increase, .timeSelectorDirective .decrease {
+  text-align: center;
+  vertical-align: middle;
+  color: rgb(112, 112, 112);
+  text-shadow: 0px 1px #FFF;
+  cursor: pointer;
+  -webkit-transition: 500ms ease-out all;
+  -moz-transition: 500ms ease-out all;
+  -ms-transition: 500ms ease-out all;
+  -o-transition: 500ms ease-out all;
+  transition: 500ms ease-out all;
+  font-size: 100%;
+  border: 1px solid #CCC;
+  padding: 3px;
+  margin: 3px;
+  border: 1px solid #EDE;
+}
+
+.timeSelectorDirective .increase:hover, .timeSelectorDirective .decrease:hover {
+  color: rgba(112, 112, 112, 0.5);
+  border-color: #CCC;
+  background-color: #FFF;
+}
+
+.timeSelectorDirective .increase:active, .timeSelectorDirective .decrease:active {
+  color: rgb(112, 112, 112);
+  box-shadow: inset 1px 1px 1px #DDD;
+}
+
+.timeSelectorDirective .section {
+  display: inline-block;
+}
+
+.timeSelectorDirective .display {
+  background-color: rgb(247, 247, 247);
+  color: #555555;
+  padding: 5px;
+  margin: 0px 3px;
+  min-width: 30px;
+  text-align: center;
+  border: 1px solid #DDD;
+  box-shadow: 1px 1px 1px #FFFFFF;
+}
+
+.content {
+  margin: 40px auto;
+  position: relative;
+  width: 1000px;
+  .login-panel,
+  .get-started-panel,
+  .open-source-panel,
+  .use-cases,
+  .register-panel,
+  &.home-page {
+    width: 1000px;
+    margin: 0 auto;
+    font-size: 23px;
+    .blue {
+      color: #2468a0;
+    }
+    .gray {
+      color: rgba(166, 166, 166, 1);
+    }
+    .dark-gray {
+      color: rgba(120, 120, 120, 1);
+    }
+    .bold {
+      font-family: NokiaPureTextBold;
+    }
+    .light {
+      font-family: NokiaPureTextLight;
+    }
+    .gray-background {
+      background-color: rgba(240, 240, 240, 1);
+    }
+    .light-gray-background {
+      background-color: rgba(240, 240, 240, 0.5);
+    }
+    .header-background {
+      background-color: rgba(235, 235, 235, 1);
+    }
+    .center-text {
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 25px;
+    }
+    h3 {
+      font-size: 15px;
+    }
+    a {
+      color: #558a10;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    span.title {
+      display: inline-block;
+      font-size: 24px;
+      margin: 0 125px 25px 150px;
+    }
+    .image,
+    .video {
+      width: 600px;
+      height: 300px;
+      border: 1px solid @light-gray;
+      margin-left: 210px;
+      margin-bottom: 25px;
+    }
+    .video {
+      margin: 0 200px 50px;
+      width: 640px;
+      height: 390px;
+    }
+    .image.mobile-collage {
+      margin: 0;
+      width: 445px;
+      height: 450px;
+    }
+    .column {
+      width: 48%;
+      ~span.title {
+        margin-top: 50px;
+      }
+      &.short {
+        width: 35%;
+      }
+    }
+    div.block {
+      width: 100%;
+      display: inline-block;
+      .center {
+        margin-left: 200px;
+        margin-right: 200px;
+        margin-top: 50px;
+      }
+      h3 {
+        font-size: 20px;
+      }
+      ul.open-source,
+      ul.acknowledgements,
+      ul.support {
+        margin: 20px 0 40px 40px;
+      }
+      p,
+      li {
+        font-size: 17px;
+      }
+      p {
+        margin-bottom: 25px;
+        ~h3 {
+          margin-top: 50px;
+        }
+      }
+      .author {
+        width: 77%;
+        font-size: 14px;
+        text-align: right;
+        float: right;
+      }
+      .blockquote:before {
+        content: open-quote;
+      }
+      .blockquote:after {
+        content: close-quote;
+      }
+      li {
+        margin-top: 5px;
+      }
+      .italic {
+        font-style: italic;
+      }
+    }
+    ul.how-it-works {
+      margin-top: 20px;
+      li {
+        list-style-type: none;
+        margin: 0;
+        position: relative;
+        height: 210px;
+      }
+      .image {
+        width: 180px;
+        height: 180px;
+        margin: 0;
+        float: left;
+      }
+      .number {
+        display: inline-block;
+        margin-top: 65px;
+        margin-right: 2%;
+        margin-bottom: 0;
+        margin-left: 2%;
+        font-size: 32px;
+      }
+      p {
+        display: inline-block;
+        float: right;
+        margin-top: 60px;
+        width: 240px;
+        font-size: 20px;
+      }
+    }
+    ul.steps {
+      li {
+        margin-top: 40px;
+        list-style-type: none;
+        height: 300px;
+        width: 1000px;
+        div {
+          display: inline-block;
+        }
+        .image {
+          width: 300px;
+          margin: 0;
+          float: left;
+        }
+
+        div.step-info {
+          margin-left: 20px;
+          width: 670px;
+
+          h2 {
+            font-size: 20px;
+          }
+          p {
+            font-size: 19px;
+            margin-top: 25px;
+            a {
+              color: #558a10;
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+          .download-app {
+            margin-top: 25px;
+            p {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+    .login-form,
+    .register-form {
+      position: absolute;
+      margin-left: 240px;
+      margin-top: 20px;
+      width: 505px;
+      padding: 10px;
+      background-color: rgba(240, 240, 240, 1);
+      height: auto;
+
+      .small-field {
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-left: 5px;
+
+        input {
+          .field-stylisation(13px, 220px);
+        }
+
+        select {
+          .field-stylisation(35px, 242px);
+          padding: 0;
+          padding-left: 6px;
+        }
+
+        input[name="phone"]:not(.ng-invalid-required) {
+          background-image: url(../icons/plus-gray-16px.png);
+          background-position: 6px center;
+          background-repeat: no-repeat;
+          background-size: 12px;
+          padding-left: 20px;
+          width: 210px;
+        }
+      }
+
+      .login-btn,
+      .sign-up-btn {
+        margin-top: 10px;
+        margin-left: 45%;
+        display: block;
+        .button-stylisation(35px);
+      }
+
+      .sign-up-btn {
+        margin-left: 40%;
+      }
+    }
+  }
+
+  &.home-page {
+    margin: 0;
+    width: 100%;
+    .content-block {
+      margin: 0 auto;
+      width: 1000px;
+    }
+    h1 {
+      margin-top: 50px;
+    }
+    ul.footer {
+      font-size: 15px;
+      margin: 100px 270px 100px 270px;
+      li {
+        display: inline-block;
+        margin-right: 20px;
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+    .header-logo {
+      font-size: 23px;
+      background: #ebebeb url(../icons/big-logo.png) no-repeat 50% 35%;
+      background-size: 25%;
+      margin: 0 auto 50px;
+      span.big-logo {
+        margin: 20px 200px 20px 200px;
+      }
+    }
+    .benefits {
+      .speed {
+        background-image: url(../icons/speed.png);
+        margin-left: 200px;
+      }
+      .usability {
+        background-image: url(../icons/usability.png);
+        margin-left: 165px;
+      }
+      .cost-efficiency {
+        background-image: url(../icons/cost-efficiency.png);
+        margin-left: 170px;
+      }
+      .accuracy {
+        background-image: url(../icons/accuracy.png);
+        margin-left: 195px;
+      }
+      .img {
+        background-repeat: no-repeat;
+        height: 115px;
+        margin-bottom: 25px;
+      }
+      margin-bottom: 50px;
+      height: 280px;
+    }
+  }
+
+  .survey-panel {
+    .function-bar {
+      position: relative;
+      .title {
+        width: 200px;
+        position: absolute;
+        margin-left: 45px;
+        font-family: ProximaNovaTextSemibold;
+        font-size: 25px;
+      }
+      input[type="button"].upload {
+        margin-left: 10px;
+      }
+      input[type="file"] {
+        margin-left: 9px;
+        .tooltip(165px, 50px);
+        opacity: 0;
+        position: absolute;
+
+        &:active ~ input[type="button"].upload {
+          .inset-shadow-active;
+        }
+      }
+      input.browse-archive {
+        float: left;
+        margin-right: 10px;
+        .tooltip(465px, 50px);
+      }
+      .wrap-dd-select{
+        width: 130px;
+        margin-right: 10px;
+      }
+
+    }
+    .list-box {
+      .item {
+        ul.data {
+          width: 350px;
+        }
+        .circle {
+          margin: 12px 20px 12px 0;
+          float: left;
+          .circle;
+        }
+        .name {
+          width: 480px;
+        }
+        .options {
+          input.edit,
+          input.archive {
+            float: left;
+            margin-right: 10px;
+          }
+          .button-group {
+            float: right;
+          }
+        }
+
+        &:hover {
+          .name {
+            width: 255px
+          }
+        }
+      }
+    }
+
+  }
+  .groups-panel {
+    width: 300px;
+    float: left;
+    .groups-list {
+      .item {
+        padding: 10px 20px;
+        height: 35px;
+        line-height: 35px;
+        border-bottom: 1px solid @light-gray;
+        list-style: none;
+        position: relative;
+        &.user-added {
+          &:after {
+            font-size: 13px;
+            content: '\2714';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: 20px;
+            top: 17px;
+            border-radius: 14px;
+            line-height: 21px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            background-color: rgb(124, 180, 50);
+          }
+        }
+
+        &.new-group {
+          input {
+            .field-stylisation(13px, 238px);
+            .tooltip-down(0, 0, 240px);
+          }
+          border-bottom: none;
+        }
+        .button-group {
+          float:right;
+          display: none;
+          .sms + span {
+            width: 160px;
+          }
+        }
+        h3 {
+          display: inline-block;
+          width: 260px;
+          color: #000000;
+          font-family: NokiaPureText;
+          .long-text;
+        }
+        &:hover {
+          h3 {
+            width: 165px;
+          }
+          .button-group {
+            float: right;
+            display: block;
+          }
+        }
+        &.droppable-hover {
+          border: 3px dotted rgba(124, 180, 50, 1);
+          padding: 7px 17px;
+          &.active {
+            border: 3px dotted #ffffff;
+          }
+        }
+        &.active {
+          background-color: rgba(13, 117, 203, 0.7);
+          h3 {
+            color: #ffffff;
+          }
+        }
+
+      }
+    }
+  }
+  .users-panel {
+    width: 620px;
+    float: right;
+    .search-field {
+      float: right;
+    }
+    .list-box {
+      & > li {
+        height: 35px;
+        position: relative;
+        .name {
+          width: 430px;
+        }
+        .options {
+          input.details {
+            float: left;
+            margin-right: 10px;
+            .button-icon;
+          }
+        }
+        &:hover {
+          .name {
+            width: 250px;
+          };
+          .options{
+            display: inline-block;
+          };
+          &:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 38px;
+            border: 2px dotted rgb(159, 159, 159);
+            left: 5px;
+            top: 6px;
+          }
+        }
+        &:nth-of-type(even) {
+          &.item {
+            background: @even-surveys-bg;
+          }
+        }
+        &:nth-of-type(odd) {
+          &.item {
+            background: #fff;
+          }
+        }
+        .user-details {
+          padding: 10px 20px;
+          line-height: 35px;
+          height: 35px;
+          background-color: rgba(246, 250, 253, 1);
+          border-bottom: 1px solid @light-gray;
+          p {
+            display:  inline-block;
+            width: 250px;
+            margin-right: 20px;
+            font-family: NokiaPureTextBold;
+            font-size: 15px;
+            .long-text;
+            span {
+              margin: 0 5px;
+              max-width: 165px;
+              display:  inline-block;
+              font-family: NokiaPureTextLight;
+            }
+          }
+        }
+        &.show-details {
+          position: relative;
+          height: 110px;
+          padding: 0;
+          .name{
+            width: 250px;
+          }
+          .options {
+            display: inline-block;
+          }
+          input.details {
+            background-color: rgba(240, 240, 240, 1);
+            box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+            -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+            -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+          }
+          & > div {
+            padding: 10px 20px;
+            height: 35px;
+          }
+        }
+        &.ui-sortable-helper {
+          opacity: 0.9;
+        }
+      }
+
+
+    }
+  }
+  .result-panel {
+    width: 610px;
+    float: left;
+    .function-bar {
+      position: relative;
+      .wrap-dd-menu {
+        .tooltip(76px, 50px, 170px);
+        .dropdown {
+          li:first-of-type a {
+            color: @gray;
+            &:hover {
+              background-color: #ffffff;
+              cursor: auto;
+            }
+          }
+        }
+      }
+
+      .button-group {
+        float: left;
+        margin-right: 10px;
+        .map {
+          .tooltip(-75px, 50px, 200px)
+        }
+        .chart {
+          .tooltip(-75px, 50px, 210px)
+        }
+      }
+      .button-icon {
+        margin-right: 6px;
+        &.export {
+          .tooltip(76px, 50px, 170px)
+        }
+        &.delete {
+          .tooltip(130px, 50px, 170px)
+        }
+      }
+      .search-field {
+        float: right;
+      }
+
+    }
+    .column-header {
+      padding-left: 12px;
+      input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin-right: 10px;
+      }
+    }
+    .list-box {
+      height: auto;
+      .item {
+        padding-left: 12px;
+        .title {
+          width: 200px;
+          float: left;
+          display: inline-block;
+          margin-right: 10px;
+          h4 {
+            font-family: NokiaPureText;
+            font-size: 1em;
+            line-height: 35px;
+            .long-text;
+          }
+        }
+        input[type="checkbox"] {
+          margin-right: 10px;
+          margin-top: 12px;
+          display: inline-block;
+          float: left;
+        }
+        .data {
+          width: 310px;
+          .gps {
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            margin: 5px 10px 0 10px;
+            -webkit-mask-image: url(../icons/cross-20px.png);
+            background-color: @gray;
+            &.ok {
+              background-color: @green;
+              -webkit-mask-image: url(../icons/tick-20px.png);
+            }
+          }
+        }
+      }
+    }
+  }
+  .map-panel {
+    float: left;
+    width: 610px;
+    height: 610px;
+    margin-bottom: 100px;
+    .search-field {
+      position: absolute;
+      z-index: 200;
+      margin-top: 15px;
+      margin-left: 180px;
+    }
+    .close-window {
+      position: absolute;
+      z-index: 200;
+      margin-left: 570px;
+      margin-top: 20px;
+      color: rgb(156, 156, 156);
+      text-align: center;
+      width: 21px;
+      height: 21px;
+      border: 2px solid rgb(156, 156, 156);
+      border-radius: 14px;
+      display: inline-block;
+      line-height: 21px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #mapContainer {
+      width: 100%;
+      height: 100%;
+      .nm_bubble_content {
+        font-size: 12px;
+        a {
+          color: black;
+        }
+      }
+    }
+  }
+  .map-details {
+    .detail-panel {
+      height: 588px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+  .detail-panel {
+    float: right;
+    width: 308px;
+    padding: 10px;
+    border: 1px solid @light-gray;
+    table {
+      &.detail-panel-table {
+        border: 1px solid @light-gray;
+        border-collapse:collapse;
+        width: 308px;
+        max-height: 36px;
+        font-family: NokiaPureText;
+        font-size: 0.8em;
+        tr {
+          border: 1px solid @light-gray;
+          td {
+            border: 1px solid @light-gray;
+            padding:8px 10px;
+            &:first-of-type{
+              background-color: rgba(235, 235, 235, 1);
+              font-family: NokiaPureTextBold;
+
+            }
+          }
+        }
+      }
+    }
+
+    li {
+      list-style-type: none;
+      font-family: NokiaPureText;
+      font-size: 17px;
+    }
+    li.cat-results {
+      border-bottom: 1px solid @light-gray;
+      padding: 20px 0;
+      word-wrap: break-word;
+    }
+    ul {
+      padding: 10px;
+      ul {
+        padding: 20px 0;
+        margin-bottom: 20px;
+      }
+    }
+    .cat-name {
+      font-size: 19px;
+      text-decoration: underline;
+    }
+    .answer {
+      margin: 10px 0;
+      color: rgba(74, 152, 216, 1);
+      font-family: NokiaPureTextBold;
+    }
+    .image-answer {
+      max-width: 100%
+    }
+  }
+  .topic {
+    margin-bottom: 30px;
+    input {
+      float: right;
+      .button-stylisation;
+    }
+    .schedule-export {
+      padding: 0 10px;
+    }
+    h1 {
+      font-size: 1.5em;
+      span{
+        font-style: italic;
+      }
+    }
+    p {
+      color: @gray;
+      display: inline-block;
+      a {
+        color: @green;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .survey-title {
+    display: inline-block;
+    width: 100%;
+    h1 {
+      font-size: 1.5em;
+      display: inline-block;
+      float: left;
+      margin-right: 10px;
+      max-width: 600px;
+      .long-text;
+    }
+    .edit-title {
+      input[type="text"] {
+        .field-stylisation;
+      }
+      .edit-button {
+        position: relative;
+        display: inline-block;
+        float: left;
+        width: 43px;
+        height: 35px;
+        .edit {
+          .tooltip(-45px, 40px)
+        }
+      }
+    }
+    .save-survey {
+      float: right;
+      height: 40px;
+      background-image: url(../icons/circle-tick-22px.png);
+      background-position: 8px center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      padding: 0 10px 0 35px;
+      .button-stylisation(40px);
+    }
+  }
+
+  .builder {
+    input.button-icon.single.save:disabled {
+      opacity: 1;
+    }
+
+    li[class $= item] {
+      list-style-type: none;
+      font-family: NokiaPureText;
+      font-size: 17px;
+    }
+
+    input[type="text"],
+    textarea {
+      margin-right: 10px;
+      .field-stylisation;
+    }
+
+    .options {
+      display: inline-block;
+      height: 35px;
+      position: relative;
+      .edit {
+        margin-right: 10px;
+        display: inline-block;
+        .tooltip(-50px, 50px)
+      }
+      .button-group {
+        display: inline;
+      }
+    }
+
+    ol.category-box {
+      list-style: none;
+      counter-reset: list1;
+      position: relative;
+      .add-category {
+        margin: 0 50% 10px 50%;
+        position: relative;
+        left: -90px;
+        .button-plus
+      }
+      li.category-item {
+        margin-bottom: 10px;
+        .category-header {
+          background-color: rgba(235, 235, 235, 1);
+          padding: 10px;
+          height: 35px;
+          position: relative;
+          .open-arrow(25px, 6px, 40%, 37%);
+          .category-title{
+            width: 340px;
+            display: inline-block;
+            float: left;
+            position: relative;
+            height: 34px;
+            input[type="text"] {
+              display: inline-block;
+              width: 220px;
+              float: left;
+            }
+            h2 {
+              width: 240px;
+              height: 35px;
+              line-height: 35px;
+              .long-text;
+            }
+            &:before {
+              counter-increment: list1;
+              list-style-position: inside;
+              content:  "(" counter(list1) ")";
+              font-size: 19px;
+              float: left;
+              line-height: 35px;
+              margin: 0 10px 0 30px;
+            }
+          }
+          .options {
+            display: none;
+            .edit {
+              .tooltip(-45px, 40px)
+            }
+          }
+          &:hover {
+            h2 {
+              width: 240px;
+            }
+            .options {
+              display: inline-block;
+            }
+            &.category-header.close:before {
+              content: '';
+              position: absolute;
+              width: 2px;
+              height: 55%;
+              border: 2px dotted #9f9f9f;
+              left: 10px;
+            }
+          }
+        }
+        ol.questions-box {
+          list-style: none;
+          padding: 10px;
+          counter-reset: list2;
+          background-color: rgba(247, 247, 247, 1);
+          .question-item {
+            background-color: #ffffff;
+            margin-bottom: 10px;
+            position: relative;
+            label {
+              color: rgba(119, 119, 119, 0.94);
+              font-family: NokiaPureTextLight;
+              margin-right: 10px;
+            }
+            .question-header {
+              padding: 10px 20px;
+              height: 35px;
+              border-bottom: 2px solid rgba(247, 247, 247, 1);
+              position: relative;
+              .open-arrow(25px, 6px, 40%, 37%);
+              .question-title {
+                position: relative;
+                display: inline-block;
+                float: left;
+                height: 34px;
+                h3 {
+                  width: 460px;
+                  height: 100%;
+                  line-height: 35px;
+                  .long-text;
+                }
+                input[type="text"] {
+                  width: 288px;
+                }
+                &:before {
+                  float: left;
+                  line-height: 35px;
+                  counter-increment: list2;
+                  margin-right: 10px;
+                  margin-left: 20px;
+                  content:"(" counter(list1) "." counter(list2) ") ";
+                }
+              }
+              .right {
+                height: 35px;
+                line-height: 35px;
+              }
+              .right > div, label {
+                display: inline-block;
+                margin-left: 10px;
+              }
+              .options {
+                display: none;
+                .edit {
+                  .tooltip(-45px, 40px)
+                }
+              }
+
+              &:hover {
+                h3 {
+                  width: 315px;
+                }
+                .options {
+                  display: inline-block;
+                };
+                &.question-header.close:before {
+                  content: '';
+                  position: absolute;
+                  width: 2px;
+                  height: 55%;
+                  border: 2px dotted #9f9f9f;
+                  left: 10px;
+                }
+              }
+
+            }
+            .question-body {
+              margin: 10px;
+              padding: 20px;
+              h5 {
+                font-family: NokiaPureTextBold;
+                font-size: 0.8em;
+              }
+              .question-constr {
+                padding-bottom: 30px;
+                overflow: hidden;
+                .default-question {
+                  margin-bottom: 10px;
+                  input {
+                    margin: 10px 10px 10px 0;
+                    width: 430px;
+                  }
+                }
+                .default-date {
+                  margin-bottom: 25px;
+                }
+                .del-option {
+                  .tooltip(187px, 250px);
+                  .button-icon;
+                  .single;
+                  height: 24px;
+                  width: 24px;
+                  position: relative;
+                  top: 5px;
+                }
+                .note-question textarea {
+                  width: 890px;
+                  height: 100px;
+                  margin: 10px 10px 10px 0;
+                  border-radius: 5px;
+                  border: 1px solid rgba(196,196,196,1);
+                  background-color: rgba(248, 248, 248, 1);
+                  resize: none;
+                }
+                .small-field,.words-length {
+                  &.date {
+                    width: 245px;
+                  }
+                  width: 200px;
+                  display: inline-block;
+                  h5 {
+                    display: inline-block;
+                  }
+                }
+                .words-length  {
+                  input[type="text"] {
+                    width: 60px;
+                    margin: 5px 10px 10px 0;
+                  }
+                  &.disabled {
+                    opacity: 0.3;
+                  }
+                }
+                .select-question {
+                  position: relative;
+                  [type="checkbox"], [type="radio"] {
+                    width: 16px;
+                    height: 16px;
+                  }
+                  .rules{
+                    position: relative;
+                    input[type="button"] {
+                      .button-stylisation;
+                      font-family: NokiaPureText;
+                      font-size: 13px;
+                      padding: 0 10px;
+
+                    }
+                    input[type="file"] {
+                      height: 35px;
+                      width: 163px;
+                      position: absolute;
+                      opacity: 0;
+                      cursor: pointer;
+                      z-index: 100;
+                      &:active + input[type="button"] {
+                        .inset-shadow-active;
+                      }
+                    }
+                    input.cascade {
+                      display: block;
+                      margin-bottom: 10px;
+                      width: 155px;
+                    }
+                  }
+                  .variants {
+                    padding: 35px 0;
+                    display: block;
+                    & > li {
+                      list-style: none;
+                      min-width: 30%;
+                      position: relative;
+                      label {
+                        max-width: 77%;
+                        min-width: 30%;
+                        position: relative;
+                        .long-text;
+                      }
+                      input[type="text"] {
+                        .tooltip-down(0, -32px, 196px);
+                      }
+                      .edit-variants {
+                        visibility: hidden;
+                        li {
+                          list-style: none;
+                          display: inline-block;
+                          height: 18px;
+                          width: 18px;
+                          border-radius: 5px;
+                          border: 2px solid @gray;
+                          &.edit-variant {
+                            background-color: @gray;
+                            -webkit-mask-image: url(../icons/edit-20px.png);
+                          }
+                          &.delete-variant {
+                            background-color: @gray;
+                            -webkit-mask-image: url(../icons/delete-20px.png);
+                          }
+                          &:hover {
+                            cursor: pointer;
+                            background-color: @green;
+                          }
+                        }
+                      }
+                      &:hover .edit-variants {
+                        visibility: visible;
+                      }
+                    }
+                  }
+                }
+                .cascade {
+                  white-space: nowrap;
+                  width: 100%;
+                  height: auto;
+                  overflow-x: auto;
+                  padding-bottom: 30px;
+                  position: relative;
+                  .select-question {
+                    display: inline-block;
+                    width: 260px;
+                    float: left;
+                    .variants label {
+                      color: #000000;
+                      span {
+                        padding: 0 5px;
+                        &.selected {
+                          background-color: #dbeaf7;
+                          border-radius: 3px;
+                        }
+                      }
+
+                    }
+                  }
+                  [cascade-question] {
+                    display: inline-block;
+                  }
+                }
+              }
+              .error-message {
+                color: #b93026;
+                font-size: 15px;
+                font-family: NokiaPureTextBold;
+                padding-left: 20px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                background-image: url(../icons/alert.png);
+                background-repeat: no-repeat;
+              }
+              .skip-logic,
+              .mask-input {
+                border-top: 2px solid rgba(247, 247, 247, 1);
+                border-bottom: 2px solid rgba(247, 247, 247, 1);
+                .skip-logic-header,
+                .mask-input-header {
+                  padding: 20px;
+                  h5 {
+                    position: relative;
+                    .open-arrow(136px);
+
+                    &.close:after {
+                      top: 23%;
+                    }
+                  }
+                }
+                .mask-input-header h5 {
+                  .open-arrow(80px);
+
+                  &.close:after {
+                    top: 23%;
+                  }
+                }
+                .mask-input-body.mask {
+                    margin-left: 30px;
+                    margin-bottom: 10px;
+                    input {
+                      margin: 10px 10px 10px 0;
+                      width: 430px;
+                    }
+
+                }
+                .skip-logic-body {
+                  padding: 0 20px 20px 20px;
+                  .error-message {
+                    color: #b93026;
+                    font-size: 15px;
+                    font-family: NokiaPureTextBold;
+                    padding-left: 20px;
+                    margin-bottom: 20px;
+                    margin-left: 20px;
+                    display: inline-block;
+                    background-image: url(../icons/alert.png);
+                    background-repeat: no-repeat;
+                  }
+
+                  .logic-option {
+                    padding: 10px 20px;
+                    background-color: rgba(244, 248, 251, 1);
+                    margin-bottom: 10px;
+                    height: 35px;
+                    span {
+                      font-family: NokiaPureTextBold;
+                      margin-right: 5px;
+                    }
+                    div {
+                      .select-stylisation;
+                      opacity: 1;
+                      margin: 0 10px 0 0;
+                      width: 270px;
+                      display: inline-block;
+                      span.selected {
+                        width: 250px;
+                        display: inline-block;
+                        .long-text;
+                      }
+                    }
+                    &.default{
+                      line-height: 35px;
+                      div {
+                        width: 400px;
+                        span.selected {
+                          width: 380px;
+                          display: inline-block;
+                          .long-text;
+                        }
+                      }
+                    }
+                    label {
+                      line-height: 35px;
+                      display: inline-block;
+                      color: #000000;
+                    }
+                    &.error {
+                      background-color: #b93026;
+                      label,
+                      span.default {
+                        color: #ffffff;
+                      }
+                    }
+                    .del-option {
+                      display: inline-block;
+                      float: right;
+                      .button-icon;
+                      .single;
+                      height: 24px;
+                      width: 24px;
+                      margin:5px 0 ;
+                    }
+                    &.int {
+                      div.option-select {
+                        width: 110px;
+                        span.selected {
+                          width: 100px;
+                        }
+                      }
+                      div.question-select {
+                        width: 250px;
+                        span.selected {
+                          width: 240px;
+                        }
+                      }
+                      input.first,
+                      input.second {
+                        text-align: center;
+                        width: 50px;
+                        height: 15px;
+                      }
+                    }
+                  }
+                  .add-option {
+                    .button-plus;
+                  }
+                }
+              }
+              .question-footer {
+                padding: 20px;
+                input {
+                  .button-stylisation;
+                  padding: 0 20px;
+                  font-size: 15px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0,0.8);
+    transition: all 0.3s;
+  }
+  .window {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    margin-left: -225px;
+    width: 450px;
+    background-color: rgba(255,255,255,1);
+    height: auto;
+    z-index: 2000;
+    &.results-chart {
+      width: 700px;
+      margin-left: -350px;
+      .window-header h2 {
+        width: 620px;
+      }
+    }
+    &.success-registration {
+      top: 100px;
+      .window-body {
+        input {
+          margin-left: 45%;
+          .button-stylisation;
+        }
+        padding: 20px;
+      }
+    }
+    .window-header {
+      background-color: rgba(235,235,235,1);
+      padding: 20px;
+      height: 25px;
+      h2 {
+        width: 380px;
+        font-family: NokiaPureTextBold;
+        font-size: 19px;
+        display: inline-block;
+        text-align: center;
+      }
+      .close-window {
+        color: rgb(156, 156, 156);
+        text-align: center;
+        width: 21px;
+        height: 21px;
+        border: 2px solid rgb(156, 156, 156);
+        border-radius: 14px;
+        display: inline-block;
+        line-height: 21px;
+        float: right;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    }
+    .window-body {
+      position: relative;
+      #sms-form {
+        padding: 20px;
+        overflow: hidden;
+        label {
+          display: block;
+          font-family: NokiaPureTextBold;
+          font-size: 15px;
+        }
+        textarea {
+          width: 388px;
+          height: 180px;
+          border-radius: 5px;
+          padding: 5px 10px;
+          border: 1px solid rgba(196,196,196,1);
+          background-color: rgba(248, 248, 248, 1);
+          font-family: NokiaPureTextLight;
+          font-size: 15px;
+          margin: 10px 0;
+          resize: none;
+        }
+        input {
+          overflow: hidden;
+          float: right;
+          .button-stylisation;
+        }
+      }
+      #add-user-form,
+      #edit-user-form,
+      #export-schedule {
+        padding: 0 20px;
+        label {
+          font-size: 14px;
+          font-family: NokiaPureTextBold ;
+          margin-bottom: 5px;
+        }
+        .small-field {
+          width: 190px;
+          height: 60px;
+          display: inline-block;
+          margin-bottom: 20px;
+          &:nth-of-type(even){
+            margin-left: 20px;
+          }
+          &:nth-of-type(odd) {
+
+          }
+
+          input {
+            .field-stylisation(13px, 173px);
+          }
+          input[name="phone"]:not(.ng-invalid-required) {
+            background-image: url(../icons/plus-gray-16px.png);
+            background-position: 6px center;
+            background-repeat: no-repeat;
+            background-size: 12px;
+            padding-left: 20px;
+            width: 165px;
+          }
+        }
+        .long-field {
+          input {
+            .field-stylisation(13px, 388px);
+          }
+          .error-message {
+            width: 385px;
+            left: 0;
+          }
+        }
+        .small-field .error-message {
+          width: 240px;
+        }
+        .small-field .error-message[ng-show="errorPassword"] {
+          width: 300px;
+        }
+        .user-info {
+          min-height: 220px;
+          padding: 20px 0 30px 0;
+          border-bottom: 1px solid rgba(196,196,196,1);
+        }
+        .export-schedule {
+          min-height: 220px;
+          padding: 20px 0 30px 0;
+        }
+        .user-pass {
+          padding: 20px 0 10px 0;
+          border-bottom: 1px solid rgba(196,196,196,1);
+          margin-bottom: 10px;
+          select {
+            width: 193px;
+            .select-stylisation;
+          }
+        }
+        .save-changes {
+          float: right;
+          height: 40px;
+          background-image: url(../icons/circle-tick-22px.png);
+          background-position: 8px center;
+          background-repeat: no-repeat;
+          cursor: pointer;
+          padding: 0 10px 0 35px;
+          margin-bottom: 30px;
+          .button-stylisation(40px);
+        }
+        .error-message {
+          color: #b93026;
+          font-size: 15px;
+          padding-left: 20px;
+          display: inline-block;
+        }
+        .info-msg {
+          font-size: 14px;
+          font-family: NokiaPureText;
+          color: rgba(134,134,134,1);
+          margin-bottom: 30px;
+        }
+      }
+      #export-schedule {
+        p {
+          padding: 20px 0px;
+        }
+
+        .select-field {
+          cursor: pointer;
+          background-repeat: no-repeat;
+          background-image: url(../icons/select-icon.png);
+          background-position: right;
+        }
+
+        .export-schedule-button {
+          margin-bottom: 30px;
+          margin-top: 30px;
+          float: right;
+          .button-stylisation;
+        }
+
+        .actual-subscriptions {
+          width: 100%;
+          padding: 0;
+          p {
+            text-align: center;
+          }
+        }
+
+        li {
+          font-family: NokiaPureText;
+          font-size: 16px;
+          list-style: none;
+          div {
+            display: inline-block;
+          }
+          .email {
+            float: left;
+            width: 200px;
+            cursor: alias;
+            .long-text;
+          }
+          .from {
+            width: 90px;
+          }
+          .to {
+            width: 90px;
+          }
+
+          .delete-subscription {
+            color: rgb(156, 156, 156);
+            display: inline-block;
+            line-height: 24px;
+            float: right;
+            font-size: 18px;
+            cursor: pointer;
+          }
+        }
+      }
+      #send-survey-form {
+        position: relative;
+        .all, .groups-list {
+          h4 {
+            line-height: 25px;
+            label {
+              position: relative;
+              max-width: 370px;
+              display: inline-block;
+              .long-text;
+              &:not(.void) {
+                padding-left: 15px;
+                .open-arrow(0, 6px);
+              }
+            }
+            input {
+              width: 15px;
+              height: 19px;
+              float: left;
+              margin-right: 5px;
+            }
+          }
+          padding: 20px;
+          border-bottom: 1px solid @light-gray;
+          li {
+            margin-left: 25px;
+            list-style: none;
+            line-height: 25px;
+            max-height: 25px;
+            .long-text;
+          }
+        }
+        .send-survey {
+          background-image: url(../icons/send-green-20px.png);
+          background-position: 8px center;
+          background-repeat: no-repeat;
+          cursor: pointer;
+          padding: 0 10px 0 35px;
+          margin: 20px 33% 20px 33%;
+          .button-stylisation(40px);
+        }
+      }
+      .sent-to-user {
+        padding: 20px;
+        overflow: auto;
+        height: 450px;
+        li {
+          list-style: none;
+          font-family: NokiaPureText;
+          font-size: 15px;
+          line-height: 35px;
+          .long-text;
+        }
+      }
+      .results-chart {
+        padding: 0;
+        overflow: auto;
+        height: 450px;
+        li {
+          list-style: none;
+          font-family: NokiaPureText;
+          line-height: 30px;
+          padding: 20px;
+          border-bottom: 1px solid @light-gray;
+
+          label {
+            float: left;
+            position: relative;
+            font-size: 16px;
+            max-width: 380px;
+            display: inline-block;
+            .long-text;
+
+            &:not(.void) {
+              padding-left: 16px;
+              .open-arrow(0, 6px);
+            }
+          }
+
+          .bar-icon,
+          .pie-icon {
+            margin-left: 5px;
+            position: inherit;
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            background-repeat: no-repeat;
+          }
+
+          .bar-icon {
+            background-image: url(../icons/chart-bar.png);
+          }
+
+          .pie-icon {
+            background-image: url(../icons/chart-pie.png);
+          }
+
+          .chart-image {
+            height: 330px;
+            width: 550px;
+            margin-left: 30px;
+            display: block;
+
+            text {
+              font-family: NokiaPureText;
+            }
+
+            .slice path {
+              stroke: #fff;
+              stroke-width: 2px;
+            }
+
+            .axis path {
+              fill: none;
+              stroke: @light-gray;
+              shape-rendering: crispEdges;
+            }
+
+            .axis text {
+              line-height: 45px;
+            }
+
+            .bar {
+              fill: #4a98d8;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,381 @@
+<?xml version='1.0' ?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>Test Survey From XMl</h:title>
+    <model>
+      <instance>
+        <data id="test_id">
+          <category1>
+            <question1></question1>
+            <question2>20</question2>
+            <question3>66.4</question3>
+            <question4></question4>
+            <question5></question5>
+            <question6></question6>
+            <question7></question7>
+            <question8></question8>
+            <question9></question9>
+            <question10></question10>
+            <question11></question11>
+            <question12></question12>
+            <question13></question13>
+            <question14></question14>
+            <question15></question15>
+            <question16></question16>
+            <question17></question17>
+            <question18></question18>
+            <question19></question19>
+          </category1>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="eng">
+          <text id="/data/category1:label">
+            <value>all questions</value>
+          </text>
+          <text id="/data/category1/question1:label">
+            <value>Name</value>
+          </text>
+          <text id="/data/category1/question2:label">
+            <value>Age</value>
+          </text>
+          <text id="/data/category1/question3:label">
+            <value>Weight</value>
+          </text>
+          <text id="/data/category1/question4:label">
+            <value>When did you ... ?</value>
+          </text>
+          <text id="/data/category1/question5:label">
+            <value>Where are you now?</value>
+          </text>
+          <text id="/data/category1/question6:label">
+            <value>Attach an image</value>
+          </text>
+          <text id="/data/category1/question7:label">
+            <value>Exclusive choice</value>
+          </text>
+          <text id="/data/category1/question7:optionred">
+            <value>red</value>
+          </text>
+          <text id="/data/category1/question7:optiongreen">
+            <value>green</value>
+          </text>
+          <text id="/data/category1/question7:optionblue">
+            <value>blue</value>
+          </text>
+          <text id="/data/category1/question8:label">
+            <value>Multiple choice</value>
+          </text>
+          <text id="/data/category1/question8:optionleft">
+            <value>left</value>
+          </text>
+          <text id="/data/category1/question8:optionright">
+            <value>right</value>
+          </text>
+          <text id="/data/category1/question9:label">
+            <value>Time</value>
+          </text>
+          <text id="/data/category1/question10:label">
+            <value>Choose your zone</value>
+          </text>
+          <text id="/data/category1/question10:optionzone1">
+            <value>Zone 1</value>
+          </text>
+          <text id="/data/category1/question10:optionzone2">
+            <value>Zone 2</value>
+          </text>
+          <text id="/data/category1/question10:optionzone3">
+            <value>Zone 3</value>
+          </text>
+
+          <text id="/data/category1/question11:label">
+            <value>Choose your county</value>
+          </text>
+          <text id="/data/category1/question11:optioncounty1">
+            <value>County 1</value>
+          </text>
+          <text id="/data/category1/question11:optioncounty2">
+            <value>County 2</value>
+          </text>
+
+          <text id="/data/category1/question12:label">
+            <value>Choose your county</value>
+          </text>
+          <text id="/data/category1/question12:optioncounty3">
+            <value>County 3</value>
+          </text>
+          <text id="/data/category1/question12:optioncounty4">
+            <value>County 4</value>
+          </text>
+
+          <text id="/data/category1/question13:label">
+            <value>Choose your county</value>
+          </text>
+          <text id="/data/category1/question13:optioncounty5">
+            <value>County 5</value>
+          </text>
+          <text id="/data/category1/question13:optioncounty6">
+            <value>County 6</value>
+          </text>
+
+          <text id="/data/category1/question14:label">
+            <value>Choose your district</value>
+          </text>
+          <text id="/data/category1/question14:optiondistrict1">
+            <value>District 1</value>
+          </text>
+          <text id="/data/category1/question14:optiondistrict2">
+            <value>District 2</value>
+          </text>
+
+          <text id="/data/category1/question15:label">
+            <value>Choose your district</value>
+          </text>
+          <text id="/data/category1/question15:optiondistrict3">
+            <value>District 3</value>
+          </text>
+          <text id="/data/category1/question15:optiondistrict4">
+            <value>District 4</value>
+          </text>
+
+          <text id="/data/category1/question16:label">
+            <value>Choose your district</value>
+          </text>
+          <text id="/data/category1/question16:optiondistrict5">
+            <value>District 5</value>
+          </text>
+          <text id="/data/category1/question16:optiondistrict6">
+            <value>District 6</value>
+          </text>
+
+          <text id="/data/category1/question17:label">
+            <value>Choose your district</value>
+          </text>
+          <text id="/data/category1/question17:optiondistrict7">
+            <value>District 7</value>
+          </text>
+          <text id="/data/category1/question17:optiondistrict8">
+            <value>District 8</value>
+          </text>
+
+          <text id="/data/category1/question18:label">
+            <value>Choose your district</value>
+          </text>
+          <text id="/data/category1/question18:optiondistrict9">
+            <value>District 9</value>
+          </text>
+          <text id="/data/category1/question18:optiondistrict10">
+            <value>District 10</value>
+          </text>
+
+          <text id="/data/category1/question19:label">
+            <value>Choose your district</value>
+          </text>
+          <text id="/data/category1/question19:optiondistrict11">
+            <value>District 11</value>
+          </text>
+          <text id="/data/category1/question19:optiondistrict12">
+            <value>District 12</value>
+          </text>
+
+        </translation>
+      </itext>
+      <bind nodeset="/data/category1/question1" type="string"></bind>
+      <bind nodeset="/data/category1/question2" type="int" required="true()" constraint="(. &gt;= 1 and . &lt;= 150)"></bind>
+      <bind nodeset="/data/category1/question3" type="decimal" constraint="(. &gt;= 20 and . &lt;= 500)"></bind>
+      <bind nodeset="/data/category1/question4" type="date" constraint="(. &gt;= 2013-12-17 and . &lt;= 2013-12-31)"></bind>
+      <bind nodeset="/data/category1/question5" type="geopoint"></bind>
+      <bind nodeset="/data/category1/question6" type="binary"></bind>
+      <bind nodeset="/data/category1/question7" type="select1"></bind>
+      <bind nodeset="/data/category1/question8" type="select"></bind>
+      <bind nodeset="/data/category1/question9" type="time"></bind>
+      <bind nodeset="/data/category1/question10" type="cascade1"></bind>
+      <bind nodeset="/data/category1/question11" type="cascade2" relevant="/data/category1/question10='zone1'"></bind>
+      <bind nodeset="/data/category1/question12" type="cascade2" relevant="/data/category1/question10='zone2'"></bind>
+      <bind nodeset="/data/category1/question13" type="cascade2" relevant="/data/category1/question10='zone3'"></bind>
+      <bind nodeset="/data/category1/question14" type="cascade3" relevant="/data/category1/question11='county1'"></bind>
+      <bind nodeset="/data/category1/question15" type="cascade3" relevant="/data/category1/question11='county2'"></bind>
+      <bind nodeset="/data/category1/question16" type="cascade3" relevant="/data/category1/question12='county3'"></bind>
+      <bind nodeset="/data/category1/question17" type="cascade3" relevant="/data/category1/question12='county4'"></bind>
+      <bind nodeset="/data/category1/question18" type="cascade3" relevant="/data/category1/question13='county5'"></bind>
+      <bind nodeset="/data/category1/question19" type="cascade3" relevant="/data/category1/question13='county6'"></bind>
+    </model>
+  </h:head>
+  <h:body>
+    <group>
+      <label ref="jr:itext('/data/category1:label')"></label>
+      <input ref="/data/category1/question1">
+        <label ref="jr:itext('/data/category1/question1:label')"></label>
+      </input>
+      <input ref="/data/category1/question2">
+        <label ref="jr:itext('/data/category1/question2:label')"></label>
+      </input>
+      <input ref="/data/category1/question3">
+        <label ref="jr:itext('/data/category1/question3:label')"></label>
+      </input>
+      <input ref="/data/category1/question4">
+        <label ref="jr:itext('/data/category1/question4:label')"></label>
+      </input>
+      <input ref="/data/category1/question5">
+        <label ref="jr:itext('/data/category1/question5:label')"></label>
+      </input>
+      <upload ref="/data/category1/question6" mediatype="image">
+        <label ref="jr:itext('/data/category1/question6:label')"></label>
+      </upload>
+      <select1 ref="/data/category1/question7">
+        <label ref="jr:itext('/data/category1/question7:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question7:optionred')"></label>
+          <value>red</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question7:optiongreen')"></label>
+          <value>green</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question7:optionblue')"></label>
+          <value>blue</value>
+        </item>
+      </select1>
+      <select ref="/data/category1/question8">
+        <label ref="jr:itext('/data/category1/question8:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question8:optionleft')"></label>
+          <value>left</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question8:optionright')"></label>
+          <value>right</value>
+        </item>
+      </select>
+      <input ref="/data/category1/question9">
+        <label ref="jr:itext('/data/category1/question9:label')"></label>
+      </input>
+
+      <select1 ref="/data/category1/question10">
+        <label ref="jr:itext('/data/category1/question10:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question10:optionzone1')"></label>
+          <value>zone1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question10:optionzone2')"></label>
+          <value>zone2</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question10:optionzone3')"></label>
+          <value>zone3</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question11">
+        <label ref="jr:itext('/data/category1/question11:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question11:optioncounty1')"></label>
+          <value>county1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question11:optioncounty2')"></label>
+          <value>county2</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question12">
+        <label ref="jr:itext('/data/category1/question12:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question12:optioncounty3')"></label>
+          <value>county3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question12:optioncounty4')"></label>
+          <value>county4</value>
+        </item>
+      </select1>
+
+
+      <select1 ref="/data/category1/question13">
+        <label ref="jr:itext('/data/category1/question13:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question13:optioncounty5')"></label>
+          <value>county5</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question13:optioncounty6')"></label>
+          <value>county6</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question14">
+        <label ref="jr:itext('/data/category1/question14:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question14:optiondistrict1')"></label>
+          <value>district1</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question14:optiondistrict2')"></label>
+          <value>district2</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question15">
+        <label ref="jr:itext('/data/category1/question15:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question15:optiondistrict3')"></label>
+          <value>district3</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question15:optiondistrict4')"></label>
+          <value>district4</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question16">
+        <label ref="jr:itext('/data/category1/question16:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question16:optiondistrict5')"></label>
+          <value>district5</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question16:optiondistrict6')"></label>
+          <value>district6</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question17">
+        <label ref="jr:itext('/data/category1/question17:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question17:optiondistrict7')"></label>
+          <value>district7</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question17:optiondistrict8')"></label>
+          <value>district8</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question18">
+        <label ref="jr:itext('/data/category1/question18:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question18:optiondistrict9')"></label>
+          <value>district9</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question18:optiondistrict10')"></label>
+          <value>district10</value>
+        </item>
+      </select1>
+
+      <select1 ref="/data/category1/question19">
+        <label ref="jr:itext('/data/category1/question19:label')"></label>
+        <item>
+          <label ref="jr:itext('/data/category1/question19:optiondistrict11')"></label>
+          <value>district11</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/category1/question19:optiondistrict12')"></label>
+          <value>district12</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>

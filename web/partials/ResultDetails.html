@@ -1,0 +1,43 @@
+<div class="detail-panel" ng-controller="ResultDetailsCtrl">
+    <table class="detail-panel-table">
+        <tr>
+            <td>TIMESTAMP</td>
+            <td>{{result.timeCreated|date:'HH:mm, dd MMMM yyyy'}}</td>
+        </tr>
+        <tr>
+            <td>LOCATION</td>
+            <td>{{result.geostamp}}</td>
+        </tr>
+        <tr>
+            <td>TITLE</td>
+            <td>{{result.title}}</td>
+        </tr>
+    </table>
+
+    <li ng-repeat="category in result._categoryResults" class="cat-results"><span class="cat-name">{{category.title}}</span>
+        <ul ng-repeat="question in category._questionResults">
+            <li>{{question.label}}</li>
+
+            <span ng-if="question.type==='int' ||
+                         question.type==='string' ||
+                         question.type==='decimal' ||
+                         question.type==='time' ||
+                         question.type==='geopoint' " class="answer">{{question.result}}</span>
+
+            <img ng-if="(question.type==='binary' || question.type==='binary#image') && question.result" class="image-answer" ng-src="{{question.result}}">
+
+            <div ng-if="question.type==='select1' && question.result" class="select1-answer" ng-repeat="select1 in question.result track by $index">
+              <input type="radio" name="{{question.id}}" value="{{select1.text}}" ng-checked="select1.value" disabled="!select1.value">{{select1.text}}
+            </div>
+
+            <div ng-if="question.type==='select' && question.result" class="select-answer" ng-repeat="select in question.result track by $index">
+              <input type="checkbox" name="{{question.id}}" value="{{item.text}}" ng-checked="select.value" disabled="!select.value">{{select.text}}
+            </div>
+
+            <span ng-if="question.type==='date'" class="answer">{{question.result|date:'dd MMMM yyyy'}}</span>
+
+            <span ng-if="question.type==='cascade1'" class="answer">{{question.result}}</span>
+        </ul>
+    </li>
+    <div class="modal" ui-view ></div>
+</div>

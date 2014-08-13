@@ -1,0 +1,50 @@
+var APIeasy = require('api-easy'),
+  assert = require('assert'),
+  wrongUserName = 'nobody',
+  userFixtures = require('../../../../fixtures/Users'),
+  fixturesLoader = require('../../../helpers/fixturesLoader').addToSuite,
+
+  loginSuite = fixturesLoader(APIeasy.describe('Login Controller'));
+
+loginSuite.discuss('When user is logging in to our system')
+  .discuss('should return 401 code error with error message for wrong user')
+  .use('localhost', 4000)
+  .setHeader('Content-Type', 'application/json')
+    .path('/login')
+      .post({ username: wrongUserName, password: 'wrong password' })
+        .expect(401, { message: 'Unknown username or invalid password' })
+    .undiscuss()
+    .next()
+    .discuss('should return 401 status for right user')
+      .post({ username: userFixtures.users.userToActivated.username, password: new Buffer(userFixtures.users.userToActivated._password).toString('base64') })
+        .expect(401, { message: 'Your account is not activated yet'})
+    .undiscuss()
+    .next()
+    .discuss('should return 200 status for superAdmin user')
+      .post({ username: userFixtures.users.superAdmin.username, password: new Buffer(userFixtures.users.superAdmin._password).toString('base64') })
+        .expect(200)
+    .undiscuss()
+    .next()
+    .discuss('should return 200 status for admin user')
+      .post({ username: userFixtures.users.admin.username, password: new Buffer(userFixtures.users.admin._password).toString('base64') })
+        .expect(200)
+    .undiscuss()
+    .next()
+    .discuss('should return 200 status for operator user')
+      .post({ username: userFixtures.users.operator.username, password: new Buffer(userFixtures.users.operator._password).toString('base64') })
+        .expect(200)
+    .undiscuss()
+    .next()
+    .discuss('should return 401 status for user without superAdmin permission')
+      .post({ username: userFixtures.users.fieldWorker.username, password: new Buffer(userFixtures.users.fieldWorker._password).toString('base64') })
+        .expect(401, { message: 'Access denied for ' + userFixtures.users.fieldWorker.username })
+    .undiscuss()
+    .undiscuss()
+    .discuss('When user is logging out from our system')
+      .discuss('should return 204 status')
+      .next()
+        .unpath()
+        .path('/logout')
+          .get({})
+            .expect(204)
+  .export(module);

@@ -1,0 +1,109 @@
+<div class="overlay" ng-click="goState('^')"></div>
+<div class="window" ng-controller="AddUserCtrl">
+    <div class="window-header">
+        <h2>Add a new user</h2>
+        <div class="close-window" ng-click="goState('^')">&#10006;</div>
+    </div>
+    <div class="window-body">
+        <form name="addUserForm" id="add-user-form"  autocomplete="off"
+              ng-model="addUserForm"
+              ng-submit="addUser()">
+            <div class="user-info">
+                <div class="small-field validation-field">
+                    <label>FIRST NAME</label>
+                    <input type="text" name="firstName" required
+                           placeholder="User's first name"
+                           ng-model="user.firstName"
+                           ng-minlength="2"
+                           ng-maxlength="60"
+                           ng-trim="true">
+
+                    <div errorsblock="errors.firstName"></div>
+                </div>
+                <div class="small-field validation-field">
+                    <label>LAST NAME</label>
+                    <input type="text" name="lastName" required
+                           placeholder="User's last name"
+                           ng-model="user.lastName"
+                           ng-minlength="2"
+                           ng-maxlength="60"
+                           ng-trim="true">
+
+                    <div errorsblock="errors.lastName"></div>
+                </div>
+                <div class="small-field validation-field">
+                    <label>USERNAME</label>
+                    <input type="text" name="username" required
+                           placeholder="New username"
+                           ng-model="user.username"
+                           ng-minlength="5"
+                           ng-maxlength="13"
+                           ng-pattern="/^[a-zA-Z\d\.]+$/"
+                           ng-trim="true"
+                           ng-change="checkExistingUsername()">
+
+                    <div errorsblock="errors.username"></div>
+                </div>
+                <div class="small-field validation-field">
+                    <label>PHONE NUMBER</label>
+                    <input type="text" name="phone" required
+                           placeholder="User's phone number"
+                           ng-model="user.phone"
+                           validatephonenumber
+                           ng-trim="true">
+
+                    <div errorsblock="errors.phone"></div>
+                </div>
+                <div class="long-field validation-field" ng-if="user.permission !== 'fieldWorker'">
+                    <label>EMAIL</label>
+                    <input type="email" name="email" required
+                           placeholder="User's email address"
+                           ng-model="user.email"
+                           ng-class="{error: errorEmail}"
+                           ng-trim="true"
+                           ng-change="checkExistingEmail()">
+
+                    <div errorsblock="errors.email"></div>
+                </div>
+            </div>
+            <div class="user-pass">
+                <div class="small-field validation-field">
+                    <label>PASSWORD</label>
+                    <input type="password" name="password" required
+                           placeholder="User's password"
+                           ng-model="user.password"
+                           ng-minlength="8"
+                           ng-maxlength="20"
+                           ng-trim="true">
+
+                    <div errorsblock="errors.password"></div>
+                </div>
+                <div class="small-field validation-field">
+                    <label>CONFIRM PASSWORD</label>
+                    <input type="password" name="confirmpass" required
+                           placeholder="Confirm password"
+                           ng-model="user.confirmpass"
+                           ng-trim="true">
+
+                    <div errorsblock>
+                        <span class="error-message ng-hide"  ng-show="user.password !== user.confirmpass">Passwords do not match</span>
+                    </div>
+                </div>
+                <div class="small-field">
+                    <label>PERMISSION</label>
+                    <select name="permission"
+                            ng-model="user.permission">
+                        <option selected="selected" value="admin">Admin</option>
+                        <option value="operator">Operator</option>
+                        <option value="fieldWorker">Field worker</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="info-msg">
+                The phone number is used to send user credentials by SMS. Notification will be sent after pressing the 'Save this user' button.
+            </div>
+            <input type="submit" value="Save this user" class="save-changes">
+        </form>
+    </div>
+</div>

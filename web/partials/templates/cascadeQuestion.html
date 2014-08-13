@@ -1,0 +1,55 @@
+
+<div class="cascade-subs">
+    <div class="select-question">
+        <ul class="variants">
+            <li ng-repeat="item in cascades[selectedOption].items"
+                ng-init="item.edit = false; item.error = false; item.prevText = item.text">
+                <div ng-if="!item.edit">
+                    <form name="cascade-form-{{selectedOption}}">
+                        <label class="left">
+                            <input type="radio" name="choice"
+                                   ng-click="selectOption(item)"
+                                   ng-checked="cascades.selectedOption == item.value">
+                            <span title="{{item.text}}" class="tooltip" ng-class="{selected : cascades.selectedOption == item.value}">
+                              {{item.text}}
+                            </span>
+                        </label>
+                    </form>
+                    <ul class="edit-variants">
+                        <li class="edit-variant" ng-click="item.edit = true; item.focus = true"></li>
+                        <li class="delete-variant" ng-click="deleteOption(item)" ></li>
+                    </ul>
+                </div>
+                <div ng-if="item.edit">
+                    <div focus-me="item.focus">
+                        <input type="text" ng-model="item.text" class="left"
+                               ng-change="item.error = false"
+                               ng-keypress="editOption(item, $index, $event)">
+                        <span class="caption error" ng-show="item.error">Duplicated option value!</span>
+                    </div>
+                    <input type="button" class="button-icon single edit"
+                           ng-class="{save: item.edit}" ng-click="editOption(item, $index)">
+                </div>
+            </li>
+            <li ng-show="showAddOption">
+                <div focus-me="focus">
+                    <input type="text" ng-model="newOption.text" class="left"
+                           ng-change="newOption.error = false"
+                           ng-keypress="addOption(newOption.text, $event)">
+                    <span class="caption error" ng-show="newOption.error">Duplicated option value!</span>
+                </div>
+                <input type="button" class="button-icon single edit"
+                       ng-class="{save: showAddOption}" ng-click="addOption(newOption.text)">
+        </li>
+        </ul>
+        <div class="rules">
+            <input type="button" class="cascade" value="Add a new option"
+                   ng-click="showAddOption = true; focus = true; newOption.error=false">
+            <input type="file" class="cascade" value="Import existing option..." csv-optioins-import question="cascades[selectedOption]" addoption="addOption">
+            <input type="button" class="cascade" value="Import existing option..." ng-click="showAddOption = false">
+        </div>
+    </div>
+</div>
+<div class="{{cascadeNextName}}-tmpl"></div>
+
+

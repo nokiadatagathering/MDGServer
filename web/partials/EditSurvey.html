@@ -1,0 +1,238 @@
+<div class="content" ng-controller="EditSurveyCtrl">
+    <form name="surveyEdit">
+        <div class="survey-title" ng-init="surveyData.titleEdit = false">
+            <h1 ng-show="!surveyData.titleEdit" ng-model="surveyData.title" title="{{surveyData.title}}">{{surveyData.title}}</h1>
+            <div class="edit-title">
+                <span focus-me="surveyData.focus">
+                    <input type="text" value="{{surveyData.title}}" class="left"
+                           ng-model="surveyData.title"
+                           ng-show="surveyData.titleEdit"
+                           ng-blur="editItemTitle(surveyData, 'survey', 'title')"
+                           ng-keypress="editItemTitle(surveyData, 'survey', 'title', null, $event)">
+                </span>
+
+                <div class="edit-button">
+                    <input type="button" class="button-icon single edit left"
+                           ng-class="{save: surveyData.titleEdit}"
+                           ng-click="editItemTitle(surveyData, 'survey', 'title')">
+                    <span class="caption">Edit this survey title</span>
+                </div>
+            </div>
+            <input type="button" class="save-survey" value="Save this survey"  ng-click="saveSurvey(true)">
+        </div>
+        <div class="builder">
+            <ol class="category-box"
+                ui-sortable="sortableCategoriesOptions"
+                ng-model="surveyData._categories" >
+                <li class="category-item" id="{{category.id}}"
+                    ng-class="{disableddragcategory: category.isVisible || category.titleEdit}"
+                    ng-repeat="category in surveyData._categories"
+                    ng-init="category.titleEdit = false">
+                    <div class="category-header expand"
+                         ng-class="{close: !category.isVisible}"
+                         click="click" visible="category.isVisible" ng-click="click()">
+                        <div class="category-title" ng-class="{close: !category.isVisible}">
+                            <h2 ng-show="!category.titleEdit" ng-model="category.title" title="{{category.title}}">{{category.title}}</h2>
+
+                            <span focus-me="category.focus">
+                                <input type="text"
+                                       placeholder="Category Name"
+                                       value="{{category.title}}"
+                                       class="edit-category-header"
+                                       ng-model="category.title"
+                                       ng-show="category.titleEdit"
+                                       ng-blur="editItemTitle(category, 'category', 'title', $index)"
+                                       ng-keypress="editItemTitle(category, 'category', 'title', $index, $event)">
+                            </span>
+                        </div>
+                        <div class="options">
+                            <input type="button" class="button-icon single edit"
+                                   ng-class="{save: category.titleEdit}"
+                                   ng-click="editItemTitle(category, 'category', 'title', $index)">
+                            <span class="caption">Edit this category title</span>
+                            <ul class="button-group">
+                                <li>
+                                    <input type="button" class="copy" ng-click="copyCategory(category)">
+                                    <span class="caption">Duplicate this category</span>
+                                </li><li>
+                                    <input type="button" class="delete" ng-click="deleteCategory(category)">
+                                    <span class="caption">Delete this category</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="right" >
+                            <label> {{(category._questions | cascadeFilter).length}} question{{category._questions.length !== 1 ? 's' : ''}} </label>
+                            <input type="button" class="button-plus" value="Add a new question" ng-click="addQuestion(category)">
+                        </div>
+                    </div>
+                    <ol class="questions-box"
+                        ng-show="category.isVisible"
+                        ui-sortable="sortableQuestionsOptions"
+                        ng-model="category._questions">
+                        <li class="question-item"
+                            id="{{question.id}}"
+                            ng-class="{disableddragquestion: question.isVisible || question.titleEdit}"
+                            ng-repeat="question in filtered = (category._questions | cascadeFilter)"
+                            ng-init="question.titleEdit = false">
+                            <div class="question-header expand"
+                                 ng-class="{close: !question.isVisible}"
+                                 click="click2" visible="question.isVisible" ng-click="click2()">
+                                <div class="question-title" ng-class="{close: !question.isVisible}">
+                                    <h3 ng-show="!question.titleEdit"
+                                        ng-model="question.label"
+                                        title="{{question.label}}">{{question.label}}
+                                    </h3>
+                                    <span focus-me="question.focus">
+                                        <input type="text" placeholder="Question Title"
+                                               class="left" value="{{question.label}}"
+                                               ng-model="question.label"
+                                               ng-show="question.titleEdit"
+                                               ng-blur="editItemTitle(question, 'question', 'label', $parent.$index)"
+                                               ng-keypress="editItemTitle(question, 'question', 'label', $parent.$index, $event)">
+                                    </span>
+                                </div>
+                                <div class="options left">
+                                    <input type="button" class="button-icon single edit"
+                                           ng-class="{save: question.titleEdit}"
+                                           ng-click="editItemTitle(question, 'question', 'label', $parent.$index)">
+                                    <span class="caption">Edit this question title</span>
+                                    <ul class="button-group">
+                                        <li>
+                                            <input type="button" class="copy" ng-click="copyQuestion(category, question, $parent.$index)">
+                                            <span class="caption">Duplicate this question</span>
+                                        </li><li>
+                                            <input type="button" class="delete" ng-click="deleteQuestion(category, question, $parent.$index)">
+                                            <span class="caption">Delete this question</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="right">
+                                    <div ng-if="question.isVisible"
+                                         dropdown-select="dropdownList"
+                                         dropdown-model="question.dropdownSelect"
+                                         dropdown-item-label="text"
+                                         dropdown-onchange="selectQuestionType(question, $parent.$parent.$index, $index)">
+                                    </div>
+                                    <div ng-if="!question.isVisible" class="question-type">{{dropdownSelect[question.type].text}}</div>
+                                    <label>
+                                        <input type="checkbox"
+                                               ng-checked="question.required"
+                                               ng-model="question.required"
+                                               ng-disabled="question.type === 'note'">Mandatory
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="question-body"
+                                 ng-show="question.isVisible"
+                                 ng-if="!(question.type == 'geopoint' || question.type == 'binary')">
+
+                                <div class="question-constr"
+                                     question-builder
+                                     update-option="updateOption"
+                                     update-question="updateQuestion"
+                                     delete-option="deleteOption"
+                                     question-data="question"
+                                     category-data="category"></div>
+
+                                <div class="skip-logic"  ng-if="(question.type == 'int' || question.type == 'select1')">
+                                    <div class="skip-logic-header expand close"
+                                         click="click4"
+                                         visible="question.isVisibleSkip"
+                                         ng-click="click4()">
+
+                                        <h5 ng-class="{close: !question.isVisibleSkip}">SKIP LOGIC OPTIONS</h5>
+                                    </div>
+                                    <div class="skip-logic-body" ng-show="question.isVisibleSkip">
+                                        <span class="error-message" ng-show="question.slOptionError || question.slQuestionError || question.slValueError">
+                                            The highlighted conditions are in conflict with each other or wrong. You should make sure no conditions overlap before publishing your survey.
+                                        </span>
+                                        <div class="logic-option default"
+                                             ng-class="{error: question.errorDefaultQuestion}"
+                                             ng-if="question.type==='select1'">
+                                            <span class="default left">DEFAULT</span>
+                                            <label class="left">Go to</label>
+                                            <div dropdown-select="question.skipLogicList"
+                                                 dropdown-model="question.skipLogicSelect"
+                                                 dropdown-item-label="text"
+                                                 ng-click="updateSLDropDown(question, $parent.$parent.$parent.$parent.$index, $parent.$parent.$parent.$index)"
+                                                 dropdown-onchange="checkSLQuestionError(question)">
+                                            </div>
+                                        </div>
+                                        <div class="logic-option {{question.type}}"
+                                             ng-repeat="slOpt in question.skipLogicOptions"
+                                             ng-class="{error: slOpt.errorOption || slOpt.errorQuestion || slOpt.errorValue}">
+                                            <label class="left">If answer is </label>
+                                            <div class="option-select left"
+                                                 dropdown-select="slOpt.ddListOptions"
+                                                 dropdown-model="slOpt.ddSelectOptions"
+                                                 dropdown-item-label="text"
+                                                 dropdown-onchange="ddSelectOptionForSL(question)">
+                                            </div>
+                                            <input ng-show="question.type == 'int'"
+                                                   type="text"
+                                                   class="left first"
+                                                   validate-pattern
+                                                   regexp="digitsPattern"
+                                                   value-to-check="slOpt.firstInput"
+                                                   ng-blur="checkSLIntValueError(question)"
+                                                   ng-model="slOpt.firstInput">
+                                            <label ng-show="slOpt.ddSelectOptions.value === '<>'" class="left">-</label>
+                                            <input ng-show="slOpt.ddSelectOptions.value === '<>'"
+                                                   type="text"
+                                                   class="left second"
+                                                   validate-pattern
+                                                   regexp="digitsPattern"
+                                                   value-to-check="slOpt.secondInput"
+                                                   ng-blur="checkSLIntValueError(question)"
+                                                   ng-model="slOpt.secondInput">
+
+                                            <label class="left">then skip to </label>
+                                            <div class="question-select left"
+                                                 dropdown-select="slOpt.ddListQuestions"
+                                                 dropdown-model="slOpt.ddSelectQuestions"
+                                                 dropdown-item-label="text"
+                                                 ng-click="updateSLDropDown(question, $parent.$parent.$parent.$parent.$index, $parent.$parent.$parent.$index)"
+                                                 dropdown-onchange="checkSLQuestionError(question)">
+                                            </div>
+
+                                            <input type="button"
+                                                   class="del-option"
+                                                   ng-click="deleteSLOption(question, $index, $parent.$parent.$parent.$parent.$index)">
+                                        </div>
+                                        <input ng-disabled="question.type == 'select1' ? question.items.length <= question.skipLogicOptions.length : false"
+                                               type="button"
+                                               value="Add a skip logic option"
+                                               class="add-option"
+                                               ng-click="addSLOption(question)">
+                                    </div>
+                                </div>
+
+                                <div class="mask-input"  ng-if="question.type == 'string'">
+                                    <div class="mask-input-header expand close"
+                                         click="click3" visible="question.isVisibleMascInput" ng-click="click3()">
+                                        <h5 ng-class="{close: !question.isVisibleMascInput}">MASK INPUT</h5>
+                                    </div>
+                                    <div class="mask-input-body mask" ng-show="question.isVisibleMascInput">
+                                        <p>Enter the exact layout the input must have</p>
+                                        <input type="text" placeholder="E.g. WW-BB-1234"
+                                               validate-pattern
+                                               regexp="maskPattern"
+                                               value-to-check="question.mask"
+                                               ng-model="question.mask"
+                                               value="{{question.mask}}">
+                                    </div>
+                                </div>
+
+                                <div class="question-footer">
+                                    <input type="button" value="Done" ng-click="question.isVisible = false">
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </li>
+                <input type="button" value="Add a new category" class="add-category" ng-click="addCategory()">
+            </ol>
+        </div>
+    </form>
+</div>

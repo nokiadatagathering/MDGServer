@@ -1,0 +1,21 @@
+<div class="overlay" ng-click="goState('^')"></div>
+<div class="window results-chart" ng-controller="ResultsChartCtrl">
+    <div class="window-header">
+        <h2>Charts for {{surveyTitle}}</h2>
+        <div class="close-window" ng-click="goState('^')">&#10006;</div>
+    </div>
+    <div class="window-body">
+        <ul class="results-chart" >
+            <li ng-repeat="question in questions">
+                <label class="close expand" visible="question.chart.isVisible" click="click" ng-click="click($index, question.chart.type)">{{question.label}}</label>
+                <div class="{{question.chart.type}}-icon"></div>
+                <a ng-show="question.chart.isVisible"
+                   id="{{question.id}}"
+                   class="{{question.chart.type}}-{{question.id}} chart-image"
+                   download="chart_{{question.id}}.png"
+                   ng-href="{{question.chart.url}}">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
