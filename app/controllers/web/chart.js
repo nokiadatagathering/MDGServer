@@ -263,6 +263,10 @@ function createBarChart (data) {
 }
 
 function createPieChart (data) {
+  data = _.sortBy(data, function (item) {
+    return item.value
+  }).reverse();
+
   var
     radius = 110,
     width = 570,
@@ -319,7 +323,9 @@ function createPieChart (data) {
     })
     .attr("text-anchor", "middle")
     .text(function (d, i) {
-      return data[i].percents.toFixed(1) + '%';
+      var percents = data[i].percents.toFixed(1);
+
+      return (percents < 5) ? '' : data[i].percents.toFixed(1) + '%';
     });
 
   d3.select("body svg").append("svg:g")
@@ -342,7 +348,7 @@ function createPieChart (data) {
     .attr("x", 24)
     .attr("dy", ".35em")
     .text(function (d, i) {
-      return data[i].label;
+      return data[i].percents.toFixed(1) + '%, ' + data[i].label;
     });
 }
 

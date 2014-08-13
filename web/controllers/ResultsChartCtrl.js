@@ -105,6 +105,10 @@ define(function () {
     };
 
     $scope.createPieChart = function (data, id) {
+      data = _.sortBy(data, function (item) {
+        return item.value
+      }).reverse();
+
       var
         radius = 110,
         width = 570,
@@ -148,7 +152,9 @@ define(function () {
         })
         .attr("text-anchor", "middle")
         .text(function (d, i) {
-          return data[i].percents.toFixed(1) + '%';
+          var percents = data[i].percents.toFixed(1);
+
+          return (percents < 5) ? '' : data[i].percents.toFixed(1) + '%';
         });
 
       d3.select(".pie-" + id + " svg").append("svg:g")
@@ -171,7 +177,7 @@ define(function () {
         .attr("x", 24)
         .attr("dy", ".35em")
         .text(function (d, i) {
-          return data[i].label;
+          return data[i].percents.toFixed(1) + '%, ' + data[i].label;
         });
     };
 
