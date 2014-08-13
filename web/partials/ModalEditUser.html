@@ -31,6 +31,15 @@
 
                     <div errorsblock="errors.lastName"></div>
                 </div>
+                <div class="small-field" ng-if="user.permission !== 'superAdmin'">
+                    <label>PERMISSION</label>
+                    <select name="permission"
+                            ng-model="user.permission">
+                        <option selected="selected" value="admin">Admin</option>
+                        <option value="operator">Operator</option>
+                        <option value="fieldWorker">Field worker</option>
+                    </select>
+                </div>
                 <div class="small-field validation-field">
                     <label>USERNAME</label>
                     <input type="text" name="username" required
@@ -90,15 +99,6 @@
                     <div errorsblock>
                         <span class="error-message ng-hide"  ng-show="user.password !== user.confirmpass">Passwords do not match</span>
                     </div>
-                </div>
-                <div class="small-field" ng-if="user.permission !== 'superAdmin'">
-                    <label>PERMISSION</label>
-                    <select name="permission"
-                            ng-model="user.permission">
-                        <option selected="selected" value="admin">Admin</option>
-                        <option value="operator">Operator</option>
-                        <option value="fieldWorker">Field worker</option>
-                    </select>
                 </div>
             </div>
 

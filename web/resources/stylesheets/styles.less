@@ -595,14 +595,17 @@ a img {
  Mixin for select
  */
 .select-stylisation {
-  background-color: #fafafa;
-  border-radius: 5px;
   height: 35px;
-  font-family: NokiaPureTextBold;
-  font-size: 15px;
-  border: 1px solid rgba(166, 166, 166, 0.5);
   margin-right: 10px;
-  opacity: 0.5;
+  border-radius: 5px;
+  border: 1px solid @light-gray;
+  font-family: NokiaPureText;
+  font-size: 15px;
+  background-color: rgba(248, 248, 248, 1);
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 /*
@@ -2687,14 +2690,14 @@ Styles for dropdown-menu
           min-height: 220px;
           padding: 20px 0 30px 0;
         }
+        select {
+          width: 193px;
+          .select-stylisation;
+        }
         .user-pass {
           padding: 20px 0 10px 0;
           border-bottom: 1px solid rgba(196,196,196,1);
           margin-bottom: 10px;
-          select {
-            width: 193px;
-            .select-stylisation;
-          }
         }
         .save-changes {
           float: right;
