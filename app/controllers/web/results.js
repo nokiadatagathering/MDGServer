@@ -16,7 +16,7 @@ module.exports = {
       owner = req.user.owner.toString();
 
     Result
-      .find({ _owner: owner, _survey: survey }, 'title timeCreated geostamp _user')
+      .find({ _owner: owner, _survey: survey }, 'count instanceID title timeCreated geostamp _user')
       .populate('_user', 'firstName lastName name')
       .exec(function (err, results) {
         if (err) {
@@ -52,7 +52,7 @@ module.exports = {
         }
 
         Result
-          .findOne({ _owner: owner, _survey: survey, _id: result }, 'title timeCreated geostamp _user _categoryResults')
+          .findOne({ _owner: owner, _survey: survey, _id: result }, 'count instanceID title timeCreated geostamp _user _categoryResults')
           .populate('_user', 'firstName lastName')
           .exec(function (err, result) {
             if (err) {

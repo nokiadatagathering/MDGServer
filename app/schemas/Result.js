@@ -20,14 +20,14 @@ Schema =  new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  title: {
-    type: String
-  },
   deviceID: {
     type: String
   },
   instanceID: {
     type: String
+  },
+  count: {
+    type: Number
   },
   geostamp: {
     type: String
@@ -52,5 +52,9 @@ Schema =  new mongoose.Schema({
 });
 
 Schema.plugin(ownerPlugin);
+
+Schema.virtual('title').get(function () {
+  return this.count ? this.instanceID + ' (' + this.count + ')' : this.instanceID;
+});
 
 module.exports = Schema;

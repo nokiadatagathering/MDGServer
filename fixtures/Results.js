@@ -4,7 +4,7 @@ var
     result1: {
       "geostamp" : "40.02445317 31.21730659",
       "deviceID" : "FsnEHvbTYWUkJ8I/f6INwQ7hfMo=",
-      "title" : "result1",
+      "instanceID" : "result1",
       "timeStart" : new Date(),
       "timeEnd" : new Date(),
       "_survey" : ids.surveys.testSurvey,
@@ -94,7 +94,7 @@ var
     result2: {
       "geostamp" : "50.02445317 36.21730659",
       "deviceID" : "FsnEHvbTYWUkJ8I/f6INwQ7hfMo=",
-      "title" : "result2",
+      "instanceID" : "result2",
       "timeStart" : new Date(),
       "timeEnd" : new Date(),
       "_survey" : ids.surveys.testSurvey,
@@ -183,7 +183,7 @@ var
     result3: {
       "geostamp" : "56.02445317 39.21730659",
       "deviceID" : "FsnEHvbTYWUkJ8I/f6INwQ7hfMo=",
-      "title" : "result3",
+      "instanceID" : "result3",
       "timeStart" : new Date(),
       "timeEnd" : new Date(),
       "_survey" : ids.surveys.testSurvey,
@@ -271,7 +271,7 @@ var
     result4: {
       "geostamp" : "28.02445317 34.21730659",
       "deviceID" : "FsnEHvbTYWUkJ8I/f6INwQ7hfMo=",
-      "title" : "result4",
+      "instanceID" : "result4",
       "timeStart" : new Date(),
       "timeEnd" : new Date(),
       "_survey" : ids.surveys.testSurvey,
@@ -359,7 +359,7 @@ var
     result5: {
       "geostamp" : "46.02445317 48.21730659",
       "deviceID" : "FsnEHvbTYWUkJ8I/f6INwQ7hfMo=",
-      "title" : "result5",
+      "instanceID" : "result5",
       "timeStart" : new Date(),
       "timeEnd" : new Date(),
       "_survey" : ids.surveys.testSurvey,
@@ -447,7 +447,7 @@ var
     resultFromOtherCommunity: {
       "geostamp" : "46.02445317 48.21730659",
       "deviceID" : "FsnEHvbTYWUkJ8I/f6INwQ7hfMo=",
-      "title" : "result5",
+      "instanceID" : "result5",
       "timeStart" : new Date(),
       "timeEnd" : new Date(),
       "_survey" : ids.surveys.surveyFromOtherCommunity,

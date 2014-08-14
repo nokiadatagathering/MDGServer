@@ -78,25 +78,25 @@ function getCategoryResults (resultsData, survey, resultId) {
 
 exports.composeResults = function (results, resultsData, survey, cb) {
   Result.find({ _survey: survey._id, instanceID: resultsData.instanceID })
-    .sort('title')
-    .exec(function (err, instanceIDResults) {
+    .sort('count')
+    .exec(function (err, sameTitleResults) {
     results._survey = survey._id;
-    results.title = resultsData.instanceID;
     results.instanceID = resultsData.instanceID;
     results.deviceID = resultsData.deviceID;
     results.timeStart = new Date(resultsData.timeStart);
     results.timeEnd = new Date(resultsData.timeEnd);
     results.geostamp = resultsData.geostamp;
+    results.count = 0;
 
-    if (instanceIDResults.length !== 0) {
-      if (instanceIDResults[0].title == instanceIDResults[0].instanceID) {
-        results.title = resultsData.instanceID + ' (' + instanceIDResults.length + ')';
+    if (sameTitleResults.length !== 0) {
+      if (sameTitleResults[0].count === 0) {
+        results.count = sameTitleResults.length;
 
-        instanceIDResults.shift();
+        sameTitleResults.shift();
 
-        _.find(instanceIDResults, function (result, index) {
-          if (result.title !== result.instanceID + ' (' + (index + 1) + ')') {
-            results.title = resultsData.instanceID + ' (' + (index + 1) + ')';
+        _.find(sameTitleResults, function (result, index) {
+          if (result.count !== (index + 1)) {
+            results.count = index + 1;
             return true;
           }
 
