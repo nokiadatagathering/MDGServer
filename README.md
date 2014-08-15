@@ -62,7 +62,7 @@ repository from link above to install mongoDB__
 First of all, let's install some global tools
 ```
 # sudo npm install -g bower
-# sudo npm install -g grunt
+# sudo npm install -g grunt-cli
 ```
 
 Now clone the source and install project dependencies:
