@@ -81,7 +81,7 @@ exports.run = function (mongoUrl, port, callback) {
   app.set('views', __dirname + '/app/views');
   app.set('view engine', 'jade');
   app.set('controllers', __dirname + '/app/controllers/web');
-  if (app.settings.env === 'prodcution') {
+  if (app.settings.env === 'production') {
     app.use(express.compress());
   }
 
