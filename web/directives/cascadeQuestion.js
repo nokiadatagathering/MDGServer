@@ -185,13 +185,19 @@ define(function () {
             var index = $scope.cascades[$scope.selectedOption].items.indexOf(item),
               cascadeIndex = parseInt($scope.cascadeIndex),
               cascadeType = 'cascade' + (cascadeIndex + 1);
+
             if ($scope.parentCascade.cascades[cascadeType] && $scope.parentCascade.cascades[cascadeType][item.value]) {
               if ($scope.cascades.selectedOption == item.value) {
                 $element.find('.' + cascadeType + '-tmpl').html('');
               }
               deleteCascadeLevel(cascadeIndex, $scope.parentCascade.cascades[cascadeType][item.value].items, item);
             }
+
             $scope.cascades[$scope.selectedOption].items.splice(index,1);
+
+            if ($scope.cascades[$scope.selectedOption].items.length === 0) {
+              delete $scope.cascades[$scope.selectedOption];
+            }
           };
 
         }
