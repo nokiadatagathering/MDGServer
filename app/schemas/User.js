@@ -80,6 +80,12 @@ Schema =  new mongoose.Schema({
   encrypted: {
     type: Boolean,
     default: false
+  },
+  resetPasswordToken: {
+    type: String
+  },
+  resetPasswordExpires: {
+    type: Date
   }
 }, {
   toObject: { virtuals: true }
@@ -145,6 +151,11 @@ Schema.methods.checkPassword = function (password, cb) {
 Schema.methods.setPassword = function () {
   this.password = this.encryptPassword(this.password);
   this.encrypted = true;
+};
+
+Schema.methods.setResetPasswordToken = function () {
+  this.resetPasswordToken = generatePassword(20, false);
+  this.resetPasswordExpires = Date.now() + 360000;
 };
 
 Schema.virtual('owner').get(function () {

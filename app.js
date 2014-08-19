@@ -19,6 +19,7 @@ var
   ErrorHandler = require('./app/helpers/ErrorHandler'),
 
   loginCntr = require('./app/controllers/web/login'),
+  passwordResetCntr = require('./app/controllers/web/passwordReset'),
   autocompleteCntr = require('./app/controllers/web/autocomplete'),
   smsCntr = require('./app/controllers/web/sms'),
   xmlCntr = require('./app/controllers/web/xml'),
@@ -136,6 +137,9 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/autocomplete/industry', autocompleteCntr.getIndustries);
 
     app.post('/signup', loginCntr.signup);
+    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
+    app.post('/checkResetPasswordToken', passwordResetCntr.checkResetPasswordToken);
+    app.post('/resetPassword', passwordResetCntr.resetPassword);
 
     app.get('/userPermission', ACLService.checkPermission, loginCntr.permission);
     app.post('/sms/:type/:id', ACLService.checkPermission, smsCntr.sendSms);

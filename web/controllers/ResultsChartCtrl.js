@@ -106,7 +106,7 @@ define(function () {
 
     $scope.createPieChart = function (data, id) {
       data = _.sortBy(data, function (item) {
-        return item.value
+        return item.value;
       }).reverse();
 
       var

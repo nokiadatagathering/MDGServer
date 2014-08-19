@@ -170,6 +170,24 @@ module.exports = {
             title: 'Subscription Email from',
             description: '',
             defaults: 'report@nokiadatagathering.net'
+          },
+          forgotUsername: {
+            type: String,
+            title: 'Forgot Username Email from',
+            description: '',
+            defaults: 'reset_password@nokiadatagathering.net'
+          },
+          resetPassword: {
+            type: String,
+            title: 'Reset Password Email from',
+            description: '',
+            defaults: 'reset_password@nokiadatagathering.net'
+          },
+          passwordChanged: {
+            type: String,
+            title: 'Password Changed Email from',
+            description: '',
+            defaults: 'reset_password@nokiadatagathering.net'
           }
         }
       },
@@ -210,6 +228,21 @@ module.exports = {
         type: String,
         title: 'Registration Email',
         defaults: '/app/views/reportEmail.jade'
+      },
+      forgotUsername: {
+        type: String,
+        title: 'Forgot Username Email',
+        defaults: '/app/views/forgotUsernameEmail.jade'
+      },
+      resetPassword: {
+        type: String,
+        title: 'Reset Password Email',
+        defaults: '/app/views/resetPasswordEmail.jade'
+      },
+      passwordChanged: {
+        type: String,
+        title: 'Password Changed Email',
+        defaults: '/app/views/passwordChangedEmail.jade'
       }
     }
   }

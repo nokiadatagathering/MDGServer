@@ -83,6 +83,65 @@ function getOptionsForReportEmail (params, fileName, subject) {
   };
 }
 
+function getOptionsForForgotUsernameEmail (params, fileName, subject) {
+  var
+    compiledJade = compileJade(fileName),
+    html;
+
+  html = compiledJade({
+    users: params.users,
+    link: params.url + '/#/forgotPassword'
+  });
+
+  return {
+    from: Configuration.get('mail.from.' + subject),
+    to: params.email,
+    subject: "Your MDG usernames",
+    generateTextFromHTML: true,
+    html: html
+  };
+}
+
+function getOptionsForResetPasswordEmail (params, fileName, subject) {
+  var
+    compiledJade = compileJade(fileName),
+    html;
+
+  html = compiledJade({
+    username: params.user.username,
+    link: params.url + '#/resetPassword:' + params.user.resetPasswordToken
+  });
+
+  return {
+    from: Configuration.get('mail.from.' + subject),
+    to: params.user.email,
+    subject: "MDG reset password link",
+    generateTextFromHTML: true,
+    html: html
+  };
+}
+
+function getOptionsForPasswordChangedEmail (params, fileName, subject) {
+  var
+    compiledJade = compileJade(fileName),
+    date = new Date(),
+    html;
+
+  html = compiledJade({
+    username: params.user.username,
+    date: (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear(),
+    time: date.getHours() + ':' + date.getMinutes()
+  });
+
+  return {
+    from: Configuration.get('mail.from.' + subject),
+    to: params.user.email,
+    subject: "MDG reset password confirmation",
+    generateTextFromHTML: true,
+    html: html
+  };
+}
+
 exports.sendMail = function (params, subject) {
   var
     mailTransport = nodemailer.createTransport(Configuration.get('mail.transport'), Configuration.get('mail.transportOptions')),
@@ -99,6 +158,18 @@ exports.sendMail = function (params, subject) {
 
   if (subject === 'report') {
     sendMailOptions = getOptionsForReportEmail(params, fileName, subject);
+  }
+
+  if (subject === 'resetPassword') {
+    sendMailOptions = getOptionsForResetPasswordEmail(params, fileName, subject);
+  }
+
+  if (subject === 'forgotUsername') {
+    sendMailOptions = getOptionsForForgotUsernameEmail(params, fileName, subject);
+  }
+
+  if (subject === 'passwordChanged') {
+    sendMailOptions = getOptionsForPasswordChangedEmail(params, fileName, subject);
   }
 
   mailTransport.sendMail(sendMailOptions);
