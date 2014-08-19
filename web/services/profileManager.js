@@ -6,7 +6,10 @@ define(function () {
       LOGIN_URL = '/login',
       LOGOUT_URL = '/logout',
       SINGUP_URL = '/signup',
-      GET_USER_PERMISSION_URL = '/userPermission';
+      GET_USER_PERMISSION_URL = '/userPermission',
+      FORGOT_PASSWORD_URL = '/forgotPassword',
+      CHECK_RESET_TOKEN_URL = '/checkResetPasswordToken',
+      RESET_PASSWORD_URL = '/resetPassword';
 
     function login (username, password) {
       return $http.post(LOGIN_URL, { username: username, password: password });
@@ -28,11 +31,32 @@ define(function () {
         });
     }
 
+    function forgotPassword (data) {
+      return $http.post(FORGOT_PASSWORD_URL, data)
+        .success(function (result) {
+        });
+    }
+
+    function checkResetPasswordToken (data) {
+      return $http.post(CHECK_RESET_TOKEN_URL, data)
+        .success(function (result) {
+        });
+    }
+
+    function resetPassword (data) {
+      return $http.post(RESET_PASSWORD_URL, data)
+        .success(function (result) {
+        });
+    }
+
     return {
       login: login,
       logout: logout,
       registration: registration,
-      getUserPermission: getUserPermission
+      getUserPermission: getUserPermission,
+      forgotPassword: forgotPassword,
+      checkResetPasswordToken: checkResetPasswordToken,
+      resetPassword: resetPassword
     };
   };
 });

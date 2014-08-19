@@ -264,7 +264,7 @@ function createBarChart (data) {
 
 function createPieChart (data) {
   data = _.sortBy(data, function (item) {
-    return item.value
+    return item.value;
   }).reverse();
 
   var

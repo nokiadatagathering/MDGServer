@@ -408,8 +408,8 @@ a img {
     }
   }
   & + span.caption.new-group-tooltip, & + div[errorsblock] span {
-      width: 260px;
-    }
+    width: 260px;
+  }
   & + span.caption:after,
   & + div[errorsblock] span:after {
     content: '';
@@ -1159,16 +1159,15 @@ Styles for dropdown-menu
     }
   }
   div.get-started a {
+    color: #fff;
+    font-family: NokiaPureTextLight;
+    &.active {
+      font-family: NokiaPureTextBold;
+    }
+    li {
       color: #fff;
-      font-family: NokiaPureTextLight;
-      &.active {
-        font-family: NokiaPureTextBold;
-      }
-      li {
-        color: #fff;
-        display: inline-block;
-      }
-
+      display: inline-block;
+    }
 
     &.active {
       &:after {
@@ -1263,6 +1262,8 @@ Styles for dropdown-menu
   .open-source-panel,
   .use-cases,
   .register-panel,
+  .forgot-password-panel,
+  .reset-password-panel,
   &.home-page {
     width: 1000px;
     margin: 0 auto;
@@ -1453,7 +1454,9 @@ Styles for dropdown-menu
       }
     }
     .login-form,
-    .register-form {
+    .register-form,
+    .forgot-password-form,
+    .reset-password-form {
       position: absolute;
       margin-left: 240px;
       margin-top: 20px;
@@ -1461,7 +1464,14 @@ Styles for dropdown-menu
       padding: 10px;
       background-color: rgba(240, 240, 240, 1);
       height: auto;
-
+      a, p {
+        font-size: 15px;
+        display: inline-block;
+        margin-left: 5px;
+      }
+      p {
+        margin-bottom: 15px;
+      }
       .small-field {
         display: inline-block;
         padding-bottom: 10px;
@@ -1488,15 +1498,24 @@ Styles for dropdown-menu
       }
 
       .login-btn,
+      .forgot-btn,
+      .reset-btn,
       .sign-up-btn {
         margin-top: 10px;
-        margin-left: 45%;
-        display: block;
+        margin-left: 13%;
         .button-stylisation(35px);
       }
 
       .sign-up-btn {
         margin-left: 40%;
+      }
+
+      .reset-btn {
+        margin-left: 45%;
+      }
+
+      .forgot-btn {
+        margin-left: 43%;
       }
     }
   }
@@ -2426,12 +2445,12 @@ Styles for dropdown-menu
                   }
                 }
                 .mask-input-body.mask {
-                    margin-left: 30px;
-                    margin-bottom: 10px;
-                    input {
-                      margin: 10px 10px 10px 0;
-                      width: 430px;
-                    }
+                  margin-left: 30px;
+                  margin-bottom: 10px;
+                  input {
+                    margin: 10px 10px 10px 0;
+                    width: 430px;
+                  }
 
                 }
                 .skip-logic-body {

@@ -1,0 +1,17 @@
+!!! transitional
+head
+body
+    p All usernames related to this email are provided below:
+        br
+        br
+        each user in users
+            p
+                | username: &nbsp;
+                b #{user.username}
+                | ; permission: #{user.permission}; company: #{user.company}
+                br
+    p
+        | Please use this &nbsp;
+        a(href=link) link
+        | &nbsp; to continue password reset procedure
+    p If you've received this email by mistake, please ignore it.

@@ -158,6 +158,14 @@ define([
         url: '',
         templateUrl: '/partials/ModalSuccessRegistration.html'
       })
+      .state('pageGetStarted.forgotPassword', {
+        url: '/forgotPassword',
+        templateUrl: '/partials/ForgotPassword.html'
+      })
+      .state('pageGetStarted.resetPassword', {
+        url: '/resetPassword:{token}',
+        templateUrl: '/partials/ResetPassword.html'
+      })
 
       .state('page', {
         url: '',

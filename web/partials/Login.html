@@ -1,5 +1,5 @@
   <div class="content">
-    <div ng-controller="LoginCtrl" class="login-panel">
+    <div class="login-panel">
         <h1 class="center-text">LOGIN</h1>
         <form ng-model="loginForm"
               name="loginForm"
@@ -31,6 +31,7 @@
                        ng-trim="true">
                 <div errorsblock="errors.login"></div>
             </div>
+            <a ui-sref="pageGetStarted.forgotPassword">Forgot your password?</a>
             <input type="submit"  value="Login" class="login-btn">
         </form>
     </div>
