@@ -1373,26 +1373,6 @@ define(function () {
                 }
               }
 
-              if (question.type === 'select1' &&
-                question.skipLogicSelect.value !== 'nextquestion' &&
-                question.skipLogicSelect.value === c.id) {
-                var
-                  relevant = '',
-                  addItem = '';
-
-                _.each(question.items, function (item) {
-                  if (!item.checked) {
-                    addItem = (relevant === '') ? item.value : (' ' + item.value);
-                    relevant = relevant + addItem;
-                  }
-                });
-
-                if (relevant.length > 0) {
-                  c.defaultRelevant = true;
-                  c.relevant = path + relevant + "'";
-                }
-              }
-
               return;
             }
 
@@ -1406,30 +1386,41 @@ define(function () {
                     q.defaultRelevant = false;
                   }
                 }
-
-                if (question.type === 'select1' &&
-                  question.skipLogicSelect.value !== 'nextquestion' &&
-                  question.skipLogicSelect.value === q.id) {
-                  var
-                    relevant = '',
-                    addItem;
-
-                  _.each(question.items, function (item) {
-                    if (!item.checked) {
-                      addItem = (relevant === '') ? item.value : (' ' + item.value);
-                      relevant = relevant + addItem;
-                    }
-                  });
-
-                  if (relevant.length > 0) {
-                    q.defaultRelevant = true;
-                    q.relevant = path + relevant + "'";
-                  }
-                }
               });
             }
           });
         });
+
+        if (question.type === 'select1' && question.skipLogicSelect.value !== 'nextquestion') {
+          var
+            relevant = '',
+            addItem = '';
+
+          _.each(question.items, function (item) {
+            if (!item.checked) {
+              addItem = (relevant === '') ? item.value : (' ' + item.value);
+              relevant = relevant + addItem;
+            }
+          });
+
+          if (relevant.length > 0) {
+            _.each(_.rest(survey._categories, cIndex), function (c) {
+              if (question.skipLogicSelect.value === c.id) {
+                c.defaultRelevant = true;
+                c.relevant = path + relevant + "'";
+
+                return;
+              }
+
+              _.each(c._questions, function (q) {
+                if (question.skipLogicSelect.value === q.id) {
+                  q.defaultRelevant = true;
+                  q.relevant = path + relevant + "'";
+                }
+              });
+            });
+          }
+        }
       };
 
     $scope.makeRelevantCascade = function (cascade) {
