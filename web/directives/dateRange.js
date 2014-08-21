@@ -16,15 +16,30 @@ define(function () {
           var minElem = $element.find('[date-input="minRange"]'),
             maxElem = $element.find('[date-input="maxRange"]'),
             defaultDate = $element.parent().find('.default-date'),
-            minDate = $scope.minRange ?  new Date($scope.minRange) : null,
-            maxDate = $scope.maxRange ?  new Date($scope.maxRange) : null,
+            minDate,
+            maxDate,
 
-            parseDate = function (date) {
+            convertDate = function (date) {
               var yyyy = date.getFullYear().toString(),
                 mm = (date.getMonth() + 1).toString(),
                 dd  = date.getDate().toString();
               return (dd[1] ? dd : "0" + dd[0]) + '/' + (mm[1] ? mm : "0" + mm[0]) + '/' + yyyy;
+            },
+            parseDate = function (date) {
+              if (date) {
+                if (date.indexOf('/') !== -1) {
+                  date = date.split('/');
+                  date = date[2] + '-' + date[1] + '-' + date[0];
+                }
+
+                return  new Date(date);
+              } else {
+                return null;
+              }
             };
+
+          maxDate = parseDate($scope.maxRange);
+          minDate = parseDate($scope.minRange);
 
           if ($scope.minChecked === undefined) {
             $scope.minChecked = !!minDate;
@@ -87,10 +102,10 @@ define(function () {
             if ($scope.$parent.$parent.question.type == 'date' && date && (defaultDate.length > 0)) {
               $(defaultDate).datepicker('option', type + 'Date', date);
 
-              $scope.$parent.$parent.question[type + 'Value'] = parseDate(date);
+              $scope.$parent.$parent.question[type + 'Value'] = convertDate(date);
 
               if ($(defaultDate).datepicker('getDate')) {
-                $scope.$parent.$parent.question.defaultValue = parseDate($(defaultDate).datepicker('getDate'));
+                $scope.$parent.$parent.question.defaultValue = convertDate($(defaultDate).datepicker('getDate'));
               }
             }
           };

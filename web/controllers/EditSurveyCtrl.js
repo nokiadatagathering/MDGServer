@@ -342,9 +342,13 @@ define(function () {
       makeConstraint = function (params) {
         var
           constraint = '',
-          parseDate = function (date) {
-            date = date.split('/');
-            return date[2] + '-' + date[1] + '-' + date[0];
+          parseParam = function (param) {
+            if (typeof(param) === 'string') {
+              param = param.split('/');
+              return param[2] + '-' + param[1] + '-' + param[0];
+            } else {
+              return param;
+            }
           };
 
         if (params.mask) {
@@ -361,15 +365,15 @@ define(function () {
         }
 
         if (params.maxChecked && params.maxValue) {
-          constraint = '(. <= ' + parseDate(params.maxValue);
+          constraint = '(. <= ' + parseParam(params.maxValue);
         }
 
         if (params.minChecked && params.minValue) {
-          constraint = '(. >= ' + parseDate(params.minValue);
+          constraint = '(. >= ' + parseParam(params.minValue);
         }
 
         if (params.maxChecked && params.minChecked && params.minValue && params.maxValue) {
-          constraint = constraint + ' and . <= ' + parseDate(params.maxValue);
+          constraint = constraint + ' and . <= ' + parseParam(params.maxValue);
         }
 
         return constraint === '' ? '' : constraint + ')';
