@@ -67,7 +67,7 @@ First of all, let's install some global tools
 
 Now clone the source and install project dependencies:
 ```
-# git clone git://github.com:nokiadatagathering/MDGServer.git
+# git clone git://github.com/nokiadatagathering/MDGServer.git
 # cd MDGServer
 # npm install
 # bower install
