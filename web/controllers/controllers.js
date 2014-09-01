@@ -16,8 +16,8 @@ define([
   'controllers/ResultsOnMapCtrl',
   'controllers/ResultDetailsCtrl',
   'controllers/ResultsChartCtrl',
-  'controllers/BuilderCtrl'
-
+  'controllers/BuilderCtrl',
+  'controllers/SyncCtrl'
 ], function (
   LoginCtrl,
 
@@ -37,7 +37,8 @@ define([
   ResultsOnMapCtrl,
   ResultDetailsCtrl,
   ResultsChartCtrl,
-  BuilderCtrl
+  BuilderCtrl,
+  SyncCtrl
   ) {
   'use strict';
 
@@ -60,7 +61,8 @@ define([
       ResultsOnMapCtrl:   ResultsOnMapCtrl,
       ResultDetailsCtrl:  ResultDetailsCtrl,
       ResultsChartCtrl:   ResultsChartCtrl,
-      BuilderCtrl:        BuilderCtrl
+      BuilderCtrl:        BuilderCtrl,
+      SyncCtrl:           SyncCtrl
     },
 
     initialize = function (angModule) {

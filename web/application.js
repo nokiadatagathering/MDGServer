@@ -58,7 +58,7 @@ define([
       return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
 
-    var interceptor = ['$rootScope', '$q','$window', function (scope, $q, $window, $location) {
+    var interceptor = ['$rootScope', '$q', '$window', '$location', function ($scope, $q, $window, $location) {
 
       function success (response) {
         return response;
@@ -67,16 +67,26 @@ define([
       function error (response) {
         var status = response.status;
 
-        if (status == 401) {
-          $window.location = '/#/login';
-          if (status == 401 && $window.location.hash !== "#/login") {
-            $window.location = '/#/getStarted';
-            $window.location.reload();
-            return;
-          }
+        if (status === 401 &&
+          $window.location.hash !== "#/login" &&
+          $window.location.hash !== "#/home" &&
+          $window.location.hash !== "#/support" &&
+          $window.location.hash !== "#/getStarted" &&
+          $window.location.hash !== "#/openSource" &&
+          $window.location.hash !== "#/useCases" &&
+          $window.location.hash !== "#/register" &&
+          $window.location.hash !== "") {
+          $location.path('/login');
+          return response;
         }
-        return $q.reject(response);
 
+        if (status === 404 || status >= 500 || status === 0) {
+          $scope.offlineMode = true;
+          localStorage.setItem('offlineMode', true);
+          return response;
+        }
+
+        return $q.reject(response);
       }
 
       return function (promise) {
@@ -121,7 +131,6 @@ define([
   application.config(function ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider
       .otherwise('/getStarted');
-    $urlRouterProvider.when('', '/home');
     $stateProvider
       .state('pageGetStarted', {
         templateUrl: '/partials/PageGetStarted.html'
@@ -178,6 +187,10 @@ define([
       .state('page.surveys.sendsurvey', {
         url: '/send:{surveyId}',
         templateUrl: '/partials/ModalSendSurvey.html'
+      })
+      .state('page.surveys.sync', {
+        url: '/sync',
+        templateUrl: '/partials/ModalSyncOfflineMode.html'
       })
 
       .state('page.archive', {
@@ -276,9 +289,17 @@ define([
         url: '/builder',
         templateUrl: '/partials/EditSurvey.html'
       })
+      .state('page.builder.sync', {
+        url: '/sync',
+        templateUrl: '/partials/ModalSyncOfflineMode.html'
+      })
       .state('page.editsurvey', {
         url: '/editsurvey:{surveyId}',
         templateUrl: '/partials/EditSurvey.html'
+      })
+      .state('page.editsurvey.sync', {
+        url: '/sync',
+        templateUrl: '/partials/ModalSyncOfflineMode.html'
       });
   });
 
@@ -310,6 +331,9 @@ define([
       window.history.back();
     };
 
+    $rootScope.offlineMode = JSON.parse(localStorage.getItem('offlineMode'));
+    $rootScope.loggedInUser = JSON.parse(localStorage.getItem('user'));
+
     $rootScope.deletedItems = {
       surveys: [],
       users:   [],
@@ -321,6 +345,7 @@ define([
       var logout = function () {
         profileManager.logout().then(
           function success () {
+            localStorage.clear();
             $rootScope.goState('pageGetStarted.getStarted');
           },
 
@@ -342,16 +367,34 @@ define([
     };
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {
-      if (toState.name.indexOf("pageGetStarted") === -1) {
-        profileManager.getUserPermission().then(
-          function success (config) {
-            $rootScope.loggedInUser = config.data;
-          },
-
-          function failed (err) {
-            console.log("error:", err);
-          });
+      if ($rootScope.offlineMode &&
+        toState.name !== 'page.surveys' && toState.name !== 'page.builder' && toState.name !== 'page.editsurvey' &&
+        toState.name !== 'page.surveys.sync' && toState.name !== 'page.builder.sync' && toState.name !== 'page.editsurvey.sync' &&
+        toState.name !== 'pageGetStarted.getStarted') {
+        event.preventDefault();
       }
+
+      profileManager.getUserPermission().then(
+        function success (config) {
+          if (!$rootScope.offlineMode) {
+            $rootScope.loggedInUser = config.data;
+            localStorage.setItem('user', JSON.stringify(config.data));
+          }
+
+          if ($rootScope.loggedInUser && (toState.name.indexOf("pageGetStarted") !== -1 || toState.name === 'page')) {
+            event.preventDefault();
+            $location.path('/surveys');
+          }
+        },
+
+        function failed (err) {
+          if (toState.name === 'page') {
+            event.preventDefault();
+            $location.path('/home');
+          }
+
+          console.log("error:", err);
+        });
     });
 
   });

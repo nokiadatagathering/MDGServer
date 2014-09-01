@@ -1,7 +1,7 @@
 define(function () {
 
   'use strict';
-  return function ($q, $http, $rootScope) {
+  return function ($q, $http, $rootScope, offlineManager) {
     /** @const */
     var
       SURVEYS_URL = '/surveys/',
@@ -11,15 +11,44 @@ define(function () {
       XML_URL = '/xml';
 
     function surveyList (archive) {
-      return $http.get(SURVEYS_URL + '?archive=' + archive)
-        .success(function (result) {
-        });
+      if (archive) {
+        return $http.get(SURVEYS_URL + '?archive=true')
+          .success(function (result) {
+          });
+      }
+
+      if ($rootScope.offlineMode) {
+        return offlineManager.getSurveys();
+      }
+
+      return $http.get(SURVEYS_URL).then(function (result) {
+        var deferred = $q.defer();
+
+        if ($rootScope.offlineMode) {
+          return offlineManager.getSurveys();
+        } else {
+          offlineManager.saveSurveys(result.data);
+          deferred.resolve(result);
+          return deferred.promise;
+        }
+      });
     }
 
     function surveyInfo (surveyId) {
-      return $http.get(SURVEYS_URL + surveyId)
-        .success(function (result) {
-        });
+      if ($rootScope.offlineMode) {
+        return offlineManager.getSurveyInfo(surveyId);
+      }
+
+      return $http.get(SURVEYS_URL + surveyId).then(function (result) {
+        var deferred = $q.defer();
+
+        if ($rootScope.offlineMode) {
+          return offlineManager.getSurveyInfo(surveyId);
+        } else {
+          deferred.resolve(result);
+          return deferred.promise;
+        }
+      });
     }
 
     function sendSurvey (surveyId, users) {
@@ -29,11 +58,25 @@ define(function () {
         });
     }
 
-    function deleteSurvey (surveyId) {
-      var delete_survey_url = SURVEYS_URL + surveyId;
-      return $http.delete(delete_survey_url)
-        .success(function (result) {
-        });
+    function deleteSurvey (data) {
+      var
+        surveyId = data.id,
+        delete_survey_url = SURVEYS_URL + surveyId;
+
+      if ($rootScope.offlineMode) {
+        return offlineManager.saveRequest('deleteSurvey', { id: surveyId }, surveyId);
+      }
+
+      return $http.delete(delete_survey_url).then(function (result) {
+        var deferred = $q.defer();
+
+        if ($rootScope.offlineMode) {
+          return offlineManager.saveRequest('deleteSurvey', { id: surveyId }, surveyId);
+        } else {
+          deferred.resolve(result);
+          return deferred.promise;
+        }
+      });
     }
 
     function duplicateSurvey (surveyId) {
@@ -42,16 +85,46 @@ define(function () {
         .success(function (result) {
         });
     }
-    function editSurvey (surveyId, surveyData) {
-      var edit_survey_url = SURVEYS_URL + surveyId;
-      return $http.put(edit_survey_url, surveyData)
-        .success(function (result) {
-        });
+
+    function editSurvey (data) {
+      var
+        surveyId = data.id,
+        surveyData = data.body,
+        edit_survey_url = SURVEYS_URL + surveyId;
+
+      if ($rootScope.offlineMode) {
+        return offlineManager.saveRequest('editSurvey', surveyData, surveyId);
+      }
+
+      return $http.put(edit_survey_url, surveyData).then(function (result) {
+        var deferred = $q.defer();
+
+        if ($rootScope.offlineMode) {
+          return offlineManager.saveRequest('editSurvey', surveyData, surveyId);
+        } else {
+          deferred.resolve(result);
+          return deferred.promise;
+        }
+      });
     }
-    function createSurvey (surveyData) {
-      return $http.post(SURVEYS_URL, surveyData)
-        .success(function (result) {
-        });
+
+    function createSurvey (data) {
+      var surveyData = data.body;
+
+      if ($rootScope.offlineMode) {
+        return offlineManager.saveRequest('createSurvey', surveyData);
+      }
+
+      return $http.post(SURVEYS_URL, surveyData).then(function (result) {
+        var deferred = $q.defer();
+
+        if ($rootScope.offlineMode) {
+          return offlineManager.saveRequest('createSurvey', surveyData);
+        } else {
+          deferred.resolve(result);
+          return deferred.promise;
+        }
+      });
     }
 
     function uploadXML (file, cb) {

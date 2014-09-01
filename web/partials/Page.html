@@ -1,34 +1,42 @@
-<div class="header" ng-controller="PageCtrl">
-    <div class="home">
-        <a class="logo" ui-sref="page.surveys" ng-click="activateTab('activeSurvey', 'activeUser')">
-            <img src="../resources/icons/lolgo-30px.png">
-            <h1>MICROSOFT <span>DATA GATHERING</span></h1>
-        </a>
-        <ul class="main-menu">
-            <a ui-sref="page.surveys"
-               ng-class="{active: $state.includes('page.surveys') ||
-                                  $state.includes('page.results') ||
-                                  $state.includes('page.map') ||
-                                  $state.includes('page.builder') ||
-                                  $state.includes('page.editsurvey') ||
-                                  $state.includes('page.archive')
-                         }">
-                <li>Surveys</li>
+<div ng-controller="PageCtrl">
+    <div ng-if="offlineMode" class="offline-block">
+        You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode
+        <input type="button" value="Synchronize" ng-click="sync()">
+    </div>
+
+    <div class="header" ng-class="{offlineMode: offlineMode === true}">
+
+        <div class="home">
+
+            <a class="logo" ui-sref="page.surveys" ng-click="activateTab('activeSurvey', 'activeUser')">
+                <img src="../resources/icons/lolgo-30px.png">
+                <h1>NOKIA <span>DATA GATHERING</span></h1>
             </a>
-            <a ng-if="loggedInUser.permission !== 'operator'"
-               ui-sref="page.users.group({groupId: ''})"
-               ng-class="{active: $state.includes('page.users')}">
-                <li>Users</li>
-            </a>
-        </ul>
-        <div class="user-menu">
-            <span class="version" ng-if="version">v{{version}}</span>
-            <a
-                    dropdown-menu="dropdownList"
-                    dropdown-model="dropdownSelect"
-                    dropdown-onchange="selectMenu(selected)">
-                {{loggedInUser.username}}
-            </a>
+            <ul class="main-menu">
+                <a ui-sref="page.surveys"
+                   ng-class="{active: $state.includes('page.surveys') ||
+                                      $state.includes('page.results') ||
+                                      $state.includes('page.map') ||
+                                      $state.includes('page.builder') ||
+                                      $state.includes('page.editsurvey')
+                             }">
+                    <li>Surveys</li>
+                </a>
+                <a ng-if="loggedInUser.permission !== 'operator'"
+                   ui-sref="page.users.group({groupId: ''})"
+                   ng-class="{active: $state.includes('page.users')}">
+                    <li>Users</li>
+                </a>
+            </ul>
+            <div class="user-menu">
+                <span class="version" ng-if="version">v{{version}}</span>
+                <a
+                        dropdown-menu="dropdownList"
+                        dropdown-model="dropdownSelect"
+                        dropdown-onchange="selectMenu(selected)">
+                    {{loggedInUser.username}}
+                </a>
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 define(function () {
   'use strict';
-  return function ($scope, $http, $location, $window, $stateParams, $rootScope, $base64,
+  return function ($scope, $http, $state, $stateParams, $base64,
                    usersManager, errorsManager, validateManager) {
     $scope.user = {};
     $scope.user.permission = 'admin';
@@ -18,8 +18,7 @@ define(function () {
 
         usersManager.createUser($scope.newUser).then(
           function success (config) {
-            $window.location = '#/users/group:';
-            $window.location.reload(true);
+            $state.go('page.users.group', {}, { reload: true });
           },
 
           function failed (err) {

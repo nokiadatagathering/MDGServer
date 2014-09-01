@@ -2,7 +2,7 @@
   "name": "ndg",
   "dependencies": {
     "angular": "1.2.*",
-    "angular-ui-router": "0.2.0",
+    "angular-ui-router": "0.2.5",
     "angular-base64": "2.0.1",
     "angular-sanitize": "1.2.14",
     "angular-dragdrop": "1.0.6",
@@ -17,6 +17,7 @@
     "d3": "3.4.3",
     "d3-tip": "0.6.4",
     "uuid-js": "~0.7.5",
-    "almond": "~0.2.9"
+    "almond": "~0.2.9",
+    "async": "0.9.0"
   }
 }

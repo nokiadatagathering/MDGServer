@@ -1,0 +1,24 @@
+<div class="overlay" ng-click="goState('^')"></div>
+<div class="window" ng-controller="SyncCtrl">
+    <div class="window-header">
+        <h2>Sync with server</h2>
+        <div class="close-window" ng-click="$state.go('page.surveys', {}, { reload: true });">&#10006;</div>
+    </div>
+    <div class="window-body">
+        <div>Items updated: {{doneRequests}}/{{requestsLength}}</div>
+        <div ng-show="doneRequests==requestsLength">
+            <span>Syncronization complete</span>
+            <ul>
+                <li ng-repeat="request in requestsInConflict">
+                    {{request.title}}   {{request.id}}
+                </li>
+            </ul>
+            <input type="button" value="Close" ng-click="$state.go('page.surveys', {}, { reload: true });">
+        </div>
+        <div ng-show="failedSync">
+            <span>Error: Connection Lost.</span>
+            <input type="button" value="Refresh" ng-click="Sync()">
+        </div>
+    </div>
+</div>
+</div>
