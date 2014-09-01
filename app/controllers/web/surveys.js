@@ -51,7 +51,7 @@ module.exports = {
       ];
     }
 
-    Survey.find(query, 'title _creator published resultsCount dateCreated').populate('_creator', 'firstName lastName name').exec(function (err, surveys) {
+    Survey.find(query).populate('_creator', 'firstName lastName name').exec(function (err, surveys) {
       if (err) {
         next({ status: 500, body: err });
         return;

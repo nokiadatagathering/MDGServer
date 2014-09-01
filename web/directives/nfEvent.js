@@ -62,7 +62,7 @@ define(function () {
                   });
                 break;
               case 'deleted_survey':
-                surveysManager.deleteSurvey($scope.nfEvent.eventId).then(
+                surveysManager.deleteSurvey({ id: $scope.nfEvent.eventId }).then(
                   function success (config) {
                     var index = $rootScope.deletedItems.surveys.indexOf($scope.nfEvent.eventId) + 1;
                     $rootScope.deletedItems.surveys = $rootScope.deletedItems.surveys.splice(index, 1);

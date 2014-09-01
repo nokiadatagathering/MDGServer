@@ -32,6 +32,7 @@ var
   validationsCntr = require('./app/controllers/web/validations'),
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
+  manifestCntr = require('./app/controllers/web/manifest'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
   checkServerCntr = require('./app/controllers/mobile/checkServer'),
@@ -190,6 +191,8 @@ exports.run = function (mongoUrl, port, callback) {
         }
       }
     });
+
+    app.get('/mdgcache.manifest', manifestCntr.getManifest);
 
     if (Configuration.get('general.protocolType') === 'https') {
       httpsOptions.pfx = fs.readFileSync(Configuration.get('general.httpspfx'));

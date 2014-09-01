@@ -52,7 +52,7 @@
         </div>
 
         <ul class="list-box">
-            <li class="item" id="{{survey._id}}"
+            <li class="item" id="{{survey.id}}"
                 ng-repeat="survey in filtered = (surveys | deletedItemsFilter : 'surveys') | filter:q | orderBy:predicate:reverse"
                 ng-if="(dropdownSelect.value == 'all')||(((dropdownSelect.value == 'published') && survey.published)||((dropdownSelect.value == 'unpublished') && !survey.published))"
                 style=" display: {{survey.hidden ? 'none' : 'block'}};">
@@ -61,31 +61,31 @@
                 </div>
                 <div class="name">
                     <h4 title="{{survey.title}}">{{survey.title}}</h4>
-                    <span class="id" title="{{survey._id}}">ID: {{survey._id}}</span>
+                    <span class="id" title="{{survey.id}}">ID: {{survey.id}}</span>
                 </div>
                 <div class="options">
                     <input type="button" class="button-icon single edit"
-                           ng-click="goState('page.editsurvey',{surveyId: survey._id})"
+                           ng-click="goState('page.editsurvey',{surveyId: survey.id})"
                            ng-show="!survey.published">
                     <span class="caption" ng-show="!survey.published">{{ 'surveys.Edit_survey' | translate }}</span>
 
                     <input type="button" class="button-icon single archive add-to-archive"
-                           ng-click="archive(survey._id, survey.title, true)"
+                           ng-click="archive(survey.id, survey.title, true)"
                            ng-show="survey.published">
                     <span class="caption" ng-show="survey.published">{{ 'surveys.Move_to_archive' | translate }}</span>
 
                     <ul class="button-group">
                         <li>
                             <input type="button" class="download"
-                                   ng-click="downloadSurvey(survey._id)">
+                                   ng-click="downloadSurvey(survey.id)">
                             <span class="caption">{{ 'surveys.Download_survey' | translate }}</span>
                         </li><li>
                         <input type="button" class="send"
-                               ng-click="goState('page.surveys.sendsurvey',{surveyId: survey._id})">
+                               ng-click="goState('page.surveys.sendsurvey',{surveyId: survey.id})">
                         <span class="caption">{{ 'surveys.Publish_survey' | translate }}</span>
                     </li><li>
                         <input type="button" class="copy"
-                               ng-click="duplicateSurvey(survey._id, survey.title)">
+                               ng-click="duplicateSurvey(survey.id, survey.title)">
                         <span class="caption">{{ 'surveys.Duplicate_survey' | translate }}</span>
                     </li><li>
                         <input type="button" class="delete"
@@ -99,8 +99,8 @@
                 <ul class="data">
                     <li class="results left">
                         <span class="void" ng-if="survey.resultsCount === 0">0</span>
-                        <a ui-sref="page.results({surveyId: survey._id})"
-                           href="#/survey:{{survey._id}}"
+                        <a ui-sref="page.results({surveyId: survey.id})"
+                           href="#/survey:{{survey.id}}"
                            ng-if="survey.resultsCount != 0">{{survey.resultsCount}}</a>
                     </li>
                     <li class="publisher">{{survey._creator.name}}</li>

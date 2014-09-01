@@ -1060,7 +1060,29 @@ Styles for dropdown-menu
   }
 }
 
+.offline-block {
+  position: fixed;
+  border-top: 4px solid #ff0000;
+  border-bottom: 4px solid #ff0000;
+  color: #ff0000;
+  height: 60px;
+  width: 100%;
+  background: #ffffff;
+  top: 0px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 60px;
+  z-index: 2000;
+  input {
+    vertical-align: middle;
+    .button-stylisation;
+  }
+}
+
 .header {
+  &.offlineMode {
+    margin-top: 68px;
+  }
   height: 60px;
   line-height: 60px;
   background: @header-bg;
@@ -2276,6 +2298,38 @@ Styles for dropdown-menu
     }
     .window-body {
       position: relative;
+      .sync {
+        padding: 20px;
+        font-family: NokiaPureTextBold;
+        font-size: 15px;
+        ul {
+          list-style: none;
+          font-family: NokiaPureText;
+          padding: 10px;
+          li {
+            display: block;
+            div {
+              display: inline-block;
+              &.id {
+                width: 190px;
+                float: left;
+              }
+              &.title {
+                width: 180px;
+                margin-left: 20px;
+                .long-text;
+              }
+            }
+          }
+        }
+        div.status {
+          margin-bottom: 10px;
+        }
+        input {
+          .button-stylisation;
+          margin-left: 43%;
+        }
+      }
       #sms-form {
         padding: 20px;
         overflow: hidden;

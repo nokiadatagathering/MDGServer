@@ -64,5 +64,5 @@ exports.signup = function (req, res, next) {
 };
 
 exports.permission = function (req, res, next) {
-  res.send(_.pick(req.user, 'permission', 'username'));
+  res.send(200, _.pick(req.user, 'permission', 'username', 'firstName', 'lastName', 'name', '_id'));
 };
