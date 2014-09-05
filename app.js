@@ -31,6 +31,7 @@ var
   exportCntr = require('./app/controllers/web/export'),
   validationsCntr = require('./app/controllers/web/validations'),
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
+  getStartedCntr = require('./app/controllers/web/getStarted'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
   checkServerCntr = require('./app/controllers/mobile/checkServer'),
@@ -138,9 +139,6 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/autocomplete/industry', autocompleteCntr.getIndustries);
 
     app.post('/signup', loginCntr.signup);
-    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
-    app.post('/checkResetPasswordToken', passwordResetCntr.checkResetPasswordToken);
-    app.post('/resetPassword', passwordResetCntr.resetPassword);
 
     app.get('/userPermission', ACLService.checkPermission, loginCntr.permission);
     app.post('/sms/:type/:id', ACLService.checkPermission, smsCntr.sendSms);
@@ -163,6 +161,18 @@ exports.run = function (mongoUrl, port, callback) {
 
     app.get('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.getReportPage);
     app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
+    app.get('/home', getStartedCntr.home);
+    app.get('/getstarted', getStartedCntr.getStarted);
+    app.get('/useCases', getStartedCntr.useCases);
+    app.get('/openSource', getStartedCntr.openSource);
+    app.get('/support', getStartedCntr.support);
+    app.get('/login', getStartedCntr.login);
+    app.get('/register', getStartedCntr.register);
+
+    app.get('/forgotPassword', passwordResetCntr.forgotPasswordPage);
+    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
+    app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
+    app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
 
     app.resource('users');
     app.resource('groups');
@@ -175,10 +185,14 @@ exports.run = function (mongoUrl, port, callback) {
       if (req.method === 'HEAD') {
         res.send();
       } else {
-        res.render('index-' + app.settings.env, {
-          title: Configuration.get('general.siteName'),
-          version: version
-        });
+        if (req.user) {
+          res.render('index-' + app.settings.env, {
+            title: Configuration.get('general.siteName'),
+            version: version
+          });
+        } else {
+          res.redirect(303, '/getstarted');
+        }
       }
     });
 

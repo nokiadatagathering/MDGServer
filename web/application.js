@@ -68,15 +68,10 @@ define([
         var status = response.status;
 
         if (status == 401) {
-          $window.location = '/#/login';
-          if (status == 401 && $window.location.hash !== "#/login") {
-            $window.location = '/#/getStarted';
-            $window.location.reload();
-            return;
-          }
+          window.document.location.href = '/getstarted';
         }
-        return $q.reject(response);
 
+        return $q.reject(response);
       }
 
       return function (promise) {
@@ -120,53 +115,9 @@ define([
 
   application.config(function ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider
-      .otherwise('/getStarted');
-    $urlRouterProvider.when('', '/home');
+      .otherwise('/surveys');
+    $urlRouterProvider.when('', '/surveys');
     $stateProvider
-      .state('pageGetStarted', {
-        templateUrl: '/partials/PageGetStarted.html'
-      })
-      .state('pageGetStarted.homePage', {
-        url: '/home',
-        templateUrl: '/partials/HomePage.html'
-      })
-      .state('pageGetStarted.getStarted', {
-        url: '/getStarted',
-        templateUrl: '/partials/GetStarted.html'
-      })
-      .state('pageGetStarted.useCases', {
-        url: '/useCases',
-        templateUrl: '/partials/UseCases.html'
-      })
-      .state('pageGetStarted.openSource', {
-        url: '/openSource',
-        templateUrl: '/partials/OpenSource.html'
-      })
-      .state('pageGetStarted.support', {
-        url: '/support',
-        templateUrl: '/partials/Support.html'
-      })
-      .state('pageGetStarted.login', {
-        url: '/login',
-        templateUrl: '/partials/Login.html'
-      })
-      .state('pageGetStarted.register', {
-        url: '/register',
-        templateUrl: '/partials/Register.html'
-      })
-      .state('pageGetStarted.register.successRegistration', {
-        url: '',
-        templateUrl: '/partials/ModalSuccessRegistration.html'
-      })
-      .state('pageGetStarted.forgotPassword', {
-        url: '/forgotPassword',
-        templateUrl: '/partials/ForgotPassword.html'
-      })
-      .state('pageGetStarted.resetPassword', {
-        url: '/resetPassword:{token}',
-        templateUrl: '/partials/ResetPassword.html'
-      })
-
       .state('page', {
         url: '',
         templateUrl: '/partials/Page.html'
@@ -321,7 +272,7 @@ define([
       var logout = function () {
         profileManager.logout().then(
           function success () {
-            $rootScope.goState('pageGetStarted.getStarted');
+            window.document.location.href = '/getstarted';
           },
 
           function failed (err) {
@@ -330,7 +281,7 @@ define([
       };
 
       if ($location.$$path.indexOf('/editsurvey:') !== -1 || $location.$$path.indexOf('/builder') !== -1) {
-        $rootScope.goState('pageGetStarted.getStarted');
+        $rootScope.goState('page.surveys');
 
         $rootScope.saveSurveyPromise.then(
           function success () {
