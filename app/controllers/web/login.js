@@ -37,7 +37,7 @@ exports.activate = function (req, res, next) {
         return;
       }
 
-      res.redirect('/#/login');
+      res.redirect('/login');
   });
 };
 
@@ -59,7 +59,7 @@ exports.signup = function (req, res, next) {
 
     MailService.sendMail({ user: user, url: req.protocol + '://' + req.get('host')  }, 'registration');
 
-    res.send(204);
+    res.render('getStarted/jade/successRegistration', {});
   });
 };
 

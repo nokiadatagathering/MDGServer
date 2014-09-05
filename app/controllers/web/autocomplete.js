@@ -1,7 +1,11 @@
 var User = require('../../models/User');
 
 exports.getCompanies = function (req, res, next) {
-  User.distinct('company', function (err, companies) {
+  var
+    term = req.param('term'),
+    termReggexp = new RegExp('.*' + term + '.*', 'i');
+
+  User.distinct('company', { company: { $regex: termReggexp } }, function (err, companies) {
     if (err) {
       next({ status: 500, body: err });
       return;
@@ -12,7 +16,11 @@ exports.getCompanies = function (req, res, next) {
 };
 
 exports.getIndustries = function (req, res, next) {
-  User.distinct('industry', function (err, industries) {
+  var
+    term = req.param('term'),
+    termReggexp = new RegExp('.*' + term + '.*', 'i');
+
+  User.distinct('industry', { industry: { $regex: termReggexp } }, function (err, industries) {
     if (err) {
       next({ status: 500, body: err });
       return;
