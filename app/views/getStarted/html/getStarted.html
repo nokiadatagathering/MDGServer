@@ -1,5 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MDG</title>
+    <link rel="stylesheet" type="text/css" href="/resources/stylesheets/homePage.css">
+</head>
+<body>
+<div class="header">
+    <div class="get-started light">
+        <a class="logo left" href="/home">
+            <img class="left" src="../resources/icons/lolgo-30px.png">
+            <h1 class="light left">MICROSOFT <span class="bold">DATA GATHERING</span></h1>
+        </a>
+        <ul class="main-menu left">
+            <a class="active" href="/getstarted">
+                <li>Get Started</li>
+            </a>
+            <a href="/useCases">
+                <li>Use Cases</li>
+            </a>
+            <a href="/openSource">
+                <li>Open Source</li>
+            </a>
+            <a href="/support">
+                <li>Support</li>
+            </a>
+        </ul>
+        <ul class="login-menu">
+            <a href="/login">
+                <li>Login  </li>
+            </a>
+
+            <a href="/register">
+                <li>/  Register</li>
+            </a>
+        </ul>
+    </div>
+</div>
+
 <div class="content">
-    <div class="get-started-panel">
+    <div class="panel">
         <h1 class="center-text">GET STARTED</h1>
         <h3 class="center-text">If you have your own server and wish to migrate your data to this release of MDG the tool to do that is available
             <a href="http://github.com/nokiadatagathering/ndg-migration"> here</a>
@@ -11,8 +50,7 @@
                 <div class="step-info">
                     <h2>Step 1: Register to the Microsoft Data Gathering Playground Server</h2>
                     <p>The ﬁrst thing you need to do is to ﬁll in the user registration form and create an account on the Microsoft Data Gathering playground server. You can do this by clicking
-                        <a ui-sref="pageGetStarted.register"
-                           ng-class="{active: $state.includes('pageGetStarted.register')}">
+                        <a href="/register">
                             register on the homepage
                         </a>.
                     </p>
@@ -72,3 +110,5 @@
         </ul>
     </div>
 </div>
+</body>
+</html>

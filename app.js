@@ -30,6 +30,7 @@ var
   resultsImageCntr = require('./app/controllers/web/resultsImage'),
   exportCntr = require('./app/controllers/web/export'),
   validationsCntr = require('./app/controllers/web/validations'),
+  getStartedCntr = require('./app/controllers/web/getStarted'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
   checkServerCntr = require('./app/controllers/mobile/checkServer'),
@@ -137,9 +138,6 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/autocomplete/industry', autocompleteCntr.getIndustries);
 
     app.post('/signup', loginCntr.signup);
-    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
-    app.post('/checkResetPasswordToken', passwordResetCntr.checkResetPasswordToken);
-    app.post('/resetPassword', passwordResetCntr.resetPassword);
 
     app.get('/userPermission', ACLService.checkPermission, loginCntr.permission);
     app.post('/sms/:type/:id', ACLService.checkPermission, smsCntr.sendSms);
@@ -160,6 +158,21 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/ReceiveSurvey/:id', passport.authenticate('digest', { session: false }), receiveSurveyCntr.show);
     app.get('/LocalizationServing/text', localeCntr.getLocale);
 
+    app.get('/home', getStartedCntr.home);
+    app.get('/getstarted', getStartedCntr.getStarted);
+    app.get('/useCases', getStartedCntr.useCases);
+    app.get('/openSource', getStartedCntr.openSource);
+    app.get('/support', getStartedCntr.support);
+    app.get('/login', getStartedCntr.login);
+    app.get('/register', getStartedCntr.register);
+
+    app.get('/forgotPassword', passwordResetCntr.forgotPasswordPage);
+    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
+    app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
+    app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
+
+
+
     app.resource('users');
     app.resource('groups');
     app.resource('surveys', function() {
@@ -168,10 +181,14 @@ exports.run = function (mongoUrl, port, callback) {
     });
 
     app.get('/', function (req, res) {
-      res.render('index-' + app.settings.env, {
-        title: Configuration.get('general.siteName'),
-        version: version
-      });
+      if (req.user) {
+        res.render('index-' + app.settings.env, {
+          title: Configuration.get('general.siteName'),
+          version: version
+        });
+      } else {
+        res.redirect(303, '/getstarted');
+      }
     });
 
     if (Configuration.get('general.protocolType') === 'https') {
