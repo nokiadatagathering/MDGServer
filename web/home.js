@@ -174,7 +174,7 @@ function closeModal () {
   $('form.register-form')[0].reset();
   location.hash = '#login';
   $('.modal.success-registration').hide();
-  $('.login-menu #login').click();
+  $('.login-menu [name=login]').click();
 }
 
 function register () {
