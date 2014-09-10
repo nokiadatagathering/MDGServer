@@ -162,14 +162,7 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.getReportPage);
     app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
     app.get('/home', getStartedCntr.home);
-    app.get('/getstarted', getStartedCntr.getStarted);
-    app.get('/useCases', getStartedCntr.useCases);
-    app.get('/openSource', getStartedCntr.openSource);
-    app.get('/support', getStartedCntr.support);
-    app.get('/login', getStartedCntr.login);
-    app.get('/register', getStartedCntr.register);
 
-    app.get('/forgotPassword', passwordResetCntr.forgotPasswordPage);
     app.post('/forgotPassword', passwordResetCntr.forgotPassword);
     app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
@@ -193,6 +186,7 @@ exports.run = function (mongoUrl, port, callback) {
         } else {
           res.redirect(303, '/getstarted');
         }
+        res.redirect(303, '/home');
       }
     });
 

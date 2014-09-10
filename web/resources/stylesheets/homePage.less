@@ -15,9 +15,9 @@ html, body {
   padding: 0;
   width: 100%;
 }
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cit, code,
-del, dfn, em, ins, q, samp, small, strong, sub, sup, b, i, hr, dl, dt, dd,
-ol, ul, li, fieldset, legend, label {
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, b, i
+ol, ul, li, label {
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
@@ -206,7 +206,7 @@ ol, ul, li, fieldset, legend, label {
   position: relative;
   width: 1000px;
   .panel,
-  &.home-page {
+  &.home {
     width: 1000px;
     margin: 0 auto;
     font-size: 23px;
@@ -234,16 +234,6 @@ ol, ul, li, fieldset, legend, label {
       border: 1px solid @light-gray;
       margin-left: 210px;
       margin-bottom: 25px;
-    }
-    .video {
-      margin: 0 200px 50px;
-      width: 640px;
-      height: 390px;
-    }
-    .image.mobile-collage {
-      margin: 0;
-      width: 445px;
-      height: 450px;
     }
     .column {
       width: 48%;
@@ -299,36 +289,6 @@ ol, ul, li, fieldset, legend, label {
         font-style: italic;
       }
     }
-    ul.how-it-works {
-      margin-top: 20px;
-      li {
-        list-style-type: none;
-        margin: 0;
-        position: relative;
-        height: 210px;
-      }
-      .image {
-        width: 180px;
-        height: 180px;
-        margin: 0;
-        float: left;
-      }
-      .number {
-        display: inline-block;
-        margin-top: 65px;
-        margin-right: 2%;
-        margin-bottom: 0;
-        margin-left: 2%;
-        font-size: 32px;
-      }
-      p {
-        display: inline-block;
-        float: right;
-        margin-top: 60px;
-        width: 240px;
-        font-size: 20px;
-      }
-    }
     ul.steps {
       li {
         margin-top: 40px;
@@ -369,74 +329,71 @@ ol, ul, li, fieldset, legend, label {
         }
       }
     }
-    .login-form,
-    .register-form,
-    .forgot-password-form,
-    .reset-password-form {
-      position: absolute;
-      margin-left: 240px;
-      margin-top: 20px;
-      width: 505px;
-      padding: 10px;
-      background-color: rgba(240, 240, 240, 1);
-      height: auto;
-      a, p {
-        font-size: 15px;
-        display: inline-block;
-        margin-left: 5px;
-      }
-      p {
-        margin-bottom: 15px;
-      }
-      .small-field {
-        display: inline-block;
-        padding-bottom: 10px;
-        margin-left: 5px;
+  }
+  .panel form {
+    position: absolute;
+    margin-left: 240px;
+    margin-top: 20px;
+    width: 505px;
+    padding: 10px;
+    background-color: rgba(240, 240, 240, 1);
+    height: auto;
+    a, p {
+      font-size: 15px;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    .small-field {
+      display: inline-block;
+      padding-bottom: 10px;
+      margin-left: 5px;
 
-        input {
-          .field-stylisation(13px, 220px);
-        }
-
-        select {
-          .field-stylisation(35px, 242px);
-          padding: 0;
-          padding-left: 6px;
-        }
-
-        input[id="phone"] {
-          background-image: url(../icons/plus-gray-16px.png);
-          background-position: 6px center;
-          background-repeat: no-repeat;
-          background-size: 12px;
-          padding-left: 20px;
-          width: 210px;
-        }
+      input {
+        .field-stylisation(13px, 220px);
       }
 
-      .login-btn,
-      .forgot-btn,
-      .reset-btn,
-      .sign-up-btn {
-        margin-top: 10px;
-        margin-left: 13%;
-        .button-stylisation(35px);
+      select {
+        .field-stylisation(35px, 242px);
+        padding: 0;
+        padding-left: 6px;
       }
 
-      .sign-up-btn {
-        margin-left: 40%;
+      input[id="phone"] {
+        background-image: url(../icons/plus-gray-16px.png);
+        background-position: 6px center;
+        background-repeat: no-repeat;
+        background-size: 12px;
+        padding-left: 20px;
+        width: 210px;
       }
+    }
 
-      .reset-btn {
-        margin-left: 45%;
-      }
+    .login-btn,
+    .forgot-btn,
+    .reset-btn,
+    .sign-up-btn {
+      margin-top: 10px;
+      margin-left: 13%;
+      .button-stylisation(35px);
+    }
 
-      .forgot-btn {
-        margin-left: 43%;
-      }
+    .sign-up-btn {
+      margin-left: 40%;
+    }
+
+    .reset-btn {
+      margin-left: 45%;
+    }
+
+    .forgot-btn {
+      margin-left: 43%;
     }
   }
 
-  &.home-page {
+  &.home {
     margin: 0;
     width: 100%;
     .content-block {
@@ -457,6 +414,16 @@ ol, ul, li, fieldset, legend, label {
         }
       }
     }
+    .video {
+      margin: 0 200px 50px;
+      width: 640px;
+      height: 390px;
+    }
+    .image.mobile-collage {
+      margin: 0;
+      width: 445px;
+      height: 450px;
+    }
     .header-logo {
       font-size: 23px;
       background: #ebebeb url(../icons/big-logo.png) no-repeat 50% 35%;
@@ -464,6 +431,36 @@ ol, ul, li, fieldset, legend, label {
       margin: 0 auto 50px;
       span.big-logo {
         margin: 20px 200px 20px 200px;
+      }
+    }
+    ul.how-it-works {
+      margin-top: 20px;
+      li {
+        list-style-type: none;
+        margin: 0;
+        position: relative;
+        height: 210px;
+      }
+      .image {
+        width: 180px;
+        height: 180px;
+        margin: 0;
+        float: left;
+      }
+      .number {
+        display: inline-block;
+        margin-top: 65px;
+        margin-right: 2%;
+        margin-bottom: 0;
+        margin-left: 2%;
+        font-size: 32px;
+      }
+      p {
+        display: inline-block;
+        float: right;
+        margin-top: 60px;
+        width: 240px;
+        font-size: 20px;
       }
     }
     .benefits {
@@ -538,24 +535,6 @@ ol, ul, li, fieldset, legend, label {
       left: 100%;
       margin-left: 0px;
     }
-    &.long-field {
-      .error-message {
-        width: 100%;
-        height: 20px;
-        left: -5px;
-        margin-left: 5px;
-        margin-top: 51px;
-        text-align: center;
-      }
-      .error-message:after {
-        border-bottom: 6px solid rgb(200, 89, 80);
-        border-right: 6px solid rgba(0, 0, 0, 0);
-        border-left: 6px solid rgba(0, 0, 0, 0);
-        border-top: 6px solid rgba(0, 0, 0, 0);
-        top: -12px;
-        left: 50%;
-      }
-    }
   }
   &:nth-of-type(even) {
     .error-message {
@@ -568,24 +547,6 @@ ol, ul, li, fieldset, legend, label {
       border-right: 6px solid rgb(200, 89, 80);
       right: 100%;
       margin-right: 0px;
-    }
-    &.long-field {
-      .error-message {
-        width: 100%;
-        height: 20px;
-        left: -5px;
-        margin-left: 5px;
-        margin-top: 51px;
-        text-align: center;
-      }
-      .error-message:after {
-        border-bottom: 6px solid rgb(200, 89, 80);
-        border-right: 6px solid rgba(0, 0, 0, 0);
-        border-left: 6px solid rgba(0, 0, 0, 0);
-        border-top: 6px solid rgba(0, 0, 0, 0);
-        top: -12px;
-        left: 50%;
-      }
     }
   }
   &.small-field {
@@ -613,23 +574,20 @@ ol, ul, li, fieldset, legend, label {
   }
   .window {
     position: absolute;
-    top: -70px;
     left: 50%;
     margin-left: -225px;
     width: 450px;
     background-color: rgba(255,255,255,1);
     height: auto;
     z-index: 2000;
-    &.success-registration {
-      top: 100px;
-      .window-body {
-        input {
-          margin-left: 45%;
-          margin-top: 20px;
-          .button-stylisation;
-        }
-        padding: 20px;
+    top: 100px;
+    .window-body {
+      input {
+        margin-left: 45%;
+        margin-top: 20px;
+        .button-stylisation;
       }
+      padding: 20px;
     }
   }
 }
