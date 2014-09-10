@@ -159,14 +159,7 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/LocalizationServing/text', localeCntr.getLocale);
 
     app.get('/home', getStartedCntr.home);
-    app.get('/getstarted', getStartedCntr.getStarted);
-    app.get('/useCases', getStartedCntr.useCases);
-    app.get('/openSource', getStartedCntr.openSource);
-    app.get('/support', getStartedCntr.support);
-    app.get('/login', getStartedCntr.login);
-    app.get('/register', getStartedCntr.register);
 
-    app.get('/forgotPassword', passwordResetCntr.forgotPasswordPage);
     app.post('/forgotPassword', passwordResetCntr.forgotPassword);
     app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
@@ -187,7 +180,7 @@ exports.run = function (mongoUrl, port, callback) {
           version: version
         });
       } else {
-        res.redirect(303, '/getstarted');
+        res.redirect(303, '/home');
       }
     });
 

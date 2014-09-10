@@ -3,10 +3,6 @@ var
 
   User = require('../../models/User');
 
-exports.forgotPasswordPage = function (req, res, next) {
-  res.render('getStarted/jade/forgotPassword', {});
-};
-
 exports.forgotPassword = function (req, res, next) {
   var
     username = req.body.username,
@@ -53,13 +49,13 @@ exports.forgotPassword = function (req, res, next) {
 
 exports.resetPasswordPage = function (req, res, next) {
   var token = req.params.token;
-  console.log('token', token);
+
   User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }).exec(function (err, user) {
     if (err) {
       next({ status: 400, body: err });
       return;
     }
-    console.log('user', user);
+
     if (!user) {
       res.render('getStarted/jade/resetPasswordError', {});
       return;

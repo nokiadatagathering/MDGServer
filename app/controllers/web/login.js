@@ -59,7 +59,7 @@ exports.signup = function (req, res, next) {
 
     MailService.sendMail({ user: user, url: req.protocol + '://' + req.get('host')  }, 'registration');
 
-    res.render('getStarted/jade/successRegistration', {});
+    res.send(204);
   });
 };
 

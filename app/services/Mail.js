@@ -90,7 +90,7 @@ function getOptionsForForgotUsernameEmail (params, fileName, subject) {
 
   html = compiledJade({
     users: params.users,
-    link: params.url + '/forgotPassword'
+    link: params.url + '/home#forgotPassword'
   });
 
   return {
