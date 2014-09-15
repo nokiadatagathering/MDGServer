@@ -3,12 +3,13 @@
     <div class="survey-panel" ng-controller="SurveysCtrl">
         <div class="function-bar">
             <input class="button-plus left" type="button" value="Create a new Survey" ng-click="goState('page.builder')">
-            <input file-select="surveyXML" type="file" class="button-icon single" name="files">
+            <input file-select="surveyXML" type="file" class="button-icon single" name="files" ng-disabled="offlineMode">
             <span class="caption" ng-if="!fileTypeError">Upload XML survey</span>
             <span class="caption" ng-if="fileTypeError">Only XML file format</span>
-            <input type="button" class="button-icon single upload">
+            <input type="button" class="button-icon single upload" ng-disabled="offlineMode">
             <div class="right">
-                <input type="button" class="button-icon single browse-archive" ng-click="goState('page.archive')">
+                <input type="button" class="button-icon single browse-archive"
+                       ng-click="goState('page.archive')" ng-disabled="offlineMode">
                 <span class="caption">Browse archive</span>
                 <div dropdown-select="dropdownList"
                      dropdown-model="dropdownSelect"
@@ -57,22 +58,22 @@
                     <span class="caption" ng-show="!survey.published">Edit this survey</span>
 
                     <input type="button" class="button-icon single archive add-to-archive"
-                           ng-click="archive(survey.id, survey.title, true)"
+                           ng-click="archive(survey.id, survey.title, true)" ng-disabled="offlineMode"
                            ng-show="survey.published">
                     <span class="caption" ng-show="survey.published">Move to archive</span>
 
                     <ul class="button-group">
                         <li>
                             <input type="button" class="download"
-                                   ng-click="downloadSurvey(survey.id)">
+                                   ng-click="downloadSurvey(survey.id)" ng-disabled="offlineMode">
                             <span class="caption">Download this survey</span>
                         </li><li>
                         <input type="button" class="send"
-                               ng-click="goState('page.surveys.sendsurvey',{surveyId: survey.id})">
+                               ng-click="goState('page.surveys.sendsurvey',{surveyId: survey.id})" ng-disabled="offlineMode">
                         <span class="caption">Publish this survey</span>
                     </li><li>
                         <input type="button" class="copy"
-                               ng-click="duplicateSurvey(survey.id, survey.title)">
+                               ng-click="duplicateSurvey(survey.id, survey.title)" ng-disabled="offlineMode">
                         <span class="caption">Duplicate this survey</span>
                     </li><li>
                         <input type="button" class="delete"

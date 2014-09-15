@@ -5,19 +5,31 @@
         <div class="close-window" ng-click="$state.go('page.surveys', {}, { reload: true });">&#10006;</div>
     </div>
     <div class="window-body">
-        <div>Items updated: {{doneRequests}}/{{requestsLength}}</div>
-        <div ng-show="doneRequests==requestsLength">
-            <span>Syncronization complete</span>
-            <ul>
-                <li ng-repeat="request in requestsInConflict">
-                    {{request.title}}   {{request.id}}
-                </li>
-            </ul>
-            <input type="button" value="Close" ng-click="$state.go('page.surveys', {}, { reload: true });">
-        </div>
-        <div ng-show="failedSync">
-            <span>Error: Connection Lost.</span>
-            <input type="button" value="Refresh" ng-click="Sync()">
+        <div class="sync">
+            <div>SUCCESSFULLY UPDATED: {{doneRequests}}/{{requestsLength}}</div>
+
+            <div ng-show="successSync">
+                <div ng-show="requestsInConflict.length!==0">
+                    <span>IN CONFLICT ({{requestsInConflict.length}}): </span>
+                    <ul>
+                        <li>
+                            <div class="id">ID</div>
+                            <div class="title">TITLE</div>
+                        </li>
+                        <li ng-repeat="request in requestsInConflict">
+                            <div class="id">{{request.id}}</div>
+                            <div class="title">{{request.title}}</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="status">Syncronization complete</div>
+                <input type="button" value="Close" ng-click="$state.go('page.surveys', {}, { reload: true });">
+            </div>
+            <div ng-show="failedSync">
+                <div class="status">Error: {{syncError}}</div>
+                <input type="button" value="Refresh" ng-click="Sync()">
+            </div>
         </div>
     </div>
 </div>

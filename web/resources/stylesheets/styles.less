@@ -2660,6 +2660,38 @@ Styles for dropdown-menu
     }
     .window-body {
       position: relative;
+      .sync {
+        padding: 20px;
+        font-family: NokiaPureTextBold;
+        font-size: 15px;
+        ul {
+          list-style: none;
+          font-family: NokiaPureText;
+          padding: 10px;
+          li {
+            display: block;
+            div {
+              display: inline-block;
+              &.id {
+                width: 190px;
+                float: left;
+              }
+              &.title {
+                width: 180px;
+                margin-left: 20px;
+                .long-text;
+              }
+            }
+          }
+        }
+        div.status {
+          margin-bottom: 10px;
+        }
+        input {
+          .button-stylisation;
+          margin-left: 43%;
+        }
+      }
       #sms-form {
         padding: 20px;
         overflow: hidden;

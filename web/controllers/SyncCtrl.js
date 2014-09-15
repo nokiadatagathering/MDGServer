@@ -9,6 +9,7 @@ define(function () {
       requestSyncComplete = function (request) {
         db.transaction(function (tx) {
           tx.executeSql("DELETE FROM requests WHERE id == ?", [request.id], function (tx, result) {});
+          console.log('request.id', request.id);
         });
       };
 
@@ -29,35 +30,54 @@ define(function () {
             $scope.requests.push(request);
           }
 
-          async.mapSeries($scope.requests,
-            function (request, cb) {
-              syncManager.sendRequest(request).then(
-                function success (config) {
-                  if ($rootScope.offlineMode) {
-                    cb('failed');
-                    return;
-                  }
-
-                  $scope.doneRequests = $scope.doneRequests + 1;
-                  requestSyncComplete(request);
-
-                  cb(null);
-                },
-                function failed (err) {
-                  if (err.status === 409) {
-                    $scope.requestsInConflict.push({ title: request.body.title, id: request._id });
-                  }
-
-                  requestSyncComplete(request);
-                  cb(null);
-                });
-            },
-            function (err) {
-              if (err) {
+          surveysManager.surveyList().then(
+            function success () {
+              if ($rootScope.offlineMode) {
                 $scope.failedSync = true;
+                $scope.syncError = 'No internet connection';
               } else {
-                localStorage.clear();
-                surveysManager.surveyList();
+                if ($scope.requests.length !== 0) {
+                  async.mapSeries($scope.requests,
+                    function (request, cb) {
+                      syncManager.sendRequest(request).then(
+                        function success (config) {
+                          if ($rootScope.offlineMode) {
+                            if (request.type !== 'editSurvey') {
+                              requestSyncComplete(request);
+                            }
+
+                            cb('failed');
+                            return;
+                          }
+
+                          requestSyncComplete(request);
+
+                          $scope.doneRequests = $scope.doneRequests + 1;
+                          cb(null);
+                        },
+                        function failed (err) {
+                          if (err.status === 409) {
+                            $scope.requestsInConflict.push({ title: request.body.title, id: request._id });
+                            $scope.doneRequests = $scope.doneRequests + 1;
+                          }
+
+                          requestSyncComplete(request);
+                          cb(null);
+                        });
+                    },
+                    function (err) {
+                      if (err) {
+                        $scope.failedSync = true;
+                        $scope.syncError = 'Internet connection lost';
+                      } else {
+                        $scope.successSync = true;
+                        localStorage.clear();
+                        surveysManager.surveyList();
+                      }
+                    });
+                } else {
+                  $scope.successSync = true;
+                }
               }
             });
         }, null);

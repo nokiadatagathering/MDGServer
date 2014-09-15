@@ -38,7 +38,12 @@ Schema =  new mongoose.Schema({
   resultsCount: {
     type: Number,
     default: 0
-  }
+  },
+  deleted: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
 }, {
   toObject: { virtuals: true }
 });

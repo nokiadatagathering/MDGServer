@@ -75,6 +75,7 @@ define([
           $window.location.hash !== "#/openSource" &&
           $window.location.hash !== "#/useCases" &&
           $window.location.hash !== "#/register" &&
+          $window.location.hash !== "#/forgotPassword" &&
           $window.location.hash !== "") {
           $location.path('/login');
           return response;
