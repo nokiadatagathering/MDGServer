@@ -1487,7 +1487,10 @@ define(function () {
             $rootScope.$broadcast('saved_survey', survey.title);
             surveyDirty = false;
             $scope.surveyEdit.$dirty = false;
-            $scope.surveyData.__v = $scope.surveyData.__v + 1;
+
+            if ($rootScope.offlineMode === false) {
+              $scope.surveyData.__v = $scope.surveyData.__v + 1;
+            }
           },
           function failed (err) {
             if (err.status === 409) {

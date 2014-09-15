@@ -53,14 +53,14 @@ define(function () {
                   updateLocalStorage(type, body, id ? id : results.insertId);
                 },
                 function (transaction, error) {
-                  console.log('error1: ', error.message);
+                  console.log('transaction error1: ', error.message);
                 });
             } else {
               updateLocalStorage(type, body, id);
             }
           },
           function (transaction, error) {
-            console.log('error2: ', error.message);
+            console.log('transaction error2: ', error.message);
           });
       });
 
