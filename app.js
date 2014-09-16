@@ -168,10 +168,14 @@ exports.run = function (mongoUrl, port, callback) {
     });
 
     app.get('/', function (req, res) {
-      res.render('index-' + app.settings.env, {
-        title: Configuration.get('general.siteName'),
-        version: version
-      });
+      if (req.method === 'HEAD') {
+        res.send();
+      } else {
+        res.render('index-' + app.settings.env, {
+          title: Configuration.get('general.siteName'),
+          version: version
+        });
+      }
     });
 
     if (Configuration.get('general.protocolType') === 'https') {
