@@ -17,7 +17,7 @@ module.exports = {
       subscription: 'noreply@nokiadatagathering.net',
       report: 'report@nokiadatagathering.net'
     },
-    transport: 'Direct',
+    emailsForUsersReport: null,
     emailsForUsersReport: []
   }
 };

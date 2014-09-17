@@ -191,23 +191,11 @@ module.exports = {
           }
         }
       },
-      transport: {
+      mandrillApiKey: {
         type: String,
-        title: 'Mail transport',
-        description: 'Defines mail transport protocol',
-        defaults: 'Direct'
-      },
-      transportOptions: {
-        title: 'Mail transport Options',
-        description: 'Defines method for sending e-mails',
-        children: {
-          service: {
-            type: String,
-            title: 'Service',
-            description: 'The name of send mail service',
-            defaults: 'Sendmail'
-          }
-        }
+        title: 'Mandrill Api Key',
+        description: 'Defines Mandrill Api Key',
+        defaults: ''
       },
       emailsForUsersReport: {
         type: Object,

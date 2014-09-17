@@ -1,7 +1,7 @@
 var
-  nodemailer = require('nodemailer'),
+  mandrill = require('mandrill-api/mandrill'),
+  mandrill_client = new mandrill.Mandrill('pUmlThZj9PUqtW7SAy3icA'),
   fs = require('fs'),
-  os = require('os'),
   jade = require('jade'),
   Configuration = require('../helpers/Configuration');
 
@@ -24,11 +24,11 @@ function getOptionsForRegistrationEmail (params, fileName, subject) {
   });
 
   return {
-    from: Configuration.get('mail.from.' + subject),
-    to: params.user.email,
+    from_email: Configuration.get('mail.from.' + subject),
+    to: [{ email: params.user.email }],
     subject: "Activate your account",
-    generateTextFromHTML: true,
-    html: html
+    html: html,
+    important: true
   };
 }
 
@@ -44,15 +44,16 @@ function getOptionsForSubscriptionEmail (params, fileName, subject) {
   });
 
   return {
-    from: Configuration.get('mail.from.' + subject),
-    to: params.subscription.email,
+    from_email: Configuration.get('mail.from.' + subject),
+    to: [{ email: params.subscription.email }],
     subject: "MDG schedule export",
-    generateTextFromHTML: true,
     html: html,
+    important: true,
     attachments: [
       {
-        fileName: 'survey_' + params.subscription._survey._id + '.zip',
-        contents: new Buffer(params.data, 'binary')
+        type: 'application/octet-stream',
+        name: 'survey_' + params.subscription._survey._id + '.zip',
+        content: new Buffer(params.data, 'binary').toString('base64')
       }
     ]
   };
@@ -68,16 +69,16 @@ function getOptionsForReportEmail (params, fileName, subject) {
   });
 
   return {
-    from: Configuration.get('mail.from.' + subject),
-    to: params.email,
+    from_email: Configuration.get('mail.from.' + subject),
+    to: [{ email: params.email }],
     subject: "MDG account report",
-    generateTextFromHTML: true,
     html: html,
+    important: true,
     attachments: [
       {
-        fileName: params.filename,
-        contents: params.data,
-        contentType: 'application/vnd.ms-excel'
+        name: params.filename,
+        content: new Buffer(params.data, 'binary').toString('base64'),
+        type: 'application/vnd.ms-excel'
       }
     ]
   };
@@ -94,11 +95,11 @@ function getOptionsForForgotUsernameEmail (params, fileName, subject) {
   });
 
   return {
-    from: Configuration.get('mail.from.' + subject),
-    to: params.email,
+    from_email: Configuration.get('mail.from.' + subject),
+    to: [{ email: params.email }],
     subject: "Your MDG usernames",
-    generateTextFromHTML: true,
-    html: html
+    html: html,
+    important: true
   };
 }
 
@@ -113,11 +114,11 @@ function getOptionsForResetPasswordEmail (params, fileName, subject) {
   });
 
   return {
-    from: Configuration.get('mail.from.' + subject),
-    to: params.user.email,
+    from_email: Configuration.get('mail.from.' + subject),
+    to: [{ email: params.user.email }],
     subject: "MDG reset password link",
-    generateTextFromHTML: true,
-    html: html
+    html: html,
+    important: true
   };
 }
 
@@ -134,45 +135,45 @@ function getOptionsForPasswordChangedEmail (params, fileName, subject) {
   });
 
   return {
-    from: Configuration.get('mail.from.' + subject),
-    to: params.user.email,
+    from_email: Configuration.get('mail.from.' + subject),
+    to: [{ email: params.user.email }],
     subject: "MDG reset password confirmation",
-    generateTextFromHTML: true,
-    html: html
+    html: html,
+    important: true
   };
 }
 
 exports.sendMail = function (params, subject) {
   var
-    mailTransport = nodemailer.createTransport(Configuration.get('mail.transport'), Configuration.get('mail.transportOptions')),
     fileName = process.cwd() + Configuration.get('mail.' + subject),
-    sendMailOptions = {};
+    message = {};
 
   if (subject === 'registration') {
-    sendMailOptions = getOptionsForRegistrationEmail(params, fileName, subject);
+    message = getOptionsForRegistrationEmail(params, fileName, subject);
   }
 
   if (subject === 'subscription') {
-    sendMailOptions = getOptionsForSubscriptionEmail(params, fileName, subject);
+    message = getOptionsForSubscriptionEmail(params, fileName, subject);
   }
 
   if (subject === 'report') {
-    sendMailOptions = getOptionsForReportEmail(params, fileName, subject);
+    message = getOptionsForReportEmail(params, fileName, subject);
   }
 
   if (subject === 'resetPassword') {
-    sendMailOptions = getOptionsForResetPasswordEmail(params, fileName, subject);
+    message = getOptionsForResetPasswordEmail(params, fileName, subject);
   }
 
   if (subject === 'forgotUsername') {
-    sendMailOptions = getOptionsForForgotUsernameEmail(params, fileName, subject);
+    message = getOptionsForForgotUsernameEmail(params, fileName, subject);
   }
 
   if (subject === 'passwordChanged') {
-    sendMailOptions = getOptionsForPasswordChangedEmail(params, fileName, subject);
+    message = getOptionsForPasswordChangedEmail(params, fileName, subject);
   }
 
-  mailTransport.sendMail(sendMailOptions);
-
-  mailTransport.close();
+  mandrill_client.messages.send({ message: message, async: false }, function (result) {
+  }, function (e) {
+    console.log('A mandrill error occurred: ', e.name, e.message);
+  });
 };
