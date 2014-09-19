@@ -1,9 +1,9 @@
 var
   mandrill = require('mandrill-api/mandrill'),
-  mandrill_client = new mandrill.Mandrill('pUmlThZj9PUqtW7SAy3icA'),
+  Configuration = require('../helpers/Configuration'),
+  mandrill_client = new mandrill.Mandrill(Configuration.get('mail.mandrillApiKey')),
   fs = require('fs'),
-  jade = require('jade'),
-  Configuration = require('../helpers/Configuration');
+  jade = require('jade');
 
 function compileJade (fileName) {
   return jade.compile(fs.readFileSync(fileName, 'utf8'), {
