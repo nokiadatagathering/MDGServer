@@ -214,13 +214,14 @@ exports.getResultsData = function (questions, results) {
   };
 };
 
-exports.exportUserRegistrations = function () {
+exports.exportUserRegistrations = function (email, requestedDate) {
   var
     oldest,
+    emails = email ? [email] : Configuration.get('mail.emailsForUsersReport'),
     columnHeaders = ['Type', 'Organization', 'Country', 'Industry', 'First Name', 'Last Name', 'Email', 'Notes', 'Status'],
     months = [],
-    date = moment().startOf('month'),
-    filename =  'MDG_monthly_report_' + moment().subtract('months', 1).format('MM_YYYY') + '.xlsx',
+    date = requestedDate ? requestedDate : moment().startOf('month'),
+    filename =  'MDG_monthly_report_' + date.subtract('months', 1).format('MM_YYYY') + '.xlsx',
     workbook = excelBuilder.createWorkbook('./', filename);
 
   User.findOne({}).sort({ timeCreated: 1 }).exec(function (err, user) {
@@ -283,9 +284,13 @@ exports.exportUserRegistrations = function () {
           }
         }
 
-        cb();
+        cb(null, month);
       });
-    }, function () {
+    }, function (err, months) {
+      if (months.length === 0) {
+        return;
+      }
+
       workbook.save(function (ok) {
         if (!ok) {
           workbook.cancel();
@@ -297,7 +302,7 @@ exports.exportUserRegistrations = function () {
             throw new Error();
           }
 
-          _.each(Configuration.get('mail.emailsForUsersReport'), function (email) {
+          _.each(emails, function (email) {
             MailService.sendMail({
               filename: filename,
               data: data,

@@ -6,6 +6,10 @@ module.exports = {
     port: 3000,
     mongodbUrl: null
   },
+  basicAuth: {
+    password: null,
+    username: null
+  },
   twilio: {
     accountSid: null,
     authToken: null,

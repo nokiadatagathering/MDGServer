@@ -2,6 +2,7 @@ var
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   DigestStrategy = require('passport-http').DigestStrategy,
+  BasicStrategy = require('passport-http').BasicStrategy,
 
   Configuration = require('../helpers/Configuration'),
   User = require('../models/User');
@@ -59,5 +60,16 @@ passport.use(new DigestStrategy(Configuration.get('digestAuth'),
 
       return done(null, user, { ha1: user.password });
     });
+  }
+));
+
+passport.use(new BasicStrategy(
+  function (username, password, done) {
+    if (username === Configuration.get('basicAuth.username') &&
+      password === Configuration.get('basicAuth.password')) {
+      return done(null, true);
+    }
+
+    return done(null, false);
   }
 ));

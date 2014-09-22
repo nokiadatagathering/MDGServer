@@ -30,6 +30,7 @@ var
   resultsImageCntr = require('./app/controllers/web/resultsImage'),
   exportCntr = require('./app/controllers/web/export'),
   validationsCntr = require('./app/controllers/web/validations'),
+  monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
   checkServerCntr = require('./app/controllers/mobile/checkServer'),
@@ -159,6 +160,9 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/ReceiveSurvey', passport.authenticate('digest', { session: false }), receiveSurveyCntr.index);
     app.get('/ReceiveSurvey/:id', passport.authenticate('digest', { session: false }), receiveSurveyCntr.show);
     app.get('/LocalizationServing/text', localeCntr.getLocale);
+
+    app.get('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.getReportPage);
+    app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
 
     app.resource('users');
     app.resource('groups');
