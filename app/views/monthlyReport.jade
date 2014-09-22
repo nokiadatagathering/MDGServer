@@ -1,0 +1,27 @@
+!!!
+html
+    head
+        title= title
+        meta(charset='utf-8')
+        meta('http-equiv'='X-UA-Compatible', content='IE=edge,chrome=1')
+        meta(name='viewport', content='initial-scale=1.0')
+
+        link(rel="stylesheet" type="text/css" href="/resources/stylesheets/monthlyReport.css")
+
+        body
+            h1 MONTHLY REPORT
+            form(name="monthlyReport", action="/monthlyReport", method="post", class="content")
+                div(class="field")
+                    input(type="email", name="email", placeholder="Email", required)
+
+                div(class="field")
+                    select(name="year")
+                        each year in years
+                            option(value=year) #{year}
+
+                div(class="field")
+                    select(name="month")
+                        each month in months
+                            option(value=month) #{month}
+
+                input(type="submit", class="btn", value="Send")

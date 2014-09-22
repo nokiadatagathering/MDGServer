@@ -73,6 +73,22 @@ module.exports = {
       }
     }
   },
+  basicAuth: {
+    title: 'Basic Auth',
+    description: 'Parameters for Basic Authorization.',
+    children: {
+      username: {
+        type: String,
+        title: 'username',
+        defaults: 'admin'
+      },
+      password: {
+        type: String,
+        title: 'password',
+        defaults: 'admin'
+      }
+    }
+  },
   tests: {
     title: 'Tests',
     description: '',
