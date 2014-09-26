@@ -29,6 +29,10 @@ user-friendly way to collect data using mobile devices.
 ```
 # cd C:\node\mdg
 # node app --install
+# set NODE_ENV=production
+# node app start
+
+Browse to http://127.0.0.1:3000 (assuming you have not modified anything in config.js)
 
 ```
 
@@ -40,7 +44,7 @@ user-friendly way to collect data using mobile devices.
     ```
 2. Node.js 0.10.x. For Ubuntu 14.04 LTS just run
     ```
-    # sudo apt-get install nodejs
+    # sudo apt-get install nodejs npm
     ```
 3. MongoDB. Please follow instructions on [MongoDB website](https://www.mongodb.org/downloads). __Attention: Ubuntu 14.04 ships with old (2.4) mongoDB in official repositories. Please use 10gen 
 repository from link above to install mongoDB__
