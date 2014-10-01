@@ -184,9 +184,8 @@ exports.run = function (mongoUrl, port, callback) {
             version: version
           });
         } else {
-          res.redirect(303, '/getstarted');
+          res.redirect(303, '/home');
         }
-        res.redirect(303, '/home');
       }
     });
 
