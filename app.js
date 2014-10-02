@@ -167,6 +167,12 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
 
+    app.get('/home', getStartedCntr.home);
+
+    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
+    app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
+    app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
+
     app.resource('users');
     app.resource('groups');
     app.resource('surveys', function() {
