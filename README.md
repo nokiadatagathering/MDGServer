@@ -32,7 +32,7 @@ user-friendly way to collect data using mobile devices.
 # set NODE_ENV=production
 # node app start
 
-1. Browse to http://127.0.0.1:3000 (assuming you have not modified anything in config.js)
+Browse to http://127.0.0.1:3000 (assuming you have not modified anything in config.js)
 
 ```
 
