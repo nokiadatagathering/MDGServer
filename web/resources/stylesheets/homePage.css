@@ -1,0 +1,656 @@
+/**
+ * Global Reset of all HTML Elements
+ */
+html,
+body {
+  border: 0;
+  font-family: "Helvetica-Neue", "Helvetica", Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+b,
+i ol,
+ul,
+li,
+label {
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #000000;
+}
+:focus {
+  outline: 0;
+}
+/**
+ * Fonts for page
+ */
+@font-face {
+  font-family: 'NokiaPureText';
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.eot);
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureTextBold';
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.eot);
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureTextLight';
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.eot);
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.ttf) format("truetype");
+  font-weight: lighter;
+  font-style: normal;
+}
+/**
+ * -------
+ */
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.hide {
+  display: none !important;
+}
+.show {
+  visibility: visible !important;
+}
+.hidden {
+  visibility: hidden;
+}
+.bold {
+  font-family: NokiaPureTextBold;
+}
+.light {
+  font-family: NokiaPureTextLight;
+}
+.blue {
+  color: #2468a0;
+}
+.gray {
+  color: #a6a6a6;
+}
+.dark-gray {
+  color: #787878;
+}
+.gray-background {
+  background-color: #f0f0f0;
+}
+.light-gray-background {
+  background-color: rgba(240, 240, 240, 0.5);
+}
+.header-background {
+  background-color: #ebebeb;
+}
+.center-text {
+  text-align: center;
+}
+/*
+ Mixin for inputs field-stylisation
+ */
+/*
+ Mixin for inputs button-stylisation
+ */
+/*
+ Mixin for inset button-shadow
+ */
+.inset-shadow-active {
+  background-color: #f0f0f0;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.inset-shadow {
+  box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+}
+.inset-shadow:not(:disabled):active {
+  background-color: #f0f0f0;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.header {
+  height: 60px;
+  line-height: 60px;
+  background: #2468a0;
+  min-width: 1300px;
+}
+.header div.get-started {
+  margin: 0 auto;
+  width: 940px;
+}
+.header div.get-started .logo {
+  display: block;
+  margin-right: 75px;
+  cursor: pointer;
+}
+.header div.get-started .logo img {
+  margin: 15px 0;
+}
+.header div.get-started .logo h1 {
+  margin-left: 15px;
+  color: #fff;
+}
+.header div.get-started a {
+  color: #fff;
+}
+.header div.get-started a.active {
+  font-family: NokiaPureTextBold;
+}
+.header div.get-started a li {
+  color: #fff;
+  display: inline-block;
+}
+.header div.get-started a.active:after {
+  content: none;
+}
+.header div.get-started .main-menu {
+  display: block;
+}
+.header div.get-started .main-menu a {
+  margin-right: 15px;
+  position: relative;
+}
+.header div.get-started .main-menu a.active:after {
+  content: '';
+  position: absolute;
+  left: 32%;
+  top: 33px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #ffffff;
+}
+.header div.get-started .login-menu {
+  display: block;
+  float: right;
+}
+.content {
+  margin: 40px auto;
+  position: relative;
+  width: 1000px;
+}
+.content .panel,
+.content.home {
+  width: 1000px;
+  margin: 0 auto;
+  font-size: 23px;
+}
+.content .panel h1,
+.content.home h1 {
+  margin-bottom: 25px;
+}
+.content .panel h3,
+.content.home h3 {
+  font-size: 15px;
+}
+.content .panel a,
+.content.home a {
+  color: #558a10;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.content .panel span.title,
+.content.home span.title {
+  display: inline-block;
+  font-size: 24px;
+  margin: 0 125px 25px 150px;
+}
+.content .panel .image,
+.content.home .image,
+.content .panel .video,
+.content.home .video {
+  width: 600px;
+  height: 300px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  margin-left: 210px;
+  margin-bottom: 25px;
+}
+.content .panel .column,
+.content.home .column {
+  width: 48%;
+}
+.content .panel .column ~ span.title,
+.content.home .column ~ span.title {
+  margin-top: 50px;
+}
+.content .panel .column.short,
+.content.home .column.short {
+  width: 35%;
+}
+.content .panel div.block,
+.content.home div.block {
+  width: 100%;
+  display: inline-block;
+}
+.content .panel div.block .center,
+.content.home div.block .center {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 50px;
+}
+.content .panel div.block h3,
+.content.home div.block h3 {
+  font-size: 20px;
+}
+.content .panel div.block ul.open-source,
+.content.home div.block ul.open-source,
+.content .panel div.block ul.acknowledgements,
+.content.home div.block ul.acknowledgements,
+.content .panel div.block ul.support,
+.content.home div.block ul.support {
+  margin: 20px 0 40px 40px;
+}
+.content .panel div.block p,
+.content.home div.block p,
+.content .panel div.block li,
+.content.home div.block li {
+  font-size: 17px;
+}
+.content .panel div.block p,
+.content.home div.block p {
+  margin-bottom: 25px;
+}
+.content .panel div.block p ~ h3,
+.content.home div.block p ~ h3 {
+  margin-top: 50px;
+}
+.content .panel div.block .author,
+.content.home div.block .author {
+  width: 77%;
+  font-size: 14px;
+  text-align: right;
+  float: right;
+}
+.content .panel div.block .blockquote:before,
+.content.home div.block .blockquote:before {
+  content: open-quote;
+}
+.content .panel div.block .blockquote:after,
+.content.home div.block .blockquote:after {
+  content: close-quote;
+}
+.content .panel div.block li,
+.content.home div.block li {
+  margin-top: 5px;
+}
+.content .panel div.block .italic,
+.content.home div.block .italic {
+  font-style: italic;
+}
+.content .panel ul.steps li,
+.content.home ul.steps li {
+  margin-top: 40px;
+  list-style-type: none;
+  height: 300px;
+  width: 1000px;
+}
+.content .panel ul.steps li div,
+.content.home ul.steps li div {
+  display: inline-block;
+}
+.content .panel ul.steps li .image,
+.content.home ul.steps li .image {
+  width: 300px;
+  margin: 0;
+  float: left;
+}
+.content .panel ul.steps li div.step-info,
+.content.home ul.steps li div.step-info {
+  margin-left: 20px;
+  width: 670px;
+}
+.content .panel ul.steps li div.step-info h2,
+.content.home ul.steps li div.step-info h2 {
+  font-size: 20px;
+}
+.content .panel ul.steps li div.step-info p,
+.content.home ul.steps li div.step-info p {
+  font-size: 19px;
+  margin-top: 25px;
+}
+.content .panel ul.steps li div.step-info p a,
+.content.home ul.steps li div.step-info p a {
+  color: #558a10;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.content .panel ul.steps li div.step-info .download-app,
+.content.home ul.steps li div.step-info .download-app {
+  margin-top: 25px;
+}
+.content .panel ul.steps li div.step-info .download-app p,
+.content.home ul.steps li div.step-info .download-app p {
+  margin: 0;
+}
+.content .panel form {
+  position: absolute;
+  margin-left: 240px;
+  margin-top: 20px;
+  width: 505px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  height: auto;
+}
+.content .panel form a,
+.content .panel form p {
+  font-size: 15px;
+  display: inline-block;
+  margin-left: 5px;
+}
+.content .panel form p {
+  margin-bottom: 15px;
+}
+.content .panel form .small-field {
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-left: 5px;
+}
+.content .panel form .small-field input {
+  height: 13px;
+  border-radius: 5px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  background-color: #f8f8f8;
+  padding: 10px;
+  font-family: NokiaPureText;
+  font-size: 15px;
+  width: 220px;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.content .panel form .small-field select {
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  background-color: #f8f8f8;
+  padding: 10px;
+  font-family: NokiaPureText;
+  font-size: 15px;
+  width: 242px;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  padding-left: 6px;
+}
+.content .panel form .small-field input[id="phone"] {
+  background-image: url(../icons/plus-gray-16px.png);
+  background-position: 6px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  padding-left: 20px;
+  width: 210px;
+}
+.content .panel form .login-btn,
+.content .panel form .forgot-btn,
+.content .panel form .reset-btn,
+.content .panel form .sign-up-btn {
+  margin-top: 10px;
+  margin-left: 13%;
+  background-color: #fafafa;
+  border-radius: 5px;
+  height: 35px;
+  font-family: NokiaPureTextBold;
+  font-size: 15px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  cursor: pointer;
+  box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+}
+.content .panel form .login-btn:not(:disabled):active,
+.content .panel form .forgot-btn:not(:disabled):active,
+.content .panel form .reset-btn:not(:disabled):active,
+.content .panel form .sign-up-btn:not(:disabled):active {
+  background-color: #f0f0f0;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.content .panel form .sign-up-btn {
+  margin-left: 40%;
+}
+.content .panel form .reset-btn {
+  margin-left: 45%;
+}
+.content .panel form .forgot-btn {
+  margin-left: 43%;
+}
+.content.home {
+  margin: 0;
+  width: 100%;
+}
+.content.home .content-block {
+  margin: 0 auto;
+  width: 1000px;
+}
+.content.home h1 {
+  margin-top: 50px;
+}
+.content.home ul.footer {
+  font-size: 15px;
+  margin: 100px 270px 100px 270px;
+}
+.content.home ul.footer li {
+  display: inline-block;
+  margin-right: 20px;
+}
+.content.home ul.footer li a {
+  text-decoration: none;
+}
+.content.home .video {
+  margin: 0 200px 50px;
+  width: 640px;
+  height: 390px;
+}
+.content.home .image.mobile-collage {
+  margin: 0;
+  width: 445px;
+  height: 450px;
+}
+.content.home .header-logo {
+  font-size: 23px;
+  background: #ebebeb url(../icons/big-logo.png) no-repeat 50% 35%;
+  background-size: 25%;
+  margin: 0 auto 50px;
+}
+.content.home .header-logo span.big-logo {
+  margin: 20px 200px 20px 200px;
+}
+.content.home ul.how-it-works {
+  margin-top: 20px;
+}
+.content.home ul.how-it-works li {
+  list-style-type: none;
+  margin: 0;
+  position: relative;
+  height: 210px;
+}
+.content.home ul.how-it-works .image {
+  width: 180px;
+  height: 180px;
+  margin: 0;
+  float: left;
+}
+.content.home ul.how-it-works .number {
+  display: inline-block;
+  margin-top: 65px;
+  margin-right: 2%;
+  margin-bottom: 0;
+  margin-left: 2%;
+  font-size: 32px;
+}
+.content.home ul.how-it-works p {
+  display: inline-block;
+  float: right;
+  margin-top: 60px;
+  width: 240px;
+  font-size: 20px;
+}
+.content.home .benefits {
+  margin-bottom: 50px;
+  height: 280px;
+}
+.content.home .benefits .speed {
+  background-image: url(../icons/speed.png);
+  margin-left: 200px;
+}
+.content.home .benefits .usability {
+  background-image: url(../icons/usability.png);
+  margin-left: 165px;
+}
+.content.home .benefits .cost-efficiency {
+  background-image: url(../icons/cost-efficiency.png);
+  margin-left: 170px;
+}
+.content.home .benefits .accuracy {
+  background-image: url(../icons/accuracy.png);
+  margin-left: 195px;
+}
+.content.home .benefits .img {
+  background-repeat: no-repeat;
+  height: 115px;
+  margin-bottom: 25px;
+}
+/*
+ Mixin for error-block
+ */
+.validation-field div.errorsblock {
+  position: relative;
+}
+.validation-field div.errorsblock span.error-message {
+  position: absolute;
+  width: 210px;
+  font-family: NokiaPureTextLight;
+  font-size: 13px;
+  color: #ffffff !important;
+  background-color: #c85950;
+  height: 40px;
+  border-radius: 6px;
+  z-index: 999;
+  padding: 5px;
+  top: -42px;
+}
+.validation-field div.errorsblock span.error-message:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 6px solid rgba(0, 0, 0, 0);
+  border-bottom: 6px solid rgba(0, 0, 0, 0);
+  top: 38%;
+}
+.validation-field:nth-of-type(odd) .error-message {
+  text-align: center;
+  right: 100%;
+  margin-right: 10px;
+}
+.validation-field:nth-of-type(odd) .error-message:after {
+  border-right: 6px solid rgba(0, 0, 0, 0);
+  border-left: 6px solid #c85950;
+  left: 100%;
+  margin-left: 0px;
+}
+.validation-field:nth-of-type(even) .error-message {
+  text-align: center;
+  left: 100%;
+  margin-left: 15px;
+}
+.validation-field:nth-of-type(even) .error-message:after {
+  border-left: 6px solid rgba(0, 0, 0, 0);
+  border-right: 6px solid #c85950;
+  right: 100%;
+  margin-right: 0px;
+}
+.validation-field.small-field input.ng-invalid-required + div.errorsblock .error-message,
+.validation-field.small-field input[name="confirmpass"] + div.errorsblock .error-message {
+  line-height: 40px;
+  text-align: center;
+}
+.modal .overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s;
+}
+.modal .window {
+  position: absolute;
+  left: 50%;
+  margin-left: -225px;
+  width: 450px;
+  background-color: #ffffff;
+  height: auto;
+  z-index: 2000;
+  top: 100px;
+}
+.modal .window .window-body {
+  padding: 20px;
+}
+.modal .window .window-body input {
+  margin-left: 45%;
+  margin-top: 20px;
+  background-color: #fafafa;
+  border-radius: 5px;
+  height: 35px;
+  font-family: NokiaPureTextBold;
+  font-size: 15px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  cursor: pointer;
+  box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+}
+.modal .window .window-body input:not(:disabled):active {
+  background-color: #f0f0f0;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.ui-autocomplete {
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
