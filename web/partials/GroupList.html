@@ -1,20 +1,24 @@
 <div class="content">
     <div class="groups-panel" ng-controller="GroupsCtrl">
         <div class="function-bar">
-            <input type="button" class="button-plus left" value="Add a new group" ng-click="groupName = ''; showNewGroup = true; groupNameFocus = true">
+            <input type="button" class="button-plus left"
+                   value="{{ 'users.Add_Group' | translate }}"
+                   ng-click="groupName = ''; showNewGroup = true; groupNameFocus = true">
         </div>
         <ul class="groups-list" ng-cloak>
             <li class="new-group item" ng-show="showNewGroup">
                 <form id="new-group" name="newGroup" ng-submit="saveNewGroup()">
                     <span focus-me="groupNameFocus">
-                        <input type="text" placeholder="New group name"
+                        <input type="text" placeholder="{{ 'users.New_group_name' | translate }}"
                                name="groupName"
                                ng-minlength="2"
                                ng-maxlength="60"
                                ng-trim="true"
                                ng-change="errorExistingGroupName = false"
                                ng-model="groupName">
-                        <span class="caption new-group-tooltip" ng-if="showNewGroup && newGroup.$valid && !errorExistingGroupName">Press enter to save group</span>
+                        <span class="caption new-group-tooltip" ng-if="showNewGroup && newGroup.$valid && !errorExistingGroupName">
+                            {{ 'users.save_group' | translate }}
+                        </span>
                         <div errorsblock="errors.groupName"></div>
                     </span>
                 </form>
@@ -24,7 +28,7 @@
                 ng-class="{ active: $state.includes('page.users') && $stateParams.groupId == '' }">
                 <a ui-sref="page.users.group({groupId: ''})"
                    href="/#/users/group:">
-                    <h3>({{allUsers.length}}) All users</h3>
+                    <h3>({{allUsers.length}}) {{ 'users.All_users' | translate }}</h3>
                 </a>
             </li>
 
@@ -41,11 +45,11 @@
                     <li>
                         <input type="button" class="sms"
                                ng-click="goState('page.users.group.smstogroup', {groupId: group._id})">
-                        <span class="caption">Send an SMS to this group</span>
+                        <span class="caption">{{ 'users.Send_SMS_group' | translate }}</span>
                     </li><li>
                     <input type="button" class="delete"
                            ng-click="deleteGroup(group._id, group.name)">
-                    <span class="caption">Delete this group</span>
+                    <span class="caption">{{ 'users.Delete_group' | translate }}</span>
                 </li>
                 </ul>
             </li>

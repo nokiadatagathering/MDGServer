@@ -131,7 +131,7 @@ define(function () {
             var index = $scope.question.items.indexOf(item);
 
             if ($scope.question.items.length === 1) {
-              $rootScope.$broadcast("empty_question", $scope.question.dropdownSelect.text);
+              $rootScope.$broadcast("empty_question", $scope.question.dropdownSelect.value);
               return;
             }
             if ($scope.question.cascades.cascade2 && $scope.question.cascades.cascade2[item.value]) {

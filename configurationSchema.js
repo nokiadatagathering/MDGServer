@@ -53,6 +53,24 @@ module.exports = {
       }
     }
   },
+  languages: {
+    title: 'Languages',
+    description: 'Parameters for Digest Authorization. Do NOT change these unless you know what you are doing',
+    children: {
+      preferred: {
+        type: String,
+        title: 'preferred language',
+        description: '',
+        defaults: 'en'
+      },
+      supported_languages: {
+        type: Object,
+        title: 'Supported languages',
+        description: '',
+        defaults: [{ value: 'en', text: 'English' }, { value: 'ru', text: 'Русский' }]
+      }
+    }
+  },
   digestAuth: {
     title: 'Digest Auth',
     description: 'Parameters for Digest Authorization. Do NOT change these unless you know what you are doing',

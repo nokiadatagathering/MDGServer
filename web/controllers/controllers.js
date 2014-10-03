@@ -1,5 +1,4 @@
 define([
-  'controllers/LoginCtrl',
   'controllers/GroupsCtrl',
   'controllers/UsersCtrl',
   'controllers/AddUserCtrl',
@@ -9,18 +8,12 @@ define([
   'controllers/EditSurveyCtrl',
 
   'controllers/PageCtrl',
-  'controllers/ForgotPasswordCtrl',
-  'controllers/ResetPasswordCtrl',
-  'controllers/RegisterCtrl',
   'controllers/ResultsCtrl',
   'controllers/ResultsOnMapCtrl',
   'controllers/ResultDetailsCtrl',
-  'controllers/ResultsChartCtrl',
-  'controllers/BuilderCtrl'
+  'controllers/ResultsChartCtrl'
 
 ], function (
-  LoginCtrl,
-
   GroupsCtrl,
   UsersCtrl,
   AddUserCtrl,
@@ -30,20 +23,14 @@ define([
   EditSurveyCtrl,
 
   PageCtrl,
-  ForgotPasswordCtrl,
-  ResetPasswordCtrl,
-  RegisterCtrl,
   ResultsCtrl,
   ResultsOnMapCtrl,
   ResultDetailsCtrl,
-  ResultsChartCtrl,
-  BuilderCtrl
+  ResultsChartCtrl
   ) {
   'use strict';
 
   var controllers = {
-      LoginCtrl:          LoginCtrl,
-
       GroupsCtrl:         GroupsCtrl,
       UsersCtrl:          UsersCtrl,
       AddUserCtrl:        AddUserCtrl,
@@ -53,14 +40,10 @@ define([
       EditSurveyCtrl:     EditSurveyCtrl,
 
       PageCtrl:           PageCtrl,
-      ForgotPasswordCtrl: ForgotPasswordCtrl,
-      ResetPasswordCtrl:  ResetPasswordCtrl,
-      RegisterCtrl:       RegisterCtrl,
       ResultsCtrl:        ResultsCtrl,
       ResultsOnMapCtrl:   ResultsOnMapCtrl,
       ResultDetailsCtrl:  ResultDetailsCtrl,
-      ResultsChartCtrl:   ResultsChartCtrl,
-      BuilderCtrl:        BuilderCtrl
+      ResultsChartCtrl:   ResultsChartCtrl
     },
 
     initialize = function (angModule) {

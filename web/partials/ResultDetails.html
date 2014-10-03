@@ -1,15 +1,15 @@
 <div class="detail-panel" ng-controller="ResultDetailsCtrl">
     <table class="detail-panel-table">
         <tr>
-            <td>TIMESTAMP</td>
+            <td>{{ 'result.TIMESTAMP' | translate }}</td>
             <td>{{result.timeCreated|date:'HH:mm, dd MMMM yyyy'}}</td>
         </tr>
         <tr>
-            <td>LOCATION</td>
+            <td>{{ 'result.LOCATION' | translate }}</td>
             <td>{{result.geostamp}}</td>
         </tr>
         <tr>
-            <td>TITLE</td>
+            <td>{{ 'result.TITLE' | translate }}</td>
             <td>{{result.title}}</td>
         </tr>
     </table>

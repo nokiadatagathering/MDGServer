@@ -8,7 +8,7 @@ define([
   'use strict';
   var application = angular.module('Application',['ui.router','ui.sortable',
     'ngDragDrop', 'ngSanitize', 'ngDropdowns',
-    'config', 'base64',
+    'config', 'base64', 'ngCookies', 'pascalprecht.translate',
     'expand', 'errorsblock', 'validatephonenumber', 'validatePattern',
     'timeSelector', 'questionBuilder', 'cascadeQuestion',
     'dateInput', 'dateRange',
@@ -232,6 +232,16 @@ define([
         templateUrl: '/partials/EditSurvey.html'
       });
   });
+
+  application.config(['$translateProvider', function ($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'languages/locale-',
+      suffix: '.json'
+    });
+
+    $translateProvider.useMessageFormatInterpolation();
+    $translateProvider.useCookieStorage();
+  }]);
 
   application.run(function ($templateCache, $rootScope, $location, $state, $stateParams, profileManager, $anchorScroll) {
     if (window.addTemplatesToCache) {

@@ -45,6 +45,16 @@ function chooseTab (el) {
   }
 }
 
+function changeLanguage (el) {
+  var lang = $(el).attr('value');
+  document.cookie = 'NG_TRANSLATE_LANG_KEY=%22' + lang + '%22';
+  location.reload();
+}
+
+function toggleDropdown (el) {
+  $(el).children().toggleClass('open');
+}
+
 function showErrorMsgOnLoginForm (errorName, msg) {
   if (msg) {
     $('.login .errorsblock span.' + errorName)[0].innerText = msg;
