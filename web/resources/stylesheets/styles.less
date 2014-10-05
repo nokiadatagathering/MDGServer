@@ -183,15 +183,17 @@ a img {
   .name, .result-title {
     height: 15px;
     position: relative;
+    display: inline-block;
     float: left;
-    .sort-arrow;
+    padding-right: 20px;
+    .sort-arrow(0);
     span {
       font-family: NokiaPureTextBold;
       font-size: 0.9em;
     }
   }
   .result-title {
-    .sort-arrow(95px);
+    .sort-arrow(0);
   }
   .circle {
     margin-right: 20px;
@@ -204,39 +206,47 @@ a img {
     margin-left: 10px;
     display: block;
     li {
-      padding: 0 10px;
+      padding: 0;
+      padding-left: 10px;
       font-family: NokiaPureTextBold;
       font-size: 0.9em;
       display: inline-block;
       border-left: 1px solid #000000;
       position: relative;
       &.results {
-        width: 72px;
-        .sort-arrow(72px);
+        width: 100px;
+        padding-right: 20px;
+        .sort-arrow();
       }
       &.publisher {
         width: 140px;
-        .sort-arrow(88px);
+        padding-right: 20px;
+        .sort-arrow();
       }
       &.date {
         width: 72px;
-        .sort-arrow(47px);
+        padding-right: 20px;
+        .sort-arrow();
       }
       &.permission {
-        width: 100px;
-        .sort-arrow(107px);
+        width: 125px;
+        padding-right: 20px;
+        .sort-arrow();
       }
       &.sent {
         width: 80px;
-        .sort-arrow(85px);
+        padding-right: 20px;
+        .sort-arrow();
       }
       &.gps {
         width: 35px;
-        .sort-arrow(40px);
+        padding-right: 20px;
+        .sort-arrow();
       }
       &.collector {
         width: 140px;
-        .sort-arrow(130px);
+        padding-right: 20px;
+        .sort-arrow();
       }
     }
   }
@@ -353,12 +363,9 @@ a img {
     position: relative;
     input[type="button"]{
       .button-icon;
-      .tooltip(-45px, 50px);
+      .tooltip(-65px, 50px);
       .inset-shadow;
       border-right: 1px solid transparent;
-      &.sms {
-        .tooltip(-52px, 50px, 160px);
-      }
     }
     &:first-of-type {
       input[type="button"] {
@@ -385,7 +392,7 @@ a img {
 /*
  Mixin for tooltips
  */
-.tooltip (@left: 0, @bottom: 0, @width: 140px) {
+.tooltip (@left: 0, @bottom: 0, @width: 180px) {
 
   & + span.caption, & + div[errorsblock] span {
     overflow: visible;
@@ -402,8 +409,8 @@ a img {
     border-radius: 6px;
     z-index: 999;
     &.surveypublished {
-      width: 240px;
-      left: -95px !important;
+      width: 295px;
+      left: -122px !important;
       opacity: 0.6 !important;
     }
   }
@@ -433,9 +440,6 @@ a img {
     margin-left: 0;
 
   }
-  &[name=groupName]:focus + span.caption {
-    bottom: -23px;
-  }
 
   &.delete + span.caption {
     background-color: rgba(200, 89, 80, 1);
@@ -449,8 +453,8 @@ a img {
   }
 }
 
-.tooltip-down (@left: 0, @bottom: 0, @width: 140px) {
-  .tooltip(@arguments);
+.tooltip-down (@left: 0, @bottom: 0, @width: 180px) {
+  .tooltip(@left, @bottom, @width);
   & + span.caption:after,
   & + div[errorsblock] span:after {
     top: -33%;
@@ -461,7 +465,6 @@ a img {
     border-bottom: 4px solid #c85950;
     opacity: 1;
   }
-  &:hover + span.caption,
   & + div[errorsblock] span {
     bottom: -23px;
   }
@@ -471,16 +474,6 @@ a img {
   &.delete + span.caption:after {
     border-bottom: 4px solid rgba(200, 89, 80, 1);
     border-top: 4px solid transparent;
-
-  }
-  &.details + span.caption {
-    bottom: -32px;
-    left: -45px;
-  }
-  &.edit.single + span.caption,
-  &.archive.single + span.caption {
-    bottom: -32px;
-    left: -45px;
   }
   &:hover + span.caption.error,
   & + span.caption.error {
@@ -660,7 +653,6 @@ a img {
  */
 .list-box {
   max-height: ~"calc(100vh - 260px)";
-  border-bottom: 1px solid @light-gray;
   .item {
     display: block;
     padding: 10px 20px;
@@ -706,10 +698,13 @@ a img {
       position: relative;
       & > .edit,
       & > .archive {
-        .tooltip(-45px, 40px)
+        .tooltip(-65px, 40px);
       }
       .details {
-        .tooltip(-65px, 40px, 180px)
+        .tooltip(-95px, 40px, 240px);
+      }
+      .users-page input {
+        .tooltip(-95px, 50px, 240px);
       }
       .button-group {
         float: right;
@@ -725,7 +720,7 @@ a img {
         position: relative;
         line-height: 35px;
         &.results {
-          width: 75px;
+          width: 125px;
           text-align: center;
           float: left;
         }
@@ -768,23 +763,19 @@ a img {
   }
   &>li {
     &:nth-of-type(1){
-      .options{
-        .details {
-          .tooltip-down(-30px, 53px, 160px);
+      .options {
+        .button-group input {
+          .tooltip-down(-65px, -22px);
         }
-        .button-group {
-          input:not(.edit),
-          input:not(.archive) {
-            .tooltip-down(-52px, 50px, 160px);
-          }
-          input.edit,
-          input.archive {
-            .tooltip-down(-23px, 50px, 160px);
-          }
+        .button-group.users-page input {
+          .tooltip-down(-95px, -22px, 240px);
+        }
+        .details {
+          .tooltip-down(-95px, -32px, 240px);
         }
         input.edit,
         input.archive {
-          .tooltip-down;
+          .tooltip-down(-65px, -32px);
         }
       }
     }
@@ -794,24 +785,24 @@ a img {
 /*
  Mixin for sort-arrow in column header
  */
-.sort-arrow(@left: 41px) {
+.sort-arrow(@right: auto, @top: 35%, @margin-left: 10px, @color: #000) {
   cursor: pointer;
   &:after {
+    top: @top;
+    margin-left: @margin-left;
     content: '';
     position: absolute;
-    left: @left;
-    top: 4px;
+    right: @right;
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-top: 5px solid #000;
-
+    border-top: 5px solid @color;
   }
   &.down:after {
     top: -1px;
-    border-bottom: 5px solid #000;
+    border-bottom: 5px solid @color;
     border-top: 5px solid transparent;
   }
 }
@@ -1080,7 +1071,7 @@ Styles for dropdown-menu
     .logo {
       display: block;
       float: left;
-      margin-right: 75px;
+      margin-right: 55px;
       cursor: pointer;
       img {
         float: left;
@@ -1101,7 +1092,7 @@ Styles for dropdown-menu
       float: left;
       a {
         color: #fff;
-        margin-right: 35px;
+        margin-right: 25px;
         font-family: NokiaPureTextLight;
         position: relative;
         &.active {
@@ -1150,24 +1141,11 @@ Styles for dropdown-menu
         font-family: NokiaPureTextBold;
         cursor: pointer;
         display: inline-block;
-        max-width: 200px;
+        max-width: 130px;
         position: relative;
         padding-right: 15px ;
         .long-text;
-        &:after {
-          display: inline-block;
-          position: absolute;
-          content: '';
-          width: 0;
-          height: 0;
-          top: 48%;
-          right: 0;
-          margin-left: 5px;
-          border-left: 5px solid transparent;
-          border-top: 5px solid #fff;
-          border-right: 5px solid transparent;
-          border-bottom: 5px solid transparent;
-        }
+        .sort-arrow(0, 48%, 10px, #fff);
       }
     }
   }
@@ -1268,7 +1246,7 @@ Styles for dropdown-menu
       }
       input[type="file"] {
         margin-left: 9px;
-        .tooltip(165px, 50px);
+        .tooltip(106px, 50px);
         opacity: 0;
         position: absolute;
 
@@ -1279,10 +1257,10 @@ Styles for dropdown-menu
       input.browse-archive {
         float: left;
         margin-right: 10px;
-        .tooltip(465px, 50px);
+        .tooltip(411px, 50px);
       }
       .wrap-dd-select{
-        width: 130px;
+        width: 165px;
         margin-right: 10px;
       }
 
@@ -1290,7 +1268,7 @@ Styles for dropdown-menu
     .list-box {
       .item {
         ul.data {
-          width: 350px;
+          width: 420px;
         }
         .circle {
           margin: 12px 20px 12px 0;
@@ -1351,7 +1329,7 @@ Styles for dropdown-menu
         &.new-group {
           input {
             .field-stylisation(13px, 238px);
-            .tooltip-down(0, 0, 240px);
+            .tooltip-down(20px, -23px, 240px);
           }
           border-bottom: none;
         }
@@ -1360,6 +1338,9 @@ Styles for dropdown-menu
           display: none;
           .sms + span {
             width: 160px;
+          }
+          input {
+            .tooltip(-75px, 50px, 200px);
           }
         }
         h3 {
@@ -1391,7 +1372,6 @@ Styles for dropdown-menu
             color: #ffffff;
           }
         }
-
       }
     }
   }
@@ -1499,7 +1479,7 @@ Styles for dropdown-menu
     .function-bar {
       position: relative;
       .wrap-dd-menu {
-        .tooltip(76px, 50px, 170px);
+        .tooltip(41px, 50px, 260px);
         .dropdown {
           li:first-of-type a {
             color: @gray;
@@ -1515,19 +1495,16 @@ Styles for dropdown-menu
         float: left;
         margin-right: 10px;
         .map {
-          .tooltip(-75px, 50px, 200px)
+          .tooltip(-117px, 50px, 285px)
         }
         .chart {
-          .tooltip(-75px, 50px, 210px)
+          .tooltip(-123px, 50px, 295px)
         }
       }
       .button-icon {
         margin-right: 6px;
-        &.export {
-          .tooltip(76px, 50px, 170px)
-        }
         &.delete {
-          .tooltip(130px, 50px, 170px)
+          .tooltip(130px, 50px, 210px)
         }
       }
       .search-field {
@@ -1735,7 +1712,7 @@ Styles for dropdown-menu
         width: 43px;
         height: 35px;
         .edit {
-          .tooltip(-45px, 40px)
+          .tooltip(-85px, 40px, 220px)
         }
       }
     }
@@ -1830,7 +1807,7 @@ Styles for dropdown-menu
           .options {
             display: none;
             .edit {
-              .tooltip(-45px, 40px)
+              .tooltip(-85px, 40px, 220px);
             }
           }
           &:hover {
@@ -1904,7 +1881,7 @@ Styles for dropdown-menu
               .options {
                 display: none;
                 .edit {
-                  .tooltip(-45px, 40px)
+                  .tooltip(-85px, 40px, 220px);
                 }
               }
 
@@ -1966,9 +1943,9 @@ Styles for dropdown-menu
                 }
                 .small-field,.words-length {
                   &.date {
-                    width: 245px;
+                    width: 258px;
                   }
-                  width: 200px;
+                  width: 220px;
                   display: inline-block;
                   h5 {
                     display: inline-block;
@@ -2116,10 +2093,6 @@ Styles for dropdown-menu
                 }
                 .mask-input-header h5 {
                   .open-arrow(80px);
-
-                  &.close:after {
-                    top: 23%;
-                  }
                 }
                 .mask-input-body.mask {
                   margin-left: 30px;
@@ -2157,7 +2130,7 @@ Styles for dropdown-menu
                       .select-stylisation;
                       opacity: 1;
                       margin: 0 10px 0 0;
-                      width: 270px;
+                      width: 268px;
                       display: inline-block;
                       span.selected {
                         width: 250px;
@@ -2205,7 +2178,7 @@ Styles for dropdown-menu
                         }
                       }
                       div.question-select {
-                        width: 250px;
+                        width: 245px;
                         span.selected {
                           width: 240px;
                         }
@@ -2368,7 +2341,7 @@ Styles for dropdown-menu
           }
         }
         .small-field .error-message {
-          width: 240px;
+          width: 255px;
         }
         .small-field .error-message[ng-show="errorPassword"] {
           width: 300px;

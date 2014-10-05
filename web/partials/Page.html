@@ -13,20 +13,32 @@
                                   $state.includes('page.editsurvey') ||
                                   $state.includes('page.archive')
                          }">
-                <li>Surveys</li>
+                <li>{{'header.surveys' | translate}}</li>
             </a>
             <a ng-if="loggedInUser.permission !== 'operator'"
                ui-sref="page.users.group({groupId: ''})"
                ng-class="{active: $state.includes('page.users')}">
-                <li>Users</li>
+                <li>{{'header.users' | translate}}</li>
             </a>
         </ul>
+
+        <!--div>DROPDOWNS TRANSLATE</div-->
+        <div ng-show="false" ng-repeat="item in dropdownList" >
+            {{dropdownList[$index].text = (item.translateId | translate) }}
+        </div>
+        <!--div>DROPDOWNS TRANSLATE</div-->
+
         <div class="user-menu">
+            <a
+                dropdown-menu="langauges"
+                dropdown-onchange="changeLanguage(selected)">
+                {{'header.language' | translate}}
+            </a>
             <span class="version" ng-if="version">v{{version}}</span>
             <a
-                    dropdown-menu="dropdownList"
-                    dropdown-model="dropdownSelect"
-                    dropdown-onchange="selectMenu(selected)">
+                dropdown-menu="dropdownList"
+                dropdown-model="dropdownSelect"
+                dropdown-onchange="selectMenu(selected)">
                 {{loggedInUser.username}}
             </a>
         </div>

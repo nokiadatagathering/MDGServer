@@ -1,0 +1,72 @@
+!!!
+html
+    head
+        title= title
+        meta(charset='utf-8')
+        meta('http-equiv'='X-UA-Compatible', content='IE=edge,chrome=1')
+        meta(name='viewport', content='initial-scale=1.0')
+
+        link(rel="stylesheet" type="text/css" href="/resources/stylesheets/homePage.css")
+        link(rel='stylesheet', href='bower_components/jquery-ui/themes/smoothness/jquery-ui.css')
+
+        script(src='bower_components/jquery/jquery.js')
+        script(src='bower_components/jquery-ui/ui/minified/jquery-ui.min.js')
+        script(src='bower_components/jquery-ui/ui/minified/jquery.ui.autocomplete.min.js')
+        script(src='home.js')
+
+    body
+        div(class="header")
+            div(class="get-started light")
+                a(class="logo left" href="/home" name="home")
+                    img(class="left" src="../resources/icons/lolgo-30px.png")
+                    h1(class="light left") MICROSOFT&nbsp;
+                        span(class="bold") DATA GATHERING
+
+                ul(class="main-menu left")
+                    a(href="#" name="getstarted" onclick="chooseTab(this)")
+                        li Get Started
+
+                    a(href="#" name="useCases" onclick="chooseTab(this)")
+                        li Use Cases
+
+                    a(href="#" name="openSource" onclick="chooseTab(this)")
+                        li Open Source
+
+                    a(href="#" name="support" onclick="chooseTab(this)")
+                        li Support
+
+
+                ul(class="login-menu")
+                    a(class="language-select" onclick="toggleDropdown(this)") #{language}&nbsp;
+                        ul(class="dropdown")
+                            each lang in languages
+                                li(value=lang.value onclick="changeLanguage(this)") #{lang.text}
+
+                    a(href="#login" name="login" onclick="chooseTab(this)")
+                        li Login&nbsp;&nbsp;
+
+
+                    a(href="#register" name="register" onclick="chooseTab(this)")
+                        li /  Register
+
+        include ../../html/en/home.html
+        include ../../html/en/getStarted.html
+        include ../../html/en/useCases.html
+        include ../../html/en/openSource.html
+        include ../../html/en/support.html
+
+        include ../../html/en/forgotPassword.html
+
+        include ../../html/en/login.html
+        include ../../html/en/successRegistration.html
+        include ../../html/en/register.html
+
+        div(class="small-field validation-field")
+            select(id="country" required onkeyup="hideError(this)")
+                option Country
+                each country in countries
+                    option(value=country) #{country}
+            div(class="errorsblock")
+                span(class="country error-message" style="display: none;")
+
+        input(type="button" value="Create Account" class="sign-up-btn" onclick="register()")

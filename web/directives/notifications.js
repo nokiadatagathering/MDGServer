@@ -9,7 +9,9 @@ define(function () {
       },
       controller: [
         '$scope', '$element', '$attrs', '$rootScope', '$window', function ($scope, $element, $attrs, $rootScope, $window) {
-          var nfMessage;
+          var
+            nfMessage,
+            translateValues = "";
 
           $scope.events = [];
 
@@ -23,7 +25,8 @@ define(function () {
 
           // Events listeners
           $scope.$on('deleted_result', function (event, surveyId, resultIds, surveyTitle) {
-            nfMessage = "Deleted " + resultIds.length + " results for '" + surveyTitle + "' survey";
+            nfMessage = "notifications.deleted_result";
+            translateValues = '{LENGTH:' + resultIds.length + ", TITLE:'" + surveyTitle + "'}";
 
             $scope.events.unshift({
               type: event.name,
@@ -31,6 +34,7 @@ define(function () {
               surveyId: surveyId,
               resultIds: resultIds,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Undo',
               red: true
             });
@@ -42,7 +46,8 @@ define(function () {
           });
 
           $scope.$on('deleted_user', function (event, userId, userName) {
-            nfMessage = "Deleted user " + userName;
+            nfMessage = "notifications.deleted_user";
+            translateValues = "{userName:'" + userName + "'}";
             $('#' + userId).slideUp();
 
             $scope.events.unshift({
@@ -50,13 +55,15 @@ define(function () {
               name: 'users',
               eventId: userId,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Undo',
               red: true
             });
           });
 
           $scope.$on('deleted_group', function (event, groupId, groupName) {
-            nfMessage = "Deleted group " + groupName;
+            nfMessage = "notifications.deleted_group";
+            translateValues = "{groupName:'" + groupName + "'}";
             $('#' + groupId).slideUp();
 
             $scope.events.unshift({
@@ -64,13 +71,15 @@ define(function () {
               name: 'groups',
               eventId: groupId,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Undo',
               red: true
             });
           });
 
           $scope.$on('deleted_survey', function (event, surveyId, surveyTitle) {
-            nfMessage = "Deleted survey " + surveyTitle;
+            nfMessage = "notifications.deleted_survey";
+            translateValues = "{surveyTitle:'" + surveyTitle + "'}";
             $('#' + surveyId).slideUp();
 
             $scope.events.unshift({
@@ -78,17 +87,20 @@ define(function () {
               name: 'surveys',
               eventId: surveyId,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Undo',
               red: true
             });
           });
 
           $scope.$on('choose_results', function (event, type) {
-            nfMessage = "Choose results to " + type;
+            nfMessage = "notifications.choose_results";
+            translateValues = "{TYPE:'" + type + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: true,
               time: 4,
@@ -97,7 +109,7 @@ define(function () {
           });
 
           $scope.$on('wrong_survey_type', function (event) {
-            nfMessage = "Only XML file format";
+            nfMessage = "notifications.wrong_survey_type";
 
             $scope.events.unshift({
               type: event.name,
@@ -110,12 +122,12 @@ define(function () {
           });
 
           $scope.$on('wrong_file_type', function (event) {
-            nfMessage = "Only CSV file format";
+            nfMessage = "notifications.wrong_file_type";
             $scope.events.unshift({ type: event.name, label: nfMessage, action: 'Hide', red: 'true' });
           });
 
           $scope.$on('wrong_xml_format', function (event) {
-            nfMessage = "XML is not well formed";
+            nfMessage = "notifications.wrong_xml_format";
 
             $scope.events.unshift({
               type: event.name,
@@ -128,11 +140,13 @@ define(function () {
           });
 
           $scope.$on('saved_survey', function (event, title) {
-            nfMessage = "Survey '" + title + "' was saved";
+            nfMessage = "notifications.saved_survey";
+            translateValues = "{title:'" + title + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: false,
               time: 5,
@@ -141,11 +155,13 @@ define(function () {
           });
 
           $scope.$on('archive_survey', function (event, title) {
-            nfMessage = "Survey '" + title + "' was added to archive";
+            nfMessage = "notifications.archive_survey";
+            translateValues = "{title:'" + title + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: false,
               time: 5,
@@ -154,11 +170,13 @@ define(function () {
           });
 
           $scope.$on('restore_survey', function (event, title) {
-            nfMessage = "Survey '" + title + "' was restored from archive";
+            nfMessage = "notifications.restore_survey";
+            translateValues = "{title:'" + title + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: false,
               time: 5,
@@ -167,11 +185,13 @@ define(function () {
           });
 
           $scope.$on('duplicate_survey', function (event, title) {
-            nfMessage = "Survey '" + title + "' was duplicated";
+            nfMessage = "notifications.duplicate_survey";
+            translateValues = "{title:'" + title + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: false,
               time: 5,
@@ -179,8 +199,8 @@ define(function () {
             });
           });
 
-          $scope.$on('invalid_survey', function (event, title) {
-            nfMessage = "Can not save this survey! It has some errors";
+          $scope.$on('invalid_survey', function (event) {
+            nfMessage = "notifications.invalid_survey";
 
             $scope.events.unshift({
               type: event.name,
@@ -193,11 +213,13 @@ define(function () {
           });
 
           $scope.$on('empty_question', function (event, type) {
-            nfMessage = type + " question should have at least one option";
+            nfMessage = "notifications.empty_question";
+            translateValues = "{TYPE:'" + type + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: true,
               time: 5,
@@ -206,7 +228,7 @@ define(function () {
           });
 
           $scope.$on('empty_category', function (event) {
-            nfMessage = "Category should have at least one question";
+            nfMessage = "notifications.empty_category";
 
             $scope.events.unshift({
               type: event.name,
@@ -219,7 +241,7 @@ define(function () {
           });
 
           $scope.$on('empty_survey', function (event) {
-            nfMessage = "Survey should have at least one category";
+            nfMessage = "notifications.empty_survey";
 
             $scope.events.unshift({
               type: event.name,
@@ -232,11 +254,13 @@ define(function () {
           });
 
           $scope.$on('invalid_version', function (event, type) {
-            nfMessage = "This " + type + " has been changed. Please, refresh the page";
+            nfMessage = "notifications.invalid_version";
+            translateValues = "{type:'" + type + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: true,
               time: 5,
@@ -245,11 +269,13 @@ define(function () {
           });
 
           $scope.$on('publish_survey', function (event, title) {
-            nfMessage = "Survey '" + title + "' was successfully sent";
+            nfMessage = "notifications.publish_survey";
+            translateValues = "{title:'" + title + "'}";
 
             $scope.events.unshift({
               type: event.name,
               label: nfMessage,
+              translateValues: translateValues,
               action: 'Hide',
               red: false,
               time: 5,

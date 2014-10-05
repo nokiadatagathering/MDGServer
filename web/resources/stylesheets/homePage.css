@@ -148,11 +148,12 @@ label {
 }
 .header div.get-started {
   margin: 0 auto;
-  width: 940px;
+  width: 1000px;
+  height: 60px;
 }
 .header div.get-started .logo {
   display: block;
-  margin-right: 75px;
+  margin-right: 50px;
   cursor: pointer;
 }
 .header div.get-started .logo img {
@@ -164,6 +165,55 @@ label {
 }
 .header div.get-started a {
   color: #fff;
+}
+.header div.get-started a.language-select {
+  padding-right: 40px;
+  cursor: pointer;
+}
+.header div.get-started a.language-select .dropdown {
+  opacity: 0;
+  position: absolute;
+  padding: 10px 0;
+  background-color: #fff;
+  z-index: 2;
+  font-family: NokiaPureText;
+  font-size: 16px;
+  width: 200px;
+  top: 50px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  border-radius: 5px;
+}
+.header div.get-started a.language-select .dropdown.open {
+  opacity: 1;
+}
+.header div.get-started a.language-select .dropdown li {
+  display: block;
+  color: #000;
+  line-height: 60px;
+  padding: 0 10px;
+}
+.header div.get-started a.language-select .dropdown:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  margin-left: 5px;
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: #fff transparent;
+}
+.header div.get-started a.language-select:after {
+  top: 29px;
+  margin-left: 0;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid #fff;
 }
 .header div.get-started a.active {
   font-family: NokiaPureTextBold;
@@ -179,7 +229,7 @@ label {
   display: block;
 }
 .header div.get-started .main-menu a {
-  margin-right: 15px;
+  margin-right: 10px;
   position: relative;
 }
 .header div.get-started .main-menu a.active:after {

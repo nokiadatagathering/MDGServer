@@ -1,12 +1,17 @@
 <div class="content">
     <div ng-controller="ResultsCtrl">
         <div class="topic">
-            <input type="button" class="schedule-export" value="Schedule an Export" ng-click="modalExportSchedule()">
-            <h1> {{survey.resultsCount}} results for <span>{{survey.title}}</span></h1>
-            <p>Sent to <a ng-click="modalSentTo()"> {{survey.sentToUsers.length}} users</a></p>
+            <input type="button"
+                   class="schedule-export"
+                   value="{{ 'results.Schedule_an_Export' | translate }}"
+                   ng-click="modalExportSchedule()">
+            <h1> {{survey.resultsCount}} {{ 'results.results_for' | translate }} <span>{{survey.title}}</span></h1>
+            <p>{{ 'results.Sent_to' | translate }}
+                <a ng-click="modalSentTo()"> {{survey.sentToUsers.length}} {{ 'results.users' | translate }}</a>
+            </p>
         </div>
         <div ng-controller="ResultsOnMapCtrl" class="map-panel">
-            <input class="search-field" type="search" placeholder="Search Title or Data Collector..." ng-model="searchQuery">
+            <input class="search-field" type="search" placeholder="{{ 'results.Search' | translate }}" ng-model="searchQuery">
             <div class="close-window" ng-click="goState('page.results')">&#10006;</div>
             <div id="mapContainer"></div>
             <div id="uiContainer"></div>

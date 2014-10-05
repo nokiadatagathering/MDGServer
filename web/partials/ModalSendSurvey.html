@@ -1,7 +1,7 @@
 <div class="overlay" ng-click="goState('^')"></div>
 <div class="window">
     <div class="window-header">
-        <h2>Send this Survey</h2>
+        <h2>{{ 'surveys.Publish_survey_title' | translate }}</h2>
         <div class="close-window" ng-click="goState('^')">&#10006;</div>
     </div>
     <div class="window-body" ng-controller="SendSurveyCtrl">
@@ -15,7 +15,7 @@
                     <label class="expand close"
                            click="showUsers"
                            visible="allUsers.isVisible"
-                           ng-click="showUsers()">({{allUsers.length}}) All Users</label>
+                           ng-click="showUsers()">({{allUsers.length}}) {{ 'users.All_users' | translate }}</label>
                 </h4>
                 <div class="all-users" ng-show="allUsers.isVisible">
                     <li ng-repeat="user in allUsers">
@@ -53,7 +53,7 @@
                 </ul>
             </div>
 
-            <input type="button" class="send-survey" ng-click="sendSurvey($stateParams.surveyId)" value="Send this survey">
+            <input type="button" class="send-survey" ng-click="sendSurvey($stateParams.surveyId)" value="{{ 'surveys.Publish_survey' | translate }}">
         </form>
     </div>
 </div>

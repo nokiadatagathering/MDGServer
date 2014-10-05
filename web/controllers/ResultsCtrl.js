@@ -88,7 +88,7 @@ define(function () {
 
     $scope.viewMap = function () {
       if ($rootScope.selectedResults.length === 0) {
-        $rootScope.$broadcast('choose_results', 'view map');
+        $rootScope.$broadcast('choose_results', 'view_map');
         return;
       }
 
@@ -101,7 +101,7 @@ define(function () {
 
     $scope.modalResultsChart = function () {
       if ($rootScope.selectedResults.length === 0) {
-        $rootScope.$broadcast('choose_results', 'view charts');
+        $rootScope.$broadcast('choose_results', 'view_charts');
         return;
       }
 

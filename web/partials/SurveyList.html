@@ -2,20 +2,30 @@
 
     <div class="survey-panel" ng-controller="SurveysCtrl">
         <div class="function-bar">
-            <input class="button-plus left" type="button" value="Create a new Survey" ng-click="goState('page.builder')">
+            <input class="button-plus left" type="button" value="{{ 'surveys.Create_Survey' | translate }}" ng-click="goState('page.builder')">
             <input file-select="surveyXML" type="file" class="button-icon single" name="files">
-            <span class="caption" ng-if="!fileTypeError">Upload XML survey</span>
-            <span class="caption" ng-if="fileTypeError">Only XML file format</span>
+            <span class="caption" ng-if="!fileTypeError">{{ 'surveys.Upload_XML_survey' | translate }}</span>
+            <span class="caption" ng-if="fileTypeError">{{ 'surveys.Only_XML_file_format' | translate }}</span>
             <input type="button" class="button-icon single upload">
             <div class="right">
                 <input type="button" class="button-icon single browse-archive" ng-click="goState('page.archive')">
-                <span class="caption">Browse archive</span>
+                <span class="caption">{{ 'surveys.Browse_archive' | translate }}</span>
+
+                <!--div>DROPDOWNS TRANSLATE</div-->
+                <div ng-show="false" ng-repeat="item in dropdownList" >
+                    {{dropdownList[$index].text = (item.translateId | translate) }}
+                </div>
+                <div ng-show="false">
+                    {{dropdownSelect.text = (dropdownSelect.translateId | translate)}}
+                </div>
+                <!--div>DROPDOWNS TRANSLATE</div-->
+
                 <div dropdown-select="dropdownList"
                      dropdown-model="dropdownSelect"
                      dropdown-item-label="text"
                      class="left">
                 </div>
-                <input class="search-field right" type="search" placeholder="Search Name or Publisher..." ng-model="q">
+                <input class="search-field right" type="search" placeholder="{{ 'surveys.Search_Name_Publisher' | translate }}" ng-model="q">
             </div>
         </div>
 
@@ -28,20 +38,23 @@
                      ng-mouseout="publishedGreen=false;"></div>
             </div>
             <div class='name' ng-click="predicate = 'title'; reverse=!reverse">
-                <span>NAME </span>
+                <span>{{ 'table_header.NAME' | translate }}</span>
             </div>
             <ul>
                 <li class="results"
-                    ng-click="predicate = 'resultsCount'; reverse=!reverse">RESULTS</li>
-                <li class="publisher" ng-click="predicate = '_creator.name'; reverse=!reverse">PUBLISHER</li>
-                <li class="date" ng-click="predicate = 'dateCreated'; reverse=!reverse">DATE</li>
+                    ng-click="predicate = 'resultsCount'; reverse=!reverse">{{ 'table_header.RESULTS' | translate }}
+                </li>
+                <li class="publisher"
+                    ng-click="predicate = '_creator.name'; reverse=!reverse">{{ 'table_header.PUBLISHER' | translate }}</li>
+                <li class="date"
+                    ng-click="predicate = 'dateCreated'; reverse=!reverse">{{ 'table_header.DATE' | translate }}</li>
             </ul>
         </div>
 
         <ul class="list-box">
             <li class="item" id="{{survey._id}}"
                 ng-repeat="survey in filtered = (surveys | deletedItemsFilter : 'surveys') | filter:q | orderBy:predicate:reverse"
-                ng-if="(dropdownSelect.text == 'All')||(((dropdownSelect.text == 'Published') && survey.published)||((dropdownSelect.text == 'Unpublished') && !survey.published))"
+                ng-if="(dropdownSelect.value == 'all')||(((dropdownSelect.value == 'published') && survey.published)||((dropdownSelect.value == 'unpublished') && !survey.published))"
                 style=" display: {{survey.hidden ? 'none' : 'block'}};">
                 <div>
                     <div class="circle" ng-class="{green : survey.published}"></div>
@@ -54,31 +67,31 @@
                     <input type="button" class="button-icon single edit"
                            ng-click="goState('page.editsurvey',{surveyId: survey._id})"
                            ng-show="!survey.published">
-                    <span class="caption" ng-show="!survey.published">Edit this survey</span>
+                    <span class="caption" ng-show="!survey.published">{{ 'surveys.Edit_survey' | translate }}</span>
 
                     <input type="button" class="button-icon single archive add-to-archive"
                            ng-click="archive(survey._id, survey.title, true)"
                            ng-show="survey.published">
-                    <span class="caption" ng-show="survey.published">Move to archive</span>
+                    <span class="caption" ng-show="survey.published">{{ 'surveys.Move_to_archive' | translate }}</span>
 
                     <ul class="button-group">
                         <li>
                             <input type="button" class="download"
                                    ng-click="downloadSurvey(survey._id)">
-                            <span class="caption">Download this survey</span>
+                            <span class="caption">{{ 'surveys.Download_survey' | translate }}</span>
                         </li><li>
                         <input type="button" class="send"
                                ng-click="goState('page.surveys.sendsurvey',{surveyId: survey._id})">
-                        <span class="caption">Publish this survey</span>
+                        <span class="caption">{{ 'surveys.Publish_survey' | translate }}</span>
                     </li><li>
                         <input type="button" class="copy"
                                ng-click="duplicateSurvey(survey._id, survey.title)">
-                        <span class="caption">Duplicate this survey</span>
+                        <span class="caption">{{ 'surveys.Duplicate_survey' | translate }}</span>
                     </li><li>
                         <input type="button" class="delete"
                                ng-click="deleteSurvey(survey)" ng-disabled="survey.published">
-                        <span class="caption" ng-if="!survey.published">Delete this survey</span>
-                        <span class="caption surveypublished" ng-if="survey.published">Published survey can not be deleted</span>
+                        <span class="caption" ng-if="!survey.published">{{ 'surveys.Delete_survey' | translate }}</span>
+                        <span class="caption surveypublished" ng-if="survey.published">{{ 'surveys.Can_not_be_deleted' | translate }}</span>
 
                     </li>
                     </ul>

@@ -102,7 +102,7 @@ define(function () {
         }
       ],
       template: '<div ng-show="nfEvent.show">' +
-        '<span>{{nfEvent.label}}.</span>' +
+        '<span translate="{{nfEvent.label}}" translate-values="{{nfEvent.translateValues}}"></span>' +
         '<br>' +
         '<a ng-click="cancelTimeout(nfEvent.action)">{{nfEvent.action}}{{nfEvent.hideCounter ? "" : "&nbsp;" + nfEvent.time}}</a>' +
         '</div>'
