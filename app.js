@@ -78,6 +78,7 @@ if (process.platform === 'win32') {
 
 exports.run = function (mongoUrl, port, callback) {
   app = express();
+  app.enable('trust proxy');
 
   require('./app/services/Auth');
 
