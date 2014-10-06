@@ -1,0 +1,16 @@
+!!! transitional
+head
+body
+    p Все username, связанные с данной почтой, приведены ниже:
+        br
+        br
+        each user in users
+            p
+                | username: &nbsp;
+                b #{user.username}
+                | ; права доступа: #{user.permission}; компания: #{user.company}
+                br
+    p
+        | Для продолжения процедуры смены пароля воспользуйтесь&nbsp;
+        a(href=link) ссылкой.
+    p Если вы получили данное письмо по ошибке, просто проигнорируйте его.

@@ -245,12 +245,12 @@ module.exports = {
       registration: {
         type: String,
         title: 'Registration Email',
-        defaults: '/app/views/emails/registrationEmail.jade'
+        defaults: '/app/views/emails/${languages.preferred}/registrationEmail.jade'
       },
       subscription: {
         type: String,
         title: 'Subscription Email',
-        defaults: '/app/views/emails/subscriptionEmail.jade'
+        defaults: '/app/views/emails/${languages.preferred}/subscriptionEmail.jade'
       },
       report: {
         type: String,
@@ -260,17 +260,17 @@ module.exports = {
       forgotUsername: {
         type: String,
         title: 'Forgot Username Email',
-        defaults: '/app/views/emails/forgotUsernameEmail.jade'
+        defaults: '/app/views/emails/${languages.preferred}/forgotUsernameEmail.jade'
       },
       resetPassword: {
         type: String,
         title: 'Reset Password Email',
-        defaults: '/app/views/emails/resetPasswordEmail.jade'
+        defaults: '/app/views/emails/${languages.preferred}/resetPasswordEmail.jade'
       },
       passwordChanged: {
         type: String,
         title: 'Password Changed Email',
-        defaults: '/app/views/emails/passwordChangedEmail.jade'
+        defaults: '/app/views/emails/${languages.preferred}/passwordChangedEmail.jade'
       }
     }
   }
