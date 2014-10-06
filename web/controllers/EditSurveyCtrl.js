@@ -970,6 +970,7 @@ define(function () {
           questionId = idMap[cascade.relevantOptions.questionId] ? idMap[cascade.relevantOptions.questionId] : question.id;
           cascade.relevantOptions.questionId = questionId;
           cascade.relevantOptions.categoryId = categoryId;
+          cascade.parentid = question.id;
         };
 
       surveyDirty = true;

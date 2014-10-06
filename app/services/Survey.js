@@ -2,6 +2,24 @@ var
   _ = require('underscore'),
   Survey = require('../models/Survey');
 
+function findParentId (categoryData, relevant) {
+  var
+    parentQuestion,
+    questionId = relevant.match(/\/data\/.+\/(.+?)=/)[1];
+
+  parentQuestion = _.find(categoryData.inputs, function (questionData) {
+    if (questionData.id === questionId) {
+      return true;
+    }
+  });
+
+  if (parentQuestion.type === 'cascade1') {
+    return parentQuestion.id;
+  } else {
+    findParentId (categoryData, parentQuestion.relevant);
+  }
+}
+
 function getQuestions (categoryData, surveyData) {
   var
     cascadeMatch,
@@ -17,10 +35,8 @@ function getQuestions (categoryData, surveyData) {
     cascadeMatch = /cascade/.test(question.type);
 
     if (cascadeMatch) {
-      if (question.type === 'cascade1') {
-        parentId = question.id;
-      } else {
-        question.parentid = parentId;
+      if (question.type !== 'cascade1') {
+        question.parentid = findParentId(categoryData, question.relevant);
       }
     }
 
