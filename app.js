@@ -121,6 +121,7 @@ exports.run = function (mongoUrl, port, callback) {
   }
   app.use(app.router);
   app.use(ErrorHandler);
+  app.use(getStartedCntr.error404);
 
   mongoose.connect(mongoUrl);
   db = mongoose.connection;
