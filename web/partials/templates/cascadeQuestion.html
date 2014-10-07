@@ -47,11 +47,11 @@
         </li>
         </ul>
         <div class="rules">
-            <input type="button" value="{{ 'survey_builder.Add_option' | translate }}"
+            <input type="button" class="cascade" value="{{ 'survey_builder.Add_option' | translate }}"
                    ng-click="showAddOption = true; focus = true; newOption.error=false">
-            <input type="file" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+            <input type="file" class="cascade" value="{{ 'survey_builder.Import_existing_option' | translate }}"
                    csv-optioins-import question="cascades[selectedOption]" addoption="addOption">
-            <input type="button" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+            <input type="button" class="cascade" value="{{ 'survey_builder.Import_existing_option' | translate }}"
                    ng-click="showAddOption = false">
         </div>
     </div>

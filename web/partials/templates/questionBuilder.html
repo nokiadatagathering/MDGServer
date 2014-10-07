@@ -138,7 +138,7 @@
                min-range="question.minValue"
                max-range="question.maxValue">
         <input ng-if="question.defaultValue" type="button"
-               ng-click="question.defaultValue=''"
+               ng-click="deleteDefaultDate(question)"
                class="del-option">
         <span ng-if="question.defaultValue" class="caption">{{ 'survey_builder.Clear_default_field' | translate }}</span>
     </div>
