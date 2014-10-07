@@ -8,8 +8,8 @@ user-friendly way to collect data using mobile devices.
 # sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 # echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
 # sudo apt-get update
-# sudo apt-get install nodejs mongodb-org librsvg2-bin
-# wget -O /tmp/mdg.deb https://nokiadatagathering.net/binary/MDGServer_amd64.deb
+# sudo apt-get install nodejs mongodb-org librsvg2-bin npm
+# wget --no-check-certificate -O /tmp/mdg.deb https://nokiadatagathering.net/binary/MDGServer_amd64.deb
 # sudo dpkg -i /tmp/mdg.deb
 # rm -f /tmp/mdg.deb
 # cd /opt/MDGServer
@@ -29,6 +29,10 @@ user-friendly way to collect data using mobile devices.
 ```
 # cd C:\node\mdg
 # node app --install
+# set NODE_ENV=production
+# node app start
+
+Browse to http://127.0.0.1:3000 (assuming you have not modified anything in config.js)
 
 ```
 
@@ -40,7 +44,7 @@ user-friendly way to collect data using mobile devices.
     ```
 2. Node.js 0.10.x. For Ubuntu 14.04 LTS just run
     ```
-    # sudo apt-get install nodejs
+    # sudo apt-get install nodejs npm
     ```
 3. MongoDB. Please follow instructions on [MongoDB website](https://www.mongodb.org/downloads). __Attention: Ubuntu 14.04 ships with old (2.4) mongoDB in official repositories. Please use 10gen 
 repository from link above to install mongoDB__
@@ -67,7 +71,7 @@ First of all, let's install some global tools
 
 Now clone the source and install project dependencies:
 ```
-# git clone git://github.com:nokiadatagathering/MDGServer.git
+# git clone git://github.com/nokiadatagathering/MDGServer.git
 # cd MDGServer
 # npm install
 # bower install
