@@ -1,5 +1,5 @@
-<div class="content">
-    <div class="get-started-panel">
+<div class="content getstarted">
+    <div class="panel">
         <h1 class="center-text">GET STARTED</h1>
         <h3 class="center-text">If you have your own server and wish to migrate your data to this release of MDG the tool to do that is available
             <a href="http://github.com/nokiadatagathering/ndg-migration"> here</a>
@@ -11,8 +11,7 @@
                 <div class="step-info">
                     <h2>Step 1: Register to the Microsoft Data Gathering Playground Server</h2>
                     <p>The ﬁrst thing you need to do is to ﬁll in the user registration form and create an account on the Microsoft Data Gathering playground server. You can do this by clicking
-                        <a ui-sref="pageGetStarted.register"
-                           ng-class="{active: $state.includes('pageGetStarted.register')}">
+                        <a href="#register" name="register" onclick="chooseTab(this)">
                             register on the homepage
                         </a>.
                     </p>

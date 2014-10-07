@@ -1,16 +1,17 @@
 <div class="overlay" ng-click="goState('^')"></div>
 <div class="window" ng-controller="GroupsCtrl">
     <div class="window-header">
-        <h2>Send an SMS to {{groupName}}</h2>
+        <h2>{{ 'sms.SMS_to' | translate:'{group:groupName}' }}</h2>
         <div class="close-window" ng-click="goState('^')">&#10006;</div>
     </div>
     <div class="window-body">
         <form name="sms-form" id="sms-form" ng-submit="sendSms()">
             <label>
-                MESSAGE
+                {{ 'sms.MESSAGE' | translate }}
             </label>
-            <textarea placeholder="Enter your message there...." ng-model="smsText" maxlength="410"></textarea>
-            <input type="submit" value="Send this SMS" >
+            <textarea placeholder="{{ 'sms.enter_message' | translate }}"
+                      ng-model="smsText" maxlength="410"></textarea>
+            <input type="submit" value="{{ 'sms.Send_SMS' | translate }}" >
         </form>
     </div>
 </div>

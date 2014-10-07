@@ -30,6 +30,8 @@ var
   resultsImageCntr = require('./app/controllers/web/resultsImage'),
   exportCntr = require('./app/controllers/web/export'),
   validationsCntr = require('./app/controllers/web/validations'),
+  monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
+  getStartedCntr = require('./app/controllers/web/getStarted'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
   checkServerCntr = require('./app/controllers/mobile/checkServer'),
@@ -76,6 +78,7 @@ if (process.platform === 'win32') {
 
 exports.run = function (mongoUrl, port, callback) {
   app = express();
+  app.enable('trust proxy');
 
   require('./app/services/Auth');
 
@@ -118,6 +121,7 @@ exports.run = function (mongoUrl, port, callback) {
   }
   app.use(app.router);
   app.use(ErrorHandler);
+  app.use(getStartedCntr.error404);
 
   mongoose.connect(mongoUrl);
   db = mongoose.connection;
@@ -137,9 +141,6 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/autocomplete/industry', autocompleteCntr.getIndustries);
 
     app.post('/signup', loginCntr.signup);
-    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
-    app.post('/checkResetPasswordToken', passwordResetCntr.checkResetPasswordToken);
-    app.post('/resetPassword', passwordResetCntr.resetPassword);
 
     app.get('/userPermission', ACLService.checkPermission, loginCntr.permission);
     app.post('/sms/:type/:id', ACLService.checkPermission, smsCntr.sendSms);
@@ -160,6 +161,16 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/ReceiveSurvey/:id', passport.authenticate('digest', { session: false }), receiveSurveyCntr.show);
     app.get('/LocalizationServing/text', localeCntr.getLocale);
 
+    app.get('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.getReportPage);
+    app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
+    app.get('/home', getStartedCntr.home);
+
+    app.post('/forgotPassword', passwordResetCntr.forgotPassword);
+    app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
+    app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
+
+    app.get('/languages', getStartedCntr.languages);
+
     app.resource('users');
     app.resource('groups');
     app.resource('surveys', function() {
@@ -168,10 +179,18 @@ exports.run = function (mongoUrl, port, callback) {
     });
 
     app.get('/', function (req, res) {
-      res.render('index-' + app.settings.env, {
-        title: Configuration.get('general.siteName'),
-        version: version
-      });
+      if (req.method === 'HEAD') {
+        res.send();
+      } else {
+        if (req.user) {
+          res.render('index-' + app.settings.env, {
+            title: Configuration.get('general.siteName'),
+            version: version
+          });
+        } else {
+          res.redirect(303, '/home');
+        }
+      }
     });
 
     if (Configuration.get('general.protocolType') === 'https') {

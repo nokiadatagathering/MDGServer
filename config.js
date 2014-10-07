@@ -4,7 +4,11 @@ module.exports = {
     siteName: 'Microsoft Data Gathering',
     protocolType: 'http',
     port: 3000,
-    mongodbUrl: null
+    mongodbUrl: 'mongodb://127.0.0.1:27017/MDG-test'
+  },
+  basicAuth: {
+    password: null,
+    username: null
   },
   twilio: {
     accountSid: null,
@@ -17,7 +21,7 @@ module.exports = {
       subscription: 'noreply@nokiadatagathering.net',
       report: 'report@nokiadatagathering.net'
     },
-    transport: 'Direct',
+    emailsForUsersReport: null,
     emailsForUsersReport: []
   }
 };

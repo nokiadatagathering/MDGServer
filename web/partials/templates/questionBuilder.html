@@ -1,38 +1,38 @@
 <div class="{{question.type}}" ng-if="question.type == 'string'">
     <div class="default-question">
-        <h5>DEFAULT ANSWER</h5>
-        <input type="text" placeholder="Default answer"
+        <h5>{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</h5>
+        <input type="text" placeholder="{{ 'survey_builder.DEFAULT_ANSWER_placeholder' | translate }}"
                ng-model="question.defaultValue"
                value="{{question.defaultValue}}">
     </div>
     <div class="words-length">
-        <h5>MAXIMUM ANSWER LENGTH</h5>
+        <h5>{{ 'survey_builder.MAXIMUM_ANSWER_LENGTH' | translate }}</h5>
         <input type="text" value="{{question.maxLength}}"
                validate-pattern
                regexp="digitsPattern"
                value-to-check="question.maxLength"
                ng-model="question.maxLength">
-        <label>Symbols</label>
+        <label>{{ 'survey_builder.Symbols' | translate }}</label>
     </div>
 </div>
 <div class="{{question.type}}" ng-if="question.type == 'note'">
     <div class="note-question">
-        <p>Notes are no-input text prompts which can provide notes, hints, instructions or messages to the surveyor or respondent</p>
-        <textarea type="text" placeholder="Add your note text here"
+        <p>{{ 'survey_builder.Notes_description' | translate }}</p>
+        <textarea type="text" placeholder="{{ 'survey_builder.NOTE_placeholder' | translate }}"
                   ng-model="question.defaultValue"
                   value="{{question.defaultValue}}"></textarea>
     </div>
 </div>
 <div class="{{question.type}}" ng-if="question.type == 'time'">
     <div class="default-question">
-        <h5>DEFAULT ANSWER</h5>
+        <h5>{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</h5>
         <time-selector hours="question.defaultValueHH" minutes="question.defaultValueMM"></time-selector>
     </div>
 </div>
 <div class="{{question.type}}" ng-if="question.type == 'int'">
     <div class="default-question">
-        <h5>DEFAULT ANSWER</h5>
-        <input type="text" placeholder="Default answer"
+        <h5>{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</h5>
+        <input type="text" placeholder="{{ 'survey_builder.DEFAULT_ANSWER_placeholder' | translate }}"
                value="{{question.defaultValue}}"
                validate-pattern
                regexp="digitsPattern"
@@ -40,17 +40,17 @@
                ng-model="question.defaultValue"
                ng-blur="checkDefaultValue(question)">
     </div>
-    <div class="error-message" ng-show="question.defaultValueError">Default value should be in min-max range.</div>
+    <div class="error-message" ng-show="question.defaultValueError">{{ 'survey_builder.defaultValueError' | translate }}</div>
     <div class="words-length">
         <label>
             <input type="checkbox"
                    ng-checked="question.minChecked"
                    ng-click="question.minValueFocus = true; checkMinMaxValues(question, 'minChecked')"
                    ng-model="question.minChecked">
-            <h5>MINIMUM RANGE</h5>
+            <h5>{{ 'survey_builder.MINIMUM_RANGE' | translate }}</h5>
         </label>
         <span focus-me="question.minValueFocus">
-            <input type="text" placeholder="" value="{{question.minValue}}"
+            <input type="text" value="{{question.minValue}}"
                    ng-disabled="!question.minChecked"
                    validate-pattern
                    regexp="digitsPattern"
@@ -65,10 +65,10 @@
                    ng-checked="question.maxChecked"
                    ng-click="question.maxValueFocus = true; checkMinMaxValues(question, 'maxChecked')"
                    ng-model="question.maxChecked">
-            <h5>MAXIMUM RANGE</h5>
+            <h5>{{ 'survey_builder.MAXIMUM_RANGE' | translate }}</h5>
         </label>
         <span focus-me="question.maxValueFocus">
-            <input type="text" placeholder="" value="{{question.maxValue}}"
+            <input type="text" value="{{question.maxValue}}"
                    ng-disabled="!question.maxChecked"
                    validate-pattern
                    regexp="digitsPattern"
@@ -77,12 +77,12 @@
                    ng-model="question.maxValue">
         </span>
     </div>
-    <div class="error-message" ng-show="question.minmaxError">Invalid min-max range.</div>
+    <div class="error-message" ng-show="question.minmaxError">{{ 'survey_builder.Invalid_min_max_range' | translate }}</div>
 </div>
 <div class="{{question.type}}" ng-if="question.type == 'decimal'">
     <div class="default-question">
-        <h5>DEFAULT ANSWER</h5>
-        <input type="text" placeholder="Default answer"
+        <h5>{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</h5>
+        <input type="text" placeholder="{{ 'survey_builder.DEFAULT_ANSWER_placeholder' | translate }}"
                value="{{question.defaultValue}}"
                validate-pattern
                regexp="decimalPattern"
@@ -90,17 +90,17 @@
                ng-model="question.defaultValue"
                ng-blur="checkDefaultValue(question)">
     </div>
-    <div class="error-message" ng-show="question.defaultValueError">Default value should be in min-max range.</div>
+    <div class="error-message" ng-show="question.defaultValueError">{{ 'survey_builder.defaultValueError' | translate }}</div>
     <div class="words-length">
         <label>
             <input type="checkbox"
                    ng-checked="question.minChecked"
                    ng-click="question.minValueFocus = true; checkMinMaxValues(question, 'minChecked')"
                    ng-model="question.minChecked">
-            <h5>MINIMUM RANGE</h5>
+            <h5>{{ 'survey_builder.MINIMUM_RANGE' | translate }}</h5>
         </label>
         <span focus-me="question.minValueFocus">
-            <input type="text" placeholder="" value="{{question.minValue}}"
+            <input type="text" value="{{question.minValue}}"
                    ng-disabled="!question.minChecked"
                    validate-pattern
                    regexp="decimalPattern"
@@ -115,10 +115,10 @@
                    ng-checked="question.maxChecked"
                    ng-click="question.maxValueFocus = true; checkMinMaxValues(question, 'maxChecked')"
                    ng-model="question.maxChecked">
-            <h5>MAXIMUM RANGE</h5>
+            <h5>{{ 'survey_builder.MAXIMUM_RANGE' | translate }}</h5>
         </label>
         <span focus-me="question.maxValueFocus">
-            <input type="text" placeholder="" value="{{question.maxValue}}"
+            <input type="text" value="{{question.maxValue}}"
                    ng-disabled="!question.maxChecked"
                    validate-pattern
                    regexp="decimalPattern"
@@ -127,20 +127,20 @@
                    ng-model="question.maxValue">
         </span>
     </div>
-    <div class="error-message" ng-show="question.minmaxError">Invalid min-max range.</div>
+    <div class="error-message" ng-show="question.minmaxError">{{ 'survey_builder.Invalid_min_max_range' | translate }}</div>
 </div>
 <div class="{{question.type}}" ng-if="question.type == 'date'">
     <div class="small-field date">
-        <h5>DEFAULT ANSWER</h5>
+        <h5>{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</h5>
         <input date-input="question.defaultValue" class="default-date"
                ng-model="question.defaultValue"
                readonly="readonly"
                min-range="question.minValue"
                max-range="question.maxValue">
         <input ng-if="question.defaultValue" type="button"
-               ng-click="question.defaultValue=''"
+               ng-click="deleteDefaultDate(question)"
                class="del-option">
-        <span ng-if="question.defaultValue" class="caption">Clear default field</span>
+        <span ng-if="question.defaultValue" class="caption">{{ 'survey_builder.Clear_default_field' | translate }}</span>
     </div>
     <div date-range
          min-range="question.minValue"
@@ -152,9 +152,12 @@
 <div class="{{question.type}}" ng-if="question.type == 'select1'">
     <div class="select-question">
         <div class="rules">
-            <input type="button" value="Add a new option" ng-click="question.addOption = true; addOptionFocus = true;">
-            <input type="file" value="Import existing option..." csv-optioins-import question="question">
-            <input type="button" value="Import existing option..." ng-click="question.addOption = false">
+            <input type="button" value="{{ 'survey_builder.Add_option' | translate }}"
+                   ng-click="question.addOption = true; addOptionFocus = true;">
+            <input type="file" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   csv-optioins-import question="question">
+            <input type="button" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   ng-click="question.addOption = false">
         </div>
         <ul class="variants">
             <li ng-repeat="item in question.items" ng-init="item.edit = false;">
@@ -172,7 +175,7 @@
                         <input type="text" ng-model="item.text" class="left"
                                ng-change="item.error = false"
                                ng-keypress="updateOption(question, item, $index, $event)">
-                        <span class="caption error" ng-show="item.error">Duplicated option value!</span>
+                        <span class="caption error" ng-show="item.error">{{ 'survey_builder.Duplicated_option_value' | translate }}</span>
                     </div>
                     <input type="button" class="button-icon single edit"
                            ng-class="{save: item.edit}"
@@ -184,7 +187,9 @@
                     <input type="text" ng-model="newOption.text" class="left"
                            ng-change="newOption.error = false"
                            ng-keypress="addOption(newOption.text, $event)">
-                    <span class="caption error" ng-show="newOption.error">Duplicated option value!</span>
+                    <span class="caption error" ng-show="newOption.error">
+                        {{ 'survey_builder.Duplicated_option_value' | translate }}
+                    </span>
                 </div>
                 <input type="button" class="button-icon single edit"
                        ng-class="{save: question.addOption}"
@@ -196,9 +201,12 @@
 <div class="{{question.type}}" ng-if="question.type == 'select'">
     <div class="select-question">
         <div class="rules">
-            <input type="button" value="Add a new option" ng-click="question.addOption = true; question.addItemFocus = true">
-            <input type="file" value="Import existing option..." csv-optioins-import question="question">
-            <input type="button" value="Import existing option..." ng-click="question.addOption = false">
+            <input type="button" value="{{ 'survey_builder.Add_option' | translate }}"
+                   ng-click="question.addOption = true; question.addItemFocus = true">
+            <input type="file" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   csv-optioins-import question="question">
+            <input type="button" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   ng-click="question.addOption = false">
         </div>
         <ul class="variants">
             <li ng-repeat="item in question.items" ng-init="item.edit = false;" >
@@ -216,7 +224,9 @@
                         <input type="text" ng-model="item.text" class="left"
                                ng-change="item.error = false"
                                ng-keypress="updateOption(question, item, $index, $event)">
-                        <span class="caption error" ng-show="item.error">Duplicated option value!</span>
+                        <span class="caption error" ng-show="item.error">
+                            {{ 'survey_builder.Duplicated_option_value' | translate }}
+                        </span>
                     </div>
                     <input type="button" class="button-icon single edit"
                            ng-class="{save: item.edit}"
@@ -228,7 +238,9 @@
                     <input type="text" ng-model="newOption.text" class="left"
                            ng-change="newOption.error = false"
                            ng-keypress="addOption(newOption.text, $event)">
-                    <span class="caption error" ng-show="newOption.error">Duplicated option value!</span>
+                    <span class="caption error" ng-show="newOption.error">
+                        {{ 'survey_builder.Duplicated_option_value' | translate }}
+                    </span>
                 </div>
                 <input type="button" class="button-icon single edit"
                        ng-class="{save: question.addOption}"
@@ -265,7 +277,9 @@
                         <input type="text" ng-model="item.text" class="left"
                                ng-change="item.error = false"
                                ng-keypress="editOption(item, $index, $event)">
-                        <span class="caption error" ng-show="item.error">Duplicated option value!</span>
+                        <span class="caption error" ng-show="item.error">
+                            {{ 'survey_builder.Duplicated_option_value' | translate }}
+                        </span>
                     </div>
                     <input type="button" class="button-icon single edit"
                            ng-class="{save: item.edit}"
@@ -277,7 +291,9 @@
                     <input type="text" ng-model="newOption.text" class="left"
                            ng-change="newOption.error = false"
                            ng-keypress="addOption(newOption.text, $event)">
-                    <span class="caption error" ng-show="newOption.error">Duplicated option value!</span>
+                    <span class="caption error" ng-show="newOption.error">
+                        {{ 'survey_builder.Duplicated_option_value' | translate }}
+                    </span>
                 </div>
                 <input type="button" class="button-icon single edit"
                        ng-class="{save: question.addOption}"
@@ -285,10 +301,12 @@
             </li>
         </ul>
         <div class="rules">
-            <input type="button" class="cascade" value="Add a new option"
+            <input type="button" class="cascade" value="{{ 'survey_builder.Add_option' | translate }}"
                    ng-click="question.addOption = true; addOptionFocus = true">
-            <input type="file" class="cascade" value="Import existing option..." csv-optioins-import question="question">
-            <input type="button" class="cascade" value="Import existing option..." ng-click="question.addOption = false">
+            <input type="file" class="cascade" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   csv-optioins-import question="question">
+            <input type="button" class="cascade" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   ng-click="question.addOption = false">
         </div>
     </div>
     <div class="cascade2-tmpl"></div>

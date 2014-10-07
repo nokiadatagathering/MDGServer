@@ -1,7 +1,7 @@
 <div class="overlay" ng-click="goState('^')"></div>
 <div class="window" ng-controller="AddUserCtrl">
     <div class="window-header">
-        <h2>Add a new user</h2>
+        <h2>{{ 'users.Add_User' | translate }}</h2>
         <div class="close-window" ng-click="goState('^')">&#10006;</div>
     </div>
     <div class="window-body">
@@ -10,9 +10,9 @@
               ng-submit="addUser()">
             <div class="user-info">
                 <div class="small-field validation-field">
-                    <label>FIRST NAME</label>
+                    <label>{{ 'edit_user.FIRST_NAME' | translate }}</label>
                     <input type="text" name="firstName" required
-                           placeholder="User's first name"
+                           placeholder="{{ 'edit_user.placeholder.FIRST_NAME' | translate }}"
                            ng-model="user.firstName"
                            ng-minlength="2"
                            ng-maxlength="60"
@@ -21,9 +21,9 @@
                     <div errorsblock="errors.firstName"></div>
                 </div>
                 <div class="small-field validation-field">
-                    <label>LAST NAME</label>
+                    <label>{{ 'edit_user.LAST_NAME' | translate }}</label>
                     <input type="text" name="lastName" required
-                           placeholder="User's last name"
+                           placeholder="{{ 'edit_user.placeholder.LAST_NAME' | translate }}"
                            ng-model="user.lastName"
                            ng-minlength="2"
                            ng-maxlength="60"
@@ -32,7 +32,7 @@
                     <div errorsblock="errors.lastName"></div>
                 </div>
                 <div class="small-field">
-                    <label>PERMISSION</label>
+                    <label>{{ 'edit_user.PERMISSION' | translate }}</label>
                     <select name="permission"
                             ng-model="user.permission">
                         <option selected="selected" value="admin">Admin</option>
@@ -41,9 +41,9 @@
                     </select>
                 </div>
                 <div class="small-field validation-field">
-                    <label>USERNAME</label>
+                    <label>{{ 'edit_user.USERNAME' | translate }}</label>
                     <input type="text" name="username" required
-                           placeholder="New username"
+                           placeholder="{{ 'edit_user.placeholder.USERNAME' | translate }}"
                            ng-model="user.username"
                            ng-minlength="5"
                            ng-maxlength="13"
@@ -54,9 +54,9 @@
                     <div errorsblock="errors.username"></div>
                 </div>
                 <div class="small-field validation-field">
-                    <label>PHONE NUMBER</label>
+                    <label>{{ 'edit_user.PHONE_NUMBER' | translate }}</label>
                     <input type="text" name="phone" required
-                           placeholder="User's phone number"
+                           placeholder="{{ 'edit_user.placeholder.PHONE_NUMBER' | translate }}"
                            ng-model="user.phone"
                            validatephonenumber
                            ng-trim="true">
@@ -64,9 +64,9 @@
                     <div errorsblock="errors.phone"></div>
                 </div>
                 <div class="long-field validation-field" ng-if="user.permission !== 'fieldWorker'">
-                    <label>EMAIL</label>
+                    <label>{{ 'edit_user.EMAIL' | translate }}</label>
                     <input type="email" name="email" required
-                           placeholder="User's email address"
+                           placeholder="{{ 'edit_user.placeholder.EMAIL' | translate }}"
                            ng-model="user.email"
                            ng-class="{error: errorEmail}"
                            ng-trim="true"
@@ -77,9 +77,9 @@
             </div>
             <div class="user-pass">
                 <div class="small-field validation-field">
-                    <label>PASSWORD</label>
+                    <label>{{ 'edit_user.PASSWORD' | translate }}</label>
                     <input type="password" name="password" required
-                           placeholder="User's password"
+                           placeholder="{{ 'edit_user.placeholder.PASSWORD' | translate }}"
                            ng-model="user.password"
                            ng-minlength="8"
                            ng-maxlength="20"
@@ -88,22 +88,24 @@
                     <div errorsblock="errors.password"></div>
                 </div>
                 <div class="small-field validation-field">
-                    <label>CONFIRM PASSWORD</label>
+                    <label>{{ 'edit_user.CONFIRM_PASSWORD' | translate }}</label>
                     <input type="password" name="confirmpass" required
-                           placeholder="Confirm password"
+                           placeholder="{{ 'edit_user.placeholder.CONFIRM_PASSWORD' | translate }}"
                            ng-model="user.confirmpass"
                            ng-trim="true">
 
                     <div errorsblock>
-                        <span class="error-message ng-hide"  ng-show="user.password !== user.confirmpass">Passwords do not match</span>
+                        <span class="error-message ng-hide"  ng-show="user.password !== user.confirmpass">
+                            {{ 'errors.passwordsDoNotMatch' | translate }}
+                        </span>
                     </div>
                 </div>
             </div>
 
             <div class="info-msg">
-                The phone number is used to send user credentials by SMS. Notification will be sent after pressing the 'Save this user' button.
+                {{ 'edit_user.info_msg_add_form' | translate }}
             </div>
-            <input type="submit" value="Save this user" class="save-changes">
+            <input type="submit" value="{{ 'edit_user.Save_user' | translate }}" class="save-changes">
         </form>
     </div>
 </div>

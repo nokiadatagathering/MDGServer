@@ -11,8 +11,20 @@ define(function () {
       },
       link: function (scope, element) {
         var
-          minDate = scope.minRange ? new Date(scope.minRange) : null,
-          maxDate = scope.maxRange ? new Date(scope.maxRange) : null;
+          parseDate = function (date) {
+            if (date) {
+              if (date.indexOf('/') !== -1) {
+                date = date.split('/');
+                date = date[2] + '-' + date[1] + '-' + date[0];
+              }
+
+              return  new Date(date);
+            } else {
+              return null;
+            }
+          },
+          minDate = parseDate(scope.minRange),
+          maxDate = parseDate(scope.maxRange);
 
         scope.dateInput = scope.dateInput ? $filter('date')(scope.dateInput, 'dd/MM/yyyy') : null;
 

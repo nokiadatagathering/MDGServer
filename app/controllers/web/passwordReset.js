@@ -47,8 +47,8 @@ exports.forgotPassword = function (req, res, next) {
   }
 };
 
-exports.checkResetPasswordToken = function (req, res, next) {
-  var token = req.body.token;
+exports.resetPasswordPage = function (req, res, next) {
+  var token = req.params.token;
 
   User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }).exec(function (err, user) {
     if (err) {
@@ -57,17 +57,17 @@ exports.checkResetPasswordToken = function (req, res, next) {
     }
 
     if (!user) {
-      next({ status: 400, body: { name: 'ValidatorError', path: 'token', type: 'unknown' } });
+      res.render('getStarted/jade/resetPasswordError', {});
       return;
     }
 
-    res.send(204);
+    res.render('getStarted/jade/resetPassword', {});
   });
 };
 
 exports.resetPassword = function (req, res, next) {
   var
-    token = req.body.token,
+    token = req.params.token,
     password = req.body.password;
 
   User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }).exec(function (err, user) {
@@ -77,7 +77,7 @@ exports.resetPassword = function (req, res, next) {
     }
 
     if (!user) {
-      next({ status: 400, body: { name: 'ValidatorError', path: 'token', type: 'unknown' } });
+      res.render('getStarted/jade/resetPasswordError', {});
       return;
     }
 

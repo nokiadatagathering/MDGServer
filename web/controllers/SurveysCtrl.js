@@ -1,6 +1,6 @@
 define (function () {
     'use strict';
-    return function ($scope, $http, $location, $window, $rootScope, $state, surveysManager) {
+    return function ($scope, $http, $location, $window, $rootScope, $state, $translate, surveysManager) {
 
       $scope.surveys = {};
       $scope.predicate = 'dateCreated';
@@ -9,11 +9,12 @@ define (function () {
       $scope.surveyXML = null;
       $scope.fileTypeError = false;
       $scope.dropdownList = [
-        { text: 'All' },
-        { text: 'Published' },
-        { text: 'Unpublished' }
+        { translateId: 'surveys.All', value: 'all' },
+        { translateId: 'surveys.Published', value: 'published' },
+        { translateId: 'surveys.Unpublished', value: 'unpublished' }
       ];
-      $scope.dropdownSelect = { text: 'All' };
+
+      $scope.dropdownSelect =  { translateId: 'surveys.All', value: 'all' };
 
       $scope.getSurveyList = function () {
         $rootScope.archive = false;

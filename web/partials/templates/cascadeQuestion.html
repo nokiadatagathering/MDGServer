@@ -25,7 +25,9 @@
                         <input type="text" ng-model="item.text" class="left"
                                ng-change="item.error = false"
                                ng-keypress="editOption(item, $index, $event)">
-                        <span class="caption error" ng-show="item.error">Duplicated option value!</span>
+                        <span class="caption error" ng-show="item.error">
+                            {{ 'survey_builder.Duplicated_option_value' | translate }}
+                        </span>
                     </div>
                     <input type="button" class="button-icon single edit"
                            ng-class="{save: item.edit}" ng-click="editOption(item, $index)">
@@ -36,17 +38,21 @@
                     <input type="text" ng-model="newOption.text" class="left"
                            ng-change="newOption.error = false"
                            ng-keypress="addOption(newOption.text, $event)">
-                    <span class="caption error" ng-show="newOption.error">Duplicated option value!</span>
+                    <span class="caption error" ng-show="newOption.error">
+                        {{ 'survey_builder.Duplicated_option_value' | translate }}
+                    </span>
                 </div>
                 <input type="button" class="button-icon single edit"
                        ng-class="{save: showAddOption}" ng-click="addOption(newOption.text)">
         </li>
         </ul>
         <div class="rules">
-            <input type="button" class="cascade" value="Add a new option"
+            <input type="button" class="cascade" value="{{ 'survey_builder.Add_option' | translate }}"
                    ng-click="showAddOption = true; focus = true; newOption.error=false">
-            <input type="file" class="cascade" value="Import existing option..." csv-optioins-import question="cascades[selectedOption]" addoption="addOption">
-            <input type="button" class="cascade" value="Import existing option..." ng-click="showAddOption = false">
+            <input type="file" class="cascade" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   csv-optioins-import question="cascades[selectedOption]" addoption="addOption">
+            <input type="button" class="cascade" value="{{ 'survey_builder.Import_existing_option' | translate }}"
+                   ng-click="showAddOption = false">
         </div>
     </div>
 </div>

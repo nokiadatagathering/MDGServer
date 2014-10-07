@@ -15,11 +15,25 @@
                     <input type="button" class="button-icon single edit left"
                            ng-class="{save: surveyData.titleEdit}"
                            ng-click="editItemTitle(surveyData, 'survey', 'title')">
-                    <span class="caption">Edit this survey title</span>
+                    <span class="caption">{{ 'survey_builder.Edit_survey_title' | translate }}</span>
                 </div>
             </div>
-            <input type="button" class="save-survey" value="Save this survey"  ng-click="saveSurvey(true)">
+            <input type="button" class="save-survey" value="{{ 'survey_builder.Save_survey' | translate }}"
+                   ng-click="saveSurvey(true)">
         </div>
+
+        <!--div>DROPDOWNS TRANSLATE</div-->
+        <div ng-show="false" ng-repeat="item in dropdownList" >
+            {{dropdownList[$index].text = (item.translateId | translate) }}
+        </div>
+        <!--div>DROPDOWNS TRANSLATE</div-->
+
+        <!--div>DROPDOWNS TRANSLATE</div-->
+        <div ng-show="false" ng-repeat="item in ddListOptionsInt" >
+            {{ddListOptionsInt[$index].text = (item.translateId | translate) }}
+        </div>
+        <!--div>DROPDOWNS TRANSLATE</div-->
+
         <div class="builder">
             <ol class="category-box"
                 ui-sortable="sortableCategoriesOptions"
@@ -32,11 +46,13 @@
                          ng-class="{close: !category.isVisible}"
                          click="click" visible="category.isVisible" ng-click="click()">
                         <div class="category-title" ng-class="{close: !category.isVisible}">
-                            <h2 ng-show="!category.titleEdit" ng-model="category.title" title="{{category.title}}">{{category.title}}</h2>
+                            <h2 ng-show="!category.titleEdit"
+                                ng-model="category.title"
+                                title="{{category.title}}">{{category.title}}</h2>
 
                             <span focus-me="category.focus">
                                 <input type="text"
-                                       placeholder="Category Name"
+                                       placeholder="{{ 'survey_builder.Category_Name' | translate }}"
                                        value="{{category.title}}"
                                        class="edit-category-header"
                                        ng-model="category.title"
@@ -49,21 +65,24 @@
                             <input type="button" class="button-icon single edit"
                                    ng-class="{save: category.titleEdit}"
                                    ng-click="editItemTitle(category, 'category', 'title', $index)">
-                            <span class="caption">Edit this category title</span>
+                            <span class="caption">{{ 'survey_builder.Edit_category_title' | translate }}</span>
                             <ul class="button-group">
                                 <li>
                                     <input type="button" class="copy" ng-click="copyCategory(category)">
-                                    <span class="caption">Duplicate this category</span>
+                                    <span class="caption">{{ 'survey_builder.Duplicate_category' | translate }}</span>
                                 </li><li>
                                     <input type="button" class="delete" ng-click="deleteCategory(category)">
-                                    <span class="caption">Delete this category</span>
+                                    <span class="caption">{{ 'survey_builder.Delete_category' | translate }} </span>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="right" >
-                            <label> {{(category._questions | cascadeFilter).length}} question{{category._questions.length !== 1 ? 's' : ''}} </label>
-                            <input type="button" class="button-plus" value="Add a new question" ng-click="addQuestion(category)">
+
+                            <label translate="survey_builder.question"
+                                   translate-values="{ AMOUNT: (category._questions | cascadeFilter).length }"></label>
+                            <input type="button" class="button-plus"
+                                   value="{{ 'survey_builder.Add_question' | translate }}" ng-click="addQuestion(category)">
                         </div>
                     </div>
                     <ol class="questions-box"
@@ -84,7 +103,7 @@
                                         title="{{question.label}}">{{question.label}}
                                     </h3>
                                     <span focus-me="question.focus">
-                                        <input type="text" placeholder="Question Title"
+                                        <input type="text" placeholder="{{ 'survey_builder.Question_Title' | translate }}"
                                                class="left" value="{{question.label}}"
                                                ng-model="question.label"
                                                ng-show="question.titleEdit"
@@ -96,18 +115,25 @@
                                     <input type="button" class="button-icon single edit"
                                            ng-class="{save: question.titleEdit}"
                                            ng-click="editItemTitle(question, 'question', 'label', $parent.$index)">
-                                    <span class="caption">Edit this question title</span>
+                                    <span class="caption">{{ 'survey_builder.Edit_question_title' | translate }}</span>
                                     <ul class="button-group">
                                         <li>
-                                            <input type="button" class="copy" ng-click="copyQuestion(category, question, $parent.$index)">
-                                            <span class="caption">Duplicate this question</span>
+                                            <input type="button" class="copy"
+                                                   ng-click="copyQuestion(category, question, $parent.$index)">
+                                            <span class="caption">{{ 'survey_builder.Duplicate_question' | translate }}</span>
                                         </li><li>
-                                            <input type="button" class="delete" ng-click="deleteQuestion(category, question, $parent.$index)">
-                                            <span class="caption">Delete this question</span>
+                                            <input type="button" class="delete"
+                                                   ng-click="deleteQuestion(category, question, $parent.$index)">
+                                            <span class="caption">{{ 'survey_builder.Delete_question' | translate }}</span>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="right">
+                                    <!--div>DROPDOWNS TRANSLATE</div-->
+                                    <div ng-show="false" >
+                                        {{question.dropdownSelect.text = (question.dropdownSelect.translateId | translate)}}
+                                    </div>
+                                    <!--div>DROPDOWNS TRANSLATE</div-->
                                     <div ng-if="question.isVisible"
                                          dropdown-select="dropdownList"
                                          dropdown-model="question.dropdownSelect"
@@ -119,7 +145,7 @@
                                         <input type="checkbox"
                                                ng-checked="question.required"
                                                ng-model="question.required"
-                                               ng-disabled="question.type === 'note'">Mandatory
+                                               ng-disabled="question.type === 'note'">{{ 'survey_builder.Mandatory' | translate }}
                                     </label>
                                 </div>
                             </div>
@@ -141,17 +167,20 @@
                                          visible="question.isVisibleSkip"
                                          ng-click="click4()">
 
-                                        <h5 ng-class="{close: !question.isVisibleSkip}">SKIP LOGIC OPTIONS</h5>
+                                        <h5 ng-class="{close: !question.isVisibleSkip}">
+                                            {{ 'survey_builder.SL_OPTIONS' | translate }}
+                                        </h5>
                                     </div>
                                     <div class="skip-logic-body" ng-show="question.isVisibleSkip">
-                                        <span class="error-message" ng-show="question.slOptionError || question.slQuestionError || question.slValueError">
-                                            The highlighted conditions are in conflict with each other or wrong. You should make sure no conditions overlap before publishing your survey.
+                                        <span class="error-message"
+                                              ng-show="question.slOptionError || question.slQuestionError || question.slValueError">
+                                            {{ 'survey_builder.SL_error' | translate }}
                                         </span>
                                         <div class="logic-option default"
                                              ng-class="{error: question.errorDefaultQuestion}"
                                              ng-if="question.type==='select1'">
-                                            <span class="default left">DEFAULT</span>
-                                            <label class="left">Go to</label>
+                                            <span class="default left">{{ 'survey_builder.DEFAULT' | translate }}</span>
+                                            <label class="left">{{ 'survey_builder.Go_to' | translate }}</label>
                                             <div dropdown-select="question.skipLogicList"
                                                  dropdown-model="question.skipLogicSelect"
                                                  dropdown-item-label="text"
@@ -162,7 +191,13 @@
                                         <div class="logic-option {{question.type}}"
                                              ng-repeat="slOpt in question.skipLogicOptions"
                                              ng-class="{error: slOpt.errorOption || slOpt.errorQuestion || slOpt.errorValue}">
-                                            <label class="left">If answer is </label>
+                                            <!--div> INT SKIP LOGIC DROPDOWNS TRANSLATE</div-->
+                                            <div ng-if="question.type == 'int'" ng-show="false" >
+                                                {{slOpt.ddSelectOptions.text = (slOpt.ddSelectOptions.translateId | translate)}}
+                                            </div>
+                                            <!--div>INT SKIP LOGIC DROPDOWNS TRANSLATE</div-->
+
+                                            <label class="left">{{ 'survey_builder.If_answer_is' | translate }} </label>
                                             <div class="option-select left"
                                                  dropdown-select="slOpt.ddListOptions"
                                                  dropdown-model="slOpt.ddSelectOptions"
@@ -187,7 +222,7 @@
                                                    ng-blur="checkSLIntValueError(question)"
                                                    ng-model="slOpt.secondInput">
 
-                                            <label class="left">then skip to </label>
+                                            <label class="left">{{ 'survey_builder.then_skip_to' | translate }} </label>
                                             <div class="question-select left"
                                                  dropdown-select="slOpt.ddListQuestions"
                                                  dropdown-model="slOpt.ddSelectQuestions"
@@ -202,7 +237,7 @@
                                         </div>
                                         <input ng-disabled="question.type == 'select1' ? question.items.length <= question.skipLogicOptions.length : false"
                                                type="button"
-                                               value="Add a skip logic option"
+                                               value="{{ 'survey_builder.Add_sl_option' | translate }}"
                                                class="add-option"
                                                ng-click="addSLOption(question)">
                                     </div>
@@ -211,10 +246,10 @@
                                 <div class="mask-input"  ng-if="question.type == 'string'">
                                     <div class="mask-input-header expand close"
                                          click="click3" visible="question.isVisibleMascInput" ng-click="click3()">
-                                        <h5 ng-class="{close: !question.isVisibleMascInput}">MASK INPUT</h5>
+                                        <h5 ng-class="{close: !question.isVisibleMascInput}">{{ 'survey_builder.MASK_INPUT' | translate }}</h5>
                                     </div>
                                     <div class="mask-input-body mask" ng-show="question.isVisibleMascInput">
-                                        <p>Enter the exact layout the input must have</p>
+                                        <p>{{ 'survey_builder.MASK_INPUT_DESCRIPTION' | translate }}</p>
                                         <input type="text" placeholder="E.g. WW-BB-1234"
                                                validate-pattern
                                                regexp="maskPattern"
@@ -225,13 +260,14 @@
                                 </div>
 
                                 <div class="question-footer">
-                                    <input type="button" value="Done" ng-click="question.isVisible = false">
+                                    <input type="button" value="{{ 'survey_builder.Done' | translate }}"
+                                           ng-click="question.isVisible = false">
                                 </div>
                             </div>
                         </li>
                     </ol>
                 </li>
-                <input type="button" value="Add a new category" class="add-category" ng-click="addCategory()">
+                <input type="button" value="{{ 'survey_builder.Add_category' | translate }}" class="add-category" ng-click="addCategory()">
             </ol>
         </div>
     </form>

@@ -6,10 +6,10 @@
                        ng-checked="minChecked"
                        ng-click="disableInput('min')"
                        ng-model="minChecked" >
-                <h5>MINIMUM RANGE</h5>
+                <h5>{{ 'survey_builder.MINIMUM_RANGE' | translate }}</h5>
             </label>
         </div>
-        <label ng-if="!checkboxes">FROM</label>
+        <label ng-if="!checkboxes">{{ 'schedule_export.FROM' | translate }}</label>
         <input date-input="minRange">
     </div>
     <div class="small-field">
@@ -19,10 +19,10 @@
                        ng-checked="maxChecked"
                        ng-click="disableInput('max')"
                        ng-model="maxChecked">
-                <h5>MAXIMUM RANGE</h5>
+                <h5>{{ 'survey_builder.MAXIMUM_RANGE' | translate }}</h5>
             </label>
         </div>
-        <label ng-if="!checkboxes">TO</label>
+        <label ng-if="!checkboxes">{{ 'schedule_export.TO' | translate }}</label>
         <input date-input="maxRange">
     </div>
 </div>

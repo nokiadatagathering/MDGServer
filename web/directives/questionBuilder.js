@@ -46,6 +46,11 @@ define(function () {
             $element.find('.cascade2-tmpl').html(cascadeParentTmpl);
           };
 
+          $scope.deleteDefaultDate = function (question) {
+            question.defaultValue='';
+            $rootScope.$broadcast('dirty_survey');
+          }
+
           $scope.addOption = function (text, event) {
             if (event && event.keyCode !== 13) {
               return;
@@ -131,7 +136,7 @@ define(function () {
             var index = $scope.question.items.indexOf(item);
 
             if ($scope.question.items.length === 1) {
-              $rootScope.$broadcast("empty_question", $scope.question.dropdownSelect.text);
+              $rootScope.$broadcast("empty_question", $scope.question.dropdownSelect.value);
               return;
             }
             if ($scope.question.cascades.cascade2 && $scope.question.cascades.cascade2[item.value]) {

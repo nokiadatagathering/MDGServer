@@ -1,16 +1,16 @@
 <div class="overlay" ng-click="goState('^')"></div>
 <div class="window" ng-controller="ResultsCtrl">
     <div class="window-header">
-        <h2>Schedule an Export</h2>
+        <h2>{{ 'schedule_export.Schedule_an_Export' | translate }}</h2>
         <div class="close-window" ng-click="goState('^')">&#10006;</div>
     </div>
     <div class="window-body">
 
         <form name="exportScheduleForm" id="export-schedule" ng-model="exportScheduleForm" ng-submit="createSubscription()">
             <div class=".export-schedule">
-                <p>All results received between the 2 dates will be emailed to the address entered below.</p>
+                <p>{{ 'schedule_export.tip' | translate }}</p>
                 <div class="small-field validation-field">
-                    <label>FROM</label>
+                    <label>{{ 'schedule_export.FROM' | translate }}</label>
                     <input type="text" name="from" id="from" class="select-field" required
                            readonly="readonly"
                            placeholder="{{today| date: 'dd/MM/yyyy'}}"
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="small-field validation-field">
-                    <label>TO</label>
+                    <label>{{ 'schedule_export.TO' | translate }}</label>
                     <input type="text" name="to" id="to" class=" select-field" required
                            readonly="readonly"
                            placeholder="{{today| date: 'dd/MM/yyyy'}}"
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="long-field validation-field">
-                    <label>EMAIL TO</label>
+                    <label>{{ 'schedule_export.EMAIL_TO' | translate }}</label>
                     <input type="email" name="email" required
                            placeholder="user@example.com"
                            ng-model="schedule.email"
@@ -39,7 +39,7 @@
                 </div>
 
                 <ul class="actual-subscriptions" ng-if="subscriptions.length !== 0">
-                    <p>Actual subscriptions </p>
+                    <p>{{ 'schedule_export.Actual_subscriptions' | translate }}</p>
                     <li ng-repeat="subscription in subscriptions" id={{subscription._id}}>
                         <div class="email tooltip" title="{{subscription.email}}">{{subscription.email}}</div>
                         <div class="from">{{subscription.from | date: 'dd/MM/yyyy'}}</div>
@@ -48,7 +48,7 @@
                     </li>
                 </ul>
 
-                <input type="submit" value="Schedule this Export" class="export-schedule-button">
+                <input type="submit" value="{{ 'schedule_export.Schedule_this_Export' | translate }}" class="export-schedule-button">
             </div>
         </form>
     </div>

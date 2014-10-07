@@ -6,42 +6,42 @@ define(function () {
     $scope.digitsPattern = "^[0-9]*$";
     $scope.surveyData = {};
     $scope.ddListOptionsInt = [
-      { text: 'equal', value: '=' },
-      { text: 'between', value: '<>' },
-      { text: 'less than', value: '<' },
-      { text: 'greater than', value: '>' }
+      { translateId: 'survey_builder.SL_Int_conditions.equal', value: '=' },
+      { translateId: 'survey_builder.SL_Int_conditions.between', value: '<>' },
+      { translateId: 'survey_builder.SL_Int_conditions.less_than', value: '<' },
+      { translateId: 'survey_builder.SL_Int_conditions.greater_than', value: '>' }
     ];
     $scope.ddSelectOptionsInt = {
-     equal: { text: 'equal', value: '=' },
-     between: { text: 'between', value: '<>' },
-     less: { text: 'less than', value: '<' },
-     greater: { text: 'greater than', value: '>' }
+     equal: { translateId: 'survey_builder.SL_Int_conditions.equal', value: '=' },
+     between: { translateId: 'survey_builder.SL_Int_conditions.between', value: '<>' },
+     less: { translateId: 'survey_builder.SL_Int_conditions.less_than', value: '<' },
+     greater: { translateId: 'survey_builder.SL_Int_conditions.greater_than', value: '>' }
     };
     $scope.dropdownList = [
-      { text: 'Descriptive', value: 'string' },
-      { text: 'Integer', value: 'int' },
-      { text: 'Decimal', value: 'decimal' },
-      { text: 'Date', value: 'date' },
-      { text: 'Time', value: 'time' },
-      { text: 'Location', value: 'geopoint' },
-      { text: 'Image', value: 'binary' },
-      { text: 'Exclusive Choice', value: 'select1' },
-      { text: 'Multiple Choice', value: 'select' },
-      { text: 'Note', value: 'note' },
-      { text: 'Cascading Select', value: 'cascade1' }
+      { translateId: 'survey_builder.question_types.string', value: 'string' },
+      { translateId: 'survey_builder.question_types.int', value: 'int' },
+      { translateId: 'survey_builder.question_types.decimal', value: 'decimal' },
+      { translateId: 'survey_builder.question_types.date', value: 'date' },
+      { translateId: 'survey_builder.question_types.time', value: 'time' },
+      { translateId: 'survey_builder.question_types.geopoint', value: 'geopoint' },
+      { translateId: 'survey_builder.question_types.binary', value: 'binary' },
+      { translateId: 'survey_builder.question_types.select1', value: 'select1' },
+      { translateId: 'survey_builder.question_types.select', value: 'select' },
+      { translateId: 'survey_builder.question_types.note', value: 'note' },
+      { translateId: 'survey_builder.question_types.cascade', value: 'cascade1' }
     ];
     $scope.dropdownSelect = {
-      string: { text: 'Descriptive', value: 'string' },
-      int: { text: 'Integer', value: 'int' },
-      decimal: { text: 'Decimal', value: 'decimal' },
-      date: { text: 'Date', value: 'date' },
-      time: { text: 'Time', value: 'time' },
-      geopoint: { text: 'Location', value: 'geopoint' },
-      binary: { text: 'Image', value: 'binary' },
-      select1: { text: 'Exclusive Choice', value: 'select1' },
-      select: { text: 'Multiple Choice', value: 'select' },
-      note: { text: 'Note', value: 'note' },
-      cascade1: { text: 'Cascading Select', value: 'cascade1' }
+      string: { translateId: 'survey_builder.question_types.string', value: 'string' },
+      int: { translateId: 'survey_builder.question_types.int', value: 'int' },
+      decimal: { translateId: 'survey_builder.question_types.decimal', value: 'decimal' },
+      date: { translateId: 'survey_builder.question_types.date', value: 'date' },
+      time: { translateId: 'survey_builder.question_types.time', value: 'time' },
+      geopoint: { translateId: 'survey_builder.question_types.geopoint', value: 'geopoint' },
+      binary:  { translateId: 'survey_builder.question_types.binary', value: 'binary' },
+      select1: { translateId: 'survey_builder.question_types.select1', value: 'select1' },
+      select: { translateId: 'survey_builder.question_types.select', value: 'select' },
+      note: { translateId: 'survey_builder.question_types.note', value: 'note' },
+      cascade1: { translateId: 'survey_builder.question_types.cascade', value: 'cascade1' }
     };
 
     $scope.sortableQuestionsOptions = {
@@ -118,7 +118,7 @@ define(function () {
         addOption: false,
         constraint: '',
         dropdownSelect: {
-          text: 'Descriptive',
+          translateId: 'survey_builder.question_types.string',
           value: 'string'
         },
         isVisible: true,
@@ -970,6 +970,7 @@ define(function () {
           questionId = idMap[cascade.relevantOptions.questionId] ? idMap[cascade.relevantOptions.questionId] : question.id;
           cascade.relevantOptions.questionId = questionId;
           cascade.relevantOptions.categoryId = categoryId;
+          cascade.parentid = question.id;
         };
 
       surveyDirty = true;
@@ -983,7 +984,7 @@ define(function () {
           question.tagName = 'select';
           break;
         case 'select1':
-        case 'cascade':
+        case 'cascade1':
           question.tagName = 'select1';
           break;
         default:
@@ -996,7 +997,6 @@ define(function () {
       }
 
       if (question.type == 'cascade1' && !question.cascades) {
-        question.tagName = 'select1';
         question.cascades = {};
         question.cascades.cascade2 = {};
       } else {
@@ -1114,7 +1114,7 @@ define(function () {
       surveyDirty = true;
 
       if (question.items.length === 1) {
-        $rootScope.$broadcast("empty_question", question.dropdownSelect.text);
+        $rootScope.$broadcast("empty_question", question.dropdownSelect.value);
         return;
       }
 
