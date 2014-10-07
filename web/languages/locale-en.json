@@ -192,7 +192,7 @@
     "defaultValueError": "Default value should be in min-max range.",
     "Add_option": "Add a new option",
     "Import_existing_option": "Import existing option...",
-    "Notes_description": "Вопрос типа 'заметка' представляет собой сообщение, подсказку или инструкцию для человека, который заполняет опрос. Данный тип вопроса носит сугубо информативный характер и не предусматривает возможность ответа."
+    "Notes_description": "Notes are no-input text prompts which can provide notes, hints, instructions or messages to the surveyor or respondent"
   },
   "notifications": {
     "deleted_result": "Deleted {LENGTH, plural, one{1 result} other{ # results}} for {TITLE} survey",

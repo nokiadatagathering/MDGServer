@@ -46,6 +46,11 @@ define(function () {
             $element.find('.cascade2-tmpl').html(cascadeParentTmpl);
           };
 
+          $scope.deleteDefaultDate = function (question) {
+            question.defaultValue='';
+            $rootScope.$broadcast('dirty_survey');
+          }
+
           $scope.addOption = function (text, event) {
             if (event && event.keyCode !== 13) {
               return;

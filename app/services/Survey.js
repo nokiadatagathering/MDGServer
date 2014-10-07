@@ -1,5 +1,6 @@
 var
   _ = require('underscore'),
+  moment = require('moment'),
   Survey = require('../models/Survey');
 
 function findParentId (categoryData, relevant) {
@@ -16,7 +17,7 @@ function findParentId (categoryData, relevant) {
   if (parentQuestion.type === 'cascade1') {
     return parentQuestion.id;
   } else {
-    findParentId (categoryData, parentQuestion.relevant);
+    return findParentId (categoryData, parentQuestion.relevant);
   }
 }
 
@@ -38,6 +39,10 @@ function getQuestions (categoryData, surveyData) {
       if (question.type !== 'cascade1') {
         question.parentid = findParentId(categoryData, question.relevant);
       }
+    }
+
+    if (question.type === 'date' && question.defaultValue) {
+      question.defaultValue = moment(question.defaultValue).format('YYYY-MM-DD');
     }
 
     if (questionData.items) {

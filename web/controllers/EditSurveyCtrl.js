@@ -984,7 +984,7 @@ define(function () {
           question.tagName = 'select';
           break;
         case 'select1':
-        case 'cascade':
+        case 'cascade1':
           question.tagName = 'select1';
           break;
         default:
@@ -997,7 +997,6 @@ define(function () {
       }
 
       if (question.type == 'cascade1' && !question.cascades) {
-        question.tagName = 'select1';
         question.cascades = {};
         question.cascades.cascade2 = {};
       } else {
