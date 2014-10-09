@@ -9,7 +9,7 @@
         <h5>{{ 'survey_builder.MAXIMUM_ANSWER_LENGTH' | translate }}</h5>
         <input type="text" value="{{question.maxLength}}"
                validate-pattern
-               regexp="digitsPattern"
+               regexp="maxLengthPattern"
                value-to-check="question.maxLength"
                ng-model="question.maxLength">
         <label>{{ 'survey_builder.Symbols' | translate }}</label>

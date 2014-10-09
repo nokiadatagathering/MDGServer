@@ -88,6 +88,10 @@ define(function () {
                 $(defaultDate).datepicker('option', targetDate, $(targetEl).datepicker('getDate'));
                 $(otherEl).datepicker('option', targetDate, $(targetEl).datepicker('getDate'));
 
+                if ($(defaultDate).datepicker('getDate')) {
+                  $scope.$parent.$parent.question.defaultValue = convertDate($(defaultDate).datepicker('getDate'));
+                }
+
                 return;
               }
 
