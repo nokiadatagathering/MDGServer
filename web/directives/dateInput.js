@@ -33,8 +33,10 @@ define(function () {
           minDate: minDate,
           maxDate: maxDate
         });
+
+        element.datepicker( "setDate",  scope.dateInput);
       },
-      template: '<input type="text" readonly="readonly" class="select-field" value="{{ dateInput }}">'
+      template: '<input type="text" readonly="readonly" class="select-field">'
     };
   };
 });

@@ -16,6 +16,7 @@ define(function () {
         '$scope', '$element', '$attrs', '$rootScope', '$compile', function ($scope, $element, $attrs, $rootScope, $compile) {
           $scope.question.addOption = false;
           $scope.newOption = {};
+          $scope.maxLengthPattern = "((^[1-9][0-9]*$)|(^$))";
           $scope.digitsPattern = "^[0-9]*$";
           $scope.decimalPattern = "^[0-9]*\\.?[0-9]*$";
 
