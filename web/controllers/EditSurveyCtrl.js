@@ -1031,6 +1031,7 @@ define(function () {
       question.slQuestionError = false;
       question.slOptionError = false;
       question.errorDefaultQuestion = false;
+      question.defaultValueError = false;
 
       $rootScope.surveyErrors.slValueError = false;
       $rootScope.surveyErrors.slQuestionError = false;
