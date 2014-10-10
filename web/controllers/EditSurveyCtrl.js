@@ -343,11 +343,12 @@ define(function () {
         var
           constraint = '',
           parseParam = function (param) {
-            if (typeof(param) === 'string') {
-              param = param.split('/');
+            param = (typeof(param) === 'string') ? param.split('/') : [param];
+
+            if (param.length === 3) {
               return param[2] + '-' + param[1] + '-' + param[0];
             } else {
-              return param;
+              return param[0];
             }
           };
 
@@ -1221,8 +1222,9 @@ define(function () {
             }
 
             if (question.type === 'decimal' || question.type === 'int' || question.type === 'date') {
-              question.minValue = getMinMaxValue(question.constraint).minValue;
-              question.maxValue = getMinMaxValue(question.constraint).maxValue;
+              var constraint = getMinMaxValue(question.constraint);
+              question.minValue = constraint.minValue;
+              question.maxValue = constraint.maxValue;
               question.minChecked = !!question.minValue;
               question.maxChecked = !!question.maxValue;
             }

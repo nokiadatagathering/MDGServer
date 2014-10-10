@@ -47,9 +47,9 @@ define(function () {
           };
 
           $scope.deleteDefaultDate = function (question) {
-            question.defaultValue='';
+            question.defaultValue = '';
             $rootScope.$broadcast('dirty_survey');
-          }
+          };
 
           $scope.addOption = function (text, event) {
             if (event && event.keyCode !== 13) {
