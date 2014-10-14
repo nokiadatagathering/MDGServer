@@ -1,0 +1,44 @@
+#getStarted {
+  section {    
+    background-color: #fff;
+  }
+  a {
+    color: #558a10;
+  }
+  h1 {
+    + p {
+      margin-bottom: 0;    
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+  ul > li {
+    clear: both;
+    padding-top: 40px;
+    >img {
+      height: 300px;
+      width: 300px;
+      margin-right: 20px;
+      border: 1px solid #d2d2d2;
+      float: left;
+    }
+    > *:not(img) {
+      margin-left: 320px !important;
+    }
+    >a[name] {
+      display: none;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+      text-align: left;
+    }
+    p {
+      font-size: 19px;
+      margin: 0;
+      margin-top: 25px;
+    }
+  }
+}

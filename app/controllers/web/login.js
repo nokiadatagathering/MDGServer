@@ -37,7 +37,7 @@ exports.activate = function (req, res, next) {
         return;
       }
 
-      res.redirect('/home#login');
+      res.redirect('/#/login');
   });
 };
 
