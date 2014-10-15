@@ -572,11 +572,9 @@ html
           h1 LOGIN
           form
             label.col-left
-              input(type='text', placeholder='Enter your username...')
-              .error
-                span Unknown username or invalid password
+              input(type='text', name='username', placeholder='Enter your username...')
             label.col-right
-              input(type='password', placeholder='Enter your password...')
+              input(type='password', name='password', placeholder='Enter your password...')
               .error
             a(href='#/forgotPassword') Forgot your password?
             button(type='submit') Login
@@ -584,77 +582,63 @@ html
       section
         div
           h1 REGISTER
-          form
+          form(action='signup', met='post', autocomplete="off")
             label.col-left
-              input(type='text', placeholder='First name', data-validation='len(2, 60);')
+              input(type='text', placeholder='First name', name='firstName', data-validation='len(2, 60);')
               .error
                 span(data-validation-msg='len')
                   | This field must have at least 2 and cannot be longer than 60 characters.
             label.col-right
-              input(type='text', placeholder='Last name', data-validation='len(2, 60);')
+              input(type='text', placeholder='Last name', name='lastName', data-validation='len(2, 60);')
               .error
                 span(data-validation-msg='len')
                   | This field must have at least 2 characters.
             label.col-left
-              input(type='text', placeholder='Username', data-validation='len(5,13);isAlpha;')
+              input(type='text', placeholder='Username', name='username', data-validation='len(5,13);isAlpha;uniqeUsrName;')
               .error
+                span(data-validation-msg='uniqeUsrName')
+                  | This username is already used.
                 span(data-validation-msg='len')
                   | This field must have at least 5 and cannot be longer than 13 characters.
                 span(data-validation-msg='isAlpha')
                   | Nickname can contain only numbers, periods and Latin letters.
             label.col-right
-              input(type='text', placeholder='Email', data-validation='len(5,13);isEmail;')
+              input(type='text', placeholder='Email', name='email', data-validation='isEmail;')
               .error
-                span(data-validation-msg='len')
-                  | This field must have at least 5 and cannot be longer than 13 characters.
                 span(data-validation-msg='isEmail')
                   | This is not a valid email.
             label.col-left
-              input(type='password', placeholder='Password', data-validation='len(8,20);', name='pass')
+              input(type='password', placeholder='Password', name='password', data-validation='len(8,20);')
               .error
                 span(data-validation-msg='len')
                   | This field must have at least 8 and cannot be longer than 20 characters.
             label.col-right
-              input(type='password', placeholder='Confirm password', data-validation='isMatch(pass)')
+              input(type='password', placeholder='Confirm password', name='confirmpass', data-validation='isMatch(password)')
               .error
                 span(data-validation-msg='isMatch')
                   | Passwords do not match
             label.col-left
-              input(type='text', placeholder='Phone number', data-validation='len(10,15);isNumber;')
+              input(type='text', placeholder='Phone number', name='phone', data-validation='len(10,15);isNumber;')
               .error
                 span(data-validation-msg='len')
                   | This field must have at least 10 and cannot be longer than 15 characters.
                 span(data-validation-msg='isNumber')
                   | This is not a valid phone number.
             label.col-right
-              input(type='text', placeholder='Company', data-validation='len(2, 60);')
+              input(type='text', placeholder='Company', name='company', data-validation='len(2, 60);')
               .error
                 span(data-validation-msg='len')
                   | This field must have at least 2 and cannot be longer than 60 characters.
             label.col-left
-              input(type='text', placeholder='Industry', data-validation='len(2, 60);')
+              input(type='text', placeholder='Industry', name='industry', data-validation='len(2, 60);')
               .error
                 span(data-validation-msg='len')
                   | This field must have at least 2 and cannot be longer than 60 characters.
             label.col-right
-              select(placeholder='Country', data-validation='len(1);')
+              select(placeholder='Country', name='country', data-validation='len(1);')
                 option(value='') Country
-                option(value='Afghanistan') Afghanistan
-                option(value='Albania') Albania
-                option(value='Algeria') Algeria
-                option(value='American Samoa') American Samoa
-                option(value='Andorra') Andorra
-                option(value='Angola') Angola
-                option(value='Anguilla') Anguilla
-                option(value='Antarctica') Antarctica
-                option(value='Antigua and Barbuda') Antigua and Barbuda
-                option(value='Argentina') Argentina
-                option(value='Armenia') Armenia
-                option(value='Aruba') Aruba
-                option(value='Australia') Australia
-                option(value='Austria') Austria
-                option(value='Azerbajain') Azerbajain
-                option(value='Bahamas') Bahamas
+                each country in countries
+                    option(value=country) #{country}
               .error
                 span(data-validation-msg='len')
                   | This field cannot be blank.
@@ -663,6 +647,8 @@ html
       section
         div
           h1 FORGOT YOUR PASSWORD?
+          .msg.hidden
+            p If you have entered a valid email, please check it for further instructions.
           form
             p
               | Please enter your username and email to reset your password.
@@ -670,13 +656,40 @@ html
               | If you forgot your username, please enter your email
               | only and we will send all usernames related to this email.
             label.col-left
-              input(type='text', placeholder='Username...', data-validation='len(1);')
-              .error
-                span(data-validation-msg='len')
-                  | This field cannot be blank.
+              input(type='text', name='username', placeholder='Username...')
             label.col-right
-              input(type='text', placeholder='Email...', data-validation='isEmail;')
+              input(type='text', name='email', placeholder='Email...', data-validation='isEmail;')
               .error
                 span(data-validation-msg='isEmail')
                   | This is not a valid email.
             button(type='submit') Proceed
+    article#resetPassword.hidden
+      section
+        div
+          h1 RESET PASSWORD
+          form
+            label.col-left
+              input(type='password', placeholder='Enter new password...', name='password', data-validation='len(8,20);')
+              .error
+                span(data-validation-msg='len')
+                  | This field must have at least 8 and cannot be longer than 20 characters.
+            label.col-right
+              input(type='password', placeholder='Confirm new password...', name='confirmpass', data-validation='isMatch(password)')
+              .error
+                span(data-validation-msg='isMatch')
+                  | Passwords do not match
+            button(type='submit') Apply
+    article#resetPasswordError.hidden
+      section
+        div
+          h1 RESET PASSWORD
+          .msg
+            p Password reset token is invalid or has expired.
+          
+    .modal.success-registration.hidden
+      .overlay
+      .window
+        .window-body
+          div You have successfully created an account on the server! Please check your email to continue with the registration process. If you cannot find the email in your inbox then please check your Spam folder
+            input(type="button" value="OK")
+

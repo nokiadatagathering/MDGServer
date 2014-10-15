@@ -200,6 +200,7 @@ ul {
 .col-right {
   float: right;
   width: 48%;
+  margin-right: 6px;
 }
 .col-right:after {
   clear: both;
@@ -616,6 +617,14 @@ p {
 #register section {
   background-color: #fff;
 }
+#register section form input[name="phone"] {
+  background-image: url(../icons/plus-gray-16px.png);
+  background-position: 6px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  padding-left: 20px;
+  width: 210px;
+}
 #register section form button {
   margin-left: 198px;
 }
@@ -683,26 +692,33 @@ p {
   -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
-#forgotPassword section {
+#forgotPassword section,
+#resetPasswordError section,
+#resetPassword section {
   background-color: #fff;
 }
-#forgotPassword section div.msg p {
+#forgotPassword section .msg p,
+#resetPasswordError section .msg p,
+#resetPassword section .msg p {
   font-size: 23px;
   color: #787878;
   font-family: NokiaPureTextLight;
 }
-#forgotPassword section form p {
+#forgotPassword section form p,
+#resetPasswordError section form p,
+#resetPassword section form p {
   font-size: 15px;
   font-family: NokiaPureTextLight;
   margin: 6px 0 15px 1px;
   color: #787878;
 }
-#forgotPassword section form .col-right {
-  margin-right: 6px;
-}
-#forgotPassword section form input {
+#forgotPassword section form input,
+#resetPasswordError section form input,
+#resetPassword section form input {
   margin-top: 3px;
 }
-#forgotPassword section form button {
+#forgotPassword section form button,
+#resetPasswordError section form button,
+#resetPassword section form button {
   margin-left: 213px;
 }

@@ -165,7 +165,6 @@ exports.run = function (mongoUrl, port, callback) {
     app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
 
     app.post('/forgotPassword', passwordResetCntr.forgotPassword);
-    app.get('/resetPassword/:token', passwordResetCntr.resetPasswordPage);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
 
     app.get('/languages', getStartedCntr.languages);

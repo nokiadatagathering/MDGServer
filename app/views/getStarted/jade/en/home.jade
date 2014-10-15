@@ -636,6 +636,7 @@ html
                   | This field must have at least 2 and cannot be longer than 60 characters.
             label.col-right
               select(placeholder='Country', name='country', data-validation='len(1);')
+                option(value='') Country
                 each country in countries
                     option(value=country) #{country}
               .error
@@ -655,16 +656,36 @@ html
               | If you forgot your username, please enter your email
               | only and we will send all usernames related to this email.
             label.col-left
-              input(type='text', name='username', placeholder='Username...', data-validation='len(1);')
-              .error
-                span(data-validation-msg='len')
-                  | This field cannot be blank.
+              input(type='text', name='username', placeholder='Username...')
             label.col-right
               input(type='text', name='email', placeholder='Email...', data-validation='isEmail;')
               .error
                 span(data-validation-msg='isEmail')
                   | This is not a valid email.
             button(type='submit') Proceed
+    article#resetPassword.hidden
+      section
+        div
+          h1 RESET PASSWORD
+          form
+            label.col-left
+              input(type='password', placeholder='Enter new password...', name='password', data-validation='len(8,20);')
+              .error
+                span(data-validation-msg='len')
+                  | This field must have at least 8 and cannot be longer than 20 characters.
+            label.col-right
+              input(type='password', placeholder='Confirm new password...', name='confirmpass', data-validation='isMatch(password)')
+              .error
+                span(data-validation-msg='isMatch')
+                  | Passwords do not match
+            button(type='submit') Apply
+    article#resetPasswordError.hidden
+      section
+        div
+          h1 RESET PASSWORD
+          .msg
+            p Password reset token is invalid or has expired.
+          
     .modal.success-registration.hidden
       .overlay
       .window

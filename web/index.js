@@ -157,9 +157,10 @@
                 }
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 ) {
-                        if(xmlhttp.status == 200) {
-                            var modal = document.querySelector('.success-registration').className;
-                            modal = modal.replace('hidden');
+                        if(xmlhttp.status == 204) {
+                            document.querySelector('#register form').reset();
+                            var modal = document.querySelector('.success-registration');
+                            modal.className = modal.className.replace('hidden', '');
                        }
                     }
                 }
@@ -214,7 +215,32 @@
                 xmlhttp.send(encodeURIComponent('email') + '=' + encodeURIComponent(evt.target.email.value.trim()) + '&' + encodeURIComponent('username') + '=' + encodeURIComponent(evt.target.username.value.trim()));
             }
         });
+    }
 
+    function resetPassword() {
+        var form = document.querySelector('#resetPassword form');
+
+        form.style.display = 'block';
+        form.addEventListener('blur', function (evt) {
+            validate(evt.target);
+        }, true);
+        form.addEventListener('submit', function (evt) {
+            evt.preventDefault();
+            if (validateForm(evt.target)) {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 ) {
+                        if(xmlhttp.status == 200 || xmlhttp.status == 204) {
+                            evt.target.reset();
+                            window.document.location.href = '/#/login';
+                       }
+                    }
+                }
+                xmlhttp.open("post", '/resetPassword/' + window._token, false);
+                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+                xmlhttp.send(encodeURIComponent('password') + '=' + encodeURIComponent(btoa(evt.target.password.value.trim())));
+            }
+        });
     }
 
     function login() {
@@ -244,7 +270,6 @@
                 showLoginErr('Missing credentials');
             }
         });
-
     }
     
     function showArticle() {
@@ -262,6 +287,10 @@
         if (id == 'surveys') {
             location.reload();
             return;
+        } else if (id == 'forgotPassword') {
+            document.querySelector('#forgotPassword form').style.display = 'block';
+            document.querySelector('#forgotPassword .msg').style.display = 'none';
+            document.querySelector('#forgotPassword form').reset();
         }
         for (var i = 0; i < articles.length; i++) {
             articles[i].style.display = "none";
@@ -269,14 +298,21 @@
 
         if (id.indexOf('#') != -1) {
             var parts = id.split("#");
-            $(parts[0]).style.display = "block";   
+            $(parts[0]).style.display = "block";
             document.querySelector("li[data-step=" + parts[1] + "]").scrollIntoView();
             return;
         }
+        if (id.indexOf('/') != -1) {
+            var parts = id.split("/");
+            if (parts[0] == 'resetPassword') {
+                id = parts[0];
+                window._token = parts[1];
+            }
+        }
         $(id).style.display = "block";
-        register();
-        remindPass();
-        login();
+        //register();
+        //remindPass();
+        //login();
     }
 
     function showLoginErr(msg) {
@@ -308,6 +344,10 @@
                 document.cookie = 'NG_TRANSLATE_LANG_KEY=%22' + target.attributes.value.value + '%22';
                 location.reload();
             });
-        })
+        });
+        register();
+        remindPass();
+        resetPassword();
+        login();
     };
 }());

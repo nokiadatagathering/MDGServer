@@ -91,7 +91,7 @@ function getOptionsForForgotUsernameEmail (params, fileName, subject) {
 
   html = compiledJade({
     users: params.users,
-    link: params.url + '/home#forgotPassword'
+    link: params.url + '/#/forgotPassword'
   });
 
   return {
@@ -110,7 +110,7 @@ function getOptionsForResetPasswordEmail (params, fileName, subject) {
 
   html = compiledJade({
     username: params.user.username,
-    link: params.url + '/resetPassword/' + params.user.resetPasswordToken
+    link: params.url + '/#/resetPassword/' + params.user.resetPasswordToken
   });
 
   return {
