@@ -1,5 +1,7 @@
 var
   MailService = require('../../services/Mail'),
+  Configuration = require('../../helpers/Configuration'),
+  preferred = Configuration.get('languages.preferred'),
 
   User = require('../../models/User');
 
@@ -47,24 +49,6 @@ exports.forgotPassword = function (req, res, next) {
   }
 };
 
-exports.resetPasswordPage = function (req, res, next) {
-  var token = req.params.token;
-
-  User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }).exec(function (err, user) {
-    if (err) {
-      next({ status: 400, body: err });
-      return;
-    }
-
-    if (!user) {
-      res.render('getStarted/jade/resetPasswordError', {});
-      return;
-    }
-
-    res.render('getStarted/jade/resetPassword', {});
-  });
-};
-
 exports.resetPassword = function (req, res, next) {
   var
     token = req.params.token,
@@ -77,7 +61,7 @@ exports.resetPassword = function (req, res, next) {
     }
 
     if (!user) {
-      res.render('getStarted/jade/resetPasswordError', {});
+      res.redirect('/#/resetPasswordError');
       return;
     }
 

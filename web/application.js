@@ -68,7 +68,7 @@ define([
         var status = response.status;
 
         if (status == 401) {
-          window.document.location.href = '/home';
+          window.document.location.href = '/';
         }
 
         return $q.reject(response);
@@ -282,7 +282,7 @@ define([
       var logout = function () {
         profileManager.logout().then(
           function success () {
-            window.document.location.href = '/home';
+            window.document.location.href = '/';
           },
 
           function failed (err) {

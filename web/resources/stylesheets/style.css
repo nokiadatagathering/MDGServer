@@ -1,0 +1,724 @@
+@font-face {
+  font-family: 'NokiaPureText';
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.eot);
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureTextBold';
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.eot);
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureTextLight';
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.eot);
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.woff) format('woff');
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.svg) format('svg');
+  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.ttf) format("truetype");
+  font-weight: lighter;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 1.5;
+  width: 100%;
+  font-family: Helvetica-Neue, Helvetica, Arial, sans-serif;
+}
+.hidden {
+  display: none;
+}
+.bold {
+  font-family: NokiaPureTextBold;
+}
+header {
+  background-color: #2468a0;
+}
+header img {
+  float: left;
+  margin-top: 15px;
+}
+header h1 {
+  font-size: 16px;
+  float: left;
+}
+article section {
+  clear: both;
+  overflow: hidden;
+}
+article section > div {
+  width: 1000px;
+  margin: 0 auto;
+}
+article section > div > ul {
+  display: inline-block;
+  margin-bottom: 40px;
+}
+article section:nth-child(odd) {
+  background-color: #ebebeb;
+}
+article section h1 {
+  margin: 0;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  font-size: 23px;
+  text-align: center;
+}
+article section h2 {
+  font-size: 23px;
+  margin: 50px 0 25px;
+  text-align: center;
+}
+article section .nptlHeader {
+  margin: 0;
+  margin: 0 125px 25px 150px;
+  text-align: left;
+  font-family: NokiaPureTextLight;
+  font-size: 24px;
+  font-weight: normal;
+}
+article section .markedList li {
+  list-style-type: disc;
+  margin-top: 5px;
+  margin-left: 40px;
+  font-size: 17px;
+}
+article section form {
+  width: 50%;
+  margin-left: 240px;
+  margin-top: 45px;
+  padding: 10px;
+  padding-top: 13px;
+  padding-left: 14px;
+  background-color: #ebebeb;
+}
+article section form label {
+  position: relative;
+}
+article section form label div.error {
+  position: absolute;
+  background-color: #c85950;
+  top: -8px;
+  width: 210px;
+  height: auto;
+  font-size: 13px;
+  font-family: NokiaPureTextLight;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  overflow: visible;
+  display: none;
+}
+article section form label div.error:after {
+  content: '';
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+}
+article section form label div.error span {
+  display: none;
+}
+article section form label.col-left div.error {
+  left: -230px;
+}
+article section form label.col-left div.error:after {
+  right: -6px;
+  border-left: 6px solid #c85950;
+}
+article section form label.col-right div.error {
+  right: -230px;
+}
+article section form label.col-right div.error:after {
+  left: -6px;
+  border-right: 6px solid #c85950;
+}
+article section form input {
+  outline: none;
+  width: 220px;
+  height: 13px;
+  padding: 10px;
+  margin-bottom: 13px;
+  margin-left: 1px;
+  box-shadow: 0px 2px 2px #e7e7e7 inset;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  border: 1px solid #d2d2d2;
+  font-family: NokiaPureText;
+  font-size: 15px;
+  color: #000;
+}
+article section form select {
+  outline: none;
+  width: 242px;
+  height: 35px;
+  padding: 6px;
+  margin-bottom: 13px;
+  margin-left: 1px;
+  box-shadow: 0px 2px 2px #e7e7e7 inset;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  border: 1px solid #d2d2d2;
+  font-family: NokiaPureText;
+  font-size: 15px;
+  color: #000;
+}
+article section form button {
+  outline: none;
+  border-radius: 5px;
+  height: 35px;
+  padding: 1px 6px;
+  border: 1px solid #d2d2d2;
+  background-color: #fafafa;
+  font-family: NokiaPureTextBold;
+  font-size: 15px;
+  margin-top: 7px;
+  box-shadow: 0 -1px 2px #e7e7e7 inset;
+}
+article section form button:active {
+  backgroung-color: blue;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.col-left {
+  float: left;
+  width: 48%;
+}
+.col-right {
+  float: right;
+  width: 48%;
+  margin-right: 6px;
+}
+.col-right:after {
+  clear: both;
+  float: none;
+}
+.video {
+  border: 0;
+  margin: 0 200px 50px;
+  width: 640px;
+  height: 390px;
+}
+p {
+  font-size: 17px;
+}
+#mainMenu {
+  margin: 0;
+  width: 100%;
+  height: 60px;
+  color: #fff;
+}
+#mainMenu a {
+  color: #fff;
+}
+#mainMenu a h1 {
+  line-height: 60px;
+  margin: 0px;
+  margin-right: 75px;
+  margin-left: 15px;
+  float: left;
+  display: inline;
+  font-family: NokiaPureTextLight;
+}
+#mainMenu a h1 b {
+  font-family: NokiaPureTextBold;
+}
+#mainMenu nav {
+  margin: 0 auto;
+  width: 1000px;
+}
+#mainMenu nav > ul > li {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 60px;
+  font-family: NokiaPureTextLight;
+}
+#mainMenu nav > ul > li a {
+  color: #fff;
+}
+#mainMenu nav > ul > li a:link {
+  text-decoration: none;
+}
+#mainMenu nav > ul > li a.language-select {
+  padding-right: 40px;
+  cursor: pointer;
+}
+#mainMenu nav > ul > li a.language-select .dropdown {
+  opacity: 0;
+  position: absolute;
+  padding: 10px 0;
+  background-color: #fff;
+  z-index: 2;
+  font-family: NokiaPureText;
+  font-size: 16px;
+  width: 200px;
+  top: 50px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  border-radius: 5px;
+}
+#mainMenu nav > ul > li a.language-select .dropdown.open {
+  opacity: 1;
+}
+#mainMenu nav > ul > li a.language-select .dropdown li {
+  display: block;
+  color: #000;
+  line-height: 60px;
+  padding: 0 10px;
+}
+#mainMenu nav > ul > li a.language-select .dropdown:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  margin-left: 5px;
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: #fff transparent;
+}
+#mainMenu nav > ul > li a.language-select:after {
+  top: 29px;
+  margin-left: 0;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid #fff;
+}
+#mainMenu nav > ul > li a.active {
+  font-family: NokiaPureTextBold;
+  position: relative;
+}
+#mainMenu nav > ul > li a.active:after {
+  content: '';
+  position: absolute;
+  left: 32%;
+  top: 33px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 9px solid #ffffff;
+}
+#mainMenu nav > ul > li a li {
+  color: #fff;
+  display: inline-block;
+}
+#mainMenu nav > ul > li:last-child {
+  float: right;
+  margin-right: 0;
+}
+.headDescrip {
+  margin: 0;
+  width: 100%;
+  height: 148px;
+  margin-bottom: 50px;
+}
+.headDescrip div {
+  background: url(../icons/big-logo.png) no-repeat 50% 35% transparent;
+  background-size: 25%;
+  height: 100%;
+  text-align: center;
+  font-family: Helvetica-Neue, Helvetica, Arial, sans-serif;
+  font-size: 24px;
+}
+.headDescrip div:before {
+  display: block;
+  content: "";
+  padding-top: 20px;
+}
+.contentDescrip {
+  margin-bottom: 9px;
+}
+.contentDescrip img {
+  border: 1px solid #cecece;
+  width: 445px;
+  height: 450px;
+}
+.contentDescrip p {
+  margin-bottom: 25px;
+}
+.contentDescrip p:first-of-type {
+  margin-top: 0;
+}
+#instruction li {
+  height: 210px;
+}
+#instruction li > a {
+  display: table-row;
+}
+#instruction li > a:link {
+  text-decoration: none;
+  color: #000;
+}
+#instruction li > a:visited {
+  text-decoration: none;
+  color: #000;
+}
+#instruction li > a > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+#instruction img {
+  border: 1px solid #cecece;
+  height: 180px;
+  width: 180px;
+}
+#instruction span {
+  font-size: 20px;
+}
+#instruction span:first-of-type {
+  font-family: NokiaPureTextBold;
+  font-size: 32px;
+  padding: 0 10px;
+  font-weight: bold;
+}
+.videoBlock p {
+  margin: 50px 205px 25px 205px;
+  text-align: center;
+  font-family: NokiaPureTextLight;
+  color: #a6a6a6;
+}
+#benefits img {
+  margin-bottom: 18px;
+}
+#benefits li {
+  text-align: center;
+  color: #787878;
+  margin-bottom: 50px;
+  font-size: 17px;
+}
+#benefits h3 {
+  font-family: NokiaPureTextLight;
+  font-size: 23px;
+  color: #000;
+  margin: 0;
+}
+#awards .col-left li {
+  margin-bottom: 25px;
+  font-size: 17px;
+}
+#awards h2 {
+  text-align: left;
+}
+#awards .col-right a {
+  font-size: 17px;
+  color: #558a10;
+}
+#footer {
+  width: 500px;
+  margin: 100px auto;
+}
+#footer li {
+  display: inline-block;
+  margin-right: 20px;
+}
+#footer li a:link {
+  text-decoration: none;
+  color: #558A10;
+  font-size: 15px;
+}
+#footer li a:visited {
+  text-decoration: none;
+  color: #558A10;
+  font-size: 15px;
+}
+#getStarted section {
+  background-color: #fff;
+}
+#getStarted a {
+  color: #558a10;
+}
+#getStarted h1 + p {
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+#getStarted ul > li {
+  clear: both;
+  padding-top: 40px;
+}
+#getStarted ul > li > img {
+  height: 300px;
+  width: 300px;
+  margin-right: 20px;
+  border: 1px solid #d2d2d2;
+  float: left;
+}
+#getStarted ul > li > *:not(img) {
+  margin-left: 320px !important;
+}
+#getStarted ul > li > a[name] {
+  display: none;
+}
+#getStarted ul > li h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+}
+#getStarted ul > li p {
+  font-size: 19px;
+  margin: 0;
+  margin-top: 25px;
+}
+#useCases section {
+  background-color: #fff;
+}
+#useCases ul h2 {
+  text-align: center;
+}
+#useCases ul li {
+  clear: both;
+}
+#useCases ul li img {
+  height: 300px;
+  width: 600px;
+  margin-left: 210px;
+  margin-bottom: 27px;
+  border: 1px solid #d2d2d2;
+}
+#useCases ul li .col-left p {
+  margin: 0;
+  margin-bottom: 25px;
+}
+#useCases ul li .col-right {
+  margin: 0;
+}
+#useCases ul li .col-right blockquote {
+  font-family: NokiaPureTextLight;
+  font-size: 17px;
+  font-style: italic;
+  color: #2468a0;
+  margin: 0;
+  padding-left: 130px;
+}
+#useCases ul li .col-right blockquote p {
+  margin: 0;
+  margin-top: 25px;
+  text-align: right;
+  margin-left: auto;
+  font-size: 14px;
+  font-family: Helvetica-Neue, Helvetica, Arial, sans-serif;
+  color: #a6a6a6;
+  font-style: normal;
+  width: 270px;
+  margin-right: 1px;
+}
+#useCases ul li .col-right blockquote p b {
+  font-family: NokiaPureTextBold;
+}
+#openSource section {
+  background-color: #fff;
+}
+#openSource section:last-of-type h1 {
+  margin-top: 0px;
+}
+#openSource p {
+  margin: 0;
+  margin-bottom: 25px;
+}
+#openSource a {
+  color: #558a10;
+}
+#openSource ul {
+  margin-bottom: 80px;
+}
+#support section {
+  background-color: #fff;
+}
+#support section p {
+  margin: 0;
+  margin-bottom: 25px;
+}
+#support .markedList {
+  margin: 0;
+}
+#support a {
+  color: #558a10;
+}
+#support .blueHeader {
+  font-size: 20px;
+  font-family: NokiaPureTextLight;
+  color: #2468a0;
+  text-align: left;
+  margin: 0;
+}
+#support .questionList li {
+  margin-bottom: 50px;
+}
+#login section {
+  background-color: #fff;
+}
+#login section a {
+  margin-left: 1px;
+  font-size: 15px;
+  color: #558a10;
+}
+#login section form label {
+  position: relative;
+}
+#login section form label div.error {
+  position: absolute;
+  background-color: #c85950;
+  top: -8px;
+  width: 210px;
+  height: 40px;
+  font-size: 13px;
+  font-family: NokiaPureTextLight;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  overflow: visible;
+}
+#login section form label div.error:after {
+  content: '';
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+}
+#login section form label.col-left div.error {
+  left: -230px;
+}
+#login section form label.col-left div.error:after {
+  right: -6px;
+  border-left: 6px solid #c85950;
+}
+#login section form label.col-right div.error {
+  right: -230px;
+}
+#login section form label.col-right div.error:after {
+  left: -6px;
+  border-right: 6px solid #c85950;
+}
+#login section form button {
+  margin-left: 68px;
+}
+#register section {
+  background-color: #fff;
+}
+#register section form input[name="phone"] {
+  background-image: url(../icons/plus-gray-16px.png);
+  background-position: 6px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  padding-left: 20px;
+  width: 210px;
+}
+#register section form button {
+  margin-left: 198px;
+}
+.results {
+  position: absolute;
+  width: 230px;
+  margin-top: 35px;
+  margin-left: 4px;
+  background-color: #FFF;
+  list-style: none;
+  padding: 2px;
+  outline: none;
+  border-radius: 4px;
+  z-index: 10;
+  border: 1px solid #AAA;
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.results li:hover {
+  background-color: #f0f0f0;
+}
+.modal .overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s;
+}
+.modal .window {
+  position: absolute;
+  left: 50%;
+  margin-left: -225px;
+  width: 450px;
+  background-color: #FFF;
+  height: auto;
+  z-index: 2000;
+  top: 100px;
+}
+.modal .window .window-body {
+  padding: 20px;
+}
+.modal .window .window-body input {
+  margin-left: 45%;
+  margin-top: 20px;
+  background-color: #fafafa;
+  border-radius: 5px;
+  height: 35px;
+  font-family: NokiaPureTextBold;
+  font-size: 15px;
+  border: 1px solid rgba(166, 166, 166, 0.5);
+  cursor: pointer;
+  box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+}
+.modal .window .window-body:not(:disabled):active {
+  background-color: #f0f0f0;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+#forgotPassword section,
+#resetPasswordError section,
+#resetPassword section {
+  background-color: #fff;
+}
+#forgotPassword section .msg p,
+#resetPasswordError section .msg p,
+#resetPassword section .msg p {
+  font-size: 23px;
+  color: #787878;
+  font-family: NokiaPureTextLight;
+}
+#forgotPassword section form p,
+#resetPasswordError section form p,
+#resetPassword section form p {
+  font-size: 15px;
+  font-family: NokiaPureTextLight;
+  margin: 6px 0 15px 1px;
+  color: #787878;
+}
+#forgotPassword section form input,
+#resetPasswordError section form input,
+#resetPassword section form input {
+  margin-top: 3px;
+}
+#forgotPassword section form button,
+#resetPasswordError section form button,
+#resetPassword section form button {
+  margin-left: 213px;
+}

@@ -1,0 +1,132 @@
+.headDescrip {
+    margin: 0;
+    width: 100%;
+    height: 148px;
+    margin-bottom: 50px;
+    
+    div {
+      background: url(../icons/big-logo.png) no-repeat 50% 35% transparent;
+      background-size: 25%;
+      height: 100%;
+      text-align: center;
+      font-family: Helvetica-Neue, Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      &:before {
+        display: block;
+        content: "";
+        padding-top: 20px;
+      }
+    }
+}
+.contentDescrip {
+  margin-bottom: 9px;
+  img {    
+    border: 1px solid #cecece;
+    width: 445px;
+    height: 450px;
+  }
+  p {
+    &:first-of-type {
+      margin-top: 0;
+    }
+    margin-bottom: 25px;
+  }
+}
+#instruction {
+    li {
+        height: 210px;
+        > a {
+          &:link {
+            text-decoration: none;
+            color: #000;          
+        
+          }
+          &:visited {
+            text-decoration: none;
+            color: #000;
+          }
+            display: table-row;
+            > * {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+    }
+    img {
+        border: 1px solid #cecece;
+        height: 180px;
+        width: 180px;
+    }
+    span {
+        font-size: 20px;
+        &:first-of-type {
+        font-family: NokiaPureTextBold;
+        font-size: 32px;
+        padding: 0 10px;
+        font-weight: bold;
+        }
+    }
+}
+.videoBlock {
+  p {
+    margin: 50px 205px 25px 205px;
+    text-align: center;
+    font-family: NokiaPureTextLight;
+    color: #a6a6a6;
+  }
+}
+#benefits {
+    img {
+      margin-bottom: 18px;
+    }
+    li {        
+        text-align: center;
+        color: #787878;
+        margin-bottom: 50px;
+        font-size: 17px;
+    }
+    h3 {
+        font-family: NokiaPureTextLight;
+        font-size: 23px;
+        color: #000;
+        margin: 0;
+    }
+}
+#awards {
+    .col-left {
+      li {
+        margin-bottom: 25px;
+        font-size: 17px;
+      }
+    }
+    h2 {
+      text-align: left;
+    }
+    .col-right {
+        a {
+          font-size: 17px;
+          color: #558a10;
+      }
+    }
+}
+#footer {
+   width:500px;
+   margin: 100px auto;
+   
+   li {
+        display: inline-block;
+        margin-right: 20px;
+        a {
+          &:link {
+            text-decoration: none;
+            color: #558A10;
+            font-size: 15px;
+          }
+          &:visited {
+            text-decoration: none;
+            color: #558A10;
+            font-size: 15px;
+          }
+        }
+   }
+}

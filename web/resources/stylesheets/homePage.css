@@ -366,6 +366,7 @@ label {
   list-style-type: none;
   height: 300px;
   width: 1000px;
+  display: inline-block;
 }
 .content .panel ul.steps li div,
 .content.home ul.steps li div {
