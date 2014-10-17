@@ -1,27 +1,27 @@
 @font-face {
   font-family: 'NokiaPureText';
   src: url(../fonts/NokiaPureText/nokiapuretext-webfont.eot);
-  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.woff) format('woff');
-  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.svg) format('svg');
-  src: url(../fonts/NokiaPureText/nokiapuretext-webfont.ttf) format('truetype');
+  src: url(/resources/fonts/NokiaPureText/nokiapuretext-webfont.woff) format('woff');
+  src: url(/resources/fonts/NokiaPureText/nokiapuretext-webfont.svg) format('svg');
+  src: url(/resources/fonts/NokiaPureText/nokiapuretext-webfont.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'NokiaPureTextBold';
-  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.eot);
-  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.woff) format('woff');
-  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.svg) format('svg');
-  src: url(../fonts/NokiaPureTextBold/nokiapuretextbold-webfont.ttf) format("truetype");
+  src: url(/resources/fonts/NokiaPureTextBold/nokiapuretextbold-webfont.eot);
+  src: url(/resources/fonts/NokiaPureTextBold/nokiapuretextbold-webfont.woff) format('woff');
+  src: url(/resources/fonts/NokiaPureTextBold/nokiapuretextbold-webfont.svg) format('svg');
+  src: url(/resources/fonts/NokiaPureTextBold/nokiapuretextbold-webfont.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'NokiaPureTextLight';
-  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.eot);
-  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.woff) format('woff');
-  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.svg) format('svg');
-  src: url(../fonts/NokiaPureTextLight/nokiapuretextlight-webfont.ttf) format("truetype");
+  src: url(/resources/fonts/NokiaPureTextLight/nokiapuretextlight-webfont.eot);
+  src: url(/resources/fonts/NokiaPureTextLight/nokiapuretextlight-webfont.woff) format('woff');
+  src: url(/resources/fonts/NokiaPureTextLight/nokiapuretextlight-webfont.svg) format('svg');
+  src: url(/resources/fonts/NokiaPureTextLight/nokiapuretextlight-webfont.ttf) format("truetype");
   font-weight: lighter;
   font-style: normal;
 }
