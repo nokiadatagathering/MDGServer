@@ -32,6 +32,7 @@ var
   validationsCntr = require('./app/controllers/web/validations'),
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
+
   manifestCntr = require('./app/controllers/web/manifest'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),

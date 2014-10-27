@@ -302,7 +302,7 @@ define([
       var logout = function () {
         profileManager.logout().then(
           function success () {
-              localStorage.clear();
+            localStorage.clear();
             window.document.location.href = '/';
           },
 

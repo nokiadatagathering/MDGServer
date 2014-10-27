@@ -11,7 +11,6 @@ define([
   'controllers/ResultsCtrl',
   'controllers/ResultsOnMapCtrl',
   'controllers/ResultDetailsCtrl',
-
   'controllers/ResultsChartCtrl',
   'controllers/SyncCtrl'
 ], function (
