@@ -2,15 +2,14 @@
 
     <div class="survey-panel" ng-controller="SurveysCtrl">
         <div class="function-bar">
-<<<<<<< HEAD
-<<<<<<< HEAD
             <input class="button-plus left" type="button" value="{{ 'surveys.Create_Survey' | translate }}" ng-click="goState('page.builder')">
-            <input file-select="surveyXML" type="file" class="button-icon single" name="files">
+            <input file-select="surveyXML" type="file" class="button-icon single" name="files" ng-disabled="offlineMode">
             <span class="caption" ng-if="!fileTypeError">{{ 'surveys.Upload_XML_survey' | translate }}</span>
             <span class="caption" ng-if="fileTypeError">{{ 'surveys.Only_XML_file_format' | translate }}</span>
-            <input type="button" class="button-icon single upload">
+            <input type="button" class="button-icon single upload" ng-disabled="offlineMode">
             <div class="right">
-                <input type="button" class="button-icon single browse-archive" ng-click="goState('page.archive')">
+                <input type="button" class="button-icon single browse-archive"
+                       ng-click="goState('page.archive')" ng-disabled="offlineMode">
                 <span class="caption">{{ 'surveys.Browse_archive' | translate }}</span>
 
                 <!--div>DROPDOWNS TRANSLATE</div-->
@@ -22,25 +21,6 @@
                 </div>
                 <!--div>DROPDOWNS TRANSLATE</div-->
 
-=======
-            <input class="button-plus left" type="button" value="Create a new Survey" ng-click="goState('page.builder')">
-            <input file-select="surveyXML" type="file" class="button-icon single" name="files" ng-disabled="offlineMode">
-            <span class="caption" ng-if="!fileTypeError">Upload XML survey</span>
-            <span class="caption" ng-if="fileTypeError">Only XML file format</span>
-            <input type="button" class="button-icon single upload" ng-disabled="offlineMode">
-            <div class="right">
-=======
-            <input class="button-plus left" type="button" value="Create a new Survey" ng-click="goState('page.builder')">
-            <input file-select="surveyXML" type="file" class="button-icon single" name="files" ng-disabled="offlineMode">
-            <span class="caption" ng-if="!fileTypeError">Upload XML survey</span>
-            <span class="caption" ng-if="fileTypeError">Only XML file format</span>
-            <input type="button" class="button-icon single upload" ng-disabled="offlineMode">
-            <div class="right">
->>>>>>> 616aae44a3e250554bc254ccc86bf6fec01edd8a
-                <input type="button" class="button-icon single browse-archive"
-                       ng-click="goState('page.archive')" ng-disabled="offlineMode">
-                <span class="caption">Browse archive</span>
->>>>>>> changed the mechanism of surveys deletion on server
                 <div dropdown-select="dropdownList"
                      dropdown-model="dropdownSelect"
                      dropdown-item-label="text"

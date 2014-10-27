@@ -51,6 +51,11 @@ CACHE:
 /directives/validatePattern.js
 /directives/validatephonenumber.js
 
+/supportedLanguages
+/languages/locale-cn.json
+/languages/locale-en.json
+/languages/locale-ru.json
+
 /services/services.js
 /services/autocompleteManager.js
 /services/chartManager.js
@@ -132,6 +137,16 @@ CACHE:
 /bower_components/d3-tip/index.js
 /bower_components/requirejs/require.js
 /bower_components/less/dist/less-1.6.2.min.js
+/bower_components/angular-translate/angular-translate.js
+/bower_components/angular-cookies/angular-cookies.js
+/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js
+/bower_components/angular-translate-storage-local/angular-translate-storage-local.js
+/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js
+/bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js
+/bower_components/messageformat/messageformat.js
+/bower_components/messageformat/locale/en.js
+/bower_components/messageformat/locale/ru.js
+/bower_components/async/lib/async.js
 
 //netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css
 //tags.tiqcdn.com/utag/nokia/datagathering/dev/utag.js

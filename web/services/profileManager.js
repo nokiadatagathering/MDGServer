@@ -3,7 +3,7 @@ define(function () {
   return function ($q, $http) {
     /** @const */
     var
-      LANGUAGES_URL = '/languages',
+      LANGUAGES_URL = '/supportedLanguages',
       GET_USER_PERMISSION_URL = '/userPermission',
       LOGOUT_URL = '/logout';
 

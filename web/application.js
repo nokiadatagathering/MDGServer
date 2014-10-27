@@ -68,7 +68,7 @@ define([
         var status = response.status;
 
         if (status == 401) {
-          window.document.location.href = '/';
+          window.document.location.href = '/home';
         }
 
         if (status === 404 || status >= 500 || status === 0) {
@@ -303,7 +303,7 @@ define([
         profileManager.logout().then(
           function success () {
             localStorage.clear();
-            window.document.location.href = '/';
+            window.document.location.href = '/home';
           },
 
           function failed (err) {
@@ -324,34 +324,39 @@ define([
     };
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {
-      if ($rootScope.offlineMode &&
-        toState.name !== 'page.surveys' && toState.name !== 'page.builder' && toState.name !== 'page.editsurvey' &&
-        toState.name !== 'page.surveys.sync' && toState.name !== 'page.builder.sync' && toState.name !== 'page.editsurvey.sync' &&
-        toState.name !== 'pageGetStarted.getStarted') {
-        event.preventDefault();
+      if (!$rootScope.loggedInUser) {
+        $rootScope.offlineMode = false;
+        localStorage.clear();
       }
 
-      profileManager.getUserPermission().then(
-        function success (config) {
-          if (!$rootScope.offlineMode) {
-            $rootScope.loggedInUser = config.data;
-            localStorage.setItem('user', JSON.stringify(config.data));
-          }
+      if ($rootScope.offlineMode &&
+        toState.name !== 'page.surveys' && toState.name !== 'page.builder' && toState.name !== 'page.editsurvey' &&
+        toState.name !== 'page.surveys.sync' && toState.name !== 'page.builder.sync' && toState.name !== 'page.editsurvey.sync') {
+        event.preventDefault();
+      } else {
+        profileManager.getUserPermission().then(
+          function success (config) {
+            if (!$rootScope.offlineMode) {
+              $rootScope.loggedInUser = config.data;
+              localStorage.setItem('user', JSON.stringify(config.data));
+              debugger;
+            }
 
-          if ($rootScope.loggedInUser && (toState.name.indexOf("pageGetStarted") !== -1 || toState.name === 'page')) {
-            event.preventDefault();
-            $location.path('/surveys');
-          }
-        },
+            if ($rootScope.loggedInUser && toState.name === 'page') {
+              event.preventDefault();
+              $location.path('/surveys');
+            }
+          },
 
-        function failed (err) {
-          if (toState.name === 'page') {
-            event.preventDefault();
-            $location.path('/home');
-          }
+          function failed (err) {
+            if (toState.name === 'page') {
+              event.preventDefault();
+              window.document.location.href = '/home';
+            }
 
-          console.log("error:", err);
-        });
+            console.log("error:", err);
+          });
+      }
     });
 
   });

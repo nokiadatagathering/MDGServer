@@ -169,7 +169,7 @@ exports.run = function (mongoUrl, port, callback) {
     app.post('/forgotPassword', passwordResetCntr.forgotPassword);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
 
-    app.get('/languages', getStartedCntr.languages);
+    app.get('/supportedLanguages', getStartedCntr.languages);
 
     app.resource('users');
     app.resource('groups');
@@ -177,6 +177,8 @@ exports.run = function (mongoUrl, port, callback) {
       this.resource('results');
       this.resource('subscriptions');
     });
+
+    app.get('/home', getStartedCntr.home);
 
     app.get('/', function (req, res) {
       if (req.method === 'HEAD') {
@@ -188,7 +190,7 @@ exports.run = function (mongoUrl, port, callback) {
             version: version
           });
         } else {
-          getStartedCntr.home(req, res)
+          res.redirect('/home');
         }
       }
     });
