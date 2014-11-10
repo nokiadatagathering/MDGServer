@@ -44,7 +44,7 @@ function getQuestionResults (categoryData, surveyCategory, resultsId) {
     } else if (surveyQuestion && (surveyQuestion.type === 'binary' || surveyQuestion.type === 'binary#image') && questionData.result) {
       ImagesService.saveImage(questionData.result, resultsId + '_' + questionResults.id + '.jpg');
       questionResults.result = resultsId + '_' + questionResults.id + '.jpg';
-    } if (questionData.result && surveyQuestion.type === 'date') {
+    } else if (questionData.result && surveyQuestion.type === 'date') {
       questionResults.result = new Date(questionData.result);
     } else {
       questionResults.result = questionData.result;
