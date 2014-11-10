@@ -6,7 +6,7 @@ var
 exports.home = function (req, res, next) {
   var lang = req.cookies.NG_TRANSLATE_LANG_KEY;
 
-  if (!lang) {
+  if (!lang || lang==='undefined') {
     lang = preferred;
     res.cookie('NG_TRANSLATE_LANG_KEY', '"' + lang + '"');
   } else {
@@ -33,7 +33,7 @@ exports.languages = function (req, res, next) {
 exports.error404 = function (req, res, next) {
   var lang = req.cookies.NG_TRANSLATE_LANG_KEY;
 
-  if (!lang) {
+  if (!lang || lang==='undefined') {
     lang = preferred;
     res.cookie('NG_TRANSLATE_LANG_KEY', '"' + lang + '"');
   } else {
