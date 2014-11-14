@@ -201,17 +201,18 @@ define(function () {
       if ($rootScope.selectedResults.length === 0) {
         $rootScope.$broadcast('choose_results', 'export');
       } else if ($scope.dropdownSelect.value) {
+
         var fakeForm = $('<form>')
           .attr('method', 'POST')
           .attr('action', '/export/' + $stateParams.surveyId + '/?type=' + type)
           .append($rootScope.selectedResults.map(function (id, index) {
-              return $('<input>')
+              return $('<input type="hidden">')
                 .attr('name', 'results[' + index + ']')
                 .attr('value', id)
               ;
             }
           ));
-        fakeForm.submit();
+        fakeForm.appendTo("body").submit();
       }
     };
 
