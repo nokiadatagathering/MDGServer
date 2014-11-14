@@ -174,7 +174,7 @@ module.exports = {
         }
 
         if (sendSms) {
-          SmsService.sendSms(format(Configuration.get('messages.userUpdateSms'), user.username, new Buffer(user.password, 'base64').toString('ascii')), user.phone);
+          SmsService.sendSms(format(Configuration.get('messages.userUpdateSms'), user.username, new Buffer(userUpdate.password, 'base64').toString('ascii')), user.phone);
         }
 
         res.send(200, { id: user._id });
