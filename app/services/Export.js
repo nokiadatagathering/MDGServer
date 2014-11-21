@@ -83,7 +83,7 @@ function getPlacemarks (questions, results) {
             {
               attrs: {},
               tagName: 'coordinates',
-              value: result.geostamp.split(' ').join(','),
+              value: result.geostamp.split(' ')[1] + ',' + result.geostamp.split(' ')[0],
               items: []
             }
           ]
