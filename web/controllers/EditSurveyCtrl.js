@@ -550,6 +550,9 @@ define(function () {
           survey._categories[cIndex] = _.pick(category, ['_questions', 'id', 'title', 'relevant', 'defaultRelevant']);
         });
 
+        delete survey.prevTitle;
+        delete survey.titleEdit;
+
         return survey;
       },
 
@@ -1479,12 +1482,15 @@ define(function () {
       });
 
       if ($stateParams.surveyId) {
-        return surveysManager.editSurvey($stateParams.surveyId, clearSurveyData(survey)).then(
+        return surveysManager.editSurvey({ id: $stateParams.surveyId, body: clearSurveyData(survey) }).then(
           function success (config) {
             $rootScope.$broadcast('saved_survey', survey.title);
             surveyDirty = false;
             $scope.surveyEdit.$dirty = false;
-            $scope.surveyData.__v = $scope.surveyData.__v + 1;
+
+            if ($rootScope.offlineMode === false) {
+              $scope.surveyData.__v = $scope.surveyData.__v + 1;
+            }
           },
           function failed (err) {
             if (err.status === 409) {
@@ -1495,7 +1501,7 @@ define(function () {
             console.log("error:", err);
           });
       } else {
-        return surveysManager.createSurvey(clearSurveyData(survey)).then(
+        return surveysManager.createSurvey({ body: clearSurveyData(survey) }).then(
           function success (config) {
             if (buttonClick) {
               $rootScope.goState('page.editsurvey', { surveyId: config.data.id });

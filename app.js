@@ -33,6 +33,8 @@ var
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
 
+  manifestCntr = require('./app/controllers/web/manifest'),
+
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
   checkServerCntr = require('./app/controllers/mobile/checkServer'),
   postResultsCntr = require('./app/controllers/mobile/postResults'),
@@ -167,7 +169,7 @@ exports.run = function (mongoUrl, port, callback) {
     app.post('/forgotPassword', passwordResetCntr.forgotPassword);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
 
-    app.get('/languages', getStartedCntr.languages);
+    app.get('/supportedLanguages', getStartedCntr.languages);
 
     app.resource('users');
     app.resource('groups');
@@ -175,6 +177,8 @@ exports.run = function (mongoUrl, port, callback) {
       this.resource('results');
       this.resource('subscriptions');
     });
+
+    app.get('/home', getStartedCntr.home);
 
     app.get('/', function (req, res) {
       if (req.method === 'HEAD') {
@@ -186,10 +190,12 @@ exports.run = function (mongoUrl, port, callback) {
             version: version
           });
         } else {
-          getStartedCntr.home(req, res)
+          res.redirect('/home');
         }
       }
     });
+
+    app.get('/mdgcache.manifest', manifestCntr.getManifest);
 
     if (Configuration.get('general.protocolType') === 'https') {
       httpsOptions.pfx = fs.readFileSync(Configuration.get('general.httpspfx'));

@@ -39,19 +39,11 @@ module.exports = {
     if (archive) {
       query.archive = archive;
     } else {
-      query.$or = [
-        {
-          archive: false
-        },
-        {
-          archive: {
-            $exists: false
-          }
-        }
-      ];
+      query.$and = [{ $or: [{ archive: false }, { archive: { $exists: false } }] },
+        { $or: [{ deleted: false }, { deleted: { $exists: false } }] }];
     }
 
-    Survey.find(query, 'title _creator published resultsCount dateCreated').populate('_creator', 'firstName lastName name').exec(function (err, surveys) {
+    Survey.find(query).populate('_creator', 'firstName lastName name').exec(function (err, surveys) {
       if (err) {
         next({ status: 500, body: err });
         return;
@@ -72,7 +64,10 @@ module.exports = {
       usersOptions = {
       };
 
-    Survey.findOne({ _id: surveyId, _owner: owner }).populate('_creator', 'firstName lastName').exec(function (err, survey) {
+    Survey
+      .findOne({ _id: surveyId, _owner: owner, $or: [{ deleted: false }, { deleted: { $exists: false } }] })
+      .populate('_creator', 'firstName lastName')
+      .exec(function (err, survey) {
       if (err) {
         next({ status: 500, body: err });
         return;
@@ -123,6 +118,7 @@ module.exports = {
 
       survey.title = surveyUpdate.title;
       survey.published = surveyUpdate.published;
+      survey.deleted = false;
       survey._categories = surveyUpdate._categories;
 
       survey.increment();
@@ -154,7 +150,9 @@ module.exports = {
         return;
       }
 
-      survey.remove(function (err) {
+      survey.deleted = true;
+
+      survey.save(function (err) {
         if (err) {
           next({ status: 400, body: err });
           return;

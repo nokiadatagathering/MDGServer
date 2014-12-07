@@ -16,20 +16,9 @@ define(function () {
 
     $scope.showNewGroup = false;
 
-    $scope.getUserPermission = function () {
-      profileManager.getUserPermission().then(
-        function success (config) {
-          if (config.data.permission === 'operator') {
-            $window.location = '#/surveys';
-          }
-        },
-
-        function failed (err) {
-          console.log("error:", err);
-        });
-    };
-
-    $scope.getUserPermission();
+    if ($rootScope.loggedInUser.permission === 'operator') {
+      $window.location = '#/surveys';
+    }
 
     $scope.getGroupList = function () {
       groupsManager.groupList().then(
