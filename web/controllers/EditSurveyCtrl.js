@@ -979,10 +979,12 @@ define(function () {
 
       surveyDirty = true;
       question.type = question.dropdownSelect.value;
+      delete question.mediatype;
 
       switch (question.type) {
         case 'binary':
           question.tagName = 'upload';
+          question.mediatype = 'image';
           break;
         case 'select':
           question.tagName = 'select';

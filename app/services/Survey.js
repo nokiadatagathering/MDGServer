@@ -150,6 +150,8 @@ exports.composeSurveyData = function (survey) {
         });
       }
 
+      surveyQuestion.mediatype = surveyQuestion.type === 'binary' ? (surveyQuestion.mediatype || 'image') : null;
+
       group.inputs.push({
         type: surveyQuestion.type,
         required: surveyQuestion.required,

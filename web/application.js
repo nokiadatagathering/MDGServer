@@ -339,7 +339,6 @@ define([
             if (!$rootScope.offlineMode) {
               $rootScope.loggedInUser = config.data;
               localStorage.setItem('user', JSON.stringify(config.data));
-              debugger;
             }
 
             if ($rootScope.loggedInUser && toState.name === 'page') {
