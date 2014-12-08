@@ -43,7 +43,7 @@ Schema =  new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
-  },
+  }
 }, {
   toObject: { virtuals: true }
 });
