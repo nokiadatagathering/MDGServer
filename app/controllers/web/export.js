@@ -37,12 +37,14 @@ exports.export = function (req, res, next) {
     _.each(survey._categories, function (category) {
       _.each(category._questions, function (question) {
         if (/cascade/.test(question.type) && questions[questions.length - 1].type === question.type) {
+          questions[questions.length-1].items = questions[questions.length-1].items.concat(question.items);
           return;
         }
 
         questions.push({
           label: question.label,
-          type: question.type
+          type: question.type,
+          items: question.items
         });
       });
     });

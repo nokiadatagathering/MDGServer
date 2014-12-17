@@ -189,7 +189,10 @@ exports.getResultsData = function (questions, results) {
 
         if (questionResult.result === undefined) {
           res = '';
-        } else if (questions[questionIndex].type === 'binary') {
+        } else if (
+            questions[questionIndex].type === 'binary' ||
+            questions[questionIndex].type === 'binary#image'
+        ) {
           res = 'photos/' + result._id + '/' + questionResult.result;
 
           images.push({
@@ -200,6 +203,16 @@ exports.getResultsData = function (questions, results) {
           res = moment(questionResult.result).format('YYYY-MM-DD');
         } else if (questions[questionIndex].type === 'time') {
           res = /(\d{2}:\d{2})/.exec(questionResult.result)[1];
+        } else if (
+            questions[questionIndex].type === 'select' ||
+            questions[questionIndex].type === 'select1' ||
+            /cascade/.test(questions[questionIndex].type )
+        ) {
+          res = _.map(res.split(' '), function (value) {
+            return '"' + _.find(questions[questionIndex].items, function (item) {
+              return item.value == value;
+            }).text + '"';
+          });
         }
 
         body = body + res + '|';
