@@ -98,6 +98,7 @@ module.exports = function (grunt) {
       dist: {
         files: [
           { expand: true, cwd: 'web/resources', src: [ '**' ], dest: 'dist/resources' },
+          { expand: true, cwd: 'web/languages', src: [ '**' ], dest: 'dist/languages' },
           {
             expand: true,
             cwd: 'bower_components/jquery-ui/themes/smoothness',
