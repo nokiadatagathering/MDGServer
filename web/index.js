@@ -101,7 +101,7 @@
         });
     }
 
-    function setAutocomlite(el) {
+    function setAutocomplete(el) {
         el.addEventListener('keyup', function (evt) {
             if (evt.target.value.trim() != '') {
                 var xmlhttp = new XMLHttpRequest(),
@@ -111,14 +111,14 @@
                     if (xmlhttp.readyState == 4 ) {
                         var results = JSON.parse(xmlhttp.response);
                         if(xmlhttp.status == 200 && results.length) {
-                            var items = '',
-                                ul = document.createElement('ul'),
+                            var ul = document.createElement('ul'),
                                 pos = evt.target.getBoundingClientRect();
                             ul.className = 'results';
                             for (var i = 0; i < results.length; i++) {
-                                items += '<li>' + results[i] + '</li>'
+                                var li = document.createElement('li');
+                                li.innerText = results[i];
+                                ul.appendChild(li);
                             }
-                            ul.innerHTML = items;
                             body.appendChild(ul);
                             ul.style.top = pos.top + 'px';
                             ul.style.left = pos.left + 'px';
@@ -177,8 +177,8 @@
         document.querySelector('.success-registration input').addEventListener('click', function (evt) {
             closeModal();
         }, true);
-        setAutocomlite(document.querySelector('#register form input[placeholder="Company"]'));
-        setAutocomlite(document.querySelector('#register form input[placeholder="Industry"]'));
+        setAutocomplete(document.querySelector('#register form input[placeholder="Company"]'));
+        setAutocomplete(document.querySelector('#register form input[placeholder="Industry"]'));
     }
 
     function closeModal () {
