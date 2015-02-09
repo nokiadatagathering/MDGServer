@@ -67,7 +67,12 @@ module.exports = {
         type: Object,
         title: 'Supported languages',
         description: '',
-        defaults: [{ value: 'en', text: 'English' }, { value: 'ru', text: 'Русский' }]
+        defaults: [
+          {value: 'en', text: 'English'},
+          {value: 'ru', text: 'Русский'},
+          {value: 'zh', text: '中文'},
+          {value: 'vi', text: 'Việt' }
+        ]
       }
     }
   },
