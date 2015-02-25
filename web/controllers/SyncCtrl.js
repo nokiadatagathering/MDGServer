@@ -5,15 +5,31 @@ define(function () {
 
     var
       request,
-      db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024),
+      requestSyncComplete,
+      db;
+
+    try {
+      db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024);
+
       requestSyncComplete = function (request) {
         db.transaction(function (tx) {
           tx.executeSql("DELETE FROM requests WHERE id == ?", [request.id], function (tx, result) {});
           console.log('request.id', request.id);
         });
       };
+    } catch (e) {
+      $rootScope.offlineNotSupport = true;
+    }
+
 
     $scope.Sync = function () {
+      if ($rootScope.offlineNotSupport) {
+        $scope.successSync = true;
+        $rootScope.offlineMode = false;
+        localStorage.clear();
+        return;
+      }
+
       db.transaction(function (tx) {
         tx.executeSql("SELECT * FROM requests", [], function (tx, result) {
           $rootScope.offlineMode = false;
