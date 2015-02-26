@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2
+# 3
 CACHE:
 /main.js
 /application.js
@@ -52,9 +52,10 @@ CACHE:
 /directives/validatephonenumber.js
 
 /supportedLanguages
-/languages/locale-cn.json
+/languages/locale-zh.json
 /languages/locale-en.json
 /languages/locale-ru.json
+/languages/locale-vi.json
 
 /services/services.js
 /services/autocompleteManager.js
@@ -146,6 +147,8 @@ CACHE:
 /bower_components/messageformat/messageformat.js
 /bower_components/messageformat/locale/en.js
 /bower_components/messageformat/locale/ru.js
+/bower_components/messageformat/locale/zh.js
+/bower_components/messageformat/locale/vi.js
 /bower_components/async/lib/async.js
 
 //netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css

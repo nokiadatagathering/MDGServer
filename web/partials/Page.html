@@ -1,7 +1,8 @@
 <div class="header" ng-controller="PageCtrl">
     <div ng-if="offlineMode" class="offline-block">
-        You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode
-        <input type="button" value="Synchronize" ng-click="sync()">
+        <span ng-if="!offlineNotSupport">{{'offlineMode' | translate}}</span>
+        <span ng-if="offlineNotSupport">{{'offlineNotSupport' | translate}}</span>
+        <input type="button" value="{{ 'Synchronize' | translate }}" ng-click="sync()">
     </div>
     <div class="header" ng-class="{offlineMode: offlineMode === true}">
 
