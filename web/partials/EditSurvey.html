@@ -255,6 +255,7 @@
                                                regexp="maskPattern"
                                                value-to-check="question.mask"
                                                ng-model="question.mask"
+                                               ng-blur="checkMask(question)"
                                                value="{{question.mask}}">
                                     </div>
                                 </div>

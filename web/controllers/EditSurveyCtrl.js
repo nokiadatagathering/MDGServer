@@ -579,6 +579,30 @@ define(function () {
       surveyDirty = true;
     });
 
+    $scope.checkMask = function (question) {
+      question.maskError = false;
+      $rootScope.surveyErrors.maskError = false;
+
+      if (!question.mask || !question.defaultValue) {
+        return;
+      }
+
+      var
+          defaultValue = question.defaultValue
+              .replace(/[A-Za-z]/g, 'A')
+              .replace(/[0-9]/g, '9')
+              .replace(/-+/g, '-'),
+          mask = question.mask
+              .replace(/[A-Za-z]/g, 'A')
+              .replace(/[0-9]/g, '9')
+              .replace(/-+/g, '-');
+
+      if (defaultValue !== mask) {
+        question.maskError = true;
+        $rootScope.surveyErrors.maskError = true;
+      }
+    };
+
     $scope.checkSLIntValueError = function (question) {
       question.slValueError = false;
       $rootScope.surveyErrors.slValueError = false;
@@ -684,7 +708,6 @@ define(function () {
               option.errorValue = true;
               optToCheck.errorValue = true;
               question.slValueError = true;
-              $rootScope.surveyErrors.slValueError = true;
               $rootScope.surveyErrors.slValueError = true;
 
               return;
@@ -1020,8 +1043,12 @@ define(function () {
         question.maxChecked = false;
         question.defaultValue = null;
         question.minmaxError = false;
+        question.maxLengthError = false;
+        question.maskError = false;
 
         $rootScope.surveyErrors.minmaxError = false;
+        $rootScope.surveyErrors.maxLengthError = false;
+        $rootScope.surveyErrors.maskError = false;
       }
 
       if (question.type === 'select1' || question.type === 'int') {

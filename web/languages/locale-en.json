@@ -193,6 +193,8 @@
     "Clear_default_field": "Clear default field",
     "Invalid_min_max_range": "Invalid min-max range.",
     "defaultValueError": "Default value should be in min-max range.",
+    "maskError": " In case Mask Input is used, the Default Answer value should match the mask.",
+    "maxLengthError": "Default Answer value should not exceed the Maximum Answer Length value.",
     "Add_option": "Add a new option",
     "Import_existing_option": "Import existing option...",
     "Notes_description": "Notes are no-input text prompts which can provide notes, hints, instructions or messages to the surveyor or respondent"

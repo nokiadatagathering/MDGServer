@@ -3,14 +3,18 @@
         <h5>{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</h5>
         <input type="text" placeholder="{{ 'survey_builder.DEFAULT_ANSWER_placeholder' | translate }}"
                ng-model="question.defaultValue"
-               value="{{question.defaultValue}}">
+               value="{{question.defaultValue}}"
+               ng-blur="checkMaxLength(question)">
     </div>
+    <div class="error-message" ng-show="question.maxLengthError">{{ 'survey_builder.maxLengthError' | translate }}</div>
+    <div class="error-message" ng-show="question.maskError">{{ 'survey_builder.maskError' | translate }}</div>
     <div class="words-length">
         <h5>{{ 'survey_builder.MAXIMUM_ANSWER_LENGTH' | translate }}</h5>
         <input type="text" value="{{question.maxLength}}"
                validate-pattern
                regexp="maxLengthPattern"
                value-to-check="question.maxLength"
+               ng-blur="checkMaxLength(question)"
                ng-model="question.maxLength">
         <label>{{ 'survey_builder.Symbols' | translate }}</label>
     </div>

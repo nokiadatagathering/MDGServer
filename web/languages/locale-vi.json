@@ -193,6 +193,8 @@
     "Clear_default_field": "Xóa phần mặc định",
     "Invalid_min_max_range": "Phạm vi tối đa - tối thiểu không hợp lệ.",
     "defaultValueError": "Giá trị mặc định phải ở trong phạm vi tối đa – tối thiểu.",
+    "maskError": " In case Mask Input is used, the Default Answer value should match the mask.",
+    "maxLengthError": "Default Answer value should not exceed the Maximum Answer Length value.",
     "Add_option": "Thêm một lựa chọn",
     "Import_existing_option": "Chèn lựa chọn sẵn có...",
     "Notes_description": "Ghi chú là các hướng dẫn văn bản không đầu vào cung cấp các lưu ý, gợi ý, hướng dẫn hoặc lời nhắn cho khảo sát hoặc người trả lời"
