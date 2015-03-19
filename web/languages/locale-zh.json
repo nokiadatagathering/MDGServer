@@ -1,6 +1,6 @@
 {
-  "offlineMode": "You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode",
-  "offlineNotSupport": "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode.",
+  "offlineMode": "您工作在離線模式。只有調查頁面，調查生成器是在離線模式下可用",
+  "offlineNotSupport": "您的瀏覽器不支持webSQL 請使用谷歌Chrome瀏覽器在離線模式下工作",
   "Synchronize": "Synchronize",
   "header": {
     "surveys": "调查问卷",
@@ -193,8 +193,8 @@
     "Clear_default_field": "清除默认域",
     "Invalid_min_max_range": "无效的最大，最小范围。",
     "defaultValueError": "默认值应在最小到最大范围之间。",
-    "maskError": " In case Mask Input is used, the Default Answer value should match the mask.",
-    "maxLengthError": "Default Answer value should not exceed the Maximum Answer Length value.",
+    "maskError": "如果屏蔽輸入時，默認回答值應符合口罩",
+    "maxLengthError": "默認回答不應超過最大長度答案",
     "Add_option": "添加新选项",
     "Import_existing_option": "导入现有选项...",
     "Notes_description": "“提示”是指无输入提示文字，能够为被调查者或答题者提供注释，提醒，介绍或者信息。"
