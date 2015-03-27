@@ -1,6 +1,6 @@
 {
-  "offlineMode": "You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode",
-  "offlineNotSupport": "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode.",
+  "offlineMode": "Bạn đang làm việc trong chế độ offline. Chỉ trang Khảo sát và Builder Khảo sát có sẵn trong chế độ offline",
+  "offlineNotSupport": "Trình duyệt của bạn không hỗ trợ webSQL . Vui lòng sử dụng trình duyệt Google Chrome để làm việc ở chế độ offline.",
   "Synchronize": "Synchronize",
   "header": {
     "surveys": "Khảo sát",
@@ -193,6 +193,8 @@
     "Clear_default_field": "Xóa phần mặc định",
     "Invalid_min_max_range": "Phạm vi tối đa - tối thiểu không hợp lệ.",
     "defaultValueError": "Giá trị mặc định phải ở trong phạm vi tối đa – tối thiểu.",
+    "maskError": "Nếu Mask Input được sử dụng , mặc định giá trị trả lời phải phù hợp với mặt nạ.",
+    "maxLengthError": "Default trả lời không được vượt quá các trả lời Chiều dài tối đa.",
     "Add_option": "Thêm một lựa chọn",
     "Import_existing_option": "Chèn lựa chọn sẵn có...",
     "Notes_description": "Ghi chú là các hướng dẫn văn bản không đầu vào cung cấp các lưu ý, gợi ý, hướng dẫn hoặc lời nhắn cho khảo sát hoặc người trả lời"

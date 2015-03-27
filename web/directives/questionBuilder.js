@@ -194,6 +194,18 @@ define(function () {
               $rootScope.surveyErrors.defaultValueError = true;
             }
           };
+
+          $scope.checkMaxLength = function (question) {
+            question.maxLengthError = false;
+            $rootScope.surveyErrors.maxLengthError = false;
+
+            if (question.defaultValue.length >=  question.maxLength) {
+              question.maxLengthError = true;
+              $rootScope.surveyErrors.maxLengthError = true;
+            }
+
+            $scope.$parent.$parent.$parent.checkMask(question);
+          };
         }
       ],
       templateUrl: '/partials/templates/questionBuilder.html'
