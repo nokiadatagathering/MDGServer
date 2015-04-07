@@ -73,6 +73,23 @@ module.exports = {
           {value: 'zh', text: '中文'},
           {value: 'vi', text: 'Việt' }
         ]
+      },
+      supported_languages_mobile: {
+        type: Object,
+        title: 'Supported languages mobile',
+        description: '',
+        defaults: [
+          'es',
+          'fi',
+          'fr',
+          'ht',
+          'pl',
+          'pt',
+          'Русский ru',
+          'sw',
+          'Việt vi',
+          'zh'
+        ]
       }
     }
   },
