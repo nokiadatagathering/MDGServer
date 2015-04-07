@@ -75,21 +75,10 @@ module.exports = {
         ]
       },
       supported_languages_mobile: {
-        type: Object,
+        type: String,
         title: 'Supported languages mobile',
         description: '',
-        defaults: [
-          'es',
-          'fi',
-          'fr',
-          'ht',
-          'pl',
-          'pt',
-          'Русский ru',
-          'sw',
-          'Việt vi',
-          'zh'
-        ]
+        defaults: 'Chinese ch\r\nVietnamese vi\r\nSpanish es\r\nFinnish fi\r\nPortuguese pt\r\nRussian ru\r\n'
       }
     }
   },
