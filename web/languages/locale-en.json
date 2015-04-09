@@ -28,13 +28,14 @@
     "Publish_survey": "Publish this survey",
     "Duplicate_survey": "Duplicate this survey",
     "Delete_survey": "Delete this survey",
-    "Can_not_be_deleted": "Published survey can not be deleted",
+    "Fill_out_survey": "Fill out this survey",
     "Create_Survey": "Create a new Survey",
     "Search_Name_Publisher": "Search Name or Publisher...",
     "All": "All",
     "Published": "Published",
     "Unpublished": "Unpublished",
-    "Publish_survey_title": "Publish this Survey"
+    "Publish_survey_title": "Publish this Survey",
+    "modal_title": "Fill out {survey} survey"
   },
   "results": {
     "RESULT_TITLE": "RESULT TITLE",
