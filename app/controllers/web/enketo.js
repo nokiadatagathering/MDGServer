@@ -95,7 +95,17 @@ exports.form = function (req, res, next) {
           return;
         }
 
-        jxonTree = SurveyParserService.SurveyToJxonTree(SurveyService.composeSurveyData(survey));
+        if (!survey) {
+          next({ status: 400, body: { name: 'ValidatorError', path: 'survey', type: 'unknown' } });
+          return;
+        }
+
+        if (!survey.published) {
+          next({ status: 400, body: { name: 'ValidatorError', path: 'survey', type: 'unpublished' } });
+          return;
+        }
+
+        jxonTree = SurveyParserService.SurveyToJxonTree(SurveyService.composeSurveyData(survey, true));
 
         res.setHeader('Content-disposition', 'attachment; filename="survey_' + survey._id.toString() + '.xml"');
         res.setHeader('Content-type', 'text/xml');
