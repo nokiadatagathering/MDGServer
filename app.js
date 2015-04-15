@@ -162,6 +162,7 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/ReceiveSurvey', passport.authenticate('digest', { session: false }), receiveSurveyCntr.index);
     app.get('/ReceiveSurvey/:id', passport.authenticate('digest', { session: false }), receiveSurveyCntr.show);
     app.get('/LocalizationServing/text', localeCntr.getLocale);
+    app.get('/LanguageList', localeCntr.languageList);
 
     app.get('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.getReportPage);
     app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
