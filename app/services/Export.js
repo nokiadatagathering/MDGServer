@@ -208,7 +208,7 @@ exports.getResultsData = function (questions, results) {
             questions[questionIndex].type === 'select1' ||
             /cascade/.test(questions[questionIndex].type )
         ) {
-          res = _.map(res.trim().split(/ +/), function (value) {
+          res = _.map(res.split(' '), function (value) {
             return '"' + _.find(questions[questionIndex].items, function (item) {
               return item.value == value;
             }).text + '"';

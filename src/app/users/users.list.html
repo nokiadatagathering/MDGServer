@@ -1,0 +1,101 @@
+<div class="b-content__users__users-box">
+    <button ui-sref="page.users.group.adduser" class="e-create-btn b-content__users--bnt-top">
+        <span class="fa fa-plus e-create-btn--icon"></span>
+        <span class="e-create-btn--title">{{ 'users.Add_User' | translate }}</span>
+    </button>
+
+    <table class="b-table__box">
+        <thead>
+        <tr class="b-table__header">
+            <th class="b-table__header__item">
+                <span ng-click="predicate = 'name'; reverse=!reverse">
+                    {{ 'users.NAME' | translate }}
+                </span>
+                <span class="fa fa-caret-down"></span>
+            </th>
+            <th class="b-table__header__item">
+                <span  ng-click="predicate = 'permission'; reverse=!reverse">
+                    {{ 'users.PERMISSION' | translate }}
+                </span>
+                <span class="fa fa-caret-down"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody class="b-table__body"
+               ng-model='users'
+               id="sortable">
+
+        <tr class="b-table__body__row b-content__users__users-box__user-item"
+            ng-repeat="user in filtered = (users | deletedItemsFilter : 'users') | filter:q | orderBy:predicate:reverse"
+            id="{{user._id}}"
+            ng-model="users" ng-init="user.hidden = true">
+            <td class="b-table__body__row__col b-content__users__users-box__user-item--name">
+                <p>
+                    <span class="b-table__body__row__col--text"
+                        title="{{user.name}}">
+                        {{user.name}}
+                    </span>
+                    <span class="b-content__users__users-box__user-item--rules">
+                        <span class="fa fa-book"
+                              ng-click="user.hidden = !user.hidden"></span>
+                        <button class="b-content__users__users-box__user-item--rules__button"
+                                title="{{ 'users.Send_SMS_user' | translate }}"
+                                ui-sref="page.users.group.smstouser({userId: user._id})">
+                            <span class="fa fa-envelope-o"></span>
+                        </button>
+                        <button class="b-content__users__users-box__user-item--rules__button"
+                                ng-disabled="user.permission === 'superAdmin' && loggedInUser.permission !== 'superAdmin'"
+                                ui-sref="page.users.group.edituser({userId: user._id})"
+                                title="{{ 'users.Edit_details' | translate }}">
+                            <span class="fa fa-pencil"></span>
+                        </button>
+                        <button class="b-content__users__users-box__user-item--rules__button"
+                                title="{{user.permission === 'superAdmin' ? ('users.Cannot_delete' | translate) : ('users.Delete_user' | translate) }}"
+                                ng-click="deleteUser(user._id, user.username)"
+                                ng-disabled="user.permission === 'superAdmin'">
+                            <span class="fa fa-trash-o"></span>
+                        </button>
+                    </span>
+                </p>
+                <div ng-show="!user.hidden" class="b-content__users__users-box__user-item--info">
+                    <p class="b-table__body__row__col--text-light"
+                       ui-sref="page.users.group.smstouser({userId: user._id})"
+                       title="{{user.username}}">
+                        {{user.username}}
+                    </p>
+                    <p class="b-table__body__row__col--text-light">
+                        {{ 'users.PHONE' | translate }}
+                        <span> {{user.phone}}</span>
+                    </p>
+                    <p ng-hide="!user.email"
+                          class="b-table__body__row__col--text-light">
+                        {{ 'users.EMAIL' | translate }}
+                        <span>{{user.email}}</span>
+                    </p>
+                </div>
+            </td>
+
+            <td class="b-table__body__row__col">
+                <p class="b-table__body__row__col--text"
+                        title="{{user.permission}}">
+                    {{user.permission}}
+                </p>
+            </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="b-content__users__search-box">
+    <p class="b-content__users__search-box__search-title"> {{ 'users.Search' | translate }}</p>
+
+    <div class="e-search-box">
+        <span class="fa fa-search e-search-box__icon"></span>
+        <input type="search" class="e-search-box__input"
+               ng-model="q"
+               placeholder="{{ 'users.Search' | translate }}">
+    </div>
+</div>
+<div ui-view></div>

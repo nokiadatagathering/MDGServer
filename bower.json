@@ -1,5 +1,6 @@
 {
-  "name": "ndg",
+  "name": "mdg",
+  "version": "0.0.0",
   "dependencies": {
     "angular": "1.2.*",
     "angular-ui-router": "0.2.5",
@@ -14,7 +15,6 @@
     "angular-translate-loader-static-files": "~2.2.0",
     "angular-translate-interpolation-messageformat": "~2.1.0",
     "angular-cookies": "~1.2.19",
-    "requirejs": "2.1.*",
     "jquery": "2.0.3",
     "jquery-ui": "1.10.3",
     "underscore": "1.5.*",
@@ -23,6 +23,7 @@
     "d3-tip": "0.6.4",
     "uuid-js": "~0.7.5",
     "almond": "~0.2.9",
-    "async": "0.9.0"
+    "async": "0.9.0",
+    "font-awesome": "~4.3.0"
   }
 }

@@ -15,7 +15,7 @@ exports.home = function (req, res, next) {
     }
   }
 
-  res.render('getStarted/jade/' + lang + '/home', {
+  res.render('app/views/getStarted/jade/' + lang + '/home', {
     title: Configuration.get('general.siteName'),
     countries:  Configuration.get('general.countries'),
     language: lang,
@@ -42,7 +42,7 @@ exports.error404 = function (req, res, next) {
     }
   }
 
-  res.render('getStarted/jade/' + lang + '/error404', {
+  res.render('app/views/getStarted/jade/' + lang + '/error404', {
     title: Configuration.get('general.siteName')
   });
 };

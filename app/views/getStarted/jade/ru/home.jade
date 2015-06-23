@@ -1,702 +1,904 @@
-!!! 5
+doctype html
 html
   head
     title= title
-    include ../../../../../web/index.js
-    include ../../../../../web/resources/stylesheets/style.css
+    script(src='home.js')
+    link(rel='stylesheet' href='styles/home.css')
+    link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' )
     meta(charset='utf-8')
   body
-    header#mainMenu
-      nav
-        a(href='#')
-          img(src='../resources/icons/lolgo-30px.png')
-          h1
-            | MICROSOFT
-            b &nbsp;DATA GATHERING
-        ul
-          li
-            a(href='#/getStarted') Старт
-          li
-            a(href='#/useCases') Прецеденты
-          li
-            a(href='#/openSource') Open Source
-          li
-            a(href='#/support') Поддержка
-          li
-            a.language-select #{language}&nbsp;
+    .g-page-wrapper
+      .b-page__head-line
+        .b-line-bit.b-line-bit--red
+        .b-line-bit.b-line-bit--green
+        .b-line-bit.b-line-bit--blue
+        .b-line-bit.b-line-bit--yellow
+      div
+        header.b-page__header
+          .b-head-logo
+            a.b-logo__title(href='#/home')
+              img.b-logo__img(src='assets/images/logo-30px.png')
+              span Microsoft Data Gathering
+          .b-menu
+            nav.b-menu-nav
+              a.b-menu-nav__link(href='#/getStarted')
+                | Старт
+              a.b-menu-nav__link(href='#/useCases')
+                | Прецеенты
+              a.b-menu-nav__link(href='#/openSource')
+                | Open Source
+              a.b-menu-nav__link(href='#/support')
+                | Поддержка
+          .b-account-menu
+            a.language-select.b-account-menu__locale #{language}&nbsp;
               ul.dropdown
                 each lang in languages
                   li(value=lang.value) #{lang.text}
-            a(href='#/login') Логин
-            | /
-            a(href='#/register') Регистрация
-    article#home.hidden
-      section.headDescrip
-        div
-          | Microsoft Data Gathering offers organizations a fast,
-          br
-          | accurate, cost effective and
-          br
-          | user-friendly way to collect data using mobile devices.
-      section.contentDescrip
-        div
-          .col-left
-            p
-              | Collecting field data the old-fashioned way, by filling in paper forms, transporting them, to a central location,
-              | and transcribing them, is slow and cumbersome. It delays the availability of information and can hamper the ability
-              | to make crucial decisions.
-            p
-              | Data collection with a mobile device can dramatically improve the speed and quality of information obtained from
-              | the field. The more time-critical the need for data and the more remote the location, the more organizations
-              | can benefit from a mobile phone based solution.
-            p
-              | Microsoft Data Gathering is a comprehensive solution that allows organizations to collect rich field data, including
-              | GPS location tags and images, using mobile phones and tablets instead of paper forms or laptops.
-            p
-              | Because mobile devices can transmit data even from remote locations, the information collected can be available
-              | for analysis in near-real time.
-          .col-right
-            img(src='../resources/images/collage.jpg')
-      section#instruction
-        div
-          h2 HOW IT WORKS
-          ul
-            .col-left
-              li
-                a(href='#/getStarted#step1')
-                  img(src='../resources/images/howitworks_1.png')
-                  span 1
-                  span
+            .b-account-menu__user
+              a(href='#/login') Вход
+              | /
+              a(href='#/register') Регистрация
+
+      article#home.hidden
+        .b-content-header
+          h1.b-content-header__title
+            | Microsoft Data Gathering
+          p.b-content-header__text
+            | Offers organizations a fast, accurate, cost effective and
+            br
+            | user-friendly way to collect data using mobile devices.
+        .b-page__line
+          .b-content.b-content--line.b-content--main
+            .b-content--main__article
+              p.b-content--main__article__indent
+                | Collecting field data the old-fashioned way, by filling in paper forms, transporting them, to a central
+                | location,
+                | and transcribing them, is slow and cumbersome. It delays the availability of information and can hamper the
+                | ability
+                | to make crucial decisions.
+              p.b-content--main__article__indent
+                | Data collection with a mobile device can dramatically improve the speed and quality of information obtained from
+                | the field. The more time-critical the need for data and the more remote the location, the more organizations
+                | can benefit from a mobile phone based solution.
+              p.b-content--main__article__indent
+                | Microsoft Data Gathering is a comprehensive solution that allows organizations to collect rich field data,
+                | including
+                | GPS location tags and images, using mobile phones and tablets instead of paper forms or laptops.
+              p.b-content--main__article__indent
+                | Because mobile devices can transmit data even from remote locations, the information collected can be available
+                | for analysis in near-real time.
+            .b-content-main__image
+              img(src='../assets/images/collage.jpg')
+        .b-page__line
+          .b-content.b-content--line
+            h2.b-content-title
+              | How It Works
+            .b-content__col-left
+              .b-content__col-left__item
+                .b-content__col-left__item__picture
+                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_1.png')
+                .b-content__col-left__item__caption
+                  span.b-content__col-left__item__caption__number 1
+                  span.b-content__col-left__item__caption__text--blue
                     | Create a questionnaire on
                     br
                     | the survey editor
-              li
-                a(href='#/getStarted#step2')
-                  img(src='../resources/images/howitworks_2.png')
-                  span 2
-                  span
+              .b-content__col-left__item
+                .b-content__col-left__item__picture
+                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_2.png')
+                .b-content__col-left__item__caption
+                  span.b-content__col-left__item__caption__number 2
+                  span.b-content__col-left__item__caption__text--blue
                     | Publish the data for data
                     br
                     | collectors
-              li
-                a(href='#/getStarted#step3')
-                  img(src='../resources/images/howitworks_3.png')
-                  span 3
-                  span
+              .b-content__col-left__item
+                .b-content__col-left__item__picture
+                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_3.png')
+                .b-content__col-left__item__caption
+                  span.b-content__col-left__item__caption__number 3
+                  span.b-content__col-left__item__caption__text--blue
                     | Fill in the questionnaire on
                     br
-                    | your mobile device
-            .col-right
-              li
-                a(href='#/getStarted#step4')
-                  img(src='../resources/images/howitworks_4.png')
-                  span 4
-                  span
+                    |  your mobile device
+            .b-content__col-right
+              .b-content__col-right__item
+                .b-content__col-right__item__picture
+                  img.b-content__col-right__item__picture--img(src='../assets/images/howitworks_4.png')
+                .b-content__col-right__item__caption
+                  span.b-content__col-right__item__caption__number 4
+                  span.b-content__col-right__item__caption__text--blue
                     | Send your data to the
                     br
-                    | server over the mobile
-                    br
-                    | network
-              li
-                a(href='#/getStarted#step5')
-                  img(src='../resources/images/howitworks_5.png')
-                  span 5
-                  span
+                    |  server over the mobile network
+              .b-content__col-right__item
+                .b-content__col-right__item__picture
+                  img.b-content__col-right__item__picture--img(src='../assets/images/howitworks_5.png')
+                .b-content__col-right__item__caption
+                  span.b-content__col-right__item__caption__number 5
+                  span.b-content__col-right__item__caption__text--blue
                     | View, map, and export
                     br
                     | your data
-      section.videoBlock
-        div
-          p
-            i
+        .b-page__line
+          .b-content.b-content--line
+            h2.b-content-title
+              | Case Study
+            p.b-content__paragraph
               | This video is about the use of Microsoft Data Gathering to
-              b.bold combat dengue fever
-              | in Amazonas State, Brazil.
-<<<<<<< HEAD
-<<<<<<< HEAD
-          iframe.video(src='//www.youtube.com/embed/kP1v9Snz6HA')
-=======
-          iframe.video(src="https://www.youtube.com/embed/kyEK6MVGb8M" frameborder="0" allowfullscreen)
->>>>>>> change video url
-=======
-          iframe.video(src="https://www.youtube.com/embed/kyEK6MVGb8M" frameborder="0" allowfullscreen)
->>>>>>> f9f173c631d6f0c4388f060c46964229f809205b
-      section#benefits
-        div
-          h2 BENEFITS
-          ul
-            .col-left
-              li
-                img(src='../resources/icons/speed.png')
-                h3 Speed
-                | Compared to using paper forms, mobile solutions cut down delays
-                | caused by transportation and manual digitalization of collected
-                | data.
-              li
-                img(src='../resources/icons/cost-efficiency.png')
-                h3 Cost efficiency
-                | Transportation and logistics costs are reduced, as are the needs
-                | for manual data entry and cleaning. There is also a cost of
-                | inaction saved with the ability to make critical decisions and
-                | react rapidly.
-            .col-right
-              li
-                img(src='../resources/icons/accuracy.png')
-                h3 Accuracy
-                | Data entry occurs at the point of collection, without needing to
-                | transcribe hand-written information. This lowers the frequency of
-                | transcription and data entry errors.
-              li
-                img(src='../resources/icons/usability.png')
-                h3 Usability
-                | Mobile phones are small, easy to carry, have battery longevity,
-                | and enable the capture of rich data such as GPS location tags
-                | and images.
-      section#awards
-        div
-          .col-left
-            h2 AWARDS
-            ul
-              li
-                b 2012
-                | : Microsoft Data Gathering was a Featured Project of the
-                br
-                | Month for July in the Developer Community Blog.
-              li
-                b 2011
-                | : Microsoft Data Gathering won the Justmeans Social
-                br
-                | Innovation Award in the category "Philanthropy: Most Strategic
-                br
-                | Use of Philanthropic Funds".
-              li
-                | The Justmeans international awards program is considered one of
-                | the top honours in the field of sustainability, giving recognition to
-                | companies implementing groundbreaking strategies and programs
-                | that drive social and environmental innovation.
-          .col-right
-            h2 ACKNOWLEDGEMENTS
-            p
-              | We would like to extend our thanks to these organizations, which
+              | combat dengue fever in
               br
-              | have been instrumental in getting Microsoft Data Gathering to
-              br
-              | where it is today.
-            ul.markedList
-              li
-                a(href='http://www.indt.org/?lang=en') Nokia Technology Institute
-              li
-                a(href='http://www.uonbi.ac.ke/') University of Nairobi
-              li
-                a(href='http://cmri.shu.edu/') The Center for Mobile Research and Innovation
-              li
-                a(href='http://www.ayalafoundation.org/') The Ayala Foundation
-      ul#footer
-        li
-          a(href='http://www.nokia.com/global/privacy/privacy/policy/privacy-policy/') Privacy Policy
-        li
-          a(href='http://www.nokia.com/global/privacy/privacy/cookie/cookie-policy/') Cookie Policy
-        li
-          a(href='http://www.nokia.com/global/privacy/privacy/service-terms/nokia-service-terms/') Service Policy
-        li
-          a(href="https://github.com/nokiadatagathering") Code
-    article#getStarted.hidden
-      section
-        div
-          h1 GET STARTED
-          p
+              | Amazonas State, Brazil.
+            .b-content__col-left
+              iframe.b-content__col-left--video(src='//www.youtube.com/embed/kP1v9Snz6HA')
+            .b-content__col-right
+              .b-content__col-right__study-article
+                p.b-content__col-right__study-article--text
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dolores esse facere iste nisi provident,
+                  | quae vel! Eveniet, molestias rerum! Cum debitis dolores ea fuga ipsum magni, nemo ratione similique.
+                  span
+                    | Amet ducimus enim, maxime minus perspiciatis sunt vel? Adipisci at aut, autem consequatur consequuntur culpa cupiditate illo incidunt iure iusto officiis quasi temporibus ut. A asperiores cum illo quis ullam!
+                  span
+                    | Alias enim et illo iusto optio totam voluptas, voluptatibus! Aliquid aperiam assumenda aut debitis deserunt ea eius esse ex illo illum inventore minus nostrum, porro reiciendis, repellat, reprehenderit similique ullam.
+                  span
+                    | Animi beatae, blanditiis consequatur cum cupiditate dignissimos distinctio dolores enim ex expedita facere fuga id ipsam itaque necessitatibus nobis obcaecati perspiciatis quas quidem quis quos similique suscipit veniam voluptatem voluptatibus.
+                  span
+                    | Accusamus alias deleniti deserunt fugit hic illum, incidunt iste, iusto molestias mollitia nihil non officia praesentium quam quia, rem repellendus tempora voluptates. Accusamus architecto eveniet, facere in iure nostrum vero?
+          .b-page__line
+            .b-content.b-content--line
+              h2.b-content-title
+                | Benefits
+              .b-content__col-left
+                .b-content__col-left__item.b-content__col-left__item--benefits
+                  .b-content__col-left__item__icon
+                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits1.png', alt='')
+                  .b-content__col-left__item__caption
+                    h3.b-content__col-left__item__caption__title Speed
+                    p.b-content__col-left__item__caption__text
+                      | Compared to using paper forms, mobile solutions cut down delays
+                      | caused by transportation and manual digitalization of collected
+                      | data.
+                .b-content__col-left__item.b-content__col-left__item--benefits
+                  .b-content__col-left__item__icon
+                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits2.png', alt='')
+                  .b-content__col-left__item__caption
+                    h3.b-content__col-left__item__caption__title Cost efficiency
+                    p.b-content__col-left__item__caption__text
+                      | Transportation and logistics costs are reduced, as are the needs
+                      | for manual data entry and cleaning. There is also a cost of
+                      | inaction saved with the ability to make critical decisions and
+                      | react rapidly.
+                      | data.
+              .b-content__col-right
+                .b-content__col-right__item.b-content__col-right__item--benefits
+                  .b-content__col-right__item__icon
+                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits3.png', alt='')
+                  .b-content__col-right__item__caption
+                    h3.b-content__col-right__item__caption__title Accuracy
+                    p.b-content__col-right__item__caption__text
+                      | Data entry occurs at the point of collection, without needing to
+                      | transcribe hand-written information. This lowers the frequency of
+                      | transcription and data entry errors.
+                .b-content__col-right__item.b-content__col-right__item--benefits
+                  .b-content__col-right__item__icon
+                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits4.png', alt='')
+                  .b-content__col-right__item__caption
+                    h3.b-content__col-right__item__caption__title Usability
+                    p.b-content__col-right__item__caption__text
+                      | Mobile phones are small, easy to carry, have battery longevity,
+                      | and enable the capture of rich data such as GPS location tags
+                      | and images.
+          .b-page__line
+            .b-content.b-content-line
+              .b-content__col-left
+                h2.b-content-title Awards
+                p.b-content__paragraph
+                  b 2012
+                  | Microsoft Data Gathering was a Featured Project of the
+                  br
+                  | Month for July in the Developer Community Blog.
+                p.b-content__paragraph
+                  b 2011
+                  | Microsoft Data Gathering won the Justmeans Social
+                  br
+                  | Innovation Award in the category &quot;Philanthropy: Most Strategic
+                  br
+                  | Use of Philanthropic Funds&quot;.
+                p.b-content__paragraph
+                  | The Justmeans international awards program is considered one of
+                  br
+                  | the top honours in the field of sustainability, giving recognition to
+                  br
+                  | companies implementing groundbreaking strategies and programs
+                  br
+                  | that drive social and environmental innovation.
+                  br
+              .b-content__col-right
+                .b-content__col-right__item
+                  h2.b-content-title Acknowledgements
+                  p.b-content__paragraph
+                    | We would like to extend our thanks to these organizations, which
+                    br
+                    | have been instrumental in getting Microsoft Data Gathering to
+                    br
+                    | where it is today.
+                  .b-content--acknowledge-list
+                    a.b-content--acknowledge-list__link(href='http://www.indt.org/?lang=en') Nokia Technology Institute
+                    a.b-content--acknowledge-list__link(href='http://www.uonbi.ac.ke/') University of Nairobi
+                    a.b-content--acknowledge-list__link(href='http://cmri.shu.edu/') The Center for Mobile Research and Innovation
+                    a.b-content--acknowledge-list__link(href='http://www.ayalafoundation.org/') The Ayala Foundation
+
+      article#getStarted.hidden
+        .b-content-header
+          h1.b-content-header__title
+            | Старт
+          p.b-content-header__text
             | If you have your own server and wish to migrate your data
+            br
             | to this release of MDG the tool to do that is available
-            a(href="http://github.com/nokiadatagathering/ndg-migration") here
-          ul
-            li(data-step='step1')
-              img(src='../resources/images/getstarted_step1.png')
-              h2 Step 1: Register to the Microsoft Data Gathering Playground Server
-              p
-                | The ﬁrst thing you need to do is to ﬁll in the user registration form and create
-                | an account on the Microsoft Data Gathering playground server. You can do this by
-                | clicking
-                a(href='#/register') register on the homepage
-                | .
-            li(data-step='step2')
-              img(src='../resources/images/getstarted_step2.png')
-              h2 Step 2: Create a survey
-              p
-                | After you've conﬁrmed your account and logged in to the server, you can start
-                | writing your own questionnaire using the survey editor. You can choose different
-                | question types, set default answers or limits and even use skip logic to write your
-                | questionnaire.
-            li(data-step='step3')
-              img(src='../resources/images/getstarted_step3.png')
-              h2 Step 3: Download the Microsoft Data Gathering mobile application
-              p
-                | Download and install one of the Microsoft Data Gathering mobile applications.
-              p
-                i
-                  | Please note that until the branding change is completed please use the server https://nokiadatagathering.net in the app settings.
-                  | Apps marked as 'New!' have been updated to use the https://microsoftdatagathering.net server and those marked as 'To be updated' still
-                  | default to https://nokiadatagathering.net
-              p
-                | Download the
-                a(href="http://www.windowsphone.com/en-us/store/app/nokia-data-gathering/a2bd7f51-6c7f-48d4-9fa7-12b35c550848") Windows Phone app
-                | .
-                img(src="../resources/icons/1-new.png")
-                em New!
-                br
-                | Download the
-                a(href="https://nokiadatagathering.net/ndg-ota/client/ndg.jad") Java app
-                | .
-                img(src="../resources/icons/1-to-be-updated.png")
-                em To be updated
-                br
-                | Download the
-                a(href="http://apps.microsoft.com/windows/app/nokia-data-gathering/4780fc68-fc8b-4db4-8cf7-110fe07dac42") Windows Tablet app
-                | .
-                img(src="../resources/icons/1-to-be-updated.png")
-                em To be updated
-            li(data-step='step4')
-              img(src='../resources/images/getstarted_step4.png')
-              h2 Step 4: Add users and make your survey available to them
-              p
-                | You can publish your questionnaire to your ﬁeld data collectors by adding them to
-                | your main account in the Users section, organizing them into groups and giving
-                | them different access permissions. You can make your questionnaire available to
-                | as many users as you like. You can also send SMS notiﬁcations to your user groups.
-            li(data-step='step5')
-              img(src='../resources/images/getstarted_step5.png')
-              h2 Step 5: Fill in the survey and send your results on your mobile device
-              p
-                | Open the Microsoft Data Gathering app you downloaded onto your mobile device
-                | in Step 3, and login with your user credentials. The surveys that were made available
-                | to you in Step 4 will be listed on the app. Just open the survey you want and create a new
-                | result by entering the requested data in the blank ﬁelds.
-              p
-                | You can send your results back to the server immediately, or save them on the
-                | phone to send later.
-            li(data-step='step6')
-              img(src='../resources/images/getstarted_step6.png')
-              h2 Step 6: View and export your results
-              p
-                | Go back to your Playground Server account and take a look at all the results you've received.
-                | You can map your geo-tagged data on Microsoft Maps, look at trends as simple graphs, or export
-                | your data in XLS or KML formats for further data analysis.
-    article#useCases.hidden
-      section
-        div
-          h1 USE CASES
-          ul
-            li
-              h2.nptlHeader Reducing the risk to drought in vulnerable communities in Uganda - FAO
-              img(src='../resources/images/usecase_1.jpg')
-              .col-left
-                p
-                  | As part of a regional initiative to reduce risk
-                  | of drought in Eastern Africa with Early Warning Systems,
-                  | the Food and Agriculture Organization of the United Nations
-                  | (FAO) in Uganda is collecting geo-spatial and qualitative
-                  | data about community animal health workers and providers
-                  | of veterinary services and shops, among the rural pastoral
-                  | communities of the Karamoja region.
-                p
-                  | The move from paper-based questionnaires to Microsoft Data Gathering
-                  | has allowed more efficient operations by reducing the time to produce
-                  | Drought Bulletins by 50%.
-                p
-                  | Furthermore, the project has enhanced participation of the community
-                  | and the local government, and is supporting the capacity of the
-                  | Department of Meteorology in issuing monthly weather updates
-                  | for Karamoja.
-                p
-                  | FAO's efforts were recognized by the World Bank in recent study
-                  | on mobile applications for the agriculture and forestry sector,
-                  | published in December 2013.
-              .col-right
-                blockquote
+            a.b-content-header__text__link(href='http://github.com/nokiadatagathering/ndg-migration') here
+        .b-page__line
+          .b-content
+            .b-step
+              .b-step__left
+                img.b-step__left__image(src='../assets/images/getstarted_step1.png')
+              .b-step__right
+                h3.b-step__right__title
+                  span.b-step__right__title__count Step 1
+                  | Register to the Microsoft Data Gathering Playground Server
+                p.b-step__right__paragraph
+                  | The &filig;rst thing you need to do is to &filig;ll in the user registration form and create
+                  br
+                  |  an account on the Microsoft Data Gathering playground server. You can do this by
+                  br
+                  |  clicking
+                  a.b-step__right__paragraph__link(ui-sref='#/register') register on the homepage
+        .b-page__line
+          .b-content
+            .b-step
+              .b-step__left
+                img.b-step__left__image(src='../assets/images/getstarted_step2.png')
+              .b-step__right
+                h3.b-step__right__title
+                  span.b-step__right__title__count Step 2
+                  | Create a survey
+                p.b-step__right__paragraph
+                  | After you&apos;ve con&filig;rmed your account and logged in to the server, you can start
+                  br
+                  |  writing your own questionnaire using the survey editor. You can choose different
+                  br
+                  |  question types, set default answers or limits and even use skip logic to write your
+                  br
+                  |  questionnaire.
+        .b-page__line
+          .b-content
+            .b-step
+              .b-step__left
+                img.b-step__left__image(src='../assets/images/getstarted_step3.png')
+              .b-step__right
+                h3.b-step__right__title
+                  span.b-step__right__title__count Step 3
+                  | Download the Microsoft Data Gathering mobile application
+                p.b-step__right__paragraph
+                  | Download and install one of the Microsoft Data Gathering mobile applications.
+                p.b-step__right__paragraph
+                  | Download the
+                  a.b-step__right__paragraph__link(href='http://www.windowsphone.com/en-us/store/app/nokia-data-gathering/a2bd7f51-6c7f-48d4-9fa7-12b35c550848')
+                    | Windows Phone app
+                p.b-step__right__paragraph
+                  | Download the
+                  a.b-step__right__paragraph__link(href='https://nokiadatagathering.net/ndg-ota/client/ndg.jad')
+                    | Java app
+                p.b-step__right__paragraph
+                  | Download the
+                  a.b-step__right__paragraph__link(href='http://apps.microsoft.com/windows/app/nokia-data-gathering/4780fc68-fc8b-4db4-8cf7-110fe07dac42')
+                    | Windows Tablet app
+        .b-page__line
+          .b-content
+            .b-step
+              .b-step__left
+                img.b-step__left__image(src='../assets/images/getstarted_step4.png')
+              .b-step__right
+                h3.b-step__right__title
+                  span.b-step__right__title__count Step 4
+                  | Add users and make your survey available to them
+                p.b-step__right__paragraph
+                  | You can publish your questionnaire to your &filig;eld data collectors by adding them to
+                  br
+                  |  your main account in the Users section, organizing them into groups and giving
+                  br
+                  |  them different access permissions. You can make your questionnaire available to
+                  br
+                  |  as many users as you like. You can also send SMS noti&filig;cations to your user groups.
+        .b-page__line
+          .b-content
+            .b-step
+              .b-step__left
+                img.b-step__left__image(src='../assets/images/getstarted_step5.png')
+              .b-step__right
+                h3.b-step__right__title
+                  span.b-step__right__title__count Step 5
+                  | Fill in the survey and send your results on your mobile device
+                p.b-step__right__paragraph
+                  | Open the Microsoft Data Gathering app you downloaded onto your mobile device
+                  br
+                  |  in Step 3, and login with your user credentials. The surveys that were made available
+                  br
+                  |  to you in Step 4 will be listed on the app. Just open the survey you want and create a new
+                  br
+                  |  result by entering the requested data in the blank &filig;elds.
+                p.b-step__right__paragraph
+                  | You can send your results back to the server immediately, or save them on the
+                  | phone to send later.
+        .b-page__line
+          .b-content
+            .b-step
+              .b-step__left
+                img.b-step__left__image(src='../assets/images/getstarted_step6.png')
+              .b-step__right
+                h3.b-step__right__title
+                  span.b-step__right__title__count Step 6
+                  | View and export your results
+                p.b-step__right__paragraph
+                  | Go back to your Playground Server account and take a look at all the results you&apos;ve received.
+                  br
+                  |  You can map your geo-tagged data on Microsoft Maps, look at trends as simple graphs, or export
+                  br
+                  |  your data in XLS or KML formats for further data analysis.
+
+
+      article#useCases.hidden
+        .b-content-header
+          h1.b-content-header__title
+            | Прецеенты
+          p.b-content-header__text
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet asperiores autem commodi cumque delectus
+            | deserunt doloremque eveniet facere incidunt maxime officia praesentium repudiandae,
+        .b-page__line
+          .b-content.b-content--line
+            h2.b-content-title
+              | Reducing the risk to drought in vulnerable communities
+              br
+              |  in Uganda - FAO
+            .b-content__col-left
+              p.b-content__paragraph
+                | As part of a regional initiative to reduce risk
+                | of drought in Eastern Africa with Early Warning Systems,
+                | the Food and Agriculture Organization of the United Nations
+                | (FAO) in Uganda is collecting geo-spatial and qualitative
+                | data about community animal health workers and providers
+                | of veterinary services and shops, among the rural pastoral
+                | communities of the Karamoja region.
+              p.b-content__paragraph
+                | The move from paper-based questionnaires to Microsoft Data Gathering
+                | has allowed more efficient operations by reducing the time to produce
+                | Drought Bulletins by 50%.
+              p.b-content__paragraph
+                | Furthermore, the project has enhanced participation of the community
+                | and the local government, and is supporting the capacity of the
+                | Department of Meteorology in issuing monthly weather updates
+                | for Karamoja.
+              p.b-content__paragraph
+                | FAO's efforts were recognized by the World Bank in recent study
+                | on mobile applications for the agriculture and forestry sector,
+                | published in December 2013.
+            .b-content__col-right
+              .b-content__col-right__item
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_1.jpg')
+                blockquote.b-content__col-right__item__photo-caption
                   | "We strive to improve the humanitarian situation by increasing
                   | the coping capacities of populations vulnerable to recurrent
                   | drought hazards and their effects through the provision of
                   | multi-sectorial assistance in the Horn of Africa.
                   | Microsoft Data Gathering is one of the most convenient
                   | and cost-effective tools for collecting data from remote areas."
-                  p
-                    b Bernard 0. Mwesigwa
-                    | ,
-                    | Programme Officer, M&E/Data Management, FAO Uganda
-            li
-              h2.nptlHeader Giving children the right to an identity in Kenya - Plan
-              img(src='../resources/images/usecase_2.jpg')
-              .col-left
-                p
-                  | An official identity is the foundation for child rights,
-                  | child protection and later child's ticket to services such as
-                  | secondary schooling. Official identity is obtained by parents
-                  | through birth registration.
-                p
-                  | Today only five out of ten children in Kenya are registered.
-                p
-                  | Poor accessibility to offices and officers, slow processing
-                  | of both birth notifications and certificates, and costs involved
-                  | together with a lack of incentives for parents to register their
-                  | children contribute to the current situation.
-                p
-                  | Plan together with the Ministry of Foreign Affairs in Finland is
-                  | running a universal birth registration project in the Kwale district
-                  | using Microsoft Data Gathering that has resulted in dramatically increased
-                  | registration rates (from 30 to 68%).
-              .col-right
-                blockquote
+                p.b-content__col-right__item__photo-location
+                  | Bernard 0. Mwesigwa,
+                  br
+                  | Programme Officer, M&E/Data Management, FAO Uganda
+        .b-page__line
+          .b-content.b-content--line
+            h2.b-content-title
+              | Giving children the right to an identity in Kenya - Plan
+            .b-content__col-left
+              p.b-content__paragraph
+                | An official identity is the foundation for child rights,
+                | child protection and later child's ticket to services such as
+                | secondary schooling. Official identity is obtained by parents
+                | through birth registration.
+              p.b-content__paragraph
+                | Today only five out of ten children in Kenya are registered.
+              p.b-content__paragraph
+                | Poor accessibility to offices and officers, slow processing
+                | of both birth notifications and certificates, and costs involved
+                | together with a lack of incentives for parents to register their
+                | children contribute to the current situation.
+              p.b-content__paragraph
+                | Plan together with the Ministry of Foreign Affairs in Finland is
+                | running a universal birth registration project in the Kwale district
+                | using Microsoft Data Gathering that has resulted in dramatically increased
+                | registration rates (from 30 to 68%).
+            .b-content__col-right
+              .b-content__col-right__item
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_2.jpg', alt='')
+                blockquote.b-content__col-right__item__photo-caption
                   | "The use of ICTs including mobile technology has great potential to support
                   | communities and governments in civil registration. Right to citizenship and
                   | identity are fundamental prerequisites in development."
-                  p
-                    b Mika Välitalo
-                    | , Manager - ICT for Development, Plan Finland
-            li
-              h2.nptlHeader
-                | Controlling dengue fever - Amazonas State Health Department and Health Vigilance Foundation
-              img(src='../resources/images/usecase_3.jpg')
-              .col-left
-                p
-                  | Amazonas State Health Department (SUSAM) and the Health Vigilance Foundation (FVS) leverage
-                  | Microsoft Data Gathering to help fight the spread of dengue fever
-                  | and increase the effectiveness of treatment.
-                p
-                  | During 2008,3S22 cases of the dengue were registered in Manaus. With the help of
-                  | Microsoft Data Gathering, during 2009 the number of cases was reduced dramatically to just 245 - a
-                  b.bold 93% cut
-                  | in the number of cases.
-                p
-                  | Microsoft Data Gathering helped the health workers to do their jobs, by making their
-                  | reports both faster and more accurate.
-              .col-right
-                blockquote
+                p.b-content__col-right__item__photo-location
+                  | Mika Välitalo,
+                  br
+                  | Manager - ICT for Development, Plan Finland
+        .b-page__line
+          .b-content.b-content--line
+            h2.b-content-title
+              | Controlling dengue fever - Amazonas State Health Department and Health Vigilance Foundation
+            .b-content__col-left
+              p.b-content__paragraph
+                | Amazonas State Health Department (SUSAM) and the Health Vigilance Foundation (FVS) leverage
+                | Microsoft Data Gathering to help fight the spread of dengue fever
+                | and increase the effectiveness of treatment.
+              p.b-content__paragraph
+                | During 2008,3S22 cases of the dengue were registered in Manaus. With the help of
+                | Microsoft Data Gathering, during 2009 the number of cases was reduced dramatically to just 245 - a
+                bold  93% cut
+                | in the number of cases.
+              p.b-content__paragraph
+                | Microsoft Data Gathering helped the health workers to do their jobs, by making their
+                | reports both faster and more accurate.
+            .b-content__col-right
+              .b-content__col-right__item
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_3.jpg', alt='')
+                blockquote.b-content__col-right__item__photo-caption
                   | "Microsofts technology will help us to more rapidly identify and investigate the results
                   | and symptoms of the surveyed population. The transmission of data immediately after
                   | the interviews improves agility, increases public safety and avoids manual filling-in of forms."
-                  p
-                    b Agnaldo Costa
-                    | , State Health Secretary of Amazonas State
-            li
-              h2.nptlHeader Reducing the risk to drought in vulnerable communities in Kenya - FAO
-              img(src='../resources/images/usecase_4.jpg')
-              .col-left
-                p
-                  | Accurate, timely and geo-tagged data on water points and sources is
-                  | an important basis to reduce the impact of drought among vulnerable communities
-                  | living in recurrent drought Food Agriculture Organization (FAO) is working along
-                  | with their NGO partners in Greater Horn of Africa to alleviate the risk
-                  | to drought among pastoralist communities.
-                p
-                  | Microsoft Data Gathering is bringing mobile technology to water point surveys,
-                  | reducing the amount of effort, time and cost to collect the information and
-                  | enabling proper and timely preparedness activities.
-                p
-                  | To date information from over 500 points has been collected - and more into come.
-                  | The collected information is also published in Disaster Risk Reduction website
-                  | for public good.
-              .col-right
-                blockquote
+                p.b-content__col-right__item__photo-location
+                  | Agnaldo Costa,
+                  br
+                  |  State Health Secretary of Amazonas State
+        .b-page__line
+          .b-content
+            h2.b-content-title
+              | Reducing the risk to drought in vulnerable communities in Kenya - FAO
+            .b-content__col-left
+              p.b-content__paragraph
+                | Accurate, timely and geo-tagged data on water points and sources is
+                | an important basis to reduce the impact of drought among vulnerable communities
+                | living in recurrent drought Food Agriculture Organization (FAO) is working along
+                | with their NGO partners in Greater Horn of Africa to alleviate the risk
+                | to drought among pastoralist communities.
+              p.b-content__paragraph
+                | Microsoft Data Gathering is bringing mobile technology to water point surveys,
+                | reducing the amount of effort, time and cost to collect the information and
+                | enabling proper and timely preparedness activities.
+              p.b-content__paragraph
+                | To date information from over 500 points has been collected - and more into come.
+                | The collected information is also published in Disaster Risk Reduction website
+                | for public good.
+            .b-content__col-right
+              .b-content__col-right__item
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_4.jpg', alt='')
+                blockquote.b-content__col-right__item__photo-caption
                   | "A huge burden is put on organizations, especially small scale NG05,
                   | to collect, capture and process data timely for response and planning with
                   | no supported technology tools. Microsoft Data Gathering provides a simple and
                   | effective field solution with a centralized data administration system."
-                  p
-                    b Phillip Fong
-                    | , Regional Data and Information Coordinator, FAO
-    article#openSource.hidden
-      section
-        div
-          h1 OPEN SOURCE
-          h2.nptlHeader Microsoft Data Gathering is an Open Source solution
-          .col-left
-            p
-              | We launched the open source version of Microsoft Data Gathering on 30 July 2010,
-              | making the source code available to anyone for download, deployment and development.
-              | There are no licensing costs for using the software, the code base is public,
-              | and development occurs in a collaborative and community-driven manner.
-            p
-              | The open source model also empowers universities and local developers to participate
-              | in creating tools and services on top of the core solution, helping to build local capacity.
-              | This ultimately promotes innovation and entrepreneurship, and increases the sustainability of
-              | technology adoption.
-            p
-              | The Microsoft Data Gathering Windows Phone client is licensed under Berkely Software Distribution BSD,
-              | a family of permissive free software licenses, imposing minimal restrictions on the redistribution
-              | of covered software.
-          .col-right
-            p
-              | You can read the BSD license terms
-              a(href='http://opensource.org/licenses/BSD-2-Clause') here
-              | .
-            p
-              | The Microsoft Data Gathering Playground Server and the Java client
-              | are both licensed under the GNU Lesser General Public License,
-              a(href='https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html') LGPL
-              | which allows developers and companies to use and integrate the software into
-              | their own (even proprietary) software without being required to release the source
-              | code of their own software-parts.
-            p
-              | Microsoft Data Gathering complies with Open Rosa standards for data collection.
-            p
-              | The Microsoft Data Gathering source code and documentation repository is at
-              a(href='https://github.com/nokiadatagathering') https://github.com/nokiadatagathering
-              | .
-      section
-        div
-          h1 GET INVOLVED
-          p
-            | Here's how you can be a part of the Microsoft Data Gathering
-            | developer and user community:
-          ul.markedList
-            li
-              a(href='https://github.com/nokiadatagathering') Get the source code
-              | and develop
-              | Microsoft Data Gathering
-            li
-              | Become a Microsoft Data Gathering service partner
-            li
-              | Help us plan future software releases
-            li
-              | Translate the Microsoft Data Gathering application into your language
-    article#support.hidden
-      section
-        div
-          h1 SUPPORT
-          p How to get support:
-          ul.markedList
-            li
-              a(href='/docs') Read the Microsoft Data Gathering user guide and documentation
-            li
-              | Access the
-              a(href='https://github.com/nokiadatagathering') Microsoft Data Gathering code repository
-            li
-              | Send an email to
-              a(href='mailto:mdgspprt@microsoft.com') mdgspprt@microsoft.com
-              | .
-          h1 FREQUENTLY ASKED QUESTIONS
-          ul.questionList
-            .col-left
-              li
-                h2.blueHeader 1) What are the benefits of mobile data collection?
-                p
+                p.b-content__col-right__item__photo-location
+                  | Phillip Fong,
+                  br
+                  |  Regional Data and Information Coordinator, FAO
+      article#openSource.hidden
+        .b-page__line
+          .b-content-header
+            h1.b-content-header__title
+              | Open Source
+            p.b-content-header__text
+              | Microsoft Data Gathering is an Open Source solution
+          .b-page__line
+            .b-content
+              .b-content__col-left
+                p.b-content__paragraph
+                  | We launched the open source version of Microsoft Data Gathering on 30 July 2010,
+                  | making the source code available to anyone for download, deployment and development.
+                  | There are no licensing costs for using the software, the code base is public,
+                  | and development occurs in a collaborative and community-driven manner.
+                p.b-content__paragraph
+                  | The open source model also empowers universities and local developers to participate
+                  | in creating tools and services on top of the core solution, helping to build local capacity.
+                  | This ultimately promotes innovation and entrepreneurship, and increases the sustainability of
+                  | technology adoption.
+                p.b-content__paragraph
+                  | The Microsoft Data Gathering Windows Phone client is licensed under Berkely Software Distribution BSD,
+                  | a family of permissive free software licenses, imposing minimal restrictions on the redistribution
+                  | of covered software.
+              .b-content__col-right
+                .b-content__col-right__item
+                  p.b-content__paragraph
+                    | You can read the BSD license terms
+                    a.b-content__paragraph__link(href='ttp://opensource.org/licenses/BSD-2-Clause') here
+                    | .
+                  p.b-content__paragraph
+                    | The Microsoft Data Gathering Playground Server and the Java client
+                    | are both licensed under the GNU Lesser General Public License,
+                    a.b-content__paragraph__link(href='https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html') LGPL
+                    |  which allows developers and companies to use and integrate the software into
+                    |  their own (even proprietary) software without being required to release the source
+                    |  code of their own software-parts.
+                  p.b-content__paragraph
+                    | Microsoft Data Gathering complies with Open Rosa standards for data collection.
+                  p.b-content__paragraph
+                    | The Microsoft Data Gathering source code and documentation repository is at
+                    a.b-content__paragraph__link(href='https://github.com/nokiadatagathering')  https://github.com/nokiadatagathering
+                    | .
+          .b-page__line
+            .b-content
+              .b-content__col-left
+                h2.b-content-title
+                  | Get Involved
+                p.b-content__paragraph
+                  | Here's how you can be a part of the Microsoft Data Gathering
+                  | developer and user community:
+                p.b-content__paragraph.b-content__paragraph--item
+                  a.b-content__paragraph__link(href='https://github.com/nokiadatagathering') Get the source code
+                  | and develop
+                  | Microsoft Data Gathering
+                p.b-content__paragraph.b-content__paragraph--item
+                  | Become a Microsoft Data Gathering service partner
+                p.b-content__paragraph.b-content__paragraph--item
+                  | Help us plan future software releases
+                p.b-content__paragraph.b-content__paragraph--item
+                  | Translate the Microsoft Data Gathering application into your language
+
+      article#support.hidden
+        .b-page__line
+          .b-content-header
+            h1.b-content-header__title
+              | Поддержка
+            p.b-content-header__text
+              | Microsoft Data Gathering support page
+        .b-page__line
+          .b-content
+            .b-content__col-left
+              h2.b-content-title
+                | How to get support
+              p.b-content__paragraph.b-content__paragraph--item
+                a.b-content__paragraph__link(href='//docs')
+                  | Read the Microsoft Data Gathering user guide and
+                  | documentation
+              p.b-content__paragraph.b-content__paragraph--item
+                | Access the
+                a.b-content__paragraph__link(href='https://github.com/nokiadatagathering')
+                  | Microsoft Data Gathering code repository
+              p.b-content__paragraph.b-content__paragraph--item
+                | Send an email to
+                a.b-content__paragraph__link(href='support@nokiadatagathering.net')
+                  | support@nokiadatagathering.net
+        .b-page__line
+          .b-content
+            h2.b-content-title
+              | Frequently Asked Questions
+            .b-content__col-left
+              .b-content__col-left__item
+                h3.b-content__col-left__item__title
+                  span.b-content__col-left__item__title-number
+                    | 1
+                  | What are the benefits of mobile data collection?
+                p.b-content__paragraph
                   | The key benefits of mobile data collection are speed,
                   | accuracy, cost efficiency and usability. Please see the
-                  a(href='#/home') benefits section on the homepage
+                  a.b-content__paragraph__link(href='#/home')  benefits section on the homepage
                   | for more on benefits.
-              li
-                h2.blueHeader 2) How is Microsoft Data Gathering used in the field?
-                p
+              .b-content__col-left__item
+                h3.b-content__col-left__item__title
+                  span.b-content__col-left__item__title-number
+                    | 2
+                  | How is Microsoft Data Gathering used in the field?
+                p.b-content__paragraph
                   | When time is of the essence, rapidly available, accurate information
                   | is critical for sound decision-making in any kind of organization.
-                p
+                p.b-content__paragraph
                   | For example: In Brazil, the Amazonas State Health Department and
                   | the Health Vigilance Foundation have used Microsoft Data Gathering
                   | to monitor and control the spread of dengue fever.
-                p
+                p.b-content__paragraph
                   | In East Africa, the Food and Agriculture Organization has conducted
                   | water and livestock surveys to reduce the risk of vulnerable
                   | communities to drought.
-                p
+                p.b-content__paragraph
                   | In Kenya, Plan Finland has worked with the Kenyan government
                   | to register births using Microsoft Data Gathering.
-                p
+                p.b-content__paragraph
                   | For more on use cases, please see the
-                  a(href='#/useCases') use cases page
-                  | .
-              li
-                h2.blueHeader 3) Does it cost anything to use Microsoft Data Gathering?
-                p
+                  a.b-content__paragraph__link(href='#') use cases page
+              .b-content__col-left__item
+                h3.b-content__col-left__item__title
+                  span.b-content__col-left__item__title-number
+                    | 3
+                  | Does it cost anything to use Microsoft Data Gathering?
+                p.b-content__paragraph
                   | Nokia Data Gathering is an open source solution so there are no licensing fees
                   | or charges for using the software. For more on open source, please see the
-                  a(href='#/openSource') open source page
-                  | .
-                p
+                  a.b-content__paragraph__link(href='#/openSource')  open source page
+                p.b-content__paragraph
                   | Of course, there are costs associated with the hardware
                   | (mobile phones, servers, SIM cards) necessary for using
                   | Nokia Data Gathering, as well as the implementation of a data collection project.
                   | These costs must be scoped and borne by the organization using the solution.
-              li
-                h2.blueHeader 4) What are the license terms for Microsoft Data Gathering?
-                p
+              .b-content__col-left__item
+                h3.b-content__col-left__item__title
+                  span.b-content__col-left__item__title-number
+                    | 4
+                  | What are the license terms for Microsoft Data Gathering?
+                p.b-content__paragraph
                   | The Microsoft Data Gathering Windows Phone client is licensed under the open source
                   | Berkeley Software Distribution (BSD) License family. The Microsoft
                   | Data Gathering Playground Server and the Java client are both licensed under
                   | the GNU Lesser General Public License (ILGPL).Microsoft Data Gathering complies with
                   | the standards of the OpenROSA Consortium on mobile data collection.
-                p
+                p.b-content__paragraph
                   | For more on our licenses, please see the
-                  a(href='#/openSource') open source page
-                  | .
-            .col-right
-              li
-                h2.blueHeader 5) Which devices are compatible with Microsoft Data Gathering?
-                p
+                  a.b-content__paragraph__link(href='#/openSource')  open source page
+            .b-content__col-right
+              .b-content__col-right__item
+                h3.b-content__col-right__item__title
+                  span.b-content__col-right__item__title-number
+                    | 5
+                  | Which devices are compatible with Microsoft Data Gathering?
+                p.b-content__paragraph
                   | The Windows Phone version of the Microsft Data Gathering mobile client is
                   | a Silverlight application for Windows Phone 7 and a Cordova/Sensa Touch application for
                   | Windows Phone 8. The Windows Tablet version runs on Windows RT devices. The Java application runs
                   | on Symbian and Nokia OS devices.
-                p
+                p.b-content__paragraph
                   | If you have a specific query about device compatibility, please let
                   | us know by sending an email to
-                  a(href='mailto:mdgspprt@microsoft.com') mdgspprt@microsoft.com
-                  | .
-              li
-                h2.blueHeader 6) Where can I find the Microsoft Data Gathering source code?
-                p
+                  a.b-content__paragraph__link(href='support@nokiadatagathering.net') support@nokiadatagathering.net
+                  |  .
+              .b-content__col-right__item
+                h3.b-content__col-right__item__title
+                  span.b-content__col-right__item__title-number
+                    | 6
+                  | Where can I find the Microsoft Data Gathering source code?
+                p.b-content__paragraph
                   | You can get the source code at
-                  a(href='https://github.com/nokiadatagathering') https://github.com/nokiadatagathering
-                  | .
-              li
-                h2.blueHeader 7) How can I host my own server data?
-                p
+                  a.b-content__paragraph__link(href='https://github.com/nokiadatagathering') https://github.com/nokiadatagathering
+                  |  .
+              .b-content__col-right__item
+                h3.b-content__col-right__item__title
+                  span.b-content__col-right__item__title-number
+                    | 7
+                  | ow can I host my own server data?
+                p.b-content__paragraph
                   | The instructions for setting up and hosting your own
                   | server are contained in the
-                  a(href='https://github.com/nokiadatagathering/ndgdocs/blob/master/README') README
-                  | .
-              li
-                h2.blueHeader 8) What are the previous versions of Microsoft Data Gathering?
-                p
+                  a.b-content__paragraph__link(href='https://github.com/nokiadatagathering/ndgdocs/blob/master/README') README
+                  |  .
+              .b-content__col-right__item
+                h3.b-content__col-right__item__title
+                  span.b-content__col-right__item__title-number
+                    | 8
+                  | What are the previous versions of Microsoft Data Gathering?
+                p.b-content__paragraph
                   | Please see our
-                  a(href='#') release archive
+                  a.b-content__paragraph__link(href='#') release archive
                   |  for more information on previous releases of
-                  | Microsoft Data Gathering.
-              li
-                h2.blueHeader 9) Can students work on Microsoft Data Gathering?
-                p
+                  |  Microsoft Data Gathering..
+              .b-content__col-right__item
+                h3.b-content__col-right__item__title
+                  span.b-content__col-right__item__title-number
+                    | 9
+                  | Can students work on Microsoft Data Gathering?
+                p.b-content__paragraph
                   | Yes. Please see the description of our
-                  a(href='#')  University Collaboration Program
-                  | .
-              li
-                h2.blueHeader 10) Can I translate the Microsoft Data Gathering mobile client into my language?
-                p
+                  a.b-content__paragraph__link(href='#') University Collaboration Program
+              .b-content__col-right__item
+                h3.b-content__col-right__item__title
+                  span.b-content__col-right__item__title-number
+                    | 10
+                  | Can I translate the Microsoft Data Gathering mobile client into my language?
+                p.b-content__paragraph
                   | Yes. Please get in touch with us at
-                  a(href='mdgspprt@microsoft.com') mdgspprt@microsoft.com
+                  a.b-content__paragraph__link(href='support@nokiadatagathering.net')  support@nokiadatagathering.net
                   |  and work with us to provide a translation of
-                  | the software in your language. We will then push this out
-                  | and make the language version available to all users.
-    article#login.hidden
-      section
-        div
-          h1 LOGIN
-          form
-            label.col-left
-              input(type='text', name='username', placeholder='Enter your username...')
-            label.col-right
-              input(type='password', name='password', placeholder='Enter your password...')
+                  |  the software in your language. We will then push this out
+                  |  and make the language version available to all users.
+
+      article#login.hidden
+        .b-page__line
+          .b-content-header
+            h1.b-content-header__title
+              | Login
+            p.b-content-header__text
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet asperiores autem commodi cumque delectus
+        .b-page__line
+          .b-content
+            form.e-form
+              label.e-form__label Username
+              input.e-form__field(type="text", name="username", placeholder="Enter your username...")
+              label.e-form__label Password
+              input.e-form__field(type="password", name="password", placeholder="Enter your password...")
               .error
-            a(href='#/forgotPassword') Forgot your password?
-            button(type='submit') Login
-    article#register.hidden
-      section
-        div
-          h1 REGISTER
-          form(action='signup', met='post', autocomplete="off")
-            label.col-left
-              input(type='text', placeholder='First name', name='firstName', data-validation='len(2, 60);')
-              .error
-                span(data-validation-msg='len')
-                  | This field must have at least 2 and cannot be longer than 60 characters.
-            label.col-right
-              input(type='text', placeholder='Last name', name='lastName', data-validation='len(2, 60);')
-              .error
-                span(data-validation-msg='len')
-                  | This field must have at least 2 characters.
-            label.col-left
-              input(type='text', placeholder='Username', name='username', data-validation='len(5,13);isAlpha;uniqeUsrName;')
-              .error
-                span(data-validation-msg='uniqeUsrName')
-                  | This username is already used.
-                span(data-validation-msg='len')
-                  | This field must have at least 5 and cannot be longer than 13 characters.
-                span(data-validation-msg='isAlpha')
-                  | Nickname can contain only numbers, periods and Latin letters.
-            label.col-right
-              input(type='text', placeholder='Email', name='email', data-validation='isEmail;')
-              .error
-                span(data-validation-msg='isEmail')
-                  | This is not a valid email.
-            label.col-left
-              input(type='password', placeholder='Password', name='password', data-validation='len(8,20);')
-              .error
-                span(data-validation-msg='len')
-                  | This field must have at least 8 and cannot be longer than 20 characters.
-            label.col-right
-              input(type='password', placeholder='Confirm password', name='confirmpass', data-validation='isMatch(password)')
-              .error
-                span(data-validation-msg='isMatch')
-                  | Passwords do not match
-            label.col-left
-              input(type='text', placeholder='Phone number', name='phone', data-validation='len(10,15);isNumber;')
-              .error
-                span(data-validation-msg='len')
-                  | This field must have at least 10 and cannot be longer than 15 characters.
-                span(data-validation-msg='isNumber')
-                  | This is not a valid phone number.
-            label.col-right
-              input(type='text', placeholder='Company', name='company', data-validation='len(2, 60);')
-              .error
-                span(data-validation-msg='len')
-                  | This field must have at least 2 and cannot be longer than 60 characters.
-            label.col-left
-              input(type='text', placeholder='Industry', name='industry', data-validation='len(2, 60);')
-              .error
-                span(data-validation-msg='len')
-                  | This field must have at least 2 and cannot be longer than 60 characters.
-            label.col-right
-              select(placeholder='Country', name='country', data-validation='len(1);')
-                option(value='') Country
-                each country in countries
-                  option(value=country) #{country}
-              .error
-                span(data-validation-msg='len')
-                  | This field cannot be blank.
-            button(type='submit') Create Account
-    article#forgotPassword.hidden
-      section
-        div
-          h1 FORGOT YOUR PASSWORD?
-          .msg.hidden
-            p If you have entered a valid email, please check it for further instructions.
-          form
-            p
-              | Please enter your username and email to reset your password.
-            p
-              | If you forgot your username, please enter your email
-              | only and we will send all usernames related to this email.
-            label.col-left
-              input(type='text', name='username', placeholder='Username...')
-            label.col-right
-              input(type='text', name='email', placeholder='Email...', data-validation='isEmail;')
-              .error
-                span(data-validation-msg='isEmail')
-                  | This is not a valid email.
-            button(type='submit') Proceed
-    article#resetPassword.hidden
-      section
-        div
-          h1 RESET PASSWORD
-          form
-            label.col-left
-              input(type='password', placeholder='Enter new password...', name='password', data-validation='len(8,20);')
-              .error
-                span(data-validation-msg='len')
-                  | This field must have at least 8 and cannot be longer than 20 characters.
-            label.col-right
-              input(type='password', placeholder='Confirm new password...', name='confirmpass', data-validation='isMatch(password)')
-              .error
-                span(data-validation-msg='isMatch')
-                  | Passwords do not match
-            button(type='submit') Apply
-    article#resetPasswordError.hidden
-      section
-        div
-          h1 RESET PASSWORD
-          .msg
-            p Password reset token is invalid or has expired.
-      .modal.success-registration.hidden
-      .overlay
-      .window
-        .window-body
-          div You have successfully created an account on the server! Please check your email to continue with the registration process. If you cannot find the email in your inbox then please check your Spam folder
-            input(type="button" value="OK")
-      
+              button.e-form__button(type="submit") Login
+              p.b-content__paragraph
+                a.b-content__paragraph__link(href="#/forgotPassword") Forgot your password?
+              p.b-content__paragraph
+                | Don&#8217;t have an account?
+                a.b-content__paragraph__link(href="#/register") Register here
+
+      article#register.hidden
+        .b-page__line
+          .b-content-header
+            h1.b-content-header__title
+              | Register
+            p.b-content-header__text
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet asperiores autem commodi cumque delectus
+        .b-page__line
+          .b-content
+            form.e-form(action='signup', method='POST', autocomplete="off")
+              .b-form-row
+                .b-form-row__col
+                  label.e-form__label First Name
+                  input.e-form__field(type="text", name="firstName", data-validation='len(2, 60);', placeholder="Enter your First Name...")
+                  .error
+                    span(data-validation-msg='len')
+                      | This field must have at least 2 and cannot be longer than 60 characters.
+                .b-form-row__col
+                  label.e-form__label Last name
+                  input.e-form__field(type="text", name="lastName", data-validation='len(2, 60);', placeholder="Enter your Last name...")
+                  .error
+                    span(data-validation-msg='len')
+                      | This field must have at least 2 characters.
+              .b-form-row
+                .b-form-row__col
+                  label.e-form__label Username
+                  input.e-form__field(type="text", name="username",  data-validation='len(5,13);isAlpha;uniqeUsrName;', placeholder="Enter your Username...")
+                  .error
+                    span(data-validation-msg='uniqeUsrName')
+                      | This username is already used.
+                    span(data-validation-msg='len')
+                      | This field must have at least 5 and cannot be longer than 13 characters.
+                    span(data-validation-msg='isAlpha')
+                      | Nickname can contain only numbers, periods and Latin letters.
+                .b-form-row__col
+                  label.e-form__label Email
+                  input.e-form__field(type="email", name="email", data-validation='isEmail;', placeholder="Enter your Email...")
+                  .error
+                    span(data-validation-msg='isEmail')
+                      | This is not a valid email.
+              .b-form-row
+                .b-form-row__col
+                  label.e-form__label Password
+                  input.e-form__field(type="password", name="password", data-validation='len(8,20);', placeholder="Enter your Password...")
+                  .error
+                    span(data-validation-msg='len')
+                      | This field must have at least 8 and cannot be longer than 20 characters.
+                .b-form-row__col
+                  label.e-form__label Confirm Password
+                  input.e-form__field(type="password", name="confirmpass", data-validation='isMatch(password)', placeholder="Confirm your Password...")
+                  .error
+                    span(data-validation-msg='isMatch')
+                      | Passwords do not match
+              .b-form-row
+                .b-form-row__col
+                  label.e-form__label Phone Number
+                  input.e-form__field(type="text", name="phone",data-validation='len(10,15);isNumber;', placeholder="Enter your Phone Number...")
+                  .error
+                    span(data-validation-msg='len')
+                      | This field must have at least 10 and cannot be longer than 15 characters.
+                    span(data-validation-msg='isNumber')
+                      | This is not a valid phone number.
+                .b-form-row__col
+                  label.e-form__label Company
+                  input.e-form__field(type="text", name="company", data-validation='len(2, 60);', placeholder="Enter your Company...")
+                  .error
+                    span(data-validation-msg='len')
+                      | This field must have at least 2 and cannot be longer than 60 characters.
+              .b-form-row
+                .b-form-row__col
+                  label.e-form__label Industry
+                  input.e-form__field(type="text", name="industry", data-validation='len(2, 60);', placeholder="Enter your industry...")
+                  .error
+                    span(data-validation-msg='len')
+                      | This field must have at least 2 and cannot be longer than 60 characters.
+                .b-form-row__col
+                  label.e-form__label Country
+                  .e-select
+                    label.e-select__label
+                      select.e-select__box(placeholder='Country', name='country', data-validation='len(1);')
+                        option(value='') Country
+                          each country in countries
+                            option(value=country) #{country}
+                      .error
+                        span(data-validation-msg='len')
+                          | This field cannot be blank.
+
+              button.e-form__button.e-form__button--offset(type="submit") Create Account
+
+      article#forgotPassword.hidden
+        .b-modal-window
+          .b-modal-window__main-block.b-forgot-pass
+            .b-modal-window__main-block__header
+              h2.b-modal-window__main-block__header--title
+                | FORGOT YOUR PASSWORD?
+              span.b-modal-window__main-block__header--icon-close()
+                a.fa.fa-times(href='#/login')
+            .b-modal-window__main-block__body
+              .msg.hidden
+                p If you have entered a valid email, please check it for further instructions.
+              form.e-form(method='POST')
+                p
+                  | Please enter your username and email to reset your password.
+                p
+                  | If you forgot your username, please enter your email
+                  | only and we will send all usernames related to this email.
+                label.e-form__label
+                  input.e-form__field(type='text', name='username', placeholder='Username...')
+                label.e-form__label
+                  input.e-form__field(type='text', name='email', placeholder='Email...', data-validation='isEmail;')
+                  .error
+                    span(data-validation-msg='isEmail')
+                      | This is not a valid email.
+                button.e-form__button(type='submit') Proceed
+      article#resetPassword.hidden
+        .b-modal-window
+          .b-modal-window__main-block.b-reset-pass
+            .b-modal-window__main-block__header
+              h2.b-modal-window__main-block__header--title
+                | RESET PASSWORD
+              span.b-modal-window__main-block__header--icon-close()
+                a.fa.fa-times(href='#/login')
+            .b-modal-window__main-block__body
+              form.e-form(method='POST', autocomplete="off")
+                label.e-form__label
+                  input.e-form__field(type='password', placeholder='Enter new password...', name='password', data-validation='len(8,20);')
+                  .error
+                    span(data-validation-msg='len')
+                      | This field must have at least 8 and cannot be longer than 20 characters.
+                label.e-form__label
+                  input.e-form__field(type='password', placeholder='Confirm new password...', name='confirmpass', data-validation='isMatch(password)')
+                  .error
+                    span(data-validation-msg='isMatch')
+                      | Passwords do not match
+                button.e-form__button(type='submit') Apply
+      article#resetPasswordError.hidden
+        .b-modal-window
+          .b-modal-window__main-block.b-reset-pass-error
+            .b-modal-window__main-block__header
+              h2.b-modal-window__main-block__header--title
+                | RESET PASSWORD
+              span.b-modal-window__main-block__header--icon-close()
+                a.fa.fa-times(href='#/resetPassword')
+            .b-modal-window__main-block__body
+              .modal.success-registration.hidden
+                .msg
+                p Password reset token is invalid or has expired.
+
+      article#successRegistration.hidden
+        .b-modal-window
+          .b-modal-window__main-block.b-success-registration
+            .b-modal-window__main-block__header
+              h2.b-modal-window__main-block__header--title
+                | Successfully Registration
+              span.b-modal-window__main-block__header--icon-close()
+                a.fa.fa-times(href="#/register")
+            .b-modal-window__main-block__body
+              .modal.success-registration
+                .msg
+                p You have successfully created an account on the server! Please check your email to continue with the registration process. If you cannot find the email in your inbox then please check your Spam folder
+                button.b-success-registration__btn(type="button")
+                  a(href='#/login')
+                    span.fa.fa-check.b-success-registration__btn--icon
+                    span() OK
+
+    .b-page__footer
+      ul.b-page__footer__box
+        li.b-page__footer__box__item
+          a.b-page__footer__box__item__link(href='http://www.nokia.com/global/privacy/privacy/policy/privacy-policy/') Privacy Policy
+        li.b-page__footer__box__item
+          a.b-page__footer__box__item__link(href='http://www.nokia.com/global/privacy/privacy/cookie/cookie-policy/') Cookie Policy
+        li.b-page__footer__box__item
+          a.b-page__footer__box__item__link(href='http://www.nokia.com/global/privacy/privacy/service-terms/nokia-service-terms/') Service Policy
+        li.b-page__footer__box__item
+          a.b-page__footer__box__item__link(href='https://github.com/nokiadatagathering') Code
+

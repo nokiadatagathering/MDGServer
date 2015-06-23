@@ -1,0 +1,295 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Segoe UI;
+}
+
+.g-pointer {
+  cursor: pointer;
+}
+
+.g-hide {
+  display: none;
+}
+
+
+
+.g-page-wrapper {
+  min-height: 100vh;
+  &:after {
+    content:' ';
+    display:block;
+    height:60px;
+    clear:both
+  }
+}
+
+//common Elements
+
+.e-search-box {
+  background-color: $gray-light;
+  height: 42px;
+  overflow: hidden;
+
+  &__icon.fa {
+    color: $gray-icon;
+    float: left;
+    font-size: 24px;
+    margin: 0 6px;
+    line-height: 42px;
+  }
+
+  &__input {
+    width: 85%;
+    height: 42px;
+    float: right;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 18px;
+    line-height: 42px;
+    font-weight: lighter;
+    color: $gray-text;
+    padding-right: 12px;
+  }
+}
+
+.e-create-btn {
+  background: transparent;
+  border: none;
+  outline:none;
+  &:active {
+    outline: none;
+  }
+
+  &--title {
+    color: $red;
+    font-size: 30px;
+    float: left;
+    font-weight: bold;
+  }
+
+  &--icon.fa {
+    color: $blue;
+    font-size: 30px;
+    margin-right: 12px;
+    float: left;
+    line-height: 42px;
+  }
+}
+
+
+// styles for TABLES
+.b-table {
+  &__box  {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__header {
+    padding: 12px 36px;
+    background-color: $green;
+    color: #FFFFFF;
+
+    &__item {
+      text-align: left;
+      padding-left: 30px;
+      height: 42px;
+      font-size: 18px;
+      font-weight: lighter;
+    }
+  }
+
+  &__body {
+    &__row {
+      background-color: $gray-light;
+      border-bottom: 1px solid white;
+      color: $gray-text;
+
+        &--active {
+          background-color: $green;
+          color: #FFFFFF;
+
+          .b-table__body__row__circle {
+            background-color: #fff;
+            color: $green;
+
+          }
+        }
+      &__circle {
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        border-radius: 50%;
+        background-color: $green;
+        margin-right: 6px;
+        text-align: center;
+        line-height: 24px;
+        color: #fff;
+        float: left;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      &__col {
+        padding: 12px 30px;
+        vertical-align: middle;
+
+        &--text {
+          font-size: 18px;
+          font-weight: bold;
+          margin: 0;
+          text-decoration: none;
+          color: inherit;
+          max-width: 300px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          line-height: 24px;
+
+          &--results {
+            color: $green;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+          }
+
+          &__publish {
+            float: left;
+            color: $green;
+            margin: 6px 10px 0 0;
+          }
+        }
+
+        &__title {
+          overflow: hidden;
+          clear: both;
+
+          .e-options {
+            display: inline-block;
+            float: right;
+            visibility: hidden;
+            &__item {
+              background-color: transparent;
+              font-size: 18px;
+              color: $gray;
+              border: 0;
+              &:hover {
+                color: $green;
+                cursor: pointer;
+              }
+            }
+          }
+          &:hover {
+            .e-options {
+              visibility: visible;
+            }
+          }
+        }
+
+
+        &--text-light {
+          //display: inline-block;
+          margin-top: 12px;
+          color: $gray-text;
+          font-size: 18px;
+          font-weight: lighter;
+        }
+      }
+    }
+  }
+}
+
+// styles for MODAL WINDOWS AND POPUPS
+.b-modal-window {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 2000;
+
+  &__main-block {
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    &__header {
+      color: $gray-text;
+      font-size: 18px;
+      padding: 24px 36px;
+      background-color: $gray-light;
+      text-transform: capitalize;
+      text-align: center;
+
+      &--title {
+        display: inline-block;
+        font-size: 18px;
+        margin: 0;
+      }
+
+      &--icon-close {
+        font-size: 20px;
+        float: right;
+        cursor: pointer;
+        color: #000000;
+        &:hover {
+          color: $gray;
+        }
+      }
+    }
+
+    &__body {
+      padding: 24px 36px;
+      font-size: 16px;
+      font-family: Segoe UI;
+      font-weight: 100;
+
+      &__button {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+
+        &:hover {
+          color: $gray-text;
+        }
+        &--icon {
+          color: $green;
+        }
+      }
+    }
+  }
+
+  .b-sync {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+.notifications {
+  position: absolute;
+  left: 0;
+  max-width: 150px;
+  z-index: 100;
+  margin: 30px 0;
+
+  .event {
+    @include notice;
+  }
+  .red {
+    @include notice(rgba(233, 140, 133, 0.8), rgba(185, 48, 38, 1), rgba(139, 36, 38, 1))
+  }
+  &.fixed {
+    position: fixed;
+    margin: 0;
+    top: 0;
+  }
+}

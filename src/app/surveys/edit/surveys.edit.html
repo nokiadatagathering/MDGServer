@@ -1,0 +1,298 @@
+<div class="b-page__line">
+    <div class="b-content">
+        <form name="surveyEdit">
+            <div class="b-surveys-edit">
+                <div class="b-surveys-edit__header">
+
+                    <div class="b-surveys-edit__header__name"
+                         ng-init="surveyData.titleEdit = false"
+                         title="{{surveyData.title}}"
+                         ng-show="!surveyData.titleEdit">{{surveyData.title}}
+                    </div>
+
+                    <input type="text" value="{{surveyData.title}}" class="b-surveys-edit__header__name--input"
+                           ng-model="surveyData.title"
+                           ng-show="surveyData.titleEdit"
+                           ng-blur="editItemTitle(surveyData, 'survey', 'title')"
+                           ng-keypress="editItemTitle(surveyData, 'survey', 'title', null, $event)">
+
+                    <span class="fa b-surveys-edit__header__name--edit"
+                        ng-class="{'fa-check': surveyData.titleEdit, 'fa-pencil' : !surveyData.titleEdit}"
+                        ng-click="editItemTitle(surveyData, 'survey', 'title')"></span>
+
+                        <button class="b-surveys-edit__header__save-btn">
+                            <span class="fa fa-check b-surveys-edit__header__save-btn--icon"></span>
+                            <span class="b-surveys-edit__header__save-btn--text"
+                                ng-click="saveSurvey(true)">{{ 'survey_builder.Save_survey' | translate }}</span>
+                        </button>
+                </div>
+
+                <!--div>DROPDOWNS TRANSLATE</div-->
+                <div ng-show="false" ng-repeat="item in dropdownList" >
+                    {{dropdownList[$index].text = (item.translateId | translate) }}
+                </div>
+                <!--div>DROPDOWNS TRANSLATE</div-->
+
+                <!--div>DROPDOWNS TRANSLATE</div-->
+                <div ng-show="false" ng-repeat="item in ddListOptionsInt" >
+                    {{ddListOptionsInt[$index].text = (item.translateId | translate) }}
+                </div>
+                <!--div>DROPDOWNS TRANSLATE</div-->
+
+                <div ui-sortable="sortableCategoriesOptions"
+                     ng-model="surveyData._categories">
+                    <div class="b-surveys-edit__category"
+                         ng-class="{disableddragcategory: category.isVisible || category.titleEdit}"
+                         ng-repeat="category in surveyData._categories">
+
+                        <div class="b-surveys-edit__category__top"
+                             ng-init="category.titleEdit = false">
+
+                            <span title="{{category.title}}"
+                                  ng-click="category.isVisible = !category.isVisible"
+                                  ng-if="!category.titleEdit">
+                                   <span class="fa"
+                                         ng-class="{'fa-caret-down': category.isVisible , 'fa-caret-right':!category.isVisible}"></span>
+                                {{category.title}}
+                            </span>
+
+                            <input type="text"
+                                   placeholder="{{ 'survey_builder.Category_Name' | translate }}"
+                                   value="{{category.title}}"
+                                   class="b-surveys-edit__category__top--edit-input"
+                                   ng-model="category.title"
+                                   ng-show="category.titleEdit"
+                                   ng-blur="editItemTitle(category, 'category', 'title', $index)"
+                                   ng-keypress="editItemTitle(category, 'category', 'title', $index, $event)">
+
+                            <span class="fa"
+                                  ng-class="{'fa-check': category.titleEdit, 'fa-pencil' : !category.titleEdit}"
+                                  ng-click="editItemTitle(category, 'category', 'title', $index)"></span>
+
+                            <span class="fa fa-files-o"
+                                 title="{{ 'survey_builder.Duplicate_category' | translate }} "
+                                 ng-click="copyCategory(category)"></span>
+
+                            <span class="fa fa-trash-o"
+                                title="{{ 'survey_builder.Delete_category' | translate }}"
+                                ng-click="deleteCategory(category)"></span>
+
+                            <button class="b-surveys-edit__category__top__new-question-btn"
+                                ng-click="addQuestion(category)">
+                                <span class="fa fa-plus"></span>
+                                {{ 'survey_builder.Add_question' | translate }}
+                            </button>
+                        </div>
+                        <div ng-show="category.isVisible"
+                             ui-sortable="sortableQuestionsOptions"
+                             ng-model="category._questions">
+
+                            <div class="b-surveys-edit__category__question"
+                                 ng-class="{disableddragquestion: question.isVisible || question.titleEdit}"
+                                 ng-init="question.titleEdit = false"
+                                 ng-repeat="question in category._questions | cascadeFilter">
+
+                                <div class="b-surveys-edit__category__question__header">
+
+                                    <div class="b-surveys-edit__category__question__header__title">
+                                        <span class="fa"
+                                              ng-class="{'fa-caret-down' : question.isVisible, 'fa-caret-right': !question.isVisible }"></span>
+                                        <span ng-if="!question.titleEdit">
+                                            <span title="{{question.label}}"
+                                                  ng-click="question.isVisible = !question.isVisible">{{question.label}}</span>
+
+                                            <span class="fa fa-pencil"
+                                                  ng-click="editItemTitle(question, 'question', 'label', $parent.$index)"></span>
+                                            <span class="fa fa-files-o"
+                                                  title="{{ 'survey_builder.Duplicate_question' | translate }} "
+                                                  ng-click="copyQuestion(category, question, $parent.$index)"></span>
+
+                                            <span class="fa fa-trash-o"
+                                                  title="{{ 'survey_builder.Delete_question' | translate }}"
+                                                  ng-click="deleteQuestion(category, question, $parent.$index)"></span>
+                                        </span>
+                                        <span ng-if="question.titleEdit" >
+                                            <input type="text"
+                                                   class="b-surveys-edit__category__question__header__title--edit-input"
+                                                   placeholder="Question label"
+                                                   ng-model="question.label"
+                                                   ng-show="question.titleEdit"
+                                                   ng-blur="editItemTitle(question, 'question', 'label', $parent.$index)"
+                                                   ng-keypress="editItemTitle(question, 'question', 'label', $parent.$index, $event)">
+                                            <span class="fa fa-check"
+                                                  ng-click="editItemTitle(question, 'question', 'label', $parent.$index)"></span>
+                                        </span>
+
+                                    </div>
+                                    <div class="b-surveys-edit__category__question__header__rules">
+
+                                        <!--div>DROPDOWNS TRANSLATE</div-->
+
+                                        <div ng-show="false" >
+                                            {{question.dropdownSelect.text = (question.dropdownSelect.translateId | translate)}}
+                                        </div>
+                                        <!--div>DROPDOWNS TRANSLATE</div-->
+                                        <div ng-if="question.isVisible"
+                                             dropdown-select="dropdownList"
+                                             dropdown-model="question.dropdownSelect"
+                                             dropdown-item-label="text"
+                                             dropdown-onchange="selectQuestionType(question, $parent.$parent.$index, $index)">
+                                        </div>
+
+                                        <div class="b-surveys-edit__category__question__header__rules__checkbox">
+                                            <input type="checkbox"
+                                                   class="b-surveys-edit__category__question__header__rules__checkbox--input"/>
+                                            <label class="b-surveys-edit__category__question__header__rules__checkbox--label">Mandatory</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="b-surveys-edit__category__question__body"
+                                     ng-if="!(question.type == 'geopoint' || question.type == 'binary')"
+                                     ng-show="question.isVisible">
+
+                                    <div class="b-question-builder"
+                                         question-builder
+                                         update-option="updateOption"
+                                         update-question="updateQuestion"
+                                         delete-option="deleteOption"
+                                         question-data="question"
+                                         category-data="category"></div>
+
+                                    <div class="b-skip-logic" ng-if="(question.type == 'int' || question.type == 'select1')">
+                                        <div class="b-skip-logic__header"
+                                             ng-click="question.isVisibleSkip = !question.isVisibleSkip">
+
+                                            <h5 class="b-skip-logic__header__title">
+                                                <span class="fa"
+                                                      ng-class="{'fa-caret-down':question.isVisibleSkip, 'fa-caret-right':!question.isVisibleSkip}"></span>
+                                                <span>{{ 'survey_builder.SL_OPTIONS' | translate }}</span>
+                                            </h5>
+                                        </div>
+                                        <div class="b-skip-logic__body" ng-show="question.isVisibleSkip">
+                                        <span class="b-skip-logic__body__error-message"
+                                              ng-show="question.slOptionError || question.slQuestionError || question.slValueError">
+                                            <span class="fa fa-exclamation-triangle"></span>
+                                            {{ 'survey_builder.SL_error' | translate }}
+                                        </span>
+
+                                            <div class="b-skip-logic__body__option"
+                                                 ng-class="{error: question.errorDefaultQuestion}"
+                                                 ng-if="question.type==='select1'">
+                                                <span class="">{{ 'survey_builder.DEFAULT' | translate }}</span>
+                                                <label class="b-skip-logic__body__option--label">{{ 'survey_builder.Go_to' | translate }}</label>
+
+                                                <div dropdown-select="question.skipLogicList"
+                                                     dropdown-model="question.skipLogicSelect"
+                                                     dropdown-item-label="text"
+                                                     ng-click="updateSLDropDown(question, $parent.$parent.$parent.$parent.$index, $parent.$parent.$parent.$index)"
+                                                     dropdown-onchange="checkSLQuestionError(question)">
+                                                </div>
+                                            </div>
+                                            <div class="b-skip-logic__body__option b-skip-logic__body__option--{{question.type}}"
+                                                 ng-repeat="slOpt in question.skipLogicOptions"
+                                                 ng-class="{error: slOpt.errorOption || slOpt.errorQuestion || slOpt.errorValue}">
+                                                <!--div> INT SKIP LOGIC DROPDOWNS TRANSLATE</div-->
+                                                <div ng-if="question.type == 'int'" ng-show="false">
+                                                    {{slOpt.ddSelectOptions.text = (slOpt.ddSelectOptions.translateId |
+                                                    translate)}}
+                                                </div>
+                                                <!--div>INT SKIP LOGIC DROPDOWNS TRANSLATE</div-->
+
+                                                <label class="b-skip-logic__body__option--label">{{ 'survey_builder.If_answer_is' | translate }} </label>
+
+                                                <div class="b-skip-logic__body__option-select"
+                                                     dropdown-select="slOpt.ddListOptions"
+                                                     dropdown-model="slOpt.ddSelectOptions"
+                                                     dropdown-item-label="text"
+                                                     dropdown-onchange="ddSelectOptionForSL(question)">
+                                                </div>
+                                                <input ng-show="question.type == 'int'"
+                                                       type="text"
+                                                       class="b-skip-logic__body__input"
+                                                       validate-pattern
+                                                       regexp="digitsPattern"
+                                                       value-to-check="slOpt.firstInput"
+                                                       ng-blur="checkSLIntValueError(question)"
+                                                       ng-model="slOpt.firstInput">
+
+                                                <label ng-show="slOpt.ddSelectOptions.value === '<>'"
+                                                       class="b-skip-logic__body__input--label">
+                                                    <span class="fa fa-minus"></span>
+                                                </label>
+
+                                                <input ng-show="slOpt.ddSelectOptions.value === '<>'"
+                                                       type="text"
+                                                       class="b-skip-logic__body__input"
+                                                       validate-pattern
+                                                       regexp="digitsPattern"
+                                                       value-to-check="slOpt.secondInput"
+                                                       ng-blur="checkSLIntValueError(question)"
+                                                       ng-model="slOpt.secondInput">
+
+                                                <label class="b-skip-logic__body__input--label">{{ 'survey_builder.then_skip_to' | translate }} </label>
+
+                                                <div class="b-skip-logic__body__question-select"
+                                                     dropdown-select="slOpt.ddListQuestions"
+                                                     dropdown-model="slOpt.ddSelectQuestions"
+                                                     dropdown-item-label="text"
+                                                     ng-click="updateSLDropDown(question, $parent.$parent.$parent.$parent.$index, $parent.$parent.$parent.$index)"
+                                                     dropdown-onchange="checkSLQuestionError(question)">
+                                                </div>
+
+                                                <button type="button"
+                                                       class="b-skip-logic__body__del-option"
+                                                       ng-click="deleteSLOption(question, $index, $parent.$parent.$parent.$parent.$index)">
+                                                    <span class="fa fa-times"></span>
+                                                </button>
+                                            </div>
+
+                                            <button ng-disabled="question.type == 'select1' ? question.items.length <= question.skipLogicOptions.length : false"
+                                                   type="button"
+                                                   class="b-skip-logic__body__add-option"
+                                                   ng-click="addSLOption(question)">
+                                                <span class="fa fa-plus"></span>
+                                                {{ 'survey_builder.Add_sl_option' | translate }}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="b-mask-input" ng-if="question.type == 'string'">
+                                        <div class="b-mask-input__header"
+                                             ng-click="question.isVisibleMascInput = !question.isVisibleMascInput">
+
+                                            <h5 ng-class="{close: !question.isVisibleMascInput}"
+                                                class="b-mask-input__header--title">
+                                                {{'survey_builder.MASK_INPUT'| translate }}
+
+                                                <span class="fa"
+
+                                                      ng-class="{'fa-caret-right': !question.isVisibleMascInput,
+                                                      'fa-caret-down': question.isVisibleMascInput}"></span>
+                                            </h5>
+                                        </div>
+                                        <div class="b-mask-input__body" ng-show="question.isVisibleMascInput">
+                                            <p class="b-mask-input__body__label">{{ 'survey_builder.MASK_INPUT_DESCRIPTION' | translate }}</p>
+                                            <input class="b-mask-input__body__input"
+                                                   type="text" placeholder="E.g. WW-BB-1234"
+                                                   validate-pattern
+                                                   regexp="maskPattern"
+                                                   value-to-check="question.mask"
+                                                   ng-model="question.mask"
+                                                   value="{{question.mask}}">
+                                        </div>
+                                    </div>
+
+                                    <button class="b-surveys-edit__category__question__body__done-btn"
+                                            ng-click="question.isVisible = false">
+                                        {{ 'survey_builder.Done' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

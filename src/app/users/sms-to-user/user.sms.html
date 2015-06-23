@@ -1,0 +1,26 @@
+<div class="b-modal-window ">
+    <div class="b-modal-window__main-block b-send-sms">
+        <div class="b-modal-window__main-block__header">
+            <h2 class="b-modal-window__main-block__header--title">
+                {{ 'sms.SMS_to' | translate }} {{ 'sms.User' | translate }}
+            </h2>
+            <span class="b-modal-window__main-block__header--icon-close" ui-sref="^">
+                <span class="fa fa-times" ui-sref="^"></span>
+            </span>
+        </div>
+        <div class="b-modal-window__main-block__body">
+            <form name="sms-form" id="sms-form" ng-submit="sendSms()">
+                <label class="b-send-sms--label">
+                    {{ 'sms.MESSAGE' | translate }}
+                </label>
+            <textarea placeholder="{{ 'sms.enter_message' | translate }}"
+                      class="b-send-sms--textarea"
+                      ng-model="smsText" maxlength="410"></textarea>
+                <button type="submit" class="b-send-sms__button">
+                    <span class="fa fa-envelope"></span>
+                    <span>{{ 'sms.Send_SMS' | translate }}</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

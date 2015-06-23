@@ -1,0 +1,20 @@
+
+<div class="b-modal-window">
+    <div class="b-modal-window__main-block b-results__modal-sent">
+        <div class="b-modal-window__main-block__header">
+            <h2 class="b-modal-window__main-block__header--title">
+                {{ 'results.survey_was_sent_to' | translate }}
+            </h2>
+            <span class="b-modal-window__main-block__header--icon-close" ui-sref="^">
+                <span class="fa fa-times" ui-sref="^"></span>
+            </span>
+        </div>
+        <div class="b-modal-window__main-block__body">
+            <ul class="sent-to-user">
+                <li ng-repeat="user in survey.sentToUsers">
+                    {{user.firstName}} {{user.lastName}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

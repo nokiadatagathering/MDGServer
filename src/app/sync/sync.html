@@ -1,0 +1,38 @@
+<div class="b-modal-window">
+    <div class="b-modal-window__main-block b-sync">
+        <div class="b-modal-window__main-block__header">
+            <h2 class="b-modal-window__main-block__header--title">
+                Sync with server
+            </h2>
+            <span class="b-modal-window__main-block__header--icon-close" ui-sref="page.surveys.list({ reload : true })">
+                <span class="fa fa-times"></span>
+            </span>
+        </div>
+        <div class="b-modal-window__main-block__body">
+            <div>SUCCESSFULLY UPDATED: {{doneRequests}}/{{requestsLength}}</div>
+
+            <div ng-show="successSync">
+                <div ng-show="requestsInConflict.length!==0">
+                    <span>IN CONFLICT ({{requestsInConflict.length}}): </span>
+                    <ul>
+                        <li>
+                            <div class="id">ID</div>
+                            <div class="title">TITLE</div>
+                        </li>
+                        <li ng-repeat="request in requestsInConflict">
+                            <div class="id">{{request.id}}</div>
+                            <div class="title">{{request.title}}</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="status">Syncronization complete</div>
+                <input type="button" value="Close" ui-sref="page.surveys.list({ reload : true })">
+            </div>
+            <div ng-show="failedSync">
+                <div class="status">Error: {{syncError}}</div>
+                <input type="button" value="Refresh" ng-click="Sync()">
+            </div>
+        </div>
+    </div>
+</div>
