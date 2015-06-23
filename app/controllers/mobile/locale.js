@@ -1,6 +1,4 @@
-var
-  Configuration = require('../../helpers/Configuration'),
-  fs = require('fs');
+var fs = require('fs');
 
 exports.getLocale = function (req, res, next) {
   var
@@ -16,10 +14,4 @@ exports.getLocale = function (req, res, next) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     fs.createReadStream(path).pipe(res);
   });
-};
-
-
-exports.languageList = function (req, res, next) {
-  var languages = Configuration.get('languages.supported_languages_mobile');
-  res.send(languages);
 };

@@ -266,7 +266,7 @@ exports.gatherCategoryResults = function (result, survey) {
         question.result = '/resultsImage/' + questionResult.result;
 
       } else if (surveyQuestion.type === 'select' || surveyQuestion.type === 'select1') {
-        var resultArr = questionResult.result ? questionResult.result.toString().trim().split(/ +/) : [];
+        var resultArr = questionResult.result ? questionResult.result.toString().split(' ') : [];
 
         question.result = surveyQuestion.items.map(function (item) {
           return {

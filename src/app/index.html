@@ -1,0 +1,78 @@
+<div class="g-page-wrapper">
+    <div class="b-page__head-line">
+        <div class="b-line-bit b-line-bit--red"></div>
+        <div class="b-line-bit b-line-bit--green"></div>
+        <div class="b-line-bit b-line-bit--blue"></div>
+        <div class="b-line-bit b-line-bit--yellow"></div>
+    </div>
+    <div>
+        <header class="b-page__header">
+            <div class="b-head-logo">
+                <a href="/" class="b-logo__title" ui-sref="page.surveys.list">
+                    <img class="b-logo__img" src="assets/images/logo-30px.png"/>
+                    <span>Microsoft Data Gathering</span>
+                </a>
+            </div>
+
+            <div class="b-menu">
+                <nav class="b-menu-nav">
+                    <a href="#/surveys/list" class="b-menu-nav__link"
+                       ng-class="{ 'b-menu-nav__link--active':  $state.includes('page.surveys.list') ||
+                                                                $state.includes('page.results') ||
+                                                                $state.includes('page.map') ||
+                                                                $state.includes('page.builder') ||
+                                                                $state.includes('page.editsurvey') ||
+                                                                $state.includes('page.archive')}"
+                       ui-sref="page.surveys.list"
+                       ui-sref-active="b-menu-nav__link--active">
+                        {{'header.surveys' | translate}}
+
+                    </a>
+                    <a href="#/users" class="b-menu-nav__link"
+                       ui-sref="page.users.group({groupId: ''})"
+                       ng-class="{ 'b-menu-nav__link--active': $state.includes('page.users')}"
+                       ui-sref-active="b-menu-nav__link--active">
+                        {{'header.users' | translate}}
+
+                    </a>
+                </nav>
+            </div>
+            <!--div>DROPDOWNS TRANSLATE</div-->
+            <div ng-show="false" ng-repeat="item in dropdownList" >
+                {{dropdownList[$index].text = (item.translateId | translate) }}
+            </div>
+            <!--div>DROPDOWNS TRANSLATE</div-->
+
+            <div class="b-account-menu">
+                <a class="b-account-menu__locale"
+                   dropdown-menu="langauges"
+                   dropdown-onchange="changeLanguage(selected)">
+                    {{'header.language' | translate}}
+                </a>
+
+                <a class="menu__user"
+                   dropdown-menu="dropdownList"
+                   dropdown-model="dropdownSelect"
+                   dropdown-onchange="selectMenu(selected)">
+                    {{loggedInUser.username}}
+                    <span class="fa fa-caret-down"></span>
+                </a>
+                <!--     <div class="b-account-menu__locale">
+                         <a href="#" class="b-link_account-menu" >en</a>
+
+                     </div>
+                     <div class="b-account-menu__user">
+                         <a href="/login" class="b-link_account-menu" ui-sref="login">Login</a>/
+                         <a href="/register" class="b-link_account-menu" ui-sref="register">Register</a>
+                     </div>-->
+            </div>
+        </header>
+    </div>
+        <div ng-if="offlineMode" class="offline-block">
+            You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode
+            <input type="button" value="Synchronize" ng-click="sync()">
+        </div>
+    <div class="notifications"></div>
+    <div ui-view></div>
+</div>
+<div ng-include="'components/ui/footer/footer.html'"></div>

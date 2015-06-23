@@ -1,0 +1,30 @@
+
+<div class="b-modal-window">
+    <div class="b-modal-window__main-block b-results-chart">
+        <div class="b-modal-window__main-block__header">
+            <h2 class="b-modal-window__main-block__header--title">
+                {{ 'results.Charts_for' | translate}} {{surveyTitle}}
+            </h2>
+            <span class="b-modal-window__main-block__header--icon-close" ui-sref="^">
+                <span class="fa fa-times" ui-sref="^"></span>
+            </span>
+        </div>
+        <div class="b-modal-window__main-block__body">
+            <ul class="results-chart" >
+                <li ng-repeat="question in questions">
+                    <label ng-click="renderChart($index, question.chart.type); question.chart.isVisible = !question.chart.isVisible">
+                       <span class="fa" ng-class="{'fa-caret-down' :question.chart.isVisible, 'fa-caret-right' :!question.chart.isVisible }"></span>
+                        {{question.label}}
+                    </label>
+                    <div class="{{question.chart.type}}-icon"><span class="fa" ng-class="{'fa-pie-chart': question.chart.type == 'pie', 'fa-bar-chart': question.chart.type == 'bar',}"></span></div>
+                    <a ng-show="question.chart.isVisible"
+                       id="{{question.id}}"
+                       class="{{question.chart.type}}-{{question.id}} chart-image"
+                       download="chart_{{question.id}}.png"
+                       ng-href="{{question.chart.url}}">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

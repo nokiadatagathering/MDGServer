@@ -1,0 +1,111 @@
+
+<div class="b-page__line">
+    <div class="b-content">
+        <div class="b-surveys">
+            <div class="b-surveys__left-content">
+                <div class="b-surveys-table">
+                    <div class="b-surveys-table__top">
+                        <span class="b-surveys-table__top--title">
+                            <span class="fa fa-arrow-circle-left"
+                                  ui-sref="page.surveys.list"></span>
+                            Archive</span>
+                    </div>
+                    <table class="b-table__box">
+                        <thead>
+                        <tr class="b-table__header">
+                            <th class="b-table__header__item">
+                                {{'table_header.Name'| translate }}
+                <span class="fa fa-caret-down g-pointer"
+                      ng-click="predicate = 'title'; reverse=!reverse"></span>
+                            </th>
+                            <th class="b-table__header__item" >
+                                {{'table_header.Results'| translate }}
+                <span class="fa fa-caret-down  g-pointer"
+                      ng-click="predicate = 'resultsCount'; reverse=!reverse"></span>
+                            </th>
+                            <th class="b-table__header__item">
+                                {{ 'table_header.Publisher'| translate }}
+                <span class="fa fa-caret-down  g-pointer"
+                      ng-click="predicate = '_creator.name'; reverse=!reverse"></span>
+                            </th>
+                            <th class="b-table__header__item">
+                                {{'table_header.Date'| translate }}
+                <span class="fa fa-caret-down g-pointer"
+                      ng-click="predicate = 'dateCreated'; reverse=!reverse"></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="b-table__body">
+                        <tr class="b-table__body__row" ng-repeat="survey in surveys
+                                                            | deletedItemsFilter : 'surveys'
+                                                            | selectPublished : selectVal.value
+                                                            | filter:search
+                                                            | orderBy:predicate:reverse">
+                            <td class="b-table__body__row__col">
+                                <div class="b-table__body__row__col__title" title="{{survey.title}}">
+                                    <span class="fa fa-{{survey.published ? 'circle': 'circle-o'}} b-table__body__row__col--text__publish"></span>
+                                    <span class="b-table__body__row__col--text">{{survey.title}}</span>
+                                    <div class="e-options">
+                                        <button class="e-options__item"
+                                                ng-if="!survey.published"
+                                                ui-sref="page.surveys.edit({surveyId: survey.id})"
+                                                title="{{ 'surveys.Edit_survey' | translate }}">
+                                            <span class="fa fa-share-square-o"></span>
+                                        </button>
+                                        <button class="e-options__item"
+                                                ng-click="archive(survey._id, survey.title)"
+                                                ng-disabled="survey.published"
+                                                title="{{ 'surveys.Restore' | translate }}">
+                                            <span class="fa fa-download"></span>
+                                        </button>
+                                        <button class="e-options__item"
+                                                ui-sref="page.surveys.archive.sendsurvey({surveyId: survey.id})"
+                                                title="{{ 'surveys.Publish_survey' | translate }}">
+                                            <span class="fa fa-share"></span>
+                                        </button>
+                                        <button class="e-options__item"
+                                                ng-click="duplicateSurvey(survey.id, survey.title)"
+                                                ng-disabled="offlineMode"
+                                                title="{{ 'surveys.Duplicate_survey' | translate }}">
+                                            <span class="fa fa-files-o"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class="b-table__body__row__col--text-light" title="{{survey.id}}">ID: {{survey.id}}</span>
+                            </td>
+
+                            <td class="b-table__body__row__col">
+                                <p class="b-table__body__row__col--text "
+                                   ng-class="{'b-table__body__row__col--text--results':survey.resultsCount}"
+                                   ui-sref="page.results.list({surveyId : survey.id})"
+                                   title="{{survey.resultsCount}}">{{survey.resultsCount}}</p>
+                            </td>
+
+                            <td class="b-table__body__row__col">
+                                <p class="b-table__body__row__col--text"
+                                   title="{{survey._creator.name}}">{{survey._creator.name}}</p>
+                            </td>
+
+                            <td class="b-table__body__row__col">
+                                <p class="b-table__body__row__col--text" title="{{survey.dateCreated | date : 'dd/MM/yyyy'}}">{{survey.dateCreated | date : 'dd/MM/yyyy'}}</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="b-surveys__right-content">
+                <p class="b-surveys__right-content__search-title"> Search Name or Username</p>
+                <div class="e-search-box">
+                    <span class="fa fa-search e-search-box__icon"></span>
+                    <input type="search" class="e-search-box__input"
+                           placeholder="{{ 'surveys.Search_Name_Publisher' | translate }}"
+                           ng-model="search">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-view></div>

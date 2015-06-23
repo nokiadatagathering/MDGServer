@@ -1,0 +1,93 @@
+<div class="b-page__line">
+
+    <div class="b-content-header">
+
+        <h1 class="b-content-header__title">
+            {{'header.users' | translate}}
+        </h1>
+
+        <p class="b-content-header__text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, commodi deserunt iure labore minima nobis
+            numquam placeat quasi totam?
+        </p>
+
+    </div>
+</div>
+
+<div class="b-page__line">
+    <div class="b-content">
+        <div class="b-content__users">
+            <div class="b-content__users__groups-box">
+                <button class="e-create-btn b-content__users--bnt-top"
+                        ng-click="groupName = ''; showNewGroup = true; groupNameFocus = true">
+                    <span class="fa fa-plus e-create-btn--icon"></span>
+                    <span class="e-create-btn--title">{{ 'users.Add_Group' | translate }}</span>
+                </button>
+
+                <table class="b-table__box b-content__users__groups-box__group-table">
+                    <tbody class="b-table__body" ng-cloak>
+                        <div ng-if="showNewGroup"
+                             class="b-content__users__groups-box__group-table__new-group new-group">
+                                <form id="newgroup"
+                                      name="newGroup"
+                                      ng-submit="saveNewGroup($event)">
+                                    <span focus-me="groupName">
+                                        <input type="text"
+                                               id="groupName"
+                                               class="groupName b-content__users__groups-box__group-table__new-group--input"
+                                               placeholder="{{ 'users.New_group_name' | translate }}"
+                                               name="groupName"
+                                               ng-minlength="2"
+                                               ng-maxlength="60"
+                                               ng-trim="true"
+                                               ng-model-options="{ updateOn: 'blur' }"
+                                               ng-change="errorExistingGroupName = false"
+                                               ng-model="groupName">
+                                        <span class="b-content__users__groups-box__group-table__new-group--tooltip"
+                                              ng-if="showNewGroup && newGroup.$valid && !errorExistingGroupName">
+                                            {{ 'users.save_group' | translate }}
+                                        </span>
+                                        <div errorsblock="errors.groupName"></div>
+                                    </span>
+                                </form>
+                        </div>
+                    <tr class="b-table__body__row"
+                        ng-class="{ 'b-table__body__row--active': $state.includes('page.users') && $stateParams.groupId == '' }">
+                        <td class="b-table__body__row__col">
+                            <span class="b-table__body__row__circle">{{allUsers.length}}</span>
+                            <a class="b-table__body__row__col--text"
+                               ui-sref="page.users.group({groupId: ''})"
+                               href="/#/users/group:">{{ 'users.All_users' | translate }}</a>
+                        </td>
+                    </tr>
+
+                    <tr class="b-table__body__row droppable"
+                        id={{group._id}}
+                        ng-class="{ 'b-table__body__row--active': $state.includes('page.users') && $stateParams.groupId == group._id }"
+                        ng-repeat="group in filtered = (groups | deletedItemsFilter : 'groups')"
+                        style=" display: {{group.hidden ? 'none' : 'table-row'}};">
+                        <td class="b-table__body__row__col">
+                            <span class="b-table__body__row__circle">{{group.users.length}}</span>
+                            <a class="b-table__body__row__col--text"
+                               ui-sref="page.users.group({groupId: group._id})"
+                               href="/#/users/group:{{group._id}}">{{group.name}}</a>
+                            <div class="b-content__users__groups-box__group-table__group__rules">
+                                <span class="fa fa-envelope" title="{{ 'users.Send_SMS_group' | translate }}"
+                                      ui-sref="page.users.group.smstogroup({groupId: group._id})"></span>
+                            <span class="fa fa-trash-o" title="{{ 'users.Delete_group' | translate }}"
+                                  ng-click="deleteGroup(group._id, group.name)"></span>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div ui-view class=""></div>
+        </div>
+    </div>
+</div>
+
+

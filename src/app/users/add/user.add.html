@@ -1,0 +1,169 @@
+<div class="b-modal-window">
+    <div class="b-modal-window__main-block b-new-user">
+        <div class="b-modal-window__main-block__header">
+            <h2 class="b-modal-window__main-block__header--title">
+                {{ 'users.Add_User' | translate }}
+            </h2>
+            <span class="b-modal-window__main-block__header--icon-close" ui-sref="^">
+                <span class="fa fa-times" ui-sref="^"></span>
+            </span>
+        </div>
+        <div class="b-modal-window__main-block__body">
+            <form name="addUserForm" id="add-user-form" novalidate class="b-new-user__form"
+                  ng-model="addUserForm"
+                  autocomplete="off"
+                  ng-submit="addUser()">
+
+                <div class="b-new-user__form__row">
+                    <div class="b-new-user__form__row__col">
+                        <div class="b-new-user__form__item">
+                            <label class="b-new-user__form__item__label">
+                                {{ 'edit_user.FIRST_NAME' | translate}}
+                            </label>
+                            <input class="b-new-user__form__item__field" type="text"
+                                   name="firstName" required
+                                   placeholder="{{ 'edit_user.placeholder.FIRST_NAME' | translate }}"
+                                   ng-model="user.firstName"
+                                   ng-minlength="2"
+                                   ng-maxlength="60"
+                                   ng-trim="true">
+
+                            <div errorsblock="errors.firstName"></div>
+                        </div>
+                    </div>
+                    <div class="b-new-user__form__row__col">
+                        <div class="b-new-user__form__item">
+                            <label class="b-new-user__form__item__label">{{ 'edit_user.LAST_NAME' | translate }}</label>
+                            <input class="b-new-user__form__item__field" type="text"
+                                   name="lastName" required
+                                   placeholder="{{ 'edit_user.placeholder.LAST_NAME' | translate }}"
+                                   ng-model="user.lastName"
+                                   ng-minlength="2"
+                                   ng-maxlength="60"
+                                   ng-trim="true">
+
+                            <div errorsblock="errors.lastName"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="b-new-user__form__row">
+                    <div class="b-new-user__form__row__col">
+                        <div class="b-new-user__form__item">
+                            <label class="b-new-user__form__item__label">
+                                {{ 'edit_user.PERMISSION' | translate}}
+                            </label>
+
+                            <div class="e-select">
+                                <label class="e-select__label">
+                                    <select name="permission" id=""
+                                            class="e-select__box" ng-model="user.permission">
+                                        <option selected="selected" value="admin">Admin</option>
+                                        <option value="operator">Operator</option>
+                                        <option value="fieldWorker">Field worker</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="b-new-user__form__row__col">
+                        <div class="b-new-user__form__item">
+                            <label class="b-new-user__form__item__label">{{ 'edit_user.USERNAME' | translate }}</label>
+                            <input class="b-new-user__form__item__field" type="text"
+                                   name="username" required
+                                   placeholder="{{ 'edit_user.placeholder.USERNAME' | translate }}"
+                                   ng-model="user.username"
+                                   ng-minlength="5"
+                                   ng-maxlength="13"
+                                   ng-pattern="/^[a-zA-Z\d\.]+$/"
+                                   ng-trim="true"
+                                   ng-change="checkExistingUsername()">
+
+                            <div errorsblock="errors.username"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="b-new-user__form__row">
+                    <div class="b-new-user__form__item">
+                        <label class="b-new-user__form__item__label">{{ 'edit_user.PHONE_NUMBER' | translate }}</label>
+                        <input class="b-new-user__form__item__field" type="text"
+                               name="phone" required
+                               placeholder="{{ 'edit_user.placeholder.PHONE_NUMBER' | translate }}"
+                               ng-model="user.phone"
+                               validatephonenumber
+                               ng-trim="true">
+
+                        <div errorsblock="errors.phone"></div>
+
+                    </div>
+                </div>
+
+                <div class="b-new-user__form__row">
+                    <div class="b-new-user__form__item" ng-if="user.permission !== 'fieldWorker'">
+                        <label class="b-new-user__form__item__label">{{ 'edit_user.EMAIL' | translate }}</label>
+                        <input class="b-new-user__form__item__field b-new-user__form__item__field--long"
+                               type="email"
+                               name="email" required
+                               placeholder="{{ 'edit_user.placeholder.EMAIL' | translate }}"
+                               ng-model="user.email"
+                               ng-class="{error: errorEmail}"
+                               ng-trim="true"
+                               ng-change="checkExistingEmail()">
+
+                        <div errorsblock="errors.email"></div>
+
+                    </div>
+                </div>
+
+                <div class="b-new-user__form__row">
+                    <div class="b-new-user__form__row__col">
+                        <div class="b-new-user__form__item">
+                            <label class="b-new-user__form__item__label">{{ 'edit_user.PASSWORD' | translate }}</label>
+                            <input class="b-new-user__form__item__field" type="password" name="password" required
+                                   placeholder="{{ 'edit_user.placeholder.PASSWORD' | translate }}"
+                                   ng-model="user.password"
+                                   ng-minlength="8"
+                                   ng-maxlength="20"
+                                   ng-trim="true">
+
+                            <div errorsblock="errors.password"></div>
+
+                        </div>
+                    </div>
+                    <div class="b-new-user__form__row__col">
+                        <div class="b-new-user__form__item">
+                            <label class="b-new-user__form__item__label">
+                                {{ 'edit_user.CONFIRM_PASSWORD' | translate}}
+                            </label>
+                            <input class="b-new-user__form__item__field" type="password"
+                                   name="confirmpass" required
+                                   placeholder="{{ 'edit_user.placeholder.CONFIRM_PASSWORD' | translate }}"
+                                   ng-model="user.confirmpass"
+                                   ng-trim="true">
+
+                            <div errorsblock>
+                  <span class="error-message ng-hide" ng-show="user.password !== user.confirmpass">
+                      {{ 'errors.passwordsDoNotMatch' | translate }}
+                  </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="b-new-user__form__caption">
+                    {{ 'edit_user.info_msg_add_form' | translate }}
+           <span class="error-message" ng-show="errorInvalidVersion">
+                {{ 'edit_user.info_was_changed' | translate }}
+            </span>
+                </div>
+                <button class="e-create-btn b-content__users--bnt-top" type="submit">
+                    <span class="fa fa-check e-create-btn--icon"></span>
+                    <span class="e-create-btn--title">{{ 'edit_user.Save_user' | translate }}</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

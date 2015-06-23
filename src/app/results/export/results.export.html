@@ -1,0 +1,87 @@
+<div class="b-modal-window">
+    <div class="b-modal-window__main-block b-results-export">
+        <div class="b-modal-window__main-block__header">
+            <h2 class="b-modal-window__main-block__header--title">
+                {{ 'schedule_export.Schedule_an_Export' | translate }}
+            </h2>
+            <span class="b-modal-window__main-block__header--icon-close" ui-sref="^">
+                <span class="fa fa-times" ui-sref="^"></span>
+            </span>
+        </div>
+        <div class="b-modal-window__main-block__body">
+            <form name="exportScheduleForm" id="export-schedule"
+                  ng-model="exportScheduleForm"
+                  novalidate
+                  ng-submit="createSubscription()">
+                <div class="b-results-export__export-schedule">
+                    <p>{{ 'schedule_export.tip' | translate }}</p>
+
+                    <div class="b-results-export__export-schedule__small-field validation-field">
+                        <label class="b-results-export__export-schedule__label">
+                            {{ 'schedule_export.FROM' | translate }}
+                        </label>
+                        <input type="text" name="from" id="from"
+                               class="b-results-export__export-schedule__select-field"
+                               required
+                               readonly="readonly"
+                               placeholder="{{today| date: 'dd/MM/yyyy'}}"
+                               ng-model="schedule.from">
+
+                        <div errorsblock="errors.from"
+                             class="b-results-export__export-schedule__errors"></div>
+                    </div>
+
+                    <div class="b-results-export__export-schedule__small-field validation-field">
+                        <label class="b-results-export__export-schedule__label">
+                            {{ 'schedule_export.TO' | translate}}
+                        </label>
+                        <input type="text" name="to" id="to"
+                               class=" b-results-export__export-schedule__select-field b-results-export__export-schedule__select-field--long"
+                               required
+                               readonly="readonly"
+                               placeholder="{{today| date: 'dd/MM/yyyy'}}"
+                               ng-model="schedule.to">
+
+                        <div errorsblock="errors.to"
+                             class="b-results-export__export-schedule__errors"></div>
+                    </div>
+                </div>
+
+                <div class="b-results-export__export-schedule__long-field validation-field">
+                    <label class="b-results-export__export-schedule__label">
+                        {{ 'schedule_export.EMAIL_TO' | translate }}
+                    </label>
+                    <input type="email" name="email" required
+                           class=" b-results-export__export-schedule__select-field"
+                           placeholder="user@example.com"
+                           ng-model="schedule.email"
+                           ng-trim="true"
+                           ng-change="errorEmailPattern = false">
+
+                    <div errorsblock="errors.email"
+                         class="b-results-export__export-schedule__errors"></div>
+                </div>
+
+                <ul class="b-results-export__export-schedule__actual" ng-if="subscriptions.length !== 0">
+                    <p class="b-results-export__export-schedule__actual--caption">
+                        {{ 'schedule_export.Actual_subscriptions' | translate }}
+                    </p>
+                    <li ng-repeat="subscription in subscriptions" id={{subscription._id}}
+                        class="b-results-export__export-schedule__actual__item">
+                        <span class="email b-results-export__export-schedule__actual__item--email" title="{{subscription.email}}">{{subscription.email}}</span>
+                        <span class="b-results-export__export-schedule__actual__item--date">{{subscription.from | date: 'dd/MM/yyyy'}}</span>
+                        <span class="b-results-export__export-schedule__actual__item--date">{{subscription.to | date: 'dd/MM/yyyy'}}</span>
+                        <span class="fa fa-times b-results-export__export-schedule__actual__item--delete" ng-click="deleteSubscription(subscription._id, $index)"></span>
+                    </li>
+                </ul>
+
+                <button type="submit" value="{{ 'schedule_export.Schedule_this_Export' | translate }}"
+                        class="b-results-export__export-schedule__export-button">
+                    <span class="fa fa-external-link-square"></span>
+                    {{ 'schedule_export.Schedule_this_Export' | translate }}
+
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
