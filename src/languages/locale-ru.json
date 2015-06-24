@@ -2,6 +2,7 @@
   "header": {
     "surveys": "Опросы",
     "users": "Пользователи",
+    "results": "Результаты",
     "language": "ru",
     "Logout": "Выйти",
     "Documentation": "Документация",
@@ -14,6 +15,7 @@
     "Date": "ДАТА"
   },
   "surveys": {
+    "SUBTITLE": "Surveys Home",
     "ARCHIVE": "АРХИВ",
     "Upload_XML_survey": "Загрузить XML опрос",
     "Only_XML_file_format": "Только XML формат",
@@ -34,6 +36,7 @@
     "Publish_survey_title": "Опубликовать опрос"
   },
   "results": {
+    "SUBTITLE": "Results Home",
     "RESULT_TITLE": "НАЗВАНИЕ",
     "DATE_SENT": "ДАТА",
     "GPS": "GPS",
@@ -65,6 +68,7 @@
     "Schedule_this_Export": "Добавить"
   },
   "users": {
+    "SUBTITLE": "Users Home",
     "Search": "Имя или username...",
     "NAME": "ИМЯ",
     "PERMISSION": "ПРАВА ДОСТУПА",
