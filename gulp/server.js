@@ -40,7 +40,9 @@ gulp.task('serve', ['watch'], function () {
     paths.src + '/{app,components}/**/*.js',
     paths.src + 'src/assets/images/**/*',
     paths.tmp + '/serve/*.html',
+    paths.tmp + '/serve/*.jade',
     paths.tmp + '/serve/{app,components}/**/*.html',
+    paths.tmp + '/serve/{app,components}/**/*.jade',
     paths.src + '/{app,components}/**/*.html'
   ]);
 });

@@ -3,9 +3,9 @@ CACHE MANIFEST
 CACHE:
 
 # these filenames should be updated at each build
+/styles/app-b12b0aa0.css
 /scripts/vendor-70860f08.js
-/scripts/app-197f73bf.js
-/styles/app-a8ee393c.css
+/scripts/app-c8f86af8.js
 #
 
 

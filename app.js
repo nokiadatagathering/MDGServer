@@ -196,14 +196,20 @@ exports.run = function (mongoUrl, port, callback) {
           console.log('!!!redirect');
 
           if (app.settings.env === 'production') {
+            app.get('/mdgcache.manifest', manifestCntr.getManifest);
+
             res.render('dist/index', {
               title: Configuration.get('general.siteName'),
-              version: version
+              version: version,
+              manifest: 'mdgcache.manifest'
             });
           } else {
+            app.get('/mdgcache-dev.manifest', manifestCntr.getManifest);
+
             res.render('.tmp/serve/index', {
               title: Configuration.get('general.siteName'),
-              version: version
+              version: version,
+              manifest: 'mdgcache-dev.manifest'
             });
           }
 
@@ -214,7 +220,6 @@ exports.run = function (mongoUrl, port, callback) {
       }
     });
 
-    app.get('/mdgcache.manifest', manifestCntr.getManifest);
 
     if (Configuration.get('general.protocolType') === 'https') {
       httpsOptions.pfx = fs.readFileSync(Configuration.get('general.httpspfx'));

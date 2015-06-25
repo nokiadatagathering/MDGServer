@@ -17,12 +17,8 @@
             <div class="b-menu">
                 <nav class="b-menu-nav">
                     <a href="#/surveys/list" class="b-menu-nav__link"
-                       ng-class="{ 'b-menu-nav__link--active':  $state.includes('page.surveys.list') ||
-                                                                $state.includes('page.results') ||
-                                                                $state.includes('page.map') ||
-                                                                $state.includes('page.builder') ||
-                                                                $state.includes('page.editsurvey') ||
-                                                                $state.includes('page.archive')}"
+                       ng-class="{ 'b-menu-nav__link--active':  $state.includes('page.surveys') ||
+                                                                $state.includes('page.results')}"
                        ui-sref="page.surveys.list"
                        ui-sref-active="b-menu-nav__link--active">
                         {{'header.surveys' | translate}}
