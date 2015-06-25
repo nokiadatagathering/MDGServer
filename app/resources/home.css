@@ -773,3 +773,76 @@ body {
   width: 440px;
   height: 172px;
 }
+
+.b-modal-window {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 2000;
+}
+
+.b-modal-window__main-block {
+  background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.b-modal-window__main-block__header {
+  color: #4d4d4d;
+  font-size: 18px;
+  padding: 24px 36px;
+  background-color: #f2f2f2;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.b-modal-window__main-block__header--title {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0;
+}
+
+.b-modal-window__main-block__header--icon-close {
+  font-size: 20px;
+  float: right;
+  cursor: pointer;
+  color: #000000;
+}
+
+.b-modal-window__main-block__header--icon-close:hover {
+  color: #666666;
+}
+
+.b-modal-window__main-block__body {
+  padding: 24px 36px;
+  font-size: 16px;
+  font-family: Segoe UI;
+  font-weight: 100;
+}
+
+.b-modal-window__main-block__body__button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.b-modal-window__main-block__body__button:hover {
+  color: #4d4d4d;
+}
+
+.b-modal-window__main-block__body__button--icon {
+  color: #7fba00;
+}
+
+.b-modal-window .b-sync {
+  width: 300px;
+  height: 200px;
+}

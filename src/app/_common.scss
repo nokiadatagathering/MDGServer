@@ -61,6 +61,17 @@ body {
   background: transparent;
   border: none;
   outline:none;
+  cursor: pointer;
+
+  &:hover {
+    .e-create-btn--title {
+      color : lighten($red, 10%);
+    }
+    .e-create-btn--icon.fa {
+      color : lighten($blue, 10%);
+    }
+  }
+
   &:active {
     outline: none;
   }
