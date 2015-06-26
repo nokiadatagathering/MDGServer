@@ -165,7 +165,6 @@ exports.composeSurveyData = function (survey) {
         items: items,
         id: surveyQuestion.id
       });
-
     });
 
     surveyData.instance.categories.push(category);
@@ -173,4 +172,28 @@ exports.composeSurveyData = function (survey) {
   });
 
   return surveyData;
+};
+
+exports.sortSurveyQuestions = function (survey) {
+  _.each(survey._categories, function (c) {
+    var questions = [];
+
+    _.each(c._questions, function (q) {
+      if (/cascade/.test(q.type)) {
+        if (q.type === 'cascade1') {
+          questions.push(q);
+          questions = questions.concat(_.filter(c._questions, function (item) {
+            return item.parentid === q.id;
+          }));
+        }
+      } else {
+        questions.push(q);
+      }
+    });
+
+    c._questions = questions;
+
+  });
+
+  return survey;
 };

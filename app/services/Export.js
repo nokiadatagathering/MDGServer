@@ -170,7 +170,7 @@ exports.getResultsData = function (questions, results) {
     images = [],
     res = '',
     body = '',
-    questionIndex;
+    questionResult;
 
   _.each(questions, function (question) {
     header = header + question.label + '|';
@@ -179,44 +179,49 @@ exports.getResultsData = function (questions, results) {
   _.each(results, function (result) {
     body = body + getResultMetaData(result);
 
-    questionIndex = -1;
+    _.each(questions, function (question) {
+      questionResult = {};
 
-    _.each(result._categoryResults, function (category) {
-      _.each(category._questionResults, function (questionResult) {
+      _.find(result._categoryResults, function (c) {
+        return _.find(c._questionResults, function (q) {
+          if (question.id.indexOf(q.id) !== -1) {
+            questionResult = q;
+            return true;
+          }
+        });
+      });
 
-        questionIndex = questionIndex + 1;
-        res = questionResult.result;
+      res = questionResult.result;
 
-        if (questionResult.result === undefined) {
-          res = '';
-        } else if (
-            questions[questionIndex].type === 'binary' ||
-            questions[questionIndex].type === 'binary#image'
-        ) {
-          res = 'photos/' + result._id + '/' + questionResult.result;
+      if (questionResult.result === undefined) {
+        res = '';
+      } else if (
+        questions.type === 'binary' ||
+        questions.type === 'binary#image'
+      ) {
+        res = 'photos/' + result._id + '/' + questionResult.result;
 
-          images.push({
-            file: res,
-            filename: questionResult.result
-          });
-        } else if (questions[questionIndex].type === 'date') {
-          res = moment(questionResult.result).format('YYYY-MM-DD');
-        } else if (questions[questionIndex].type === 'time') {
-          res = /(\d{2}:\d{2})/.exec(questionResult.result)[1];
-        } else if (
-            questions[questionIndex].type === 'select' ||
-            questions[questionIndex].type === 'select1' ||
-            /cascade/.test(questions[questionIndex].type )
-        ) {
-          res = _.map(res.split(' '), function (value) {
-            return '"' + _.find(questions[questionIndex].items, function (item) {
+        images.push({
+          file: res,
+          filename: questionResult.result
+        });
+      } else if (questions.type === 'date') {
+        res = moment(questionResult.result).format('YYYY-MM-DD');
+      } else if (questions.type === 'time') {
+        res = /(\d{2}:\d{2})/.exec(questionResult.result)[1];
+      } else if (
+        questions.type === 'select' ||
+        questions.type === 'select1' ||
+        /cascade/.test(questions.type )
+      ) {
+        res = _.map(res.trim().split(/ +/), function (value) {
+          return '"' + _.find(questions.items, function (item) {
               return item.value == value;
             }).text + '"';
-          });
-        }
+        });
+      }
 
-        body = body + res + '|';
-      });
+      body = body + res + '|';
     });
   });
 

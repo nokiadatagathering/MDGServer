@@ -5,6 +5,7 @@ var
   JXON = require('../../helpers/JXON'),
 
   ExportService = require('../../services/Export'),
+  SurveyService = require('../../services/Survey'),
 
   Survey = require('../../models/Survey'),
   Result = require('../../models/Result');
@@ -34,15 +35,19 @@ exports.export = function (req, res, next) {
       return;
     }
 
+    survey = SurveyService.sortSurveyQuestions(survey);
+
     _.each(survey._categories, function (category) {
       _.each(category._questions, function (question) {
-        if (/cascade/.test(question.type) && questions[questions.length - 1].type === question.type) {
+        if (/cascade/.test(question.type) && questions[questions.length - 1] && questions[questions.length - 1].type === question.type) {
           questions[questions.length-1].items = questions[questions.length-1].items.concat(question.items);
+          questions[questions.length-1].id.push(question.id);
           return;
         }
 
         questions.push({
           label: question.label,
+          id: [question.id],
           type: question.type,
           items: question.items
         });
