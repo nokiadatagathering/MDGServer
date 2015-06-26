@@ -3,6 +3,7 @@ var
 
   ACLService = require('../../services/ACL'),
   ResultsService = require('../../services/Results'),
+  SurveyService = require('../../services/Survey'),
 
   Survey = require('../../models/Survey'),
   Result = require('../../models/Result');
@@ -50,6 +51,8 @@ module.exports = {
           next({ status: 400, body: { name: 'ValidatorError', path: 'survey', type: 'unknown' } });
           return;
         }
+
+        survey = SurveyService.sortSurveyQuestions(survey);
 
         Result
           .findOne({ _owner: owner, _survey: survey, _id: result }, 'count instanceID title timeCreated geostamp _user _categoryResults')
