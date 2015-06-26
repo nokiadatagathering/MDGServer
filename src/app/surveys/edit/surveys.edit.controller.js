@@ -522,49 +522,41 @@ angular.module('mdg.app.surveys')
           pickItems = function (item) {
             return _.pick(item, 'text', 'value');
           },
-          addCascedes = function (cIndex, question) {
+          addCascades = function (cIndex, question) {
             _.each(extractCascades(question), function (cascade) {
-              survey._categories[cIndex]._questions.push(cascade);
+              cascade = _.pick(cascade, fields.default, fields.cascade1);
+              cascade.items = _.map(cascade.items, pickItems);
+              clearedSurvey._categories[cIndex]._questions.push(cascade);
             });
+          },
+          clearedSurvey = {
+            title: survey.title,
+            _categories: []
           };
 
         _.each(survey._categories, function (category, cIndex) {
-          var qIndex = 0;
+          clearedSurvey._categories[cIndex] = _.pick(category, ['id', 'title', 'relevant', 'defaultRelevant']);
+          clearedSurvey._categories[cIndex]._questions = [];
 
-          while (category._questions.length !== qIndex) {
-            var q = category._questions[qIndex];
-
-            if (q.type == 'cascade1') {
-              addCascedes(cIndex, q);
-            }
-
-            if (q.type.indexOf('cascade') >= 0 && (q.type !== 'cascade1')) {
-              q = _.pick(q, fields.default, fields.cascade1);
-            } else {
-              q =  _.pick(q, fields.default, fields[q.type]);
-            }
-
+          _.each(survey._categories[cIndex]._questions, function(q) {
             if (q.type === 'select' || q.type === 'select1' || q.type.indexOf('cascade') !== -1) {
               q.items = _.map(q.items, pickItems);
             }
 
-            category._questions[qIndex] = q;
+            clearedSurvey._categories[cIndex]._questions.push(_.pick(q, fields.default, fields[q.type]));
 
-            qIndex++;
-          }
-
-          survey._categories[cIndex] = _.pick(category, ['_questions', 'id', 'title', 'relevant', 'defaultRelevant']);
+            if (q.type == 'cascade1') {
+              addCascades(cIndex, q);
+            }
+            console.log(clearedSurvey._categories[cIndex]._questions);
+          });
         });
 
-        delete survey.prevTitle;
-        delete survey.titleEdit;
-
-        return survey;
+        return clearedSurvey;
       },
 
       extractCascades = function (cascade1) {
         var
-          parentId,
           cascadesArray = [],
           makeArray = function (cascades, parentId) {
             _.each(cascades, function (cascade, index) {
@@ -1458,7 +1450,6 @@ angular.module('mdg.app.surveys')
       }
 
       var survey = angular.copy($scope.surveyData);
-
       _.each(survey._categories, function (category, cIndex) {
         _.each(category._questions, function (question) {
 
