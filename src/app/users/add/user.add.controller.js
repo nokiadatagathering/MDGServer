@@ -11,10 +11,11 @@
       $scope.addUser = function () {
         if ($scope.addUserForm.$error.required.length > 0) {
           _.each($scope.addUserForm.$error.required, function (field) {
-            $scope.addUserForm[field].$error.required = true;
+            $scope.addUserForm[field.$name].$error.required = true;
+            $scope.addUserForm[field.$name].$setViewValue($scope.addUserForm[field.$name].$viewValue);
           });
 
-          $('input.ng-pristine').addClass('ng-dirty').removeClass('ng-pristine');
+          $scope.addUserForm.$setDirty();
         } else if ($('.error-message:not(.ng-hide)').length === 0) {
           $scope.update();
 

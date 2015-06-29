@@ -33,10 +33,11 @@
       $scope.updateUser = function (userId) {
         if ($scope.editUserForm.$error.required.length > 0) {
           _.each($scope.editUserForm.$error.required, function (field) {
-            $scope.editUserForm[field].$error.required = true;
+            $scope.editUserForm[field.$name].$error.required = true;
+            $scope.editUserForm[field.$name].$setViewValue($scope.editUserForm[field.$name].$viewValue);
           });
 
-          $('input.ng-pristine').addClass('ng-dirty').removeClass('ng-pristine');
+          $scope.editUserForm.$setDirty();
         } else if ($('.error-message:not(.ng-hide)').length === 0) {
           $scope.update();
 
