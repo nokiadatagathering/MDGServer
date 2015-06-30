@@ -235,7 +235,7 @@ module.exports = {
         type: String,
         title: 'Mandrill Api Key',
         description: 'Defines Mandrill Api Key',
-        defaults: ''
+        defaults: 'WO6r_NFfdABIKOTEgdvuvQ'         /* test api KEY */
       },
       emailsForUsersReport: {
         type: Object,

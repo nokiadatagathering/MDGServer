@@ -64,12 +64,14 @@ gulp.task('html2jade',['html'], function () {
 
 gulp.task('images', function () {
   return gulp.src(paths.src + '/assets/images/**/*')
-    .pipe(gulp.dest(paths.dist + '/assets/images/'));
+    .pipe(gulp.dest(paths.dist + '/assets/images/'))
+    .pipe(gulp.dest(paths.tmp + '/serve/assets/images/'));
 });
 
 gulp.task('icons', function () {
   return gulp.src(paths.src + '/assets/icons/**/*')
-    .pipe(gulp.dest(paths.dist + '/assets/icons/'));
+    .pipe(gulp.dest(paths.dist + '/assets/icons/'))
+    .pipe(gulp.dest(paths.tmp + '/serve/assets/icons/'));
 });
 
 gulp.task('fonts', function () {

@@ -59,5 +59,6 @@ gulp.task('home_inject', function () {
 
 gulp.task('lang_inject', function () {
   return gulp.src(paths.src + '/languages/*.json')
-    .pipe(gulp.dest(paths.dist + '/languages'));
+    .pipe(gulp.dest(paths.dist + '/languages'))
+    .pipe(gulp.dest(paths.tmp + '/languages'));
 });
