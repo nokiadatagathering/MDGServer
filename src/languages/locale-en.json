@@ -1,4 +1,7 @@
 {
+  "offlineMode": "You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode",
+  "offlineNotSupport": "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode.",
+  "Synchronize": "Synchronize",
   "header": {
     "surveys": "Surveys",
     "users": "Users",
@@ -194,6 +197,8 @@
     "Clear_default_field": "Clear default field",
     "Invalid_min_max_range": "Invalid min-max range.",
     "defaultValueError": "Default value should be in min-max range.",
+    "maskError": "If Mask Input is used, the Default Answer value should match the mask.",
+    "maxLengthError": "The Default Answer should not exceed the Maximum Answer Length",
     "Add_option": "Add a new option",
     "Import_existing_option": "Import existing option...",
     "Notes_description": "Notes are no-input text prompts which can provide notes, hints, instructions or messages to the surveyor or respondent"
