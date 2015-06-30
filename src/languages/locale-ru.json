@@ -1,4 +1,7 @@
 {
+  "offlineMode": "Вы работаете в автономном режиме, доступны только страницы Опросы и Конструктор Опросов",
+  "offlineNotSupport": "Ваш браузер не поддерживает webSQL. Используйте Google Chrome для работы в автономном режиме.",
+  "Synchronize": "Синхронизировать",
   "header": {
     "surveys": "Опросы",
     "users": "Пользователи",
@@ -9,10 +12,10 @@
     "Download_app": "Скачать"
   },
   "table_header": {
-    "Name": "ИМЯ",
-    "Results": "РЕЗУЛЬТАТЫ",
-    "Publisher": "ОТПРАВИТЕЛЬ",
-    "Date": "ДАТА"
+    "Name": "Имя",
+    "Results": "Результаты",
+    "Publisher": "Отправитель",
+    "Date": "Дата"
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",
@@ -194,6 +197,8 @@
     "Clear_default_field": "Очистить поле по умолчанию",
     "Invalid_min_max_range": "Некоректный min-max диапозон.",
     "defaultValueError": "Значение по умолчанию должно быть в пределах min-max диапазона.",
+    "maskError": "In case Mask Input is used, the Default Answer value should match the mask.",
+    "maxLengthError": "Длина значения по умолчанию не может превышать максимальную длину ответа.",
     "Add_option": "Добавить опцию",
     "Import_existing_option": "Импорт опции...",
     "Notes_description": "Вопрос типа 'заметка' представляет собой сообщение, подсказку или инструкцию для человека, который заполняет опрос. Данный тип вопроса носит сугубо информативный характер и не предусматривает возможность ответа."

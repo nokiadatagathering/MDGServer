@@ -1,4 +1,7 @@
 {
+  "offlineMode": "您工作在離線模式。只有調查頁面，調查生成器是在離線模式下可用",
+  "offlineNotSupport": "您的瀏覽器不支持webSQL 請使用谷歌Chrome瀏覽器在離線模式下工作",
+  "Synchronize": "Synchronize",
   "header": {
     "surveys": "调查问卷",
     "users": "用户名",
@@ -51,7 +54,7 @@
     "Search": "搜索",
     "Schedule_an_Export": "安排输出时间",
     "Charts_for": "图表",
-    "Users this survey_was_sent_to": "调查送到的用户"
+    "survey_was_sent_to": "调查送到的用户"
   },
   "result": {
     "TIMESTAMP": "时间戳",
@@ -93,18 +96,18 @@
     "required": "必须填写",
     "pattern": "此处仅能输入数字",
     "email": "不是一个有效电子邮件",
-    "error Email Pattern": "不是一个有效的电子邮件",
-    "error Login": "该用户名已被登陆使用过",
-    "error Password": "用户名被更改， 请填写密码和确认密码。",
-    "error Login Pattern": "用户名只能包含数字、英文句号和拉丁字母。",
-    "error Username Pattern": "用户名只能包含数字，英文句号和拉丁字母。",
-    "error Existing Email": "该电子邮件已被使用。",
-    "error Existing Username": "该用户名已被使用。",
-    "error Existing GroupName": "该群名已被使用。",
-    "error Phone MaxLength": "最多输入15个字符。",
-    "error Phone MinLength": "至少输入10个字符。",
-    "error GroupName": "该群名已被使用。",
-    "passwords Do Not Match": "密码不符"
+    "errorEmailPattern": "不是一个有效的电子邮件",
+    "errorLogin": "该用户名已被登陆使用过",
+    "errorPassword": "用户名被更改， 请填写密码和确认密码。",
+    "errorLoginPattern": "用户名只能包含数字、英文句号和拉丁字母。",
+    "errorUsernamePattern": "用户名只能包含数字，英文句号和拉丁字母。",
+    "errorExistingEmail": "该电子邮件已被使用。",
+    "errorExistingUsername": "该用户名已被使用。",
+    "errorExistingGroupName": "该群名已被使用。",
+    "errorPhoneMaxLength": "最多输入15个字符。",
+    "errorPhoneMinLength": "至少输入10个字符。",
+    "errorGroupName": "该群名已被使用。",
+    "passwordsDoNotMatch": "密码不符"
   },
   "sms": {
     "SMS_to": "发送SMS 到群 {群}",
@@ -193,7 +196,9 @@
     "Duplicated_option_value": "复制选项值!",
     "Clear_default_field": "清除默认域",
     "Invalid_min_max_range": "无效的最大，最小范围。",
-    "default Value Error": "默认值应在最小到最大范围之间。",
+    "defaultValueError": "默认值应在最小到最大范围之间。",
+    "maskError": "如果屏蔽輸入時，默認回答值應符合口罩",
+    "maxLengthError": "默認回答不應超過最大長度答案",
     "Add_option": "添加新选项",
     "Import_existing_option": "导入现有选项...",
     "Notes_description": "“提示”是指无输入提示文字，能够为被调查者或答题者提供注释，提醒，介绍或者信息。"

@@ -67,7 +67,18 @@ module.exports = {
         type: Object,
         title: 'Supported languages',
         description: '',
-        defaults: [{ value: 'en', text: 'English' }, { value: 'ru', text: 'Русский' }]
+        defaults: [
+          {value: 'en', text: 'English'},
+          {value: 'ru', text: 'Русский'},
+          {value: 'zh', text: '中文'},
+          {value: 'vi', text: 'Việt' }
+        ]
+      },
+      supported_languages_mobile: {
+        type: String,
+        title: 'Supported languages mobile',
+        description: '',
+        defaults: 'Chinese ch\r\nVietnamese vi\r\nSpanish es\r\nFinnish fi\r\nPortuguese pt\r\nRussian ru\r\n'
       }
     }
   },
