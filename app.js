@@ -82,7 +82,6 @@ exports.run = function (mongoUrl, port, callback) {
 
   app = express();
   app.enable('trust proxy');
-  console.log('!!!!!!app.settings.env', app.settings.env);
   require('./app/services/Auth');
 
   app.set('views', __dirname);
@@ -118,7 +117,7 @@ exports.run = function (mongoUrl, port, callback) {
   app.use(methodOverride());
 
   if (app.settings.env === 'development') {
-    app.use(express.static(__dirname + '/src'));
+    app.use(express.static(__dirname + '/.tmp'));
     app.use('/src', express.static(__dirname + '/src'));
     app.use('/.tmp', express.static(__dirname + '/.tmp'));
     app.use('/bower_components', express.static(__dirname + '/bower_components'));
@@ -188,12 +187,11 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/home', getStartedCntr.home);
 
     app.get('/', function (req, res) {
-      console.log('------------------req.user      ', req.user)
+      console.log('------------------req.user      ', req.user);
       if (req.method === 'HEAD') {
         res.send();
       } else {
         if (req.user) {
-          console.log('!!!redirect');
 
           if (app.settings.env === 'production') {
             app.get('/mdgcache.manifest', manifestCntr.getManifest);
@@ -214,7 +212,7 @@ exports.run = function (mongoUrl, port, callback) {
           }
 
         } else {
-          console.log('redirect')
+          console.log(('redirect').yellow);
           res.redirect('/home');
         }
       }

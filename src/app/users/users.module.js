@@ -7,7 +7,29 @@
         .state('page.users', {
           url: '/users',
           templateUrl: 'app/users/groups/users.groups.html',
-          controller: 'GroupsController'
+          controller: 'GroupsController',
+          resolve: {
+            groups: ['surveysService', function (groupsService) {
+              groupsService.groupList().then(
+                function success(config) {
+                  return config.data;
+                },
+
+                function failed(err) {
+                  console.log("error:", err);
+                });
+            }],
+            allUsers: ['surveysService', function (usersService) {
+              usersService.userList().then(
+                function success(config) {
+                  return config.data;
+                },
+
+                function failed(err) {
+                  console.log("error:", err);
+                });
+            }]
+          }
         })
         .state('page.users.group', {
           url: '/group:{groupId}',
