@@ -1,7 +1,7 @@
 (function () {
     var $$ = document.querySelectorAll.bind(document),
         $ = document.getElementById.bind(document);
-    
+
     var validators = {
         uniqeUsrName: function () {
             var xmlhttp = new XMLHttpRequest(),
@@ -36,7 +36,7 @@
             return /^\d+$/.test(this.value);
         }
     };
-    
+
     function validate(input) {
         var rules = input.dataset.validation;
         if (!rules) { return; }
@@ -132,7 +132,7 @@
                        }
                     }
                 };
-        
+
                 xmlhttp.open("GET", "/autocomplete/" + evt.target.name + "?term=" + evt.target.value.trim(), true);
                 xmlhttp.send();
             }
@@ -174,7 +174,7 @@
                     return a;
                 },[]).join('&'));
             }
-            
+
         });
         document.querySelector('.b-success-registration button').addEventListener('click', function (evt) {
           location.hash = '#/login';
@@ -275,7 +275,7 @@
             }
         });
     }
-    
+
     function showArticle() {
         var articles = $$("article"),
             id = window.location.hash.substr(2),

@@ -846,3 +846,20 @@ body {
   width: 300px;
   height: 200px;
 }
+
+.results {
+  position: absolute;
+  width: 336px;
+  margin-top: 35px;
+  margin-left: 4px;
+  background-color: #FFF;
+  list-style: none;
+  padding: 2px;
+  outline: none;
+  border-radius: 4px;
+  z-index: 10;
+  border: 1px solid #AAA;
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
