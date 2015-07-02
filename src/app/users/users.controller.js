@@ -5,11 +5,12 @@
     function ($scope, $http, $location, $window, $stateParams, $rootScope, $state,
               usersService,
               groupsService,
-              smsService) {
+              smsService,
+              groupData) {
 
       $scope.users = {};
       $scope.smsText = '';
-      $scope.groupData = {};
+      $scope.groupData = groupData;
 
       $scope.getUserList = function (groupId) {
         if (groupId) {

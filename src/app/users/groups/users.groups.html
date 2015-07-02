@@ -27,12 +27,12 @@
           <tbody class="b-table__body" >
           <div ng-if="showNewGroup"
                class="b-content__users__groups-box__group-table__new-group new-group">
-            <form id="newgroup"
-                  name="newgroup"
+            <form id="newGroup"
+                  name="newGroup"
                   ng-submit="saveNewGroup(groupName)">
                       <span focus-me="groupName">
                           <input type="text"
-                                 form="newgroup"
+                                 form="newGroup"
                                  id="groupName"
                                  class="groupName b-content__users__groups-box__group-table__new-group--input"
                                  placeholder="{{ 'users.New_group_name' | translate }}"
@@ -43,7 +43,7 @@
                                  ng-change="errorExistingGroupName = false"
                                  ng-model="groupName">
 
-                        <button type="submit" form="newgroup"
+                        <button type="submit" form="newGroup"
                                 class="b-content__users__groups-box__group-table__new-group--button">
                           <span class="fa fa-check-circle"></span>
                         </button>
