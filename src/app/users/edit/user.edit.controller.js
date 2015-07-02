@@ -1,4 +1,4 @@
-(function () {
+git (function () {
   'use strict';
 
   angular.module('mdg.app.users').controller('UsersEditController',

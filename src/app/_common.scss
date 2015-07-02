@@ -292,7 +292,7 @@ body {
   z-index: 100;
   margin: 30px 0;
 
-  .event {
+  &__event {
     @include notice;
   }
   .red {

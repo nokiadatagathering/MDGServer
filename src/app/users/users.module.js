@@ -9,8 +9,10 @@
           templateUrl: 'app/users/groups/users.groups.html',
           controller: 'GroupsController',
           resolve: {
-            groups: ['surveysService', function (groupsService) {
-              groupsService.groupList().then(
+            groups: ['groupsService',
+              function (groupsService) {
+
+                return groupsService.groupList().then(
                 function success(config) {
                   return config.data;
                 },
@@ -19,8 +21,9 @@
                   console.log("error:", err);
                 });
             }],
-            allUsers: ['surveysService', function (usersService) {
-              usersService.userList().then(
+
+            allUsers: ['usersService', function (usersService) {
+              return usersService.userList().then(
                 function success(config) {
                   return config.data;
                 },
@@ -34,7 +37,47 @@
         .state('page.users.group', {
           url: '/group:{groupId}',
           templateUrl: 'app/users/users.list.html',
-          controller: 'UsersController'
+          controller: 'UsersController',
+          resolve: {
+            groupData: ['groupsService', '$stateParams',
+              function (groupsService, $stateParams) {
+
+                if ($stateParams.groupId) {
+                  return groupsService.groupData($stateParams.groupId).then(
+                    function success (config) {
+                      return config.data;
+                    },
+
+                    function failed (err) {
+                      console.log("error:", err);
+                    });
+                }
+              }],
+
+            users: ['usersService','groupsService', '$stateParams',
+              function (usersService, groupsService, $stateParams) {
+
+                if ($stateParams.groupId) {
+                return groupsService.groupData($stateParams.groupId).then(
+                  function success (config) {
+                    return config.data.users;
+                  },
+
+                  function failed (err) {
+                    console.log("error:", err);
+                  });
+              } else {
+                return usersService.userList().then(
+                  function success (config) {
+                    return config.data;
+                  },
+
+                  function failed (err) {
+                    console.log("error:", err);
+                  });
+              }
+            }]
+          }
         })
         .state('page.users.group.smstogroup', {
           url: '/sms',
