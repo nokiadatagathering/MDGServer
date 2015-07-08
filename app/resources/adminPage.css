@@ -4,6 +4,12 @@
   margin: 30px 0 0 40px;
 }
 
+.success {
+  display: none;
+  color: #7fba00;
+  margin: 30px 0 0 40px;
+}
+
 .results li {
   list-style: none;
   display: block;
