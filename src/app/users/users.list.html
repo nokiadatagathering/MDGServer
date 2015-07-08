@@ -8,16 +8,18 @@
         <thead>
         <tr class="b-table__header">
             <th class="b-table__header__item">
-                <span ng-click="predicate = 'name'; reverse=!reverse">
+                <span >
                     {{ 'users.NAME' | translate }}
                 </span>
-                <span class="fa fa-caret-down"></span>
+                <span class="fa fa-caret-down g-pointer"
+                      ng-click="predicate = 'name'; reverse=!reverse"></span>
             </th>
             <th class="b-table__header__item">
-                <span  ng-click="predicate = 'permission'; reverse=!reverse">
+                <span>
                     {{ 'users.PERMISSION' | translate }}
                 </span>
-                <span class="fa fa-caret-down"></span>
+                <span class="fa fa-caret-down g-pointer"
+                      ng-click="predicate = 'permission'; reverse=!reverse"></span>
             </th>
         </tr>
         </thead>
@@ -52,7 +54,7 @@
                         <button class="b-content__users__users-box__user-item--rules__button"
                                 title="{{user.permission === 'superAdmin' ? ('users.Cannot_delete' | translate) : ('users.Delete_user' | translate) }}"
                                 ng-click="deleteUser(user._id, user.username)"
-                                ng-disabled="user.permission === 'superAdmin'">
+                                ng-disabled="!$stateParams.groupId && (user.permission === 'superAdmin')">
                             <span class="fa fa-trash-o"></span>
                         </button>
                     </span>

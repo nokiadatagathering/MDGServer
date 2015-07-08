@@ -1494,7 +1494,7 @@ angular.module('mdg.app.surveys')
           function failed (err) {
             if (err.status === 409) {
               $rootScope.$broadcast('invalid_version', 'survey');
-              $state.go('page.surveys.edit', { surveyId: $stateParams.surveyId });
+              $state.go('page.surveys.edit', { surveyId: $stateParams.surveyId }, {reload: true});
             }
 
             console.log("error:", err);
@@ -1503,7 +1503,7 @@ angular.module('mdg.app.surveys')
         return surveysService.createSurvey({ body: clearSurveyData(survey) }).then(
           function success (config) {
             if (buttonClick) {
-              $state.go('page.surveys.edit', { surveyId: config.data.id })
+              $state.go('page.surveys.edit', { surveyId: config.data.id }, {reload: true})
             }
 
             $rootScope.$broadcast('saved_survey', survey.title);
@@ -1518,7 +1518,7 @@ angular.module('mdg.app.surveys')
     };
 
     $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-      if (toState.name !== "page.editsurvey" &&
+      if (toState.name !== "page.surveys.edit" &&
         ($scope.surveyEdit.$dirty || surveyDirty) &&
         confirm("You are leaving this page.\nDo you want to save changes to your survey?")) {
 

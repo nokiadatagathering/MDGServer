@@ -63,7 +63,7 @@ a {
   padding-left: 36px;
 }
 
-.b-logo__title, a {
+.b-logo__title {
   text-decoration: none;
   color: #4d4d4d;
   line-height: 40px;
@@ -169,8 +169,8 @@ a {
     }
 
     &:after {
-      top: 20px;
-      margin-left: 0;
+      top: 10px;
+      margin-left: 6px;
       content: '';
       position: absolute;
       width: 0;

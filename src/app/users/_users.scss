@@ -220,11 +220,14 @@
     &__row {
       position: relative;
       width: 100%;
-      overflow: hidden;
+      display: inline-block;
+
       &__col {
         float: left;
         display: inline-block;
         width: 50%;
+        position: relative;
+
         &:nth-of-type(even) {
           float: right;
         }
@@ -263,6 +266,42 @@
       font-weight: lighter;
       margin: 12px 0 24px 0;
     }
+  }
+
+  [errorsblock] {
+    width: 268px;
+    position: relative;
+  }
+
+  .error-message {
+    //width: calc(100% - 24px);
+    width: 100%;
+    padding: 12px;
+    min-height: 40px;
+    background: rgba($red, 0.8);
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+
+    &:after {
+      bottom: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &:after {
+      border-bottom-color: rgba($red, 0.8);
+      border-width: 6px;
+      margin-left: -6px;
+    }
+
   }
 }
 
