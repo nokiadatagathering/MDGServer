@@ -121,17 +121,25 @@
       float: right;
       background-color: transparent;
       border: none;
+      cursor: pointer;
 
       &--text {
         color: $red;
         font-size: 30px;
         font-weight: bold;
+        &:hover {
+          color: lighten($red, 10%);
+        }
       }
 
       &--icon.fa {
         color: $blue;
         font-size: 30px;
         margin: 0 12px;
+
+        &:hover {
+          color: lighten($blue, 10%);
+        }
       }
     }
   }
@@ -233,6 +241,34 @@
           background-color: transparent;
           border: none;
         }
+      }
+    }
+  }
+
+  &__add-category-btn {
+    display: block;
+    background-color: transparent;
+    border: none;
+    margin: 24px auto 6px;
+    cursor: pointer;
+
+    &--text {
+      color: $red;
+      font-size: 30px;
+      font-weight: bold;
+
+      &:hover {
+        color: lighten($red, 10%);
+      }
+    }
+
+    &--icon.fa {
+      color: $green;
+      font-size: 30px;
+      margin: 0 12px;
+
+      &:hover {
+        color: lighten($green, 10%);
       }
     }
   }

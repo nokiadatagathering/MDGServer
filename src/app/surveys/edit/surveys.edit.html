@@ -51,7 +51,7 @@
                             <span title="{{category.title}}"
                                   ng-click="category.isVisible = !category.isVisible"
                                   ng-if="!category.titleEdit">
-                                   <span class="fa"
+                                   <span class="fa g-pointer"
                                          ng-class="{'fa-caret-down': category.isVisible , 'fa-caret-right':!category.isVisible}"></span>
                                 {{category.title}}
                             </span>
@@ -95,22 +95,25 @@
                                 <div class="b-surveys-edit__category__question__header">
 
                                     <div class="b-surveys-edit__category__question__header__title">
-                                        <span class="fa"
-                                              ng-class="{'fa-caret-down' : question.isVisible, 'fa-caret-right': !question.isVisible }"></span>
+
+
                                         <span ng-if="!question.titleEdit">
-                                            <span title="{{question.label}}"
-                                                  ng-click="question.isVisible = !question.isVisible">{{question.label}}</span>
+                                            <span ng-click="question.isVisible = !question.isVisible">
+                                              <span class="fa g-pointer"
+                                                   ng-class="{'fa-caret-down' : question.isVisible, 'fa-caret-right': !question.isVisible }"></span>
+                                              <span title="{{question.label}}">{{question.label}}</span>
+                                            </span>
+                                              <span class="fa fa-pencil"
+                                                    ng-click="editItemTitle(question, 'question', 'label', $parent.$index)"></span>
+                                              <span class="fa fa-files-o"
+                                                    title="{{ 'survey_builder.Duplicate_question' | translate }} "
+                                                    ng-click="copyQuestion(category, question, $parent.$index)"></span>
 
-                                            <span class="fa fa-pencil"
-                                                  ng-click="editItemTitle(question, 'question', 'label', $parent.$index)"></span>
-                                            <span class="fa fa-files-o"
-                                                  title="{{ 'survey_builder.Duplicate_question' | translate }} "
-                                                  ng-click="copyQuestion(category, question, $parent.$index)"></span>
+                                              <span class="fa fa-trash-o"
+                                                    title="{{ 'survey_builder.Delete_question' | translate }}"
+                                                    ng-click="deleteQuestion(category, question, $parent.$index)"></span>
+                                      </span>
 
-                                            <span class="fa fa-trash-o"
-                                                  title="{{ 'survey_builder.Delete_question' | translate }}"
-                                                  ng-click="deleteQuestion(category, question, $parent.$index)"></span>
-                                        </span>
                                         <span ng-if="question.titleEdit" >
                                             <input type="text"
                                                    class="b-surveys-edit__category__question__header__title--edit-input"
@@ -164,7 +167,7 @@
                                              ng-click="question.isVisibleSkip = !question.isVisibleSkip">
 
                                             <h5 class="b-skip-logic__header__title">
-                                                <span class="fa"
+                                                <span class="fa g-pointer"
                                                       ng-class="{'fa-caret-down':question.isVisibleSkip, 'fa-caret-right':!question.isVisibleSkip}"></span>
                                                 <span>{{ 'survey_builder.SL_OPTIONS' | translate }}</span>
                                             </h5>
@@ -265,7 +268,7 @@
                                                 class="b-mask-input__header--title">
                                                 {{'survey_builder.MASK_INPUT'| translate }}
 
-                                                <span class="fa"
+                                                <span class="fa g-pointer"
 
                                                       ng-class="{'fa-caret-right': !question.isVisibleMascInput,
                                                       'fa-caret-down': question.isVisibleMascInput}"></span>
@@ -292,6 +295,12 @@
                         </div>
                     </div>
                 </div>
+
+              <button class="b-surveys-edit__add-category-btn">
+                <span class="fa fa-plus b-surveys-edit__add-category-btn--icon"></span>
+                            <span class="b-surveys-edit__add-category-btn--text"
+                                  ng-click="addCategory(true)">{{ 'survey_builder.Add_category' | translate }}</span>
+              </button>
             </div>
         </form>
     </div>
