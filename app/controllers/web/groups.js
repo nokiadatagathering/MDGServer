@@ -58,7 +58,8 @@ module.exports = {
 
       async.map(groups,
         function (group, cb) {
-          User.find({ _group: group._id }, 'username email phone permission firstName lastName name').exec(function (err, users) {
+          User.find({ _group: group._id, deleted: false }, 'username email phone permission firstName lastName name')
+            .exec(function (err, users) {
             if (err) {
               cb(err);
               return;
@@ -105,7 +106,7 @@ module.exports = {
 
       group = group.toObject();
 
-      User.find({ _group: group._id }, 'username email phone permission firstName lastName name').exec(function (err, users) {
+      User.find({ _group: group._id, deleted: false }, 'username email phone permission firstName lastName name').exec(function (err, users) {
         if (err) {
           next({ status: 500, body: err });
           return;
