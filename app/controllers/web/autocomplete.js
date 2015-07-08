@@ -39,3 +39,22 @@ exports.getIndustries = function (req, res, next) {
     res.send(industries);
   });
 };
+
+exports.getUsers = function (req, res, next) {
+  var
+    term = req.param('term'),
+    termReggexp = new RegExp('.*' + term + '.*', 'i');
+
+  User.find({$or : [
+    {username: { $regex: termReggexp }},
+    {firstName: { $regex: termReggexp }},
+    {lastName: { $regex: termReggexp }},
+    {email: { $regex: termReggexp }} ], deleted: false}, function (err, users) {
+    if (err) {
+      next({ status: 500, body: err });
+      return;
+    }
+
+    res.send(users);
+  });
+};
