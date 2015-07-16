@@ -31,13 +31,13 @@ angular.module('mdg.app.surveys')
       $scope.getSurveyList = function () {
         $rootScope.archive = false;
 
-        if ($state.includes('page.archive')) {
+        if ($state.includes('page.surveys.archive')) {
           $rootScope.archive = true;
         }
 
         surveysService.surveyList($rootScope.archive).then(
-          function success (config) {
-            $scope.surveys = config.data;
+          function success (result) {
+            $scope.surveys = result;
           },
 
           function failed (err) {

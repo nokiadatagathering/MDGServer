@@ -254,7 +254,7 @@
       }
 
       if ($rootScope.offlineMode &&
-        toState.name !== 'page.surveys' && toState.name !== 'page.builder' && toState.name !== 'page.editsurvey' &&
+        toState.name !== 'page.surveys.list' && toState.name !== 'page.surveys.edit' && toState.name !== 'page.surveys.new' &&
         toState.name !== 'page.surveys.sync' && toState.name !== 'page.builder.sync' && toState.name !== 'page.editsurvey.sync') {
         event.preventDefault();
       } else {
