@@ -55,11 +55,12 @@
             </tr>
             </thead>
             <tbody class="b-table__body">
-            <tr class="b-table__body__row" ng-repeat="survey in surveys
-                                                            | deletedItemsFilter : 'surveys'
+            <tr class="b-table__body__row" id="{{survey._id}}"
+                ng-repeat="survey in filtered = (surveys | deletedItemsFilter : 'surveys')
                                                             | selectPublished : selectVal.value
                                                             | filter:search
-                                                            | orderBy:predicate:reverse">
+                                                            | orderBy:predicate:reverse"
+                ng-init="survey.hidden = true">
                 <td class="b-table__body__row__col">
                     <div class="b-table__body__row__col__title" title="{{survey.title}}">
                         <span class="fa fa-{{survey.published ? 'circle': 'circle-o'}} b-table__body__row__col--text__publish"></span>

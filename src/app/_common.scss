@@ -159,6 +159,8 @@ body {
           text-overflow: ellipsis;
           overflow: hidden;
           line-height: 24px;
+          white-space: nowrap;
+          display: block;
 
           &--results {
             color: $green;

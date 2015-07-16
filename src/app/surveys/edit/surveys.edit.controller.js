@@ -72,7 +72,7 @@ angular.module('mdg.app.surveys')
 
         var
           length = $scope.surveyData._categories.length,
-          cIndex = $('ol.category-box li.category-item').index(ui.item.sortable.droptarget[0].parentElement),
+          cIndex = $('.b-surveys-edit__category').index(ui.item.sortable.droptarget[0].parentElement),
           qIndex = ui.item.sortable.dropindex,
           question = $scope.surveyData._categories[cIndex]._questions[qIndex];
 
@@ -1494,7 +1494,8 @@ angular.module('mdg.app.surveys')
           function failed (err) {
             if (err.status === 409) {
               $rootScope.$broadcast('invalid_version', 'survey');
-              $state.go('page.surveys.edit', { surveyId: $stateParams.surveyId }, {reload: true});
+              //debugger;
+              //$state.go('page.surveys.edit', { surveyId: $stateParams.surveyId }, {reload: true});
             }
 
             console.log("error:", err);

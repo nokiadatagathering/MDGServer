@@ -167,6 +167,7 @@ body {
   padding-right: 36px;
   text-align: right;
   vertical-align: middle;
+  position: relative;
 }
 
 .b-account-menu__locale {
@@ -175,7 +176,7 @@ body {
   position: relative;
 }
 
-.b-account-menu__locale .dropdown {
+.b-account-menu__locale + .dropdown {
   opacity: 0;
   position: absolute;
   padding: 10px 0;
@@ -187,10 +188,10 @@ body {
   top: 30px;
   border: 1px solid rgba(166, 166, 166, 0.5);
   border-radius: 5px;
-  left: 0;
+  right: 18%;
 }
 
-.b-account-menu__locale .dropdown li {
+.b-account-menu__locale + .dropdown li {
   display: block;
   color: #000;
   line-height: 20px;
@@ -198,11 +199,15 @@ body {
   font-family: SegoeUI, Arial, sans-serif;
 }
 
-.b-account-menu__locale .dropdown li:hover {
+.b-account-menu__locale + .dropdown li a {
+  display: block;
+}
+
+.b-account-menu__locale + .dropdown li:hover {
   background: #f2f2f2;
 }
 
-.b-account-menu__locale .dropdown:after {
+.b-account-menu__locale + .dropdown:after {
   content: "";
   width: 0;
   height: 0;
@@ -215,7 +220,8 @@ body {
   left: 20px;
 }
 
-.b-account-menu__locale .dropdown.open {
+.b-account-menu:focus + .dropdown,
+.b-account-menu__locale + .dropdown.open {
   opacity: 1;
 }
 
@@ -645,7 +651,6 @@ body {
   font: inherit;
   font-size: 18px;
   color: #666666;
-  outline: none;
   /* remove focus ring from Webkit */
   background: #f2f2f2;
   line-height: initial;

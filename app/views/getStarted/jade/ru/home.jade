@@ -17,7 +17,7 @@ html
         header.b-page__header
           .b-head-logo
             a.b-logo__title(href='#/home')
-              img.b-logo__img(src='assets/images/logo-30px.png')
+              img.b-logo__img(src='assets/images/logo-30px.png', alt='MDG Icon')
               span Microsoft Data Gathering
           .b-menu
             nav.b-menu-nav
@@ -30,10 +30,10 @@ html
               a.b-menu-nav__link(href='#/support')
                 | Поддержка
           .b-account-menu
-            a.language-select.b-account-menu__locale #{language}&nbsp;
-              ul.dropdown
-                each lang in languages
-                  li(value=lang.value) #{lang.text}
+            a.language-select.b-account-menu__locale(href='#') #{language}&nbsp;
+            ul.dropdown
+              each lang in languages
+                li: a(href='#' value=lang.value) #{lang.text}
             .b-account-menu__user
               a(href='#/login') Вход
               | /
@@ -68,7 +68,8 @@ html
                 | Because mobile devices can transmit data even from remote locations, the information collected can be available
                 | for analysis in near-real time.
             .b-content-main__image
-              img(src='../assets/images/collage.jpg')
+              img(src='../assets/images/collage.jpg'
+                alt='Pictures of MDG in use')
         .b-page__line
           .b-content.b-content--line
             h2.b-content-title
@@ -76,7 +77,8 @@ html
             .b-content__col-left
               .b-content__col-left__item
                 .b-content__col-left__item__picture
-                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_1.png')
+                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_1.png'
+                    alt='First step of how MDG works. Create a questionnaire')
                 .b-content__col-left__item__caption
                   span.b-content__col-left__item__caption__number 1
                   span.b-content__col-left__item__caption__text--blue
@@ -85,7 +87,8 @@ html
                     | the survey editor
               .b-content__col-left__item
                 .b-content__col-left__item__picture
-                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_2.png')
+                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_2.png'
+                    alt='Second step of how MDG works. Publish the data for data collectors.')
                 .b-content__col-left__item__caption
                   span.b-content__col-left__item__caption__number 2
                   span.b-content__col-left__item__caption__text--blue
@@ -94,7 +97,8 @@ html
                     | collectors
               .b-content__col-left__item
                 .b-content__col-left__item__picture
-                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_3.png')
+                  img.b-content__col-left__item__picture--img(src='../assets/images/howitworks_3.png'
+                    alt='Third step of how MDG works. Fill in the questionnaire on the device')
                 .b-content__col-left__item__caption
                   span.b-content__col-left__item__caption__number 3
                   span.b-content__col-left__item__caption__text--blue
@@ -104,7 +108,8 @@ html
             .b-content__col-right
               .b-content__col-right__item
                 .b-content__col-right__item__picture
-                  img.b-content__col-right__item__picture--img(src='../assets/images/howitworks_4.png')
+                  img.b-content__col-right__item__picture--img(src='../assets/images/howitworks_4.png'
+                    alt='Fourth step of how MDG works. Send your data to the server')
                 .b-content__col-right__item__caption
                   span.b-content__col-right__item__caption__number 4
                   span.b-content__col-right__item__caption__text--blue
@@ -113,7 +118,8 @@ html
                     |  server over the mobile network
               .b-content__col-right__item
                 .b-content__col-right__item__picture
-                  img.b-content__col-right__item__picture--img(src='../assets/images/howitworks_5.png')
+                  img.b-content__col-right__item__picture--img(src='../assets/images/howitworks_5.png'
+                    alt='Fifth step of how MDG works. View, map or export your data')
                 .b-content__col-right__item__caption
                   span.b-content__col-right__item__caption__number 5
                   span.b-content__col-right__item__caption__text--blue
@@ -130,7 +136,7 @@ html
               br
               | Amazonas State, Brazil.
             .b-content__col-left
-              iframe.b-content__col-left--video(src='//www.youtube.com/embed/kP1v9Snz6HA')
+              iframe.b-content__col-left--video(src='//www.youtube.com/embed/kyEK6MVGb8M')
             .b-content__col-right
               .b-content__col-right__study-article
                 p.b-content__col-right__study-article--text
@@ -138,12 +144,13 @@ html
                   | Watch a report from Lonely Planet about our origins and impact in that region
                   .b-page__line
             .b-content.b-content--line
-              h2.b-content-title
+              h2.b-content-title#benefits
                 | Benefits
               .b-content__col-left
                 .b-content__col-left__item.b-content__col-left__item--benefits
                   .b-content__col-left__item__icon
-                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits1.png', alt='')
+                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits1.png'
+                      alt='Compared to using paper forms, mobile solutions cut down delays')
                   .b-content__col-left__item__caption
                     h3.b-content__col-left__item__caption__title Speed
                     p.b-content__col-left__item__caption__text
@@ -152,7 +159,8 @@ html
                       | data.
                 .b-content__col-left__item.b-content__col-left__item--benefits
                   .b-content__col-left__item__icon
-                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits2.png', alt='')
+                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits2.png'
+                      alt='Transportation and logistics costs are reduced')
                   .b-content__col-left__item__caption
                     h3.b-content__col-left__item__caption__title Cost efficiency
                     p.b-content__col-left__item__caption__text
@@ -164,7 +172,8 @@ html
               .b-content__col-right
                 .b-content__col-right__item.b-content__col-right__item--benefits
                   .b-content__col-right__item__icon
-                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits3.png', alt='')
+                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits3.png'
+                      alt='Data entry occurs at the point of collection')
                   .b-content__col-right__item__caption
                     h3.b-content__col-right__item__caption__title Accuracy
                     p.b-content__col-right__item__caption__text
@@ -173,7 +182,8 @@ html
                       | transcription and data entry errors.
                 .b-content__col-right__item.b-content__col-right__item--benefits
                   .b-content__col-right__item__icon
-                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits4.png', alt='')
+                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits4.png'
+                      alt='Mobile devices are easy to carry')
                   .b-content__col-right__item__caption
                     h3.b-content__col-right__item__caption__title Usability
                     p.b-content__col-right__item__caption__text
@@ -215,10 +225,10 @@ html
                     br
                     | where it is today.
                   .b-content--acknowledge-list
-                    a.b-content--acknowledge-list__link(href='http://www.indt.org/?lang=en') Nokia Technology Institute
-                    a.b-content--acknowledge-list__link(href='http://www.uonbi.ac.ke/') University of Nairobi
-                    a.b-content--acknowledge-list__link(href='http://cmri.shu.edu/') The Center for Mobile Research and Innovation
-                    a.b-content--acknowledge-list__link(href='http://www.ayalafoundation.org/') The Ayala Foundation
+                    a.b-content--acknowledge-list__link(href='http://www.indt.org/?lang=en', target='_blank') Nokia Technology Institute
+                    a.b-content--acknowledge-list__link(href='http://www.uonbi.ac.ke/', target='_blank') University of Nairobi
+                    a.b-content--acknowledge-list__link(href='http://cmri.shu.edu/', target='_blank') The Center for Mobile Research and Innovation
+                    a.b-content--acknowledge-list__link(href='http://www.ayalafoundation.org/', target='_blank') The Ayala Foundation
 
       article#getStarted.hidden
         .b-content-header
@@ -228,12 +238,13 @@ html
             | If you have your own server and wish to migrate your data
             br
             | to this release of MDG the tool to do that is available
-            a.b-content-header__text__link(href='http://github.com/nokiadatagathering/ndg-migration') here
+            a.b-content-header__text__link(href='http://github.com/nokiadatagathering/ndg-migration', target='_blank') here
         .b-page__line
           .b-content
             .b-step
               .b-step__left
-                img.b-step__left__image(src='../assets/images/getstarted_step1.png')
+                img.b-step__left__image(src='../assets/images/getstarted_step1.png'
+                  alt='Register to the Microsoft Data Gathering Playground Server')
               .b-step__right
                 h3.b-step__right__title
                   span.b-step__right__title__count Step 1
@@ -244,12 +255,13 @@ html
                   |  an account on the Microsoft Data Gathering playground server. You can do this by
                   br
                   |  clicking
-                  a.b-step__right__paragraph__link(ui-sref='#/register') register on the homepage
+                  a.b-step__right__paragraph__link(href='#/register') register on the homepage
         .b-page__line
           .b-content
             .b-step
               .b-step__left
-                img.b-step__left__image(src='../assets/images/getstarted_step2.png')
+                img.b-step__left__image(src='../assets/images/getstarted_step2.png'
+                  alt='Create a survey')
               .b-step__right
                 h3.b-step__right__title
                   span.b-step__right__title__count Step 2
@@ -266,7 +278,8 @@ html
           .b-content
             .b-step
               .b-step__left
-                img.b-step__left__image(src='../assets/images/getstarted_step3.png')
+                img.b-step__left__image(src='../assets/images/getstarted_step3.png'
+                  alt='Download the MDG mobile application')
               .b-step__right
                 h3.b-step__right__title
                   span.b-step__right__title__count Step 3
@@ -275,21 +288,22 @@ html
                   | Download and install one of the Microsoft Data Gathering mobile applications.
                 p.b-step__right__paragraph
                   | Download the
-                  a.b-step__right__paragraph__link(href='http://www.windowsphone.com/en-us/store/app/nokia-data-gathering/a2bd7f51-6c7f-48d4-9fa7-12b35c550848')
+                  a.b-step__right__paragraph__link(href='http://www.windowsphone.com/en-us/store/app/nokia-data-gathering/a2bd7f51-6c7f-48d4-9fa7-12b35c550848', target='_blank')
                     | Windows Phone app
                 p.b-step__right__paragraph
                   | Download the
-                  a.b-step__right__paragraph__link(href='https://nokiadatagathering.net/ndg-ota/client/ndg.jad')
+                  a.b-step__right__paragraph__link(href='https://nokiadatagathering.net/ndg-ota/client/ndg.jad', target='_blank')
                     | Java app
                 p.b-step__right__paragraph
                   | Download the
-                  a.b-step__right__paragraph__link(href='http://apps.microsoft.com/windows/app/nokia-data-gathering/4780fc68-fc8b-4db4-8cf7-110fe07dac42')
+                  a.b-step__right__paragraph__link(href='http://apps.microsoft.com/windows/app/nokia-data-gathering/4780fc68-fc8b-4db4-8cf7-110fe07dac42', target='_blank')
                     | Windows Tablet app
         .b-page__line
           .b-content
             .b-step
               .b-step__left
-                img.b-step__left__image(src='../assets/images/getstarted_step4.png')
+                img.b-step__left__image(src='../assets/images/getstarted_step4.png'
+                  alt='Add users')
               .b-step__right
                 h3.b-step__right__title
                   span.b-step__right__title__count Step 4
@@ -306,7 +320,8 @@ html
           .b-content
             .b-step
               .b-step__left
-                img.b-step__left__image(src='../assets/images/getstarted_step5.png')
+                img.b-step__left__image(src='../assets/images/getstarted_step5.png'
+                  alt='Fill in the survey')
               .b-step__right
                 h3.b-step__right__title
                   span.b-step__right__title__count Step 5
@@ -326,7 +341,8 @@ html
           .b-content
             .b-step
               .b-step__left
-                img.b-step__left__image(src='../assets/images/getstarted_step6.png')
+                img.b-step__left__image(src='../assets/images/getstarted_step6.png'
+                  alt='View and Export')
               .b-step__right
                 h3.b-step__right__title
                   span.b-step__right__title__count Step 6
@@ -342,7 +358,7 @@ html
       article#useCases.hidden
         .b-content-header
           h1.b-content-header__title
-            | Прецеденты
+            | Преценденты
           p.b-content-header__text
             | A Real Solution to Real Problems
         .b-page__line
@@ -375,7 +391,8 @@ html
                 | published in December 2013.
             .b-content__col-right
               .b-content__col-right__item
-                img.b-content__col-right__item__photo(src='../assets/images/usecase_1.jpg')
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_1.jpg'
+                  alt='FAO in Eastern Africa')
                 blockquote.b-content__col-right__item__photo-caption
                   | "We strive to improve the humanitarian situation by increasing
                   | the coping capacities of populations vulnerable to recurrent
@@ -384,7 +401,7 @@ html
                   | Microsoft Data Gathering is one of the most convenient
                   | and cost-effective tools for collecting data from remote areas."
                 p.b-content__col-right__item__photo-location
-                  | Bernard 0. Mwesigwa,
+                  | Bernard O. Mwesigwa,
                   br
                   | Programme Officer, M&E/Data Management, FAO Uganda
         .b-page__line
@@ -411,7 +428,8 @@ html
                 | registration rates (from 30 to 68%).
             .b-content__col-right
               .b-content__col-right__item
-                img.b-content__col-right__item__photo(src='../assets/images/usecase_2.jpg', alt='')
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_2.jpg'
+                  alt='Plan in Kenya')
                 blockquote.b-content__col-right__item__photo-caption
                   | "The use of ICTs including mobile technology has great potential to support
                   | communities and governments in civil registration. Right to citizenship and
@@ -439,7 +457,8 @@ html
                 | reports both faster and more accurate.
             .b-content__col-right
               .b-content__col-right__item
-                img.b-content__col-right__item__photo(src='../assets/images/usecase_3.jpg', alt='')
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_3.jpg'
+                  alt='Malaria in Amazonas')
                 blockquote.b-content__col-right__item__photo-caption
                   | "Microsofts technology will help us to more rapidly identify and investigate the results
                   | and symptoms of the surveyed population. The transmission of data immediately after
@@ -469,7 +488,8 @@ html
                 | for public good.
             .b-content__col-right
               .b-content__col-right__item
-                img.b-content__col-right__item__photo(src='../assets/images/usecase_4.jpg', alt='')
+                img.b-content__col-right__item__photo(src='../assets/images/usecase_4.jpg'
+                  alt='Vulnerable communities in Kenya')
                 blockquote.b-content__col-right__item__photo-caption
                   | "A huge burden is put on organizations, especially small scale NG05,
                   | to collect, capture and process data timely for response and planning with
@@ -507,12 +527,12 @@ html
                 .b-content__col-right__item
                   p.b-content__paragraph
                     | You can read the BSD license terms
-                    a.b-content__paragraph__link(href='http://opensource.org/licenses/BSD-2-Clause') here
+                    a.b-content__paragraph__link(href='http://opensource.org/licenses/BSD-2-Clause', target='_blank') here
                     | .
                   p.b-content__paragraph
                     | The Microsoft Data Gathering Playground Server and the Java client
                     | are both licensed under the GNU Lesser General Public License,
-                    a.b-content__paragraph__link(href='https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html') LGPL
+                    a.b-content__paragraph__link(href='https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html', target='_blank') LGPL
                     |  which allows developers and companies to use and integrate the software into
                     |  their own (even proprietary) software without being required to release the source
                     |  code of their own software-parts.
@@ -520,7 +540,7 @@ html
                     | Microsoft Data Gathering complies with Open Rosa standards for data collection.
                   p.b-content__paragraph
                     | The Microsoft Data Gathering source code and documentation repository is at
-                    a.b-content__paragraph__link(href='https://github.com/nokiadatagathering')  https://github.com/nokiadatagathering
+                    a.b-content__paragraph__link(href='https://github.com/nokiadatagathering', target='_blank')  https://github.com/nokiadatagathering
                     | .
           .b-page__line
             .b-content
@@ -531,7 +551,7 @@ html
                   | Here's how you can be a part of the Microsoft Data Gathering
                   | developer and user community:
                 p.b-content__paragraph.b-content__paragraph--item
-                  a.b-content__paragraph__link(href='https://github.com/nokiadatagathering') Get the source code
+                  a.b-content__paragraph__link(href='https://github.com/nokiadatagathering', target='_blank') Get the source code
                   | and develop
                   | Microsoft Data Gathering
                 p.b-content__paragraph.b-content__paragraph--item
@@ -559,7 +579,7 @@ html
                   | documentation
               p.b-content__paragraph.b-content__paragraph--item
                 | Access the
-                a.b-content__paragraph__link(href='https://github.com/nokiadatagathering')
+                a.b-content__paragraph__link(href='https://github.com/nokiadatagathering',, target='_blank')
                   | Microsoft Data Gathering code repository
               p.b-content__paragraph.b-content__paragraph--item
                 | Send an email to
@@ -578,7 +598,7 @@ html
                 p.b-content__paragraph
                   | The key benefits of mobile data collection are speed,
                   | accuracy, cost efficiency and usability. Please see the
-                  a.b-content__paragraph__link(href='#/home')  benefits section on the homepage
+                  a.b-content__paragraph__link(href='#/benefits')  benefits section on the homepage
                   | for more on benefits.
               .b-content__col-left__item
                 h3.b-content__col-left__item__title
@@ -644,7 +664,7 @@ html
                 p.b-content__paragraph
                   | If you have a specific query about device compatibility, please let
                   | us know by sending an email to
-                  a.b-content__paragraph__link(href='mailto:mdgspprt@microsoft.com') mdgspprt@microsoft.com
+                  a.b-content__paragraph__link(href='mailto:mdgspprt@microsoft.com' ) mdgspprt@microsoft.com
                   |  .
               .b-content__col-right__item
                 h3.b-content__col-right__item__title
@@ -690,7 +710,7 @@ html
                   | Can I translate the Microsoft Data Gathering mobile client into my language?
                 p.b-content__paragraph
                   | Yes. Please get in touch with us at
-                  a.b-content__paragraph__link(href='mailto:mdgspprt@microsoft.com') mdgspprt@microsoft.com
+                  a.b-content__paragraph__link(href='mailto:mdgspprt@microsoft.com', target='_blank') mdgspprt@microsoft.com
                   |  and work with us to provide a translation of
                   |  the software in your language. We will then push this out
                   |  and make the language version available to all users.
@@ -699,18 +719,18 @@ html
         .b-page__line
           .b-content-header
             h1.b-content-header__title
-              | Login
+              | Вход
             p.b-content-header__text
               | Log in to the server below
         .b-page__line
           .b-content
             form.e-form
-              label.e-form__label Username
-              input.e-form__field(type="text", name="username", placeholder="Enter your username...")
-              label.e-form__label Password
-              input.e-form__field(type="password", name="password", placeholder="Enter your password...")
+              label.e-form__label(for='username') Username
+              input.e-form__field#username(type="text", name="username", placeholder="Enter your username...")
+              label.e-form__label(for='password') Password
+              input.e-form__field#password(type="password", name="password", placeholder="Enter your password...")
               .error
-              button.e-form__button(type="submit") Login
+              button.e-form__button(type="submit" title='Login') Login
               p.b-content__paragraph
                 a.b-content__paragraph__link(href="#/forgotPassword") Forgot your password?
               p.b-content__paragraph
@@ -721,7 +741,7 @@ html
         .b-page__line
           .b-content-header
             h1.b-content-header__title
-              | Register
+              | Регистрация
             p.b-content-header__text
               | Create an account below
         .b-page__line
@@ -729,21 +749,21 @@ html
             form.e-form(action='signup', method='POST', autocomplete="off")
               .b-form-row
                 .b-form-row__col
-                  label.e-form__label First Name
-                  input.e-form__field(type="text", name="firstName", data-validation='len(2, 60);', placeholder="Enter your First Name...")
+                  label.e-form__label(for='firstName') First Name
+                  input.e-form__field#firstName(type="text", name="firstName", data-validation='len(2, 60);', placeholder="Enter your First Name...")
                   .error
                     span(data-validation-msg='len')
                       | This field must have at least 2 and cannot be longer than 60 characters.
                 .b-form-row__col
-                  label.e-form__label Last name
-                  input.e-form__field(type="text", name="lastName", data-validation='len(2, 60);', placeholder="Enter your Last name...")
+                  label.e-form__label(for='lastName')  Last name
+                  input.e-form__field#lastName(type="text", name="lastName", data-validation='len(2, 60);', placeholder="Enter your Last name...")
                   .error
                     span(data-validation-msg='len')
                       | This field must have at least 2 characters.
               .b-form-row
                 .b-form-row__col
-                  label.e-form__label Username
-                  input.e-form__field(type="text", name="username",  data-validation='len(5,13);isAlpha;uniqeUsrName;', placeholder="Enter your Username...")
+                  label.e-form__label(for='username')  Username
+                  input.e-form__field#username(type="text", name="username",  data-validation='len(5,13);isAlpha;uniqeUsrName;', placeholder="Enter your Username...")
                   .error
                     span(data-validation-msg='uniqeUsrName')
                       | This username is already used.
@@ -752,51 +772,51 @@ html
                     span(data-validation-msg='isAlpha')
                       | Nickname can contain only numbers, periods and Latin letters.
                 .b-form-row__col
-                  label.e-form__label Email
-                  input.e-form__field(type="email", name="email", data-validation='isEmail;', placeholder="Enter your Email...")
+                  label.e-form__label(for='email')  Email
+                  input.e-form__field#email(type="email", name="email", data-validation='isEmail;', placeholder="Enter your Email...")
                   .error
                     span(data-validation-msg='isEmail')
                       | This is not a valid email.
               .b-form-row
                 .b-form-row__col
-                  label.e-form__label Password
-                  input.e-form__field(type="password", name="password", data-validation='len(8,20);', placeholder="Enter your Password...")
+                  label.e-form__label(for='password')  Password
+                  input.e-form__field#password(type="password", name="password", data-validation='len(8,20);', placeholder="Enter your Password...")
                   .error
                     span(data-validation-msg='len')
                       | This field must have at least 8 and cannot be longer than 20 characters.
                 .b-form-row__col
-                  label.e-form__label Confirm Password
-                  input.e-form__field(type="password", name="confirmpass", data-validation='isMatch(password)', placeholder="Confirm your Password...")
+                  label.e-form__label(for='confirmpass')  Confirm Password
+                  input.e-form__field#confirmpass(type="password", name="confirmpass", data-validation='isMatch(password)', placeholder="Confirm your Password...")
                   .error
                     span(data-validation-msg='isMatch')
                       | Passwords do not match
               .b-form-row
                 .b-form-row__col
-                  label.e-form__label Phone Number
-                  input.e-form__field(type="text", name="phone",data-validation='len(10,15);isNumber;', placeholder="Enter your Phone Number...")
+                  label.e-form__label(for='phone')  Phone Number
+                  input.e-form__field#phone(type="text", name="phone", data-validation='len(10,15);isNumber;', placeholder="Enter your Phone Number...")
                   .error
                     span(data-validation-msg='len')
                       | This field must have at least 10 and cannot be longer than 15 characters.
                     span(data-validation-msg='isNumber')
                       | This is not a valid phone number.
                 .b-form-row__col
-                  label.e-form__label Company
-                  input.e-form__field(type="text", name="company", data-validation='len(2, 60);', placeholder="Enter your Company...")
+                  label.e-form__label(for='company')  Company
+                  input.e-form__field#company(type="text", name="company", data-validation='len(2, 60);', placeholder="Enter your Company...")
                   .error
                     span(data-validation-msg='len')
                       | This field must have at least 2 and cannot be longer than 60 characters.
               .b-form-row
                 .b-form-row__col
-                  label.e-form__label Industry
-                  input.e-form__field(type="text", name="industry", data-validation='len(2, 60);', placeholder="Enter your industry...")
+                  label.e-form__label(for='industry')  Industry
+                  input.e-form__field#industry(type="text", name="industry", data-validation='len(2, 60);', placeholder="Enter your industry...")
                   .error
                     span(data-validation-msg='len')
                       | This field must have at least 2 and cannot be longer than 60 characters.
                 .b-form-row__col
                   label.e-form__label Country
                   .e-select
-                    label.e-select__label
-                      select.e-select__box(placeholder='Country', name='country', data-validation='len(1);')
+                    label.e-select__label(for='country')
+                      select.e-select__box#country(placeholder='Country', name='country', data-validation='len(1);')
                         option(value='') Country
                           each country in countries
                             option(value=country) #{country}
@@ -823,10 +843,10 @@ html
                 p
                   | If you forgot your username, please enter your email
                   | only and we will send all usernames related to this email.
-                label.e-form__label
-                  input.e-form__field(type='text', name='username', placeholder='Username...')
-                label.e-form__label
-                  input.e-form__field(type='text', name='email', placeholder='Email...', data-validation='isEmail;')
+                label.e-form__label(for='username_forgot-pass')
+                  input.e-form__field#username_forgot-pass(type='text', name='username', placeholder='Username...')
+                label.e-form__label(for='email_forgot-pass')
+                  input.e-form__field#email_forgot-pass(type='text', name='email', placeholder='Email...', data-validation='isEmail;')
                   .error
                     span(data-validation-msg='isEmail')
                       | This is not a valid email.
@@ -841,13 +861,13 @@ html
                 a.fa.fa-times(href='#/login')
             .b-modal-window__main-block__body
               form.e-form(method='POST', autocomplete="off")
-                label.e-form__label
-                  input.e-form__field(type='password', placeholder='Enter new password...', name='password', data-validation='len(8,20);')
+                label.e-form__label(for='password_reset-pass')
+                  input.e-form__field#password_reset-pass(type='password', placeholder='Enter new password...', name='password', data-validation='len(8,20);')
                   .error
                     span(data-validation-msg='len')
                       | This field must have at least 8 and cannot be longer than 20 characters.
-                label.e-form__label
-                  input.e-form__field(type='password', placeholder='Confirm new password...', name='confirmpass', data-validation='isMatch(password)')
+                label.e-form__label(for='confirmpass_reset-pass')
+                  input.e-form__field#confirmpass_reset-pass(type='password', placeholder='Confirm new password...', name='confirmpass', data-validation='isMatch(password)')
                   .error
                     span(data-validation-msg='isMatch')
                       | Passwords do not match
@@ -885,14 +905,14 @@ html
     .b-page__footer
       ul.b-page__footer__box
         li.b-page__footer__box__item
-          a.b-page__footer__box__item__link(target="_blank" href='http://www.microsoft.com/en/mobile/privacy/privacy/policy/privacy-policy/')
+          a.b-page__footer__box__item__link(target='_blank', href='http://www.microsoft.com/en/mobile/privacy/privacy/policy/privacy-policy/')
             | Privacy Policy
         li.b-page__footer__box__item
-          a.b-page__footer__box__item__link(target="_blank" href='http://www.microsoft.com/en/mobile/privacy/privacy/cookie/cookie-policy/')
+          a.b-page__footer__box__item__link(target='_blank', href='http://www.microsoft.com/en/mobile/privacy/privacy/cookie/cookie-policy/')
             | Cookie Policy
         li.b-page__footer__box__item
-          a.b-page__footer__box__item__link(target="_blank" href='http://www.microsoft.com/en/mobile/privacy/privacy/service-terms/service-terms/')
+          a.b-page__footer__box__item__link(target='_blank', href='http://www.microsoft.com/en/mobile/privacy/privacy/service-terms/service-terms/')
             | Service Policy
         li.b-page__footer__box__item
-          a.b-page__footer__box__item__link(target="_blank" href='https://github.com/nokiadatagathering')
+          a.b-page__footer__box__item__link(target='_blank', href='https://github.com/nokiadatagathering')
             | Code

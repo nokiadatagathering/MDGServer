@@ -331,7 +331,8 @@
     }
 
     function toggleDropdown(e){
-        var dropdown = document.querySelector('.b-account-menu a.language-select ul.dropdown');
+        var dropdown = document.querySelector('.b-account-menu a.language-select + ul.dropdown');
+        e.preventDefault();
         if (!dropdown.className.match(/(?:^|\s)open(?!\S)/)) {
             dropdown.className += ' open';
         } else {
@@ -342,10 +343,12 @@
     window.addEventListener("load", showArticle);
     window.addEventListener('hashchange', showArticle);
     window.onload = function(){
-        document.querySelector('.b-account-menu a.language-select').addEventListener("click", toggleDropdown);
-        [].forEach.call(document.querySelectorAll('.b-account-menu a.language-select li'), function (el){
+        document.querySelector('.b-account-menu a.language-select').addEventListener("mousedown", toggleDropdown);
+        document.querySelector('.b-account-menu a.language-select').addEventListener("focus", toggleDropdown);
+        [].forEach.call(document.querySelectorAll('.b-account-menu ul.dropdown li a'), function (el){
             el.addEventListener("click", function (e){
                 var target = e.target ? e.target : window.event.srcElement;
+                e.preventDefault();
                 document.cookie = 'NG_TRANSLATE_LANG_KEY=%22' + target.attributes.value.value + '%22';
                 location.reload();
             });
