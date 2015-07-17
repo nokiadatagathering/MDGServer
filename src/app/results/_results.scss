@@ -77,8 +77,12 @@
           float: left;
           font-size: 24px;
           color: $blue;
-          outline: none;
+
           line-height: 36px;
+
+          &:active {
+            outline: none;
+          }
         }
 
         .dropdown {
@@ -187,12 +191,20 @@
       width: 50%;
       float: left;
       padding: 12px 0;
+      position: relative;
+    }
+
+    &__long-field {
+      display: inline-block;
+      width: 100%;
+      position: relative;
     }
 
     &__label {
       display: block;
       color: $gray-text;
     }
+
     &__select-field {
       display: block;
       height: 35px;
@@ -200,10 +212,7 @@
       padding: 0 10px;
       border: 1px solid $gray-light;
       font-size: 18px;
-
-      &--long {
-        width: 100%;
-      }
+      width: calc(100% - 30px);
     }
 
     &__errors {

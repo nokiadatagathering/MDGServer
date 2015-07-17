@@ -59,7 +59,7 @@ angular.module('mdg.app.surveys')
       update: function (event, ui) {
         var
           category = ui.item.sortable.droptarget.context.parentElement,
-          length = $(category).children('li').length;
+          length = $(category).children('.b-surveys-edit__category__question').length;
 
         if (category && length <= 1) {
           ui.item.sortable.cancel();
@@ -90,7 +90,7 @@ angular.module('mdg.app.surveys')
       forcePlaceholderSize: true,
       cursor: 'move',
       cancel: '.disableddragcategory',
-      connectWith: '.builder',
+      connectWith: '.category-box',
       stop: function (event, ui) {
         if (!ui.item.sortable.droptarget) {
           return;
@@ -504,6 +504,9 @@ angular.module('mdg.app.surveys')
       },
 
       clearSurveyData = function (survey) {
+        delete survey.prevTitle;
+        delete survey.titleEdit;
+
         var fields = {
             default: ['type', 'required', 'label', 'tagName', 'id', 'relevant', 'defaultRelevant'],
             string: ['mask', 'constraint', 'defaultValue'],
@@ -529,10 +532,9 @@ angular.module('mdg.app.surveys')
               clearedSurvey._categories[cIndex]._questions.push(cascade);
             });
           },
-          clearedSurvey = {
-            title: survey.title,
-            _categories: []
-          };
+          clearedSurvey = angular.copy(survey);
+
+          clearedSurvey._categories = [];
 
         _.each(survey._categories, function (category, cIndex) {
           clearedSurvey._categories[cIndex] = _.pick(category, ['id', 'title', 'relevant', 'defaultRelevant']);
@@ -1488,13 +1490,14 @@ angular.module('mdg.app.surveys')
             $scope.surveyEdit.$dirty = false;
 
             if ($rootScope.offlineMode === false) {
+              debugger;
               $scope.surveyData.__v = $scope.surveyData.__v + 1;
             }
           },
           function failed (err) {
             if (err.status === 409) {
               $rootScope.$broadcast('invalid_version', 'survey');
-              //debugger;
+              debugger;
               //$state.go('page.surveys.edit', { surveyId: $stateParams.surveyId }, {reload: true});
             }
 

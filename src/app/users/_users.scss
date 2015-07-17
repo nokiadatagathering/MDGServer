@@ -41,8 +41,10 @@
           padding: 0 12px;
           margin: 10px 0;
           border-bottom: 1px solid $green;
-          outline: none;
-        }
+
+          &:active {
+            outline: none;
+          }        }
 
         &--button {
           background: transparent;
@@ -54,7 +56,10 @@
           padding: 0;
           margin: 0;
           float: right;
-          outline: none;
+
+          &:active {
+            outline: none;
+          }
         }
 
         &--tooltip {
@@ -174,7 +179,10 @@
           font-size: 18px;
           color: $gray-text;
           padding: 0;
-          outline: none;
+
+          &:active {
+            outline: none;
+          }
 
           &:disabled {
            color: $gray;
@@ -344,37 +352,33 @@
   }
 }
 
-//[errorsblock] {
-//    width: 360px;
-//    height: 0;
-//    position: relative;
 
-   .error-message {
-      width: calc(100% - 24px);
-      padding: 12px;
-      min-height: 40px;
-      background: rgba($red, 0.8);
-      color: white;
-      font-size: 12px;
-      position: absolute;
-      left: 0;
+.error-message {
+  width: calc(100% - 24px);
+  padding: 12px;
+  min-height: 40px;
+  background: rgba($red, 0.8);
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  left: 0;
+  z-index: 1;
 
-      &:after {
-        bottom: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-      }
+  &:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
 
-      &:after {
-        border-bottom-color: rgba($red, 0.8);
-        border-width: 6px;
-        margin-left: -6px;
-      }
+  &:after {
+    border-bottom-color: rgba($red, 0.8);
+    border-width: 6px;
+    margin-left: -6px;
+  }
 
-    }
-//}
+}

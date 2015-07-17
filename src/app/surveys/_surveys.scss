@@ -49,7 +49,13 @@
     }
 
     &--left {
+      position: relative;
       float: left;
+
+      .e-create-btn {
+        display: inline-block;
+        float: left;
+      }
     }
 
     &__icon {
@@ -62,17 +68,25 @@
 
       &--upload {
         background: url("../assets/icons/upload.png") no-repeat;
+
         &--file {
           width: 100%;
           height: 100%;
           opacity: 0;
           cursor: pointer;
+
+          &:focus {
+            opacity: 1;
+            width: 0;
+          }
         }
       }
 
       &--folder{
         background: url("../assets/icons/folder.png") no-repeat;
         cursor: pointer;
+        background-color: transparent;
+        border: none;
       }
     }
   }
@@ -111,8 +125,11 @@
         border-bottom: 1px solid $green;
         font-size: 30px;
         background: transparent;
-        outline: none;
         margin: 0;
+
+        &:active {
+          outline: none;
+        }
       }
     }
 
@@ -127,8 +144,15 @@
         color: $red;
         font-size: 30px;
         font-weight: bold;
+
         &:hover {
           color: lighten($red, 10%);
+        }
+
+        &--results {
+          color: $green;
+          text-decoration: none;
+
         }
       }
 
@@ -170,10 +194,12 @@
         border-bottom: 1px solid white;
         font-size: 18px;
         background: transparent;
-        outline: none;
         margin: 0;
-
         color: white;
+
+        &:active {
+          outline: none;
+        }
       }
     }
 
@@ -198,8 +224,8 @@
             border-bottom: 1px solid $green;
             font-size: 24px;
             background: transparent;
-            outline: none;
             margin: 0;
+
           }
         }
         &__rules {
@@ -535,13 +561,16 @@ $modalH: 400px;
       font-weight: bold;
       font-size: 18px;
       cursor: pointer;
-      outline: none;
       margin-top: 10px;
       clear: both;
       display: block;
 
       &:hover {
         color: $gray-text;
+      }
+
+      &:active {
+        outline: none;
       }
 
      .fa {
@@ -589,8 +618,11 @@ $modalH: 400px;
       border: none;
       background: transparent;
       float: left;
-      outline: none;
       cursor: pointer;
+
+      &:active {
+        outline: none;
+      }
     }
   }
 }
@@ -678,10 +710,12 @@ $modalH: 400px;
   width: 200px;
   margin: 0 auto;
   cursor: pointer;
-  outline: none;
   padding: 0;
   line-height: 33px;
 
+  &:active {
+    outline: none;
+  }
   .selected {
     padding: 0 10px;
     font-size: 18px;

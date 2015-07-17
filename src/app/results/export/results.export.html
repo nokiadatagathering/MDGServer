@@ -45,22 +45,24 @@
                         <div errorsblock="errors.to"
                              class="b-results-export__export-schedule__errors"></div>
                     </div>
+
+                    <div class="b-results-export__export-schedule__long-field validation-field">
+                        <label class="b-results-export__export-schedule__label">
+                          {{ 'schedule_export.EMAIL_TO' | translate }}
+                        </label>
+                        <input type="email" name="email" required
+                               class=" b-results-export__export-schedule__select-field"
+                               placeholder="user@example.com"
+                               ng-model="schedule.email"
+                               ng-trim="true"
+                               ng-change="errorEmailPattern = false">
+
+                        <div errorsblock="errors.email"
+                             class="b-results-export__export-schedule__errors"></div>
+                    </div>
                 </div>
 
-                <div class="b-results-export__export-schedule__long-field validation-field">
-                    <label class="b-results-export__export-schedule__label">
-                        {{ 'schedule_export.EMAIL_TO' | translate }}
-                    </label>
-                    <input type="email" name="email" required
-                           class=" b-results-export__export-schedule__select-field"
-                           placeholder="user@example.com"
-                           ng-model="schedule.email"
-                           ng-trim="true"
-                           ng-change="errorEmailPattern = false">
 
-                    <div errorsblock="errors.email"
-                         class="b-results-export__export-schedule__errors"></div>
-                </div>
 
                 <ul class="b-results-export__export-schedule__actual" ng-if="subscriptions.length !== 0">
                     <p class="b-results-export__export-schedule__actual--caption">

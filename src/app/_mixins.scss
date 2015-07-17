@@ -48,10 +48,10 @@
     font: inherit;
     font-size: 18px;
     color: $gray;
-    outline: none; /* remove focus ring from Webkit */
     background: $color;
     line-height: initial;
     -webkit-appearance: none; /* remove the strong OSX influence from Webkit */
+
     &.ng-dirty.ng-invalid {
       color: $red;
     }

@@ -17,8 +17,8 @@
             </div>
 
             <div class="b-surveys-table__top--right">
-              <span class="b-surveys-table__top__icon b-surveys-table__top__icon--folder"
-                    ui-sref="page.surveys.archive" ng-disabled="offlineMode"></span>
+              <input type="button" class="b-surveys-table__top__icon b-surveys-table__top__icon--folder"
+                    ui-sref="page.surveys.archive" ng-disabled="offlineMode"/>
 
               <div class="e-select">
                 <label class="e-select__label">
@@ -62,17 +62,19 @@
                                                             | orderBy:predicate:reverse"
                 ng-init="survey.hidden = true">
                 <td class="b-table__body__row__col">
-                    <div class="b-table__body__row__col__title" title="{{survey.title}}">
+                    <div class="b-table__body__row__col__title" title="{{survey.title}}" tabindex="{{$index*10 + 1}}" href="#">
                         <span class="fa fa-{{survey.published ? 'circle': 'circle-o'}} b-table__body__row__col--text__publish"></span>
                         <span class="b-table__body__row__col--text">{{survey.title}}</span>
                         <div class="e-options">
                             <button class="e-options__item"
+                                    tabindex="{{$index*10 + 1 + 1}}"
                                     ng-if="!survey.published"
                                     ui-sref="page.surveys.edit({surveyId: survey.id})"
                                     title="{{ 'surveys.Edit_survey' | translate }}">
                                 <span class="fa fa-pencil"></span>
                             </button>
                             <button class="e-options__item"
+                                    tabindex="{{$index*10 + 2 + 1}}"
                                     ng-if="survey.published"
                                     ng-click="archive(survey.id, survey.title, true)"
                                     ng-disabled="offlineMode"
@@ -80,23 +82,27 @@
                                 <span class="fa fa-folder-open"></span>
                             </button>
                             <button class="e-options__item"
+                                    tabindex="{{$index*10 + 3 + 1}}"
                                     ng-click="downloadSurvey(survey.id)"
                                     ng-disabled="offlineMode"
                                     title="{{ 'surveys.Download_survey' | translate }}">
                                 <span class="fa fa-download"></span>
                             </button>
                             <button class="e-options__item"
+                                    tabindex="{{$index*10 + 4 + 1}}"
                                     ui-sref="page.surveys.list.sendsurvey({surveyId: survey.id})"
                                     title="{{ 'surveys.Publish_survey' | translate }}">
                                 <span class="fa fa-share"></span>
                             </button>
                             <button class="e-options__item"
+                                    tabindex="{{$index*10 + 5 + 1}}"
                                     ng-click="duplicateSurvey(survey.id, survey.title)"
                                     ng-disabled="offlineMode"
                                     title="{{ 'surveys.Duplicate_survey' | translate }}">
                                 <span class="fa fa-files-o"></span>
                             </button>
                             <button class="e-options__item"
+                                    tabindex="{{$index*10 + 6 + 1}}"
                                     ng-click="deleteSurvey(survey)"
                                     ng-disabled="survey.published"
                                     title="{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}">
@@ -108,9 +114,14 @@
                 </td>
 
               <td class="b-table__body__row__col">
-                <p class="b-table__body__row__col--text"
+                <p ng-if="!survey.resultsCount"
+                  class="b-table__body__row__col--text">0</p>
+                <a class="b-table__body__row__col--text b-table__body__row__col--text--results"
+                   href="#"
+                   ng-if="survey.resultsCount"
+                   tabindex="{{$index*10 + 7 + 1}}"
                    ui-sref="page.results.list({surveyId : survey.id})"
-                   title="{{survey.resultsCount}}">{{survey.resultsCount}}</p>
+                   title="{{survey.resultsCount}}">{{survey.resultsCount}}</a>
               </td>
 
               <td class="b-table__body__row__col">
