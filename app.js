@@ -31,6 +31,7 @@ var
   exportCntr = require('./app/controllers/web/export'),
   validationsCntr = require('./app/controllers/web/validations'),
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
+  adminPageCntr = require('./app/controllers/web/adminPage'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
 
   manifestCntr = require('./app/controllers/web/manifest'),
@@ -147,6 +148,7 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/checkAuthorization', checkAuthorizationCntr.checkAuthorization);
     app.get('/autocomplete/company', autocompleteCntr.getCompanies);
     app.get('/autocomplete/industry', autocompleteCntr.getIndustries);
+    app.get('/autocomplete/user', autocompleteCntr.getUsers);
 
     app.post('/signup', loginCntr.signup);
 
@@ -172,6 +174,9 @@ exports.run = function (mongoUrl, port, callback) {
 
     app.get('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.getReportPage);
     app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
+
+    app.get('/adminPage', passport.authenticate('basic', { session: false }),adminPageCntr.getAdminPage);
+    app.post('/adminPage/deleteUser', passport.authenticate('basic', { session: false }), adminPageCntr.deleteUser);
 
     app.post('/forgotPassword', passwordResetCntr.forgotPassword);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);

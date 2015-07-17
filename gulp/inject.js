@@ -8,7 +8,7 @@ var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
 
-gulp.task('inject', ['partials', 'styles', 'home_inject', 'lang_inject'], function () {
+gulp.task('inject', ['partials', 'styles', 'home_inject', 'lang_inject', 'adminpage_inject'], function () {
 
   var partialsInjectFile = gulp.src(paths.tmp + '/partials/templateCacheHtml.js');
   var partialsInjectOptions = {
@@ -53,6 +53,12 @@ gulp.task('inject', ['partials', 'styles', 'home_inject', 'lang_inject'], functi
 
 gulp.task('home_inject', function () {
   return gulp.src('app/resources/home.js')
+    .pipe(gulp.dest(paths.dist + '/'))
+    .pipe(gulp.dest(paths.tmp + '/'));
+});
+
+gulp.task('adminpage_inject', function () {
+  return gulp.src('app/resources/adminPage.js')
     .pipe(gulp.dest(paths.dist + '/'))
     .pipe(gulp.dest(paths.tmp + '/'));
 });
