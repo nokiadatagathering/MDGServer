@@ -40,6 +40,7 @@
                 <!--div>DROPDOWNS TRANSLATE</div-->
 
                 <div ui-sortable="sortableCategoriesOptions"
+                     class="category-box"
                      ng-model="surveyData._categories">
                     <div class="b-surveys-edit__category"
                          ng-class="{disableddragcategory: category.isVisible || category.titleEdit}"
@@ -84,6 +85,7 @@
                             </button>
                         </div>
                         <div ng-show="category.isVisible"
+                             class="questions-box"
                              ui-sortable="sortableQuestionsOptions"
                              ng-model="category._questions">
 
@@ -182,7 +184,7 @@
                                             <div class="b-skip-logic__body__option"
                                                  ng-class="{error: question.errorDefaultQuestion}"
                                                  ng-if="question.type==='select1'">
-                                                <span class="">{{ 'survey_builder.DEFAULT' | translate }}</span>
+                                                <span class="b-skip-logic__body__option--label">{{ 'survey_builder.DEFAULT' | translate }}</span>
                                                 <label class="b-skip-logic__body__option--label">{{ 'survey_builder.Go_to' | translate }}</label>
 
                                                 <div dropdown-select="question.skipLogicList"

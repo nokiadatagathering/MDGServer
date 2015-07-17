@@ -122,6 +122,9 @@ a {
     display: inline-block;
     margin-right: 20px;
     position: relative;
+    text-decoration: none;
+    color: #4d4d4d;
+    float: right;
 
     .dropdown {
       opacity: 0;
@@ -185,6 +188,9 @@ a {
   &__user {
     display: inline-block;
     float: right;
+    text-decoration: none;
+    color: #4d4d4d;
+
   }
 
   .wrap-dd-menu .dropdown {
@@ -566,12 +572,14 @@ a {
       font: inherit;
       font-size: 18px;
       color: #666666;
-      outline: none; /* remove focus ring from Webkit */
       background: #f2f2f2;
       line-height: initial;
       -webkit-appearance: none; /* remove the strong OSX influence from Webkit */
       &.ng-dirty.ng-invalid {
         color: #f25022;
+      }
+      &:active {
+        outline: none;
       }
     }
 

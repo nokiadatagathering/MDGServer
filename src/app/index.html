@@ -41,26 +41,20 @@
 
             <div class="b-account-menu">
                 <a class="b-account-menu__locale"
+                   href="#"
                    dropdown-menu="langauges"
                    dropdown-onchange="changeLanguage(selected)">
                     {{'header.language' | translate}}
                 </a>
 
-                <a class="menu__user"
+                <a class="b-account-menu__user"
+                   href="#"
                    dropdown-menu="dropdownList"
                    dropdown-model="dropdownSelect"
                    dropdown-onchange="selectMenu(selected)">
                     {{loggedInUser.username}}
                     <span class="fa fa-caret-down"></span>
                 </a>
-                <!--     <div class="b-account-menu__locale">
-                         <a href="#" class="b-link_account-menu" >en</a>
-
-                     </div>
-                     <div class="b-account-menu__user">
-                         <a href="/login" class="b-link_account-menu" ui-sref="login">Login</a>/
-                         <a href="/register" class="b-link_account-menu" ui-sref="register">Register</a>
-                     </div>-->
             </div>
         </header>
     </div>

@@ -10,16 +10,19 @@
                 </div>
                 <div class="b-results__list-box__body__top__rules">
                     <button title="{{ 'results.results_on_map' | translate }}"
+                            type="button"
                             class="b-results__list-box__body__top__icon"
                             ng-click="viewMap()">
                         <span class="fa fa-globe"></span>
                     </button>
                     <button title="{{ 'results.results_on_chart' | translate }}"
+                            type="button"
+
                             class="b-results__list-box__body__top__icon"
                             ng-click="modalResultsChart()">
                         <span class="fa fa-bar-chart"></span>
                     </button>
-                    <button type="button" value="" class="b-results__list-box__body__top__icon"
+                    <button type="submit" value="" class="b-results__list-box__body__top__icon"
                             title="{{ 'results.Export_results' | translate }}"
                             dropdown-menu="dropdownList"
                             dropdown-model="dropdownSelect"
@@ -27,9 +30,10 @@
                         <span class="fa fa-external-link-square"></span>
                     </button>
                     <button title="{{ 'results.Delete_results' | translate }}"
+                            type="button"
                             class="b-results__list-box__body__top__icon"
                             ng-click="deleteResults()">
-                        <span type="button" class="fa fa-trash-o"></span>
+                        <span class="fa fa-trash-o"></span>
                     </button>
                 </div>
                 <div class="b-results__list-box__body__top__search">
