@@ -161,7 +161,25 @@
     };
   });
 
-  angular.module('mdg').config(function ($urlRouterProvider, $stateProvider) {
+  angular.module('mdg').config(function ($provide, $urlRouterProvider, $stateProvider) {
+    $provide.decorator('$http', function($delegate) { 
+      var originalGet = $delegate.get;
+      $delegate.get = function () { 
+        var url = arguments[0];
+        if (url.indexOf('?') === -1) {
+          url += '?';
+        } else {
+          url += '&';
+        }
+        url += 'cacheBuster=' + Math.random();
+        var newArguments = Array.prototype.slice.call(arguments);
+        if ((url.indexOf('surveys') !== -1 || url.indexOf('users') !== -1) && url.indexOf('.html') === -1) {
+          newArguments[0] = url;
+        }
+        return originalGet.apply(this, newArguments);
+      };
+      return $delegate;
+    });
     $urlRouterProvider
       .otherwise('/surveys/list');
     $stateProvider
