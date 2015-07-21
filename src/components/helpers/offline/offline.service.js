@@ -2,16 +2,25 @@
   'use strict';
   angular.module('mdg.app.offline', [])
     .service('offlineService', function ($q, $http, $rootScope) {
-      var db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024);
+      try {
+        db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024);
 
-      db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS requests (id INTEGER PRIMARY KEY AUTOINCREMENT, _id TEXT, type TEXT, body TEXT)');
-      });
+        db.transaction(function (tx) {
+          tx.executeSql('CREATE TABLE IF NOT EXISTS requests (id INTEGER PRIMARY KEY AUTOINCREMENT, _id TEXT, type TEXT, body TEXT)');
+        });
+      } catch (e)  {
+        $rootScope.offlineNotSupport = true;
+      }
 
       function saveRequest(type, body, id) {
         var
-          deferred = $q.defer(),
-          ids = localStorage.getItem('survey_ids') ? localStorage.getItem('survey_ids').split(',') : [],
+          deferred = $q.defer();
+
+        if ($rootScope.offlineNotSupport) {
+          return $q.reject({ error: "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode."});
+        }
+
+        var ids = localStorage.getItem('survey_ids') ? localStorage.getItem('survey_ids').split(',') : [],
 
           updateLocalStorage = function (type, body, id) {
             if (type == "editSurvey") {
