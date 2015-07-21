@@ -281,7 +281,7 @@
         var articles = $$("article"),
             id = window.location.hash.substr(2),
             active = document.querySelector('.b-menu a.active'),
-            link = document.querySelector("a[href='" + window.location.hash + "']");
+            link = document.querySelector("a.b-menu-nav__link[href='" + window.location.hash + "']");
         if (active) {
             active.className = '';
         }
