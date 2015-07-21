@@ -17,28 +17,28 @@ html
         header.b-page__header
           .b-head-logo
             a.b-logo__title(href='#/home')
-              img.b-logo__img(src='assets/images/logo-30px.png', alt='MDG Icon')
+              img.b-logo__img(src='assets/images/logo-30px.png'
+                alt='MDG Icon')
               span Microsoft Data Gathering
           .b-menu
             nav.b-menu-nav
               a.b-menu-nav__link(href='#/getStarted')
-                | Старт
+                | Get Started
               a.b-menu-nav__link(href='#/useCases')
-                | Прецеденты
+                | Use Cases
               a.b-menu-nav__link(href='#/openSource')
                 | Open Source
               a.b-menu-nav__link(href='#/support')
-                | Поддержка
+                | Support
           .b-account-menu
             a.language-select.b-account-menu__locale(href='#') #{language}&nbsp;
             ul.dropdown
               each lang in languages
                 li: a(href='#' value=lang.value) #{lang.text}
             .b-account-menu__user
-              a(href='#/login') Вход
+              a(href='#/login') Login
               | /
-              a(href='#/register') Регистрация
-
+              a(href='#/register') Register
       article#home.hidden
         .b-content-header
           h1.b-content-header__title
@@ -143,54 +143,54 @@ html
                   | The software was originally created by Nokia in Brazil after a request from the local government to help with the Dengue epidemic there.
                   | Watch a report from Lonely Planet about our origins and impact in that region
                   .b-page__line
-            .b-content.b-content--line
-              h2.b-content-title#benefits
-                | Benefits
-              .b-content__col-left
-                .b-content__col-left__item.b-content__col-left__item--benefits
-                  .b-content__col-left__item__icon
-                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits1.png'
-                      alt='Compared to using paper forms, mobile solutions cut down delays')
-                  .b-content__col-left__item__caption
-                    h3.b-content__col-left__item__caption__title Speed
-                    p.b-content__col-left__item__caption__text
-                      | Compared to using paper forms, mobile solutions cut down delays
-                      | caused by transportation and manual digitalization of collected
-                      | data.
-                .b-content__col-left__item.b-content__col-left__item--benefits
-                  .b-content__col-left__item__icon
-                    img.b-content__col-left__item__icon--img(src='../assets/images/benefits2.png'
-                      alt='Transportation and logistics costs are reduced')
-                  .b-content__col-left__item__caption
-                    h3.b-content__col-left__item__caption__title Cost efficiency
-                    p.b-content__col-left__item__caption__text
-                      | Transportation and logistics costs are reduced, as are the needs
-                      | for manual data entry and cleaning. There is also a cost of
-                      | inaction saved with the ability to make critical decisions and
-                      | react rapidly.
-                      | data.
-              .b-content__col-right
-                .b-content__col-right__item.b-content__col-right__item--benefits
-                  .b-content__col-right__item__icon
-                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits3.png'
-                      alt='Data entry occurs at the point of collection')
-                  .b-content__col-right__item__caption
-                    h3.b-content__col-right__item__caption__title Accuracy
-                    p.b-content__col-right__item__caption__text
-                      | Data entry occurs at the point of collection, without needing to
-                      | transcribe hand-written information. This lowers the frequency of
-                      | transcription and data entry errors.
-                .b-content__col-right__item.b-content__col-right__item--benefits
-                  .b-content__col-right__item__icon
-                    img.b-content__col-right__item__icon--img(src='../assets/images/benefits4.png'
-                      alt='Mobile devices are easy to carry')
-                  .b-content__col-right__item__caption
-                    h3.b-content__col-right__item__caption__title Usability
-                    p.b-content__col-right__item__caption__text
-                      | Mobile phones are small, easy to carry, have battery longevity,
-                      | and enable the capture of rich data such as GPS location tags
-                      | and images.
-          .b-page__line
+          .b-content.b-content--line
+            h2.b-content-title#benefits
+              | Benefits
+            .b-content__col-left
+              .b-content__col-left__item.b-content__col-left__item--benefits
+                .b-content__col-left__item__icon
+                  img.b-content__col-left__item__icon--img(src='../assets/images/benefits1.png'
+                    alt='Compared to using paper forms, mobile solutions cut down delays')
+                .b-content__col-left__item__caption
+                  h3.b-content__col-left__item__caption__title Speed
+                  p.b-content__col-left__item__caption__text
+                    | Compared to using paper forms, mobile solutions cut down delays
+                    | caused by transportation and manual digitalization of collected
+                    | data.
+              .b-content__col-left__item.b-content__col-left__item--benefits
+                .b-content__col-left__item__icon
+                  img.b-content__col-left__item__icon--img(src='../assets/images/benefits2.png'
+                    alt='Transportation and logistics costs are reduced')
+                .b-content__col-left__item__caption
+                  h3.b-content__col-left__item__caption__title Cost efficiency
+                  p.b-content__col-left__item__caption__text
+                    | Transportation and logistics costs are reduced, as are the needs
+                    | for manual data entry and cleaning. There is also a cost of
+                    | inaction saved with the ability to make critical decisions and
+                    | react rapidly.
+                    | data.
+            .b-content__col-right
+              .b-content__col-right__item.b-content__col-right__item--benefits
+                .b-content__col-right__item__icon
+                  img.b-content__col-right__item__icon--img(src='../assets/images/benefits3.png'
+                    alt='Data entry occurs at the point of collection')
+                .b-content__col-right__item__caption
+                  h3.b-content__col-right__item__caption__title Accuracy
+                  p.b-content__col-right__item__caption__text
+                    | Data entry occurs at the point of collection, without needing to
+                    | transcribe hand-written information. This lowers the frequency of
+                    | transcription and data entry errors.
+              .b-content__col-right__item.b-content__col-right__item--benefits
+                .b-content__col-right__item__icon
+                  img.b-content__col-right__item__icon--img(src='../assets/images/benefits4.png'
+                    alt='Mobile devices are easy to carry')
+                .b-content__col-right__item__caption
+                  h3.b-content__col-right__item__caption__title Usability
+                  p.b-content__col-right__item__caption__text
+                    | Mobile phones are small, easy to carry, have battery longevity,
+                    | and enable the capture of rich data such as GPS location tags
+                    | and images.
+        .b-page__line
             .b-content.b-content-line
               .b-content__col-left
                 h2.b-content-title Awards
@@ -233,7 +233,7 @@ html
       article#getStarted.hidden
         .b-content-header
           h1.b-content-header__title
-            | Старт
+            | Get Started
           p.b-content-header__text
             | If you have your own server and wish to migrate your data
             br
@@ -358,7 +358,7 @@ html
       article#useCases.hidden
         .b-content-header
           h1.b-content-header__title
-            | Преценденты
+            | Use Cases
           p.b-content-header__text
             | A Real Solution to Real Problems
         .b-page__line
@@ -565,7 +565,7 @@ html
         .b-page__line
           .b-content-header
             h1.b-content-header__title
-              | Поддержка
+              | Support
             p.b-content-header__text
               | Microsoft Data Gathering support page
         .b-page__line
@@ -719,14 +719,14 @@ html
         .b-page__line
           .b-content-header
             h1.b-content-header__title
-              | Вход
+              | Login
             p.b-content-header__text
               | Log in to the server below
         .b-page__line
           .b-content
             form.e-form
               label.e-form__label(for='username') Username
-              input.e-form__field#username(type="text", name="username", placeholder="Enter your username...")
+              input.e-form__field#username(type="text", name="username", placeholder="Enter your username...", tabindex="0")
               label.e-form__label(for='password') Password
               input.e-form__field#password(type="password", name="password", placeholder="Enter your password...")
               .error
@@ -741,7 +741,7 @@ html
         .b-page__line
           .b-content-header
             h1.b-content-header__title
-              | Регистрация
+              | Register
             p.b-content-header__text
               | Create an account below
         .b-page__line
