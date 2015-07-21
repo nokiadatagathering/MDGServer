@@ -3,7 +3,13 @@
 
   angular.module('mdg.app.sync')
     .service('syncService', function ($q, $http, $rootScope, surveysService) {
-      var db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024);
+      var db;
+
+      try {
+        db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024);
+      } catch (e) {
+        $rootScope.offlineNotSupport = true;
+      }
 
       function sendRequest(request) {
         if (request._id && request._id.length < 24) {

@@ -198,6 +198,10 @@
       $rootScope.scrollTo = null;
     });
 
+    $rootScope.$on('$stateChangeError', function () {
+      throw arguments[5];
+    });
+
     $rootScope.version = window.version;
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
@@ -267,7 +271,7 @@
 
             if ($rootScope.loggedInUser && toState.name === 'page') {
               event.preventDefault();
-              $location.path('/surveys');
+              $state.go('page.surveys');
             }
           },
 
