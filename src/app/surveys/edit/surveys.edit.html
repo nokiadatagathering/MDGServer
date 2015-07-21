@@ -20,10 +20,9 @@
                         ng-class="{'fa-check': surveyData.titleEdit, 'fa-pencil' : !surveyData.titleEdit}"
                         ng-click="editItemTitle(surveyData, 'survey', 'title')"></span>
 
-                        <button class="b-surveys-edit__header__save-btn">
+                        <button class="b-surveys-edit__header__save-btn" ng-click="saveSurvey(true)">
                             <span class="fa fa-check b-surveys-edit__header__save-btn--icon"></span>
-                            <span class="b-surveys-edit__header__save-btn--text"
-                                ng-click="saveSurvey(true)">{{ 'survey_builder.Save_survey' | translate }}</span>
+                            <span class="b-surveys-edit__header__save-btn--text">{{ 'survey_builder.Save_survey' | translate }}</span>
                         </button>
                 </div>
 
