@@ -1489,15 +1489,13 @@ angular.module('mdg.app.surveys')
             surveyDirty = false;
             $scope.surveyEdit.$dirty = false;
 
-            if ($rootScope.offlineMode === false) {
-              debugger;
+            if (!$rootScope.offlineMode) {
               $scope.surveyData.__v = $scope.surveyData.__v + 1;
             }
           },
           function failed (err) {
             if (err.status === 409) {
               $rootScope.$broadcast('invalid_version', 'survey');
-              debugger;
               //$state.go('page.surveys.edit', { surveyId: $stateParams.surveyId }, {reload: true});
             }
 
