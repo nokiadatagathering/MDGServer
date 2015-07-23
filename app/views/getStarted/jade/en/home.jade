@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang='en')
   head
     title= title
     script(src='home.js')
@@ -36,9 +36,9 @@ html
               each lang in languages
                 li: a(href='#' value=lang.value) #{lang.text}
             .b-account-menu__user
-              a(href='#/login') Login
+              a(title='Login to Microsoft Data Gathering' href='#/login') Login
               | /
-              a(href='#/register') Register
+              a(title='Register to Microsoft Data Gathering' href='#/register') Register
       article#home.hidden
         .b-content-header
           h1.b-content-header__title
@@ -195,12 +195,12 @@ html
               .b-content__col-left
                 h2.b-content-title Awards
                 p.b-content__paragraph
-                  b 2012
+                  strong 2012
                   | Microsoft Data Gathering was a Featured Project of the
                   br
                   | Month for July in the Developer Community Blog.
                 p.b-content__paragraph
-                  b 2011
+                  strong 2011
                   | Microsoft Data Gathering won the Justmeans Social
                   br
                   | Innovation Award in the category &quot;Philanthropy: Most Strategic
@@ -255,7 +255,7 @@ html
                   |  an account on the Microsoft Data Gathering playground server. You can do this by
                   br
                   |  clicking
-                  a.b-step__right__paragraph__link(href='#/register') register on the homepage
+                  a.b-step__right__paragraph__link(title='Register' href='#/register') register on the homepage
         .b-page__line
           .b-content
             .b-step
@@ -725,17 +725,17 @@ html
         .b-page__line
           .b-content
             form.e-form
-              label.e-form__label(for='username') Username
-              input.e-form__field#username(type="text", name="username", placeholder="Enter your username...", tabindex="0")
-              label.e-form__label(for='password') Password
-              input.e-form__field#password(type="password", name="password", placeholder="Enter your password...")
+              label.e-form__label(for='login_username') Username
+              input.e-form__field#login_username(type="text", name="username", placeholder="Enter your username...", tabindex="0")
+              label.e-form__label(for='login_password') Password
+              input.e-form__field#login_password(type="password", name="password", placeholder="Enter your password...")
               .error
               button.e-form__button(type="submit" title='Login') Login
               p.b-content__paragraph
                 a.b-content__paragraph__link(href="#/forgotPassword") Forgot your password?
               p.b-content__paragraph
                 | Don&#8217;t have an account?
-                a.b-content__paragraph__link(href="#/register") Register here
+                a.b-content__paragraph__link(title='Register' href="#/register") Register here
 
       article#register.hidden
         .b-page__line
@@ -833,7 +833,7 @@ html
               h2.b-modal-window__main-block__header--title
                 | FORGOT YOUR PASSWORD?
               span.b-modal-window__main-block__header--icon-close()
-                a.fa.fa-times(href='#/login')
+                a.fa.fa-times(title='Login' href='#/login')
             .b-modal-window__main-block__body
               .msg.hidden
                 p If you have entered a valid email, please check it for further instructions.
@@ -844,8 +844,10 @@ html
                   | If you forgot your username, please enter your email
                   | only and we will send all usernames related to this email.
                 label.e-form__label(for='username_forgot-pass')
-                  input.e-form__field#username_forgot-pass(type='text', name='username', placeholder='Username...')
+                  Username
+                  input.e-form__field#username_forgot-pass(type='text', name='username', placeholder='Username...' label='Username')
                 label.e-form__label(for='email_forgot-pass')
+                  Password
                   input.e-form__field#email_forgot-pass(type='text', name='email', placeholder='Email...', data-validation='isEmail;')
                   .error
                     span(data-validation-msg='isEmail')
@@ -858,7 +860,7 @@ html
               h2.b-modal-window__main-block__header--title
                 | RESET PASSWORD
               span.b-modal-window__main-block__header--icon-close()
-                a.fa.fa-times(href='#/login')
+                a.fa.fa-times(title='Login' href='#/login')
             .b-modal-window__main-block__body
               form.e-form(method='POST', autocomplete="off")
                 label.e-form__label(for='password_reset-pass')
@@ -879,7 +881,7 @@ html
               h2.b-modal-window__main-block__header--title
                 | RESET PASSWORD
               span.b-modal-window__main-block__header--icon-close()
-                a.fa.fa-times(href='#/resetPassword')
+                a.fa.fa-times(title='Reset password' href='#/resetPassword')
             .b-modal-window__main-block__body
               .modal.success-registration.hidden
                 .msg
@@ -892,7 +894,7 @@ html
               h2.b-modal-window__main-block__header--title
                 | Successfully Registration
               span.b-modal-window__main-block__header--icon-close()
-                a.fa.fa-times(href="#/register")
+                a.fa.fa-times(title='Register' href="#/register")
             .b-modal-window__main-block__body
               .modal.success-registration
                 .msg
