@@ -283,10 +283,10 @@
             active = document.querySelector('.b-menu a.active'),
             link = document.querySelector("a.b-menu-nav__link[href='" + window.location.hash + "']");
         if (active) {
-            active.className = '';
+            active.className = 'b-menu-nav__link';
         }
         if (link) {
-            link.className = 'active';
+            link.className = 'b-menu-nav__link active';
         }
         id = id || 'home';
         if (id == 'surveys') {
