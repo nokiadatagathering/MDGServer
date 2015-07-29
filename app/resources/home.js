@@ -331,22 +331,45 @@
     }
 
     function toggleDropdown(e){
-        var dropdown = document.querySelector('.b-account-menu a.language-select + ul.dropdown');
-        e.preventDefault();
-        if (!dropdown.className.match(/(?:^|\s)open(?!\S)/)) {
-            dropdown.className += ' open';
+      var dropdown = document.querySelector('.b-account-menu a.language-select + ul.dropdown');
+
+      if (!dropdown.className.match(/(?:^|\s)open(?!\S)/)) {
+          showDropdown(e)
         } else {
-            dropdown.className = 'dropdown';
+          hideDropdown(e)
         }
     }
 
-    window.addEventListener("load", showArticle);
+    function showDropdown(e) {
+      var dropdown = document.querySelector('.b-account-menu a.language-select + ul.dropdown');
+      dropdown.className = 'dropdown open';
+      e.preventDefault();
+    }
+
+    function hideDropdown(e) {
+      var dropdown = document.querySelector('.b-account-menu a.language-select + ul.dropdown');
+      dropdown.className = 'dropdown';
+    }
+
+    window.addEventListener('load', showArticle);
     window.addEventListener('hashchange', showArticle);
     window.onload = function(){
-        document.querySelector('.b-account-menu a.language-select').addEventListener("mousedown", toggleDropdown);
-        document.querySelector('.b-account-menu a.language-select').addEventListener("focus", toggleDropdown);
+        document.querySelector('body').addEventListener('click', function(e) {
+          e.stopPropagation();
+
+          if ((e.target.className !== 'dropdown') && (e.target.className !== 'language-select b-account-menu__locale')) {
+            hideDropdown(e);
+          }
+        });
+        document.querySelector('.b-account-menu .dropdown li:last-of-type a').addEventListener('blur', hideDropdown);
+        document.querySelector('.b-account-menu a.language-select').addEventListener('mousedown', toggleDropdown);
+        document.querySelector('.b-account-menu a.language-select').addEventListener('focus', toggleDropdown);
+        document.querySelector('.b-account-menu a.language-select').addEventListener('blur', hideDropdown);
+
+
         [].forEach.call(document.querySelectorAll('.b-account-menu ul.dropdown li a'), function (el){
-            el.addEventListener("click", function (e){
+            el.addEventListener('focus', showDropdown);
+            el.addEventListener('click', function (e){
                 var target = e.target ? e.target : window.event.srcElement;
                 e.preventDefault();
                 document.cookie = 'NG_TRANSLATE_LANG_KEY=%22' + target.attributes.value.value + '%22';
