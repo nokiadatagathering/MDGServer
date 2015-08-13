@@ -23,16 +23,16 @@ a {
   display: inline-block;
   float: left;
   &--red {
-    background-color: #f25022;
+    background-color: $red;
   }
   &--green {
-    background-color: #7fba00;
+    background-color: $green;
   }
   &--blue {
-    background-color: #00a3ee;
+    background-color: $blue;
   }
   &--yellow {
-    background-color: #ffb901;
+    background-color: $yellow;
   }
 }
 
@@ -97,8 +97,9 @@ a {
     &:hover {
       color: #00a3ee;
     }
+
     &.active, &--active {
-      background-color: #00a3ee;
+      background-color: $blue;
       color: white;
       &:hover {
         color: white;
@@ -247,7 +248,7 @@ a {
   padding: 30px 36px;
 
   &__title {
-    color: #f25022;
+    color: $red;
     margin: 0;
     font-size: 54px;
     font-weight: normal;
@@ -257,15 +258,16 @@ a {
     color: #4d4d4d;
     font-size: 24px;
     margin: 0;
+
     &__link {
-      color: #00a3ee;
+      color: $blue;
       font-size: inherit;
       font-weight: bold;
       text-decoration: none;
       margin: 0 6px;
 
       &:hover {
-        color: lighten(#00a3ee, 5%);
+        color: lighten($blue, 5%);
       }
     ;
     }
@@ -284,22 +286,23 @@ a {
   &-title {
     margin-top: 0;
     font-size: 36px;
-    color: red;
+    color: $red;
   }
   &__paragraph {
     margin-top: 0;
     font-size: 18px;
     font-weight: lighter;
     color: #4d4d4d;
+
     &__link {
-      color: #00a3ee;
+      color: $blue;
       font-size: inherit;
       font-weight: bold;
       text-decoration: none;
       margin: 0 6px;
 
       &:hover {
-        color: lighten(#00a3ee, 5%);
+        color: lighten($blue, 5%);
       }
 
     }
@@ -382,7 +385,7 @@ a {
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        background-color: #f25022;
+        background-color: $red;
         font-size: 24px;
         line-height: 36px;
         display: inline-block;
@@ -395,7 +398,7 @@ a {
         margin: 0 24px;
 
         &--blue {
-          color: #00a3ee;
+          color: $blue;
           font-size: 18px;
         }
       }
@@ -410,12 +413,13 @@ a {
     &__title {
       font-size: 24px;
       color: #4d4d4d;
+
       &-number {
         color: white;
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        background-color: #f25022;
+        background-color: $red;
         font-size: 24px;
         line-height: 36px;
         display: inline-block;
@@ -438,7 +442,7 @@ a {
     }
     &__photo-caption {
       margin: 24px 0;
-      color: #f25022;
+      color: $red;
       font-style: italic;
       font-size: 18px;
       font-weight: lighter;
@@ -463,14 +467,14 @@ a {
     margin-top: 36px;
 
     &__link {
-      color: #00a3ee;
+      color: $blue;
       font-size: inherit;
       font-weight: bold;
       text-decoration: none;
       margin: 0 6px;
 
       &:hover {
-        color: lighten(#00a3ee, 5%);
+        color: lighten($blue, 5%);
       }
 
       line-height: 24px;
@@ -509,7 +513,7 @@ a {
     text-align: center;
     color: #fff;
     font-size: 18px;
-    background-color: #7fba00;
+    background-color: $green;
     &--offset {
       margin-left: 396px;
     }
@@ -576,7 +580,7 @@ a {
       line-height: initial;
       -webkit-appearance: none; /* remove the strong OSX influence from Webkit */
       &.ng-dirty.ng-invalid {
-        color: #f25022;
+        color: $red;
       }
       &:active {
         outline: none;
@@ -641,7 +645,7 @@ a {
       color: #4d4d4d;
       font-weight: bold;
       &__count {
-        color: #f25022;
+        color: $red;
         margin-right: 6px;
       }
     }
@@ -650,14 +654,14 @@ a {
       font-weight: lighter;
       color: #4d4d4d;
       &__link {
-        color: #00a3ee;
+        color: $blue;
         font-size: inherit;
         font-weight: bold;
         text-decoration: none;
         margin: 0 6px;
 
         &:hover {
-          color: lighten(#00a3ee, 5%);
+          color: lighten($blue, 5%);
         }
       }
     }
