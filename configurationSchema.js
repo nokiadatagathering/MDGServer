@@ -68,10 +68,10 @@ module.exports = {
         title: 'Supported languages',
         description: '',
         defaults: [
-          {value: 'en', text: 'English'},
-          {value: 'ru', text: 'Русский'},
-          {value: 'zh', text: '中文'},
-          {value: 'vi', text: 'Việt' }
+          {value: 'en', text: 'English', title: 'English'},
+          {value: 'ru', text: 'Русский', title: 'Russian'},
+          {value: 'zh', text: '中文', title: 'Chinese'},
+          {value: 'vi', text: 'Việt', title: 'Vietnamese' }
         ]
       },
       supported_languages_mobile: {
@@ -208,7 +208,7 @@ module.exports = {
             type: String,
             title: 'Registration Email from',
             description: '',
-            defaults: 'registration@nokiadatagathering.net'
+            defaults: 'mdgspprt@microsoft.com'
           },
           subscription: {
             type: String,

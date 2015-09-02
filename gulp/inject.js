@@ -13,14 +13,13 @@ gulp.task('inject', ['partials', 'styles', 'home_inject', 'lang_inject', 'adminp
   var partialsInjectFile = gulp.src(paths.tmp + '/partials/templateCacheHtml.js');
   var partialsInjectOptions = {
     starttag: '//- inject:partials',
-    //ignorePath: paths.tmp + '/partials',
     addRootSlash: false,
     addPrefix: '../..'
   };
 
   var injectStyles = gulp.src([
     paths.tmp + '/serve/{app,components}/*.css',
-    '!' + paths.tmp + '/serve/app/404.css'
+    '!' + paths.tmp + '/serve/app/404.css',
   ]);
 
   var injectScripts = gulp.src([
@@ -37,7 +36,7 @@ gulp.task('inject', ['partials', 'styles', 'home_inject', 'lang_inject', 'adminp
     src: paths.tmp + '/serve/index.jade',
     directory: 'bower_components',
     ignorePath: ['/..'],
-    exclude: ['/angular-dropdowns/css/dropdowns.css']
+    exclude: ['/angular-dropdowns/angular-dropdowns.css', '/angular-dropdowns/dist/angular-dropdowns.css' ]
   };
 
   return gulp.src(paths.jade + '/index.jade')

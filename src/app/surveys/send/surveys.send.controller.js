@@ -2,7 +2,7 @@
   'use strict';
   angular.module('mdg.app.surveys')
     .controller('SendSurveyController',
-    function ($scope, $http, $location, $window, $rootScope,
+    function ($scope, $http, $location, $window, $rootScope, $state,
               surveysService,
               groupsService,
               usersService) {
@@ -108,27 +108,33 @@
       };
 
       $scope.sendSurvey = function (surveyId) {
-        var usersIds = _.filter($scope.allUsers, function (val) {
-          return val.checked;
-        });
+        $scope.usersIds = _($scope.allUsers)
+          .chain()
+          .filter(function (val) {
+            return val.checked;
+          })
+          .pluck('_id')
+          .value();
 
-        usersIds = _.pluck(usersIds, '_id');
 
-        surveysService.sendSurvey(surveyId, {users: usersIds}).then(
-          function success() {
-            var survey = _.find($scope.$parent.$parent.surveys, function (survey) {
-              return survey._id === surveyId;
+        if ($scope.usersIds.length !== 0) {
+          console.log('$scope.usersIds', $scope.usersIds);
+          surveysService.sendSurvey(surveyId, {users: $scope.usersIds}).then(
+            function success() {
+              var survey = _.find($scope.$parent.$parent.surveys, function (survey) {
+                return survey._id === surveyId;
+              });
+
+              survey.published = true;
+
+              $rootScope.$broadcast('publish_survey', survey.title);
+              $state.go('^');
+            },
+
+            function failed(err) {
+              console.log("error:", err);
             });
-
-            survey.published = true;
-
-            $rootScope.$broadcast('publish_survey', survey.title);
-            $state.go('^');
-          },
-
-          function failed(err) {
-            console.log("error:", err);
-          });
+        }
       };
     });
 })();

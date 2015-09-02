@@ -376,6 +376,13 @@
                 location.reload();
             });
         });
+
+        var cssLink = document.createElement("link");
+        cssLink.href = "styles/home.css";
+        cssLink .rel = "stylesheet";
+        cssLink .type = "text/css";
+        frames[0].document.head.appendChild(cssLink);
+
         register();
         remindPass();
         resetPassword();
