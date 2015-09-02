@@ -67,7 +67,8 @@
                 </div>
 
                 <button type="button" class="b-modal-window__main-block__body__button"
-                       ng-click="sendSurvey($stateParams.surveyId)">
+                        ng-disabled="usersIds"
+                        ng-click="sendSurvey($stateParams.surveyId)">
                     <span class="fa fa-share b-modal-window__main-block__body__button--icon" ></span>
                     <span>{{ 'surveys.Publish_survey' | translate }}</span>
                 </button>

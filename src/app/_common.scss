@@ -302,3 +302,217 @@ body {
     top: 0;
   }
 }
+
+
+
+.wrap-dd-select {
+  display: inline-block;
+  float: left;
+  background-color: $gray-light;
+  height: 35px;
+  font-size: 15px;
+  border: 1px solid $gray-light;
+  cursor: pointer;
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 0;
+  line-height: 33px;
+
+  &:active {
+    outline: none;
+  }
+  .selected {
+    padding: 0 10px;
+    font-size: 18px;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 0 0 -1px;
+    padding: 0;
+    background: white;
+    border: 1px solid $gray-light;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-weight: normal;
+    transition: all 0.2s ease-in;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+
+    li {
+      &.divider {
+        padding: 2px 0;
+        background: $gray-light;
+      }
+      a {
+        display: block;
+        padding: 0 10px;
+        text-decoration: none;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+        transition: all 0.3s ease-out;
+      }
+      i {
+        float: right;
+        color: inherit;
+      }
+      &:first-of-type a {
+        border-radius: 7px 7px 0 0;
+      }
+      &:last-of-type a {
+        border-radius: 0 0 7px 7px;
+        border: none;
+      }
+    }
+
+    width: 100%;
+    z-index: 10;
+    li:hover a {
+      background: #f3f8f8;
+    }
+
+  }
+
+  &.active{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    .dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: black transparent;
+  }
+}
+
+
+/*
+  Styles for dropdown-menu
+  */
+
+.wrap-dd-menu {
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+
+  .dropdown {
+    z-index: 11;
+    width: 200px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: -1px;
+    padding: 10px 0;
+    background: white;
+    border: 1px solid $gray-light;
+    border-radius: 5px;
+    font-weight: normal;
+    transition: all 0.2s ease-in;
+    list-style: none;
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-box-shadow: 0 0 10px 1px $gray-light;
+    box-shadow: 0 0 10px 1px $gray-light;
+
+    li {
+      &.divider {
+        padding: 2px 0;
+        background: $gray-light;
+      }
+      a {
+        background-color: #fff ;
+        display: block;
+        padding: 0 10px;
+        text-decoration: none;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+        transition: all 0.3s ease-out;
+      }
+      i {
+        float: right;
+        color: inherit;
+      }
+    }
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: 100%;
+      margin-left: 5px;
+      border-width: 0 6px 6px 6px;
+      border-style: solid;
+      border-color: #fff transparent;
+    }
+
+    &.active {
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+}
+/* active menu */
+
+.wrap-dd-menu {
+  .dropdown {
+    z-index: 10;
+    li:hover a {
+      background: #f3f8f8;
+    }
+  }
+  &.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: rgba(240, 240, 240, 1);
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+    .dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+.offline-block {
+  position: fixed;
+  border-top: 4px solid #ff0000;
+  border-bottom: 4px solid #ff0000;
+  color: #ff0000;
+  height: 60px;
+  width: 100%;
+  background: #ffffff;
+  top: 0px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 60px;
+  z-index: 2000;
+  input {
+    vertical-align: middle;
+    //.button-stylisation;
+  }
+}
+
+
+.sortable-placeholder {
+  height: 55px;
+  width: 100%;
+  border: 2px dotted #9f9f9f;
+  margin-bottom: 10px ;
+}
+.ui-sortable-helper {
+  opacity: 0.9;
+}

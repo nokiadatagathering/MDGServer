@@ -17,7 +17,7 @@ module.exports = {
   },
   mail: {
     from: {
-      registration: 'registration@nokiadatagathering.net',
+      registration: 'mdgspprt@microsoft.com',
       subscription: 'noreply@nokiadatagathering.net',
       report: 'report@nokiadatagathering.net'
     },

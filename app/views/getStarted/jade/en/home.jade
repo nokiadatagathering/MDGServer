@@ -34,7 +34,7 @@ html(lang='en')
             a.language-select.b-account-menu__locale(href='#') #{language}&nbsp;
             ul.dropdown
               each lang in languages
-                li: a.b-account-menu__language(href='#' value=lang.value) #{lang.text}
+                li: a.b-account-menu__language(href='#' value=lang.value title=lang.title) #{lang.text}
             .b-account-menu__user
               a(title='Login to Microsoft Data Gathering' href='#/login') Login
               | /

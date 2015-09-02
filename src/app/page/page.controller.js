@@ -24,11 +24,7 @@
         authorizationService.getLanguages().then(
           function success(config) {
             $scope.langauges = config.data.languages;
-            _($scope.langauges).each(function(lang) {
-              //lang.href = '#'
-              lang.tabindex = "0"
-            });
-            console.log('$scope.langauges', $scope.langauges);
+
             if (!$translate.use()) {
               $translate.use(config.data.preferred);
             }

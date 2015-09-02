@@ -7,7 +7,7 @@
     "angular-base64": "2.0.1",
     "angular-sanitize": "1.2.*",
     "angular-dragdrop": "1.0.6",
-    "angular-dropdowns": "https://github.com/annavernidub/angular-dropdowns.git#master",
+    "angular-dropdowns": "*",
     "angular-cache-buster": "0.3.1",
     "angular-ui-sortable": "0.12.6",
     "angular-translate": "~2.2.0",

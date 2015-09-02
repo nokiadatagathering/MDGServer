@@ -29,6 +29,7 @@
     'mdg.ui.validatePattern',
     'mdg.ui.notifications',
     'mdg.ui.nfEvent',
+    'mdg.ui.onEnter',
 
     'mdg.ui.fileSelect',
     'mdg.ui.focusMe',
@@ -162,9 +163,9 @@
   });
 
   angular.module('mdg').config(function ($provide, $urlRouterProvider, $stateProvider) {
-    $provide.decorator('$http', function($delegate) { 
+    $provide.decorator('$http', function($delegate) {
       var originalGet = $delegate.get;
-      $delegate.get = function () { 
+      $delegate.get = function () {
         var url = arguments[0];
         if (url.indexOf('?') === -1) {
           url += '?';
@@ -203,9 +204,12 @@
   }]);
 
   angular.module('mdg').run(function ($templateCache, $rootScope, $location, $state, $stateParams, authorizationService, $anchorScroll) {
+
     if (window.addTemplatesToCache) {
+
       window.addTemplatesToCache($templateCache);
     }
+
     $rootScope.generateUUID = function () {
       return 'id_' + UUIDjs.create().toString().replace(/-/g, '_');
     };
@@ -304,5 +308,10 @@
       }
     });
 
+    $templateCache.put('ngDropdowns/templates/dropdownMenuItem.html',
+      "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' class='dropdown-item'\n   tabindex='0'     ng-if='!dropdownMenuItem.divider'\n        ng-href='{{dropdownMenuItem.href}}'\n   on-enter='selectItem()'     ng-click='selectItem()'>\n        {{dropdownMenuItem[dropdownItemLabel]}}\n    </a>\n</li>"
+    );
+
   });
+
 })();
