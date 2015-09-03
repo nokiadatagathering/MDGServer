@@ -390,6 +390,13 @@ body {
 .b-content__col-left--video {
   height: 390px;
   width: 100%;
+
+}
+
+/* Custom outline for YouTube navigation buttons */
+
+.ytp-button:focus {
+  box-shadow: inset 0 0 0 4px #007CB7 !important;
 }
 
 .b-content__col-right {
