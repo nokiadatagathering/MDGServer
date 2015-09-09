@@ -24,7 +24,7 @@
         authorizationService.getLanguages().then(
           function success(config) {
             $scope.langauges = config.data.languages;
-
+            console.log('$scope.langauges', $scope.langauges);
             if (!$translate.use()) {
               $translate.use(config.data.preferred);
             }

@@ -9,8 +9,8 @@
           abstract: true,
           controller: 'SurveysController',
           resolve: {
-            surveys: ['surveysService', '$rootScope', function (surveysService, $rootScope) {
-              return surveysService.surveyList($rootScope.archive);
+            surveys: ['surveysService', '$rootScope', function (surveysService) {
+              return surveysService.surveyList();
             }]
           },
           templateUrl: 'app/surveys/surveys.html'
@@ -38,7 +38,13 @@
         })
       .state('page.surveys.archive', {
         url: '/archive',
-        templateUrl: 'app/surveys/archive/surveys.archive.html'
+        templateUrl: 'app/surveys/archive/surveys.archive.html',
+        resolve: {
+          archivedSurveys: ['surveysService', function (surveysService) {
+            return surveysService.getArchivedSurveys();
+          }]
+        },
+        controller: 'ArchiveController'
       })
       .state('page.surveys.archive.sendsurvey', {
         url: '/send:{surveyId}',

@@ -11,12 +11,7 @@
         SURVEY_ARCHIVE_URL = '/archive/',
         XML_URL = '/xml';
 
-      function surveyList (archive) {
-        if (archive) {
-          return $http.get(SURVEYS_URL + '?archive=true')
-            .success(function (result) {
-            });
-        }
+      function surveyList () {
 
         if ($rootScope.offlineMode) {
           return offlineService.getSurveys();
@@ -33,6 +28,13 @@
             return result.data;
           }
         });
+      }
+
+      function getArchivedSurveys() {
+        return $http.get(SURVEYS_URL + '?archive=true')
+          .then(function (result) {
+             return result.data;
+          });
       }
 
       function surveyInfo (surveyId) {
@@ -170,17 +172,18 @@
       }
 
       return {
-        surveyList:      surveyList,
-        surveyInfo:      surveyInfo,
-        sendSurvey:      sendSurvey,
-        deleteSurvey:    deleteSurvey,
-        duplicateSurvey: duplicateSurvey,
-        editSurvey:      editSurvey,
-        createSurvey:    createSurvey,
-        uploadXML:       uploadXML,
-        downloadXML:     downloadXML,
-        checkFileType:   checkFileType,
-        archiveSurvey:   archiveSurvey
+        surveyList:             surveyList,
+        getArchivedSurveys:     getArchivedSurveys,
+        surveyInfo:             surveyInfo,
+        sendSurvey:             sendSurvey,
+        deleteSurvey:           deleteSurvey,
+        duplicateSurvey:        duplicateSurvey,
+        editSurvey:             editSurvey,
+        createSurvey:           createSurvey,
+        uploadXML:              uploadXML,
+        downloadXML:            downloadXML,
+        checkFileType:          checkFileType,
+        archiveSurvey:          archiveSurvey
       };
     });
 })();

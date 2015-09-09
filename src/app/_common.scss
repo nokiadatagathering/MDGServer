@@ -516,3 +516,11 @@ body {
 .ui-sortable-helper {
   opacity: 0.9;
 }
+
+.hide-text {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  top: -10px;
+}
