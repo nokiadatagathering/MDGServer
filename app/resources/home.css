@@ -875,3 +875,15 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.hide-text {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  top: -10px;
+}
+
+.screnreder-ignore {
+  speak: none;
+}

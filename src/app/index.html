@@ -25,6 +25,7 @@
 
                     </a>
                     <a href="#/users" class="b-menu-nav__link"
+                       ng-if="loggedInUser.permission !== 'operator'"
                        ui-sref="page.users.group({groupId: ''})"
                        ng-class="{ 'b-menu-nav__link--active': $state.includes('page.users')}"
                        ui-sref-active="b-menu-nav__link--active">

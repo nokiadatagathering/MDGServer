@@ -188,7 +188,7 @@
         url: '',
         templateUrl: 'app/index.html',
         controller: 'PageController',
-        abstract: true,
+        abstract: true
       });
   });
 
@@ -309,7 +309,10 @@
     });
 
     $templateCache.put('ngDropdowns/templates/dropdownMenuItem.html',
-      "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' class='dropdown-item'\n   tabindex='0'     ng-if='!dropdownMenuItem.divider'\n        ng-href='{{dropdownMenuItem.href}}'\n   on-enter='selectItem()'     ng-click='selectItem()'>\n        {{dropdownMenuItem[dropdownItemLabel]}}\n    </a>\n</li>"
+      "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' class='dropdown-item'\n   tabindex='0'     ng-if='!dropdownMenuItem.divider'\n        ng-href='{{dropdownMenuItem.href}}'\n   on-enter='selectItem()'     ng-click='selectItem()'>\n        " +
+      "<span class='hide-text'> {{dropdownMenuItem.title}} \n</span>" +
+      "<span class='screnreder-ignore'  role='presentation' aria-hidden='true'> {{dropdownMenuItem[dropdownItemLabel]}} \n</span>" +
+      "</a>\n</li>"
     );
 
   });

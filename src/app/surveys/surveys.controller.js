@@ -3,7 +3,7 @@
 
 angular.module('mdg.app.surveys')
   .controller('SurveysController',
-  function ($scope, $http, $location, $window, $rootScope, $state, $translate,
+  function ($scope, $location, $window, $rootScope, $state, $translate,
                                              surveysService, surveys) {
       $scope.surveys = surveys;
 

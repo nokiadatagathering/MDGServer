@@ -6,9 +6,9 @@
                 <div class="b-surveys-table">
                     <div class="b-surveys-table__top">
                         <span class="b-surveys-table__top--title">
-                          <button class="b-surveys-table__top--back">
-                            <span class="fa fa-arrow-circle-left"
-                                  ui-sref="page.surveys.list"></span>
+                          <button class="b-surveys-table__top--back"
+                                  ui-sref="page.surveys.list">
+                            <span class="fa fa-arrow-circle-left"></span>
                           </button>
 
                             Archive</span>
@@ -39,7 +39,7 @@
                         </tr>
                         </thead>
                         <tbody class="b-table__body">
-                        <tr class="b-table__body__row" ng-repeat="survey in surveys
+                        <tr class="b-table__body__row" ng-repeat="survey in archivedSurveys
                                                             | deletedItemsFilter : 'surveys'
                                                             | selectPublished : selectVal.value
                                                             | filter:search
