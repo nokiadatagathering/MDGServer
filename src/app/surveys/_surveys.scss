@@ -246,6 +246,13 @@
             height: 36px;
             line-height: 36px;
             margin: 0 36px 0 18px;
+
+            &--icon {
+              font-size: 18px;
+              margin: 0 6px;
+              color: $green;
+            }
+
             &--label {
               font-size: 18px;
               color: $gray-text;

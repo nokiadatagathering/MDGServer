@@ -524,3 +524,10 @@ body {
   overflow: hidden;
   top: -10px;
 }
+
+.transparent-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+}
