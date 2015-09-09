@@ -386,7 +386,6 @@ angular.module('mdg.app.surveys')
       },
 
       editItemTitle = function (item, type, itemTitle, cIndex, event) {
-        console.log('editItemTitle', item, type, itemTitle, cIndex, event);
         var text;
 
         if (event && event.keyCode !== 13) {
@@ -1535,5 +1534,6 @@ angular.module('mdg.app.surveys')
     });
 
     $scope.getSurveyData($stateParams.surveyId);
+
   });
 })();
