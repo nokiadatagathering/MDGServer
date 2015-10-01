@@ -79,22 +79,9 @@
             hoverClass: 'droppable-hover',
             drop: function (event, ui) {
               var groupId = $(event.target).attr('id'),
-                userId = ui.draggable.attr('id'),
-                groupData = {};
+                userId = ui.draggable.attr('id');
 
-              groupsService.groupData(groupId).then(
-                function success (config) {
-                  groupData = config.data;
-                  if (groupData.users.length !== 0) {
-                    groupData.users = _.pluck(groupData.users, '_id');
-                  }
-                  groupData.users.push(userId);
-                  $scope.updateGroup(groupId, groupData);
-                },
-
-                function failed (err) {
-                  console.log("error:", err);
-                });
+              $scope.moveToGroup(groupId, userId);
             }
           });
         }
@@ -112,6 +99,28 @@
             console.log("error:", err);
           });
       };
+
+      $scope.moveToGroup = function(groupId, userId) {
+        var groupData = {};
+
+        if (!groupId) {return;}
+
+        groupsService.groupData(groupId).then(
+          function success (config) {
+            groupData = config.data;
+            if (groupData.users.length !== 0) {
+              groupData.users = _.pluck(groupData.users, '_id');
+            }
+            groupData.users.push(userId);
+            $scope.updateGroup(groupId, groupData);
+          },
+
+          function failed (err) {
+            console.log("error:", err);
+          });
+      }
+
+
     });
 
   })();

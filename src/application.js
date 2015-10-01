@@ -33,6 +33,7 @@
 
     'mdg.ui.fileSelect',
     'mdg.ui.focusMe',
+    'mdg.ui.focusModal',
 
     'mdg.app.page',
     'mdg.app.surveys',
@@ -188,7 +189,7 @@
         url: '',
         templateUrl: 'app/index.html',
         controller: 'PageController',
-        abstract: true,
+        abstract: true
       });
   });
 
@@ -309,8 +310,43 @@
     });
 
     $templateCache.put('ngDropdowns/templates/dropdownMenuItem.html',
-      "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' class='dropdown-item'\n   tabindex='0'     ng-if='!dropdownMenuItem.divider'\n        ng-href='{{dropdownMenuItem.href}}'\n   on-enter='selectItem()'     ng-click='selectItem()'>\n        {{dropdownMenuItem[dropdownItemLabel]}}\n    </a>\n</li>"
+      "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' class='dropdown-item'\n   tabindex='0'     ng-if='!dropdownMenuItem.divider'\n        ng-href='{{dropdownMenuItem.href}}'\n   on-enter='selectItem()'     ng-click='selectItem()'>\n        " +
+      "<span class='hide-text'> {{dropdownMenuItem.title}} \n</span>" +
+      "<span class='screnreder-ignore'  role='presentation' aria-hidden='true'> {{dropdownMenuItem[dropdownItemLabel]}} \n</span>" +
+      "</a>\n</li>"
     );
+
+    $templateCache.put('ngDropdowns/templates/dropdownSelect.html', [
+      '<div class="wrap-dd-select my-custom-class">',
+      '<button class="transparent-button selected">',
+      '<span class="my-selected-class">{{dropdownModel[labelField]}}</span>',
+      '</button>',
+      '<ul class="dropdown">',
+      '<li ng-repeat="item in dropdownSelect"',
+      ' class="dropdown-item"',
+      ' dropdown-select-item="item"',
+      ' dropdown-item-label="labelField">',
+      '</li>',
+      '</ul>',
+      '</div>'
+    ].join(''));
+
+    $templateCache.put('ngDropdowns/templates/dropdownSelectItem.html', [
+      '<li ng-class="{divider: (dropdownSelectItem.divider && !dropdownSelectItem[dropdownItemLabel]), \'divider-label\': (dropdownSelectItem.divider && dropdownSelectItem[dropdownItemLabel])}">',
+      '<a href="" class="dropdown-item"',
+      'tabindex="0"',
+      ' ng-if="!dropdownSelectItem.divider"',
+      ' ng-href="{{dropdownSelectItem.href}}"',
+      'on-enter="selectItem()"',
+      ' ng-click="selectItem()">',
+      '{{dropdownSelectItem[dropdownItemLabel]}}',
+      '</a>',
+      '<span ng-if="dropdownSelectItem.divider">',
+      '{{dropdownSelectItem[dropdownItemLabel]}}',
+      '</span>',
+      '</li>'
+    ].join(''));
+
 
   });
 

@@ -7,7 +7,7 @@ module.exports = {
         type: String,
         title: 'Site Name',
         description: '',
-        defaults: 'NOKIA DATA GATHERING'
+        defaults: 'MICROSOFT DATA GATHERING'
       },
       protocolType: {
         type: String,

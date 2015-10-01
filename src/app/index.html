@@ -15,8 +15,9 @@
             </div>
 
             <div class="b-menu">
-                <nav class="b-menu-nav">
+                <nav class="b-menu-nav" role="tabpanel">
                     <a href="#/surveys/list" class="b-menu-nav__link"
+                       role="tab"
                        ng-class="{ 'b-menu-nav__link--active':  $state.includes('page.surveys') ||
                                                                 $state.includes('page.results')}"
                        ui-sref="page.surveys.list"
@@ -25,6 +26,8 @@
 
                     </a>
                     <a href="#/users" class="b-menu-nav__link"
+                       role="tab"
+                       ng-if="loggedInUser.permission !== 'operator'"
                        ui-sref="page.users.group({groupId: ''})"
                        ng-class="{ 'b-menu-nav__link--active': $state.includes('page.users')}"
                        ui-sref-active="b-menu-nav__link--active">
@@ -41,14 +44,16 @@
 
             <div class="b-account-menu">
                 <a class="b-account-menu__locale"
-                   href="#"
+                   href=""
+                   role="select"
                    dropdown-menu="langauges"
                    dropdown-onchange="changeLanguage(selected)">
                     {{'header.language' | translate}}
                 </a>
 
                 <a class="b-account-menu__user"
-                   href="#"
+                   href=""
+                   role="select"
                    dropdown-menu="dropdownList"
                    dropdown-model="dropdownSelect"
                    dropdown-onchange="selectMenu(selected)">

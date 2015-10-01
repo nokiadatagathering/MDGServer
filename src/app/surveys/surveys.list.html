@@ -12,17 +12,22 @@
               </a>
 
               <span class="b-surveys-table__top__icon b-surveys-table__top__icon--upload" >
-                <input file-select="surveyXML" type="file" class="b-surveys-table__top__icon--upload--file" name="files" ng-disabled="offlineMode">
+                <input file-select="surveyXML" type="file" title="{{'surveys.Upload_XML_survey'| translate }}"
+                       class="b-surveys-table__top__icon--upload--file"
+                       name="files" ng-disabled="offlineMode">
               </span>
             </div>
 
             <div class="b-surveys-table__top--right">
               <input type="button" class="b-surveys-table__top__icon b-surveys-table__top__icon--folder"
-                    ui-sref="page.surveys.archive" ng-disabled="offlineMode"/>
+                     role="link"
+                     title="Archive"
+                     ui-sref="page.surveys.archive" ng-disabled="offlineMode"/>
 
               <div class="e-select">
                 <label class="e-select__label">
-                  <select name="" id="" class="e-select__box" ng-model="selectVal" ng-options="opt as opt.label for opt in select">
+                  <select name="" id="" class="e-select__box" role="select" title="Filter published surveys"
+                          ng-model="selectVal" ng-options="opt as opt.label for opt in select">
                   </select>
                 </label>
               </div>
@@ -34,23 +39,38 @@
             <tr class="b-table__header">
               <th class="b-table__header__item">
                   {{'table_header.Name'| translate }}
-                <span class="fa fa-caret-down g-pointer"
-                      ng-click="predicate = 'title'; reverse=!reverse"></span>
+                <button class="transparent-button"  role="button"
+                        ng-click="predicate = 'title'; reverse=!reverse">
+                  <span class="fa fa-caret-down g-pointer"></span>
+                  <span class="button-title">Sort surveys by name</span>
+                </button>
+
               </th>
               <th class="b-table__header__item" >
                   {{'table_header.Results'| translate }}
-                <span class="fa fa-caret-down  g-pointer"
-                      ng-click="predicate = 'resultsCount'; reverse=!reverse"></span>
+                <button class="transparent-button" role="button"
+                        ng-click="predicate = 'resultsCount'; reverse=!reverse">
+                  <span class="fa fa-caret-down  g-pointer"></span>
+                  <span class="button-title">Sort surveys by results</span>
+                </button>
+
+
               </th>
               <th class="b-table__header__item">
                  {{ 'table_header.Publisher'| translate }}
-                <span class="fa fa-caret-down  g-pointer"
-                      ng-click="predicate = '_creator.name'; reverse=!reverse"></span>
+                <button class="transparent-button" role="button"
+                        ng-click="predicate = '_creator.name'; reverse=!reverse">
+                  <span class="fa fa-caret-down  g-pointer"></span>
+                  <span class="button-title">Sort surveys by creator</span>
+                </button>
               </th>
               <th class="b-table__header__item">
                   {{'table_header.Date'| translate }}
-                <span class="fa fa-caret-down g-pointer"
-                      ng-click="predicate = 'dateCreated'; reverse=!reverse"></span>
+                <button class="transparent-button" role="button"
+                        ng-click="predicate = 'dateCreated'; reverse=!reverse">
+                  <span class="fa fa-caret-down g-pointer"></span>
+                  <span class="button-title">Sort surveys by date</span>
+                </button>
               </th>
             </tr>
             </thead>
@@ -62,51 +82,58 @@
                                                             | orderBy:predicate:reverse"
                 ng-init="survey.hidden = true">
                 <td class="b-table__body__row__col">
-                    <div class="b-table__body__row__col__title" title="{{survey.title}}" tabindex="0" href="#">
+                    <div class="b-table__body__row__col__title" title="{{survey.title}}">
                         <span class="fa fa-{{survey.published ? 'circle': 'circle-o'}} b-table__body__row__col--text__publish"></span>
                         <span class="b-table__body__row__col--text">{{survey.title}}</span>
                         <div class="e-options">
-                            <button class="e-options__item"
-                                    tabindex="0"
+                            <button class="e-options__item transparent-button"
+                                    role="button"
                                     ng-if="!survey.published"
                                     ui-sref="page.surveys.edit({surveyId: survey.id})"
                                     title="{{ 'surveys.Edit_survey' | translate }}">
                                 <span class="fa fa-pencil"></span>
+                                <span class="button-title">{{ 'surveys.Edit_survey' | translate }}</span>
                             </button>
-                            <button class="e-options__item"
-                                    tabindex="0"
+                            <button class="e-options__item transparent-button"
+                                    role="button"
                                     ng-if="survey.published"
                                     ng-click="archive(survey.id, survey.title, true)"
                                     ng-disabled="offlineMode"
                                     title="{{ 'surveys.Move_to_archive' | translate }}">
                                 <span class="fa fa-folder-open"></span>
+                                <span class="button-title">{{ 'surveys.Move_to_archive' | translate }}</span>
                             </button>
-                            <button class="e-options__item"
-                                    tabindex="0"
+                            <button class="e-options__item transparent-button"
+                                    role="button"
                                     ng-click="downloadSurvey(survey.id)"
                                     ng-disabled="offlineMode"
                                     title="{{ 'surveys.Download_survey' | translate }}">
                                 <span class="fa fa-download"></span>
+                                <span class="button-title">{{ 'surveys.Download_survey' | translate }}</span>
+
                             </button>
-                            <button class="e-options__item"
-                                    tabindex="0"
+                            <button class="e-options__item transparent-button"
+                                    role="button"
                                     ui-sref="page.surveys.list.sendsurvey({surveyId: survey.id})"
                                     title="{{ 'surveys.Publish_survey' | translate }}">
                                 <span class="fa fa-share"></span>
+                                <span class="button-title">{{ 'surveys.Publish_survey' | translate }}</span>
                             </button>
-                            <button class="e-options__item"
-                                    tabindex="0"
+                            <button class="e-options__item transparent-button"
+                                    role="button"
                                     ng-click="duplicateSurvey(survey.id, survey.title)"
                                     ng-disabled="offlineMode"
                                     title="{{ 'surveys.Duplicate_survey' | translate }}">
                                 <span class="fa fa-files-o"></span>
+                                <span class="button-title">{{ 'surveys.Duplicate_survey' | translate }}</span>
                             </button>
-                            <button class="e-options__item"
-                                    tabindex="0"
+                            <button class="e-options__item transparent-button"
+                                    role="button"
                                     ng-click="deleteSurvey(survey)"
                                     ng-disabled="survey.published"
                                     title="{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}">
                                 <span class="fa fa-trash-o"></span>
+                                <span class="button-title">{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}</span>
                             </button>
                         </div>
                     </div>
@@ -119,7 +146,7 @@
                 <a class="b-table__body__row__col--text b-table__body__row__col--text--results"
                    href="#"
                    ng-if="survey.resultsCount"
-                   tabindex="{{$index*10 + 7 + 1}}"
+                   tabindex="0"
                    ui-sref="page.results.list({surveyId : survey.id})"
                    title="{{survey.resultsCount}}">{{survey.resultsCount}}</a>
               </td>
@@ -141,7 +168,7 @@
         <p class="b-surveys__right-content__search-title"> Search Name or Username</p>
         <div class="e-search-box">
           <span class="fa fa-search e-search-box__icon"></span>
-          <input type="search" class="e-search-box__input"
+          <input type="search" class="e-search-box__input" role="search"
                  placeholder="{{ 'surveys.Search_Name_Publisher' | translate }}"
                  ng-model="search">
         </div>

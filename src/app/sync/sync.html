@@ -1,11 +1,15 @@
-<div class="b-modal-window">
-    <div class="b-modal-window__main-block b-sync">
+<div class="b-modal-window"  role="dialog">
+  <div class="b-modal-window__overlay"></div>
+    <div class="b-modal-window__main-block b-sync" focus-modal>
         <div class="b-modal-window__main-block__header">
-            <h2 class="b-modal-window__main-block__header--title">
+            <h2 class="b-modal-window__main-block__header--title"
+                role="heading">
                 Sync with server
             </h2>
-            <span class="b-modal-window__main-block__header--icon-close" ui-sref="page.surveys.list({ reload : true })">
+            <span class="b-modal-window__main-block__header--icon-close">
+              <a  ui-sref="^" class="transparent-button" tabindex="1">
                 <span class="fa fa-times"></span>
+              </a>
             </span>
         </div>
         <div class="b-modal-window__main-block__body">
@@ -27,11 +31,11 @@
                 </div>
 
                 <div class="status">Syncronization complete</div>
-                <input type="button" value="Close" ui-sref="page.surveys.list({ reload : true })">
+                <input type="button" value="Close" ui-sref="page.surveys.list({ reload : true })" tabindex="2">
             </div>
             <div ng-show="failedSync">
                 <div class="status">Error: {{syncError}}</div>
-                <input type="button" value="Refresh" ng-click="Sync()">
+                <input type="button" value="Refresh" ng-click="Sync()" tabindex="3">
             </div>
         </div>
     </div>

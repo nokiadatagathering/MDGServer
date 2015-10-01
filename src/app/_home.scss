@@ -9,7 +9,6 @@ a {
   margin: 0;
   font-family: SegoeUI, Arial, sans-serif;
   font-size: 12px;
-  position: relative;
 }
 
 .b-page__head-line {
@@ -43,7 +42,7 @@ a {
 .b-page__line {
   margin: 0 auto;
   width: 100%;
-  position: relative;
+  //position: relative;
 }
 
 .b-page__header {
@@ -276,7 +275,6 @@ a {
 
 .b-content {
   margin: 36px;
-  padding-bottom: 72px;
   overflow: hidden;
 
   &--line {

@@ -34,7 +34,9 @@ html(lang='en')
             a.language-select.b-account-menu__locale(href='#') #{language}&nbsp;
             ul.dropdown
               each lang in languages
-                li: a.b-account-menu__language(href='#' value=lang.value title=lang.title) #{lang.text}
+                li: a.b-account-menu__language(href='#' value=lang.value title=lang.title lang=lang.value)
+                  span.hide-text  #{lang.title}
+                  span.screnreder-ignore(role='presentation' aria-hidden='true') #{lang.text}
             .b-account-menu__user
               a(title='Login to Microsoft Data Gathering' href='#/login') Login
               | /
@@ -145,7 +147,7 @@ html(lang='en')
                   .b-page__line
           .b-content.b-content--line
             h2.b-content-title#benefits
-              | Benefits
+              a(name='benefits') Benefits
             .b-content__col-left
               .b-content__col-left__item.b-content__col-left__item--benefits
                 .b-content__col-left__item__icon
@@ -598,7 +600,7 @@ html(lang='en')
                 p.b-content__paragraph
                   | The key benefits of mobile data collection are speed,
                   | accuracy, cost efficiency and usability. Please see the
-                  a.b-content__paragraph__link(href='#/benefits')  benefits section on the homepage
+                  a.b-content__paragraph__link(href='#')  benefits section on the homepage
                   | for more on benefits.
               .b-content__col-left__item
                 h3.b-content__col-left__item__title
@@ -679,7 +681,7 @@ html(lang='en')
                 h3.b-content__col-right__item__title
                   span.b-content__col-right__item__title-number
                     | 7
-                  | ow can I host my own server data?
+                  | How can I host my own server data?
                 p.b-content__paragraph
                   | The instructions for setting up and hosting your own
                   | server are contained in the

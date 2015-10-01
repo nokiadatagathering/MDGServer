@@ -43,7 +43,7 @@
                      class="b-result__survey__category__questions__question__answer"
                      ng-repeat="select in question.result track by $index">
 
-                    <input type="checkbox" name="{{question.id}}" value="{{item.text}}"
+                    <input type="checkbox" role="checkbox" name="{{question.id}}" value="{{item.text}}"
                            ng-checked="select.value" disabled="!select.value">{{select.text}}
                 </div>
 

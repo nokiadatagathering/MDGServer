@@ -1,12 +1,15 @@
-
-<div class="b-modal-window">
-    <div class="b-modal-window__main-block b-results__modal-sent">
+<div class="b-modal-window" role="dialog">
+  <div class="b-modal-window__overlay"></div>
+    <div class="b-modal-window__main-block b-results__modal-sent" focus-modal>
         <div class="b-modal-window__main-block__header">
-            <h2 class="b-modal-window__main-block__header--title">
+            <h2 class="b-modal-window__main-block__header--title"
+                role="heading">
                 {{ 'results.survey_was_sent_to' | translate }}
             </h2>
-            <span class="b-modal-window__main-block__header--icon-close" ui-sref="^">
-                <span class="fa fa-times" ui-sref="^"></span>
+             <span class="b-modal-window__main-block__header--icon-close">
+              <a class="transparent-button" ui-sref="^" tabindex="1">
+                <span class="fa fa-times"></span>
+              </a>
             </span>
         </div>
         <div class="b-modal-window__main-block__body">
