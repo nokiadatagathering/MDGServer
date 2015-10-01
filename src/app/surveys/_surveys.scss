@@ -113,6 +113,9 @@
       font-weight: bold;
       font-size: 30px;
       display: inline-block;
+      float: left;
+      min-width: 200px;
+      @include text-ellipsis(50%);
 
       &--edit.fa {
         color: $blue;
@@ -123,7 +126,7 @@
       &--input {
         width: auto;
         min-width: 200px;
-        max-width: 400px;
+        max-width: 50%;
         height: 35px;
         border: none;
         border-bottom: 1px solid $green;
@@ -190,10 +193,23 @@
         border: none;
       }
 
+      &--title {
+        display: inline-block;
+        float: left;
+        min-width: 200px;
+        @include text-ellipsis(50%);
+      }
+
+      &--caret{
+        float: left;
+        line-height: 18px;
+        margin-right: 4px;
+      }
+
       &--edit-input {
         width: auto;
         min-width: 200px;
-        max-width: 400px;
+        max-width: 50%;
         border: none;
         border-bottom: 1px solid white;
         font-size: 18px;
@@ -204,6 +220,11 @@
         &:active {
           outline: none;
         }
+      }
+
+      &--move-btns {
+        display: inline-block;
+        margin: 0 12px;
       }
     }
 
@@ -220,6 +241,18 @@
           color: $gray-text;
           display: inline-block;
 
+          &--text {
+            display: inline-block;
+            float: left;
+            @include text-ellipsis(500px);
+          }
+
+          &--caret {
+            float: left;
+            line-height: 36px;
+            margin-right: 4px;
+          }
+
           &--edit-input {
             width: auto;
             min-width: 200px;
@@ -234,6 +267,7 @@
         }
         &__rules {
           float: right;
+          display: inline-block;
 
           .e-select {
             @include select(200px, 36px, $gray-light);
@@ -263,6 +297,11 @@
               height: 18px;
             }
           }
+        }
+
+        &--move-btns {
+          display: inline-block;
+          margin: 0 12px;
         }
       }
 
@@ -317,6 +356,7 @@ $modalH: 400px;
 .b-send-survey {
   width: $modalW;
   height: $modalH;
+  margin-left: -($modalW/2);
 
   .b-modal-window__main-block__body {
     height: $modalH - 120px;
@@ -332,6 +372,8 @@ $modalH: 400px;
     }
   }
 }
+
+
 
 .b-question-builder {
 

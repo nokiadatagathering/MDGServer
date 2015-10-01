@@ -2,7 +2,7 @@
 
   <div class="b-content-header">
 
-    <h1 class="b-content-header__title">
+    <h1 class="b-content-header__title" role="heading">
       {{'header.users' | translate}}
     </h1>
 
@@ -18,6 +18,7 @@
     <div class="b-content__users">
       <div class="b-content__users__groups-box">
         <button class="e-create-btn b-content__users--bnt-top"
+                role="button"
                 ng-click="groupName = ''; showNewGroup = true; groupNameFocus = true">
           <span class="fa fa-plus e-create-btn--icon"></span>
           <span class="e-create-btn--title">{{ 'users.Add_Group' | translate }}</span>
@@ -44,6 +45,7 @@
                                  ng-model="groupName">
 
                         <button type="submit" form="newGroup"
+                                role="button"
                                 class="b-content__users__groups-box__group-table__new-group--button">
                           <span class="fa fa-check-circle"></span>
                         </button>
@@ -66,6 +68,7 @@
           </tr>
 
           <tr class="b-table__body__row droppable"
+              role="row"
               id={{group._id}}
               ng-class="{ 'b-table__body__row--active': $state.includes('page.users') && $stateParams.groupId == group._id }"
               ng-repeat="group in filtered = (groups | deletedItemsFilter : 'groups')"
@@ -77,10 +80,17 @@
                  href="/#/users/group:{{group._id}}">{{group.name}}</a>
 
               <div class="b-content__users__groups-box__group-table__group__rules">
-                                <span class="fa fa-envelope" title="{{ 'users.Send_SMS_group' | translate }}"
-                                      ui-sref="page.users.group.smstogroup({groupId: group._id})"></span>
-                            <span class="fa fa-trash-o" title="{{ 'users.Delete_group' | translate }}"
-                                  ng-click="deleteGroup(group._id, group.name)"></span>
+                <button class="transparent-button"  role="button"
+                        title="{{ 'users.Send_SMS_group' | translate }}"
+                        ui-sref="page.users.group.smstogroup({groupId: group._id})">
+                  <a class="fa fa-envelope"></a>
+                </button>
+                <button class="transparent-button"
+                        role="button"
+                        ng-click="deleteGroup(group._id, group.name)">
+                  <span class="fa fa-trash-o" title="{{ 'users.Delete_group' | translate }}"></span>
+                </button>
+
               </div>
 
             </td>

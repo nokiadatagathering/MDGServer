@@ -4,6 +4,7 @@ angular.module('mdg.ui.dateRange', [])
     'use strict';
     return {
       restrict: 'AC',
+      require: '^dateInput',
       replace: false,
       scope: {
         maxRange: '=',
@@ -16,7 +17,7 @@ angular.module('mdg.ui.dateRange', [])
         '$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
           var minElem = $element.find('[date-input="minRange"]'),
             maxElem = $element.find('[date-input="maxRange"]'),
-            defaultDate = $element.parent().find('.default-date'),
+            defaultDate = $element.parent().find('.b-question-builder__input-box--input'),
             minDate,
             maxDate,
 

@@ -26,7 +26,6 @@
       groupsService.groupList().then(
         function success(config) {
           $scope.groups = config.data;
-          console.log('$scope.groups', $scope.groups);
         },
 
         function failed(err) {

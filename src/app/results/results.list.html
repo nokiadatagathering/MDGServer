@@ -10,19 +10,20 @@
                 </div>
                 <div class="b-results__list-box__body__top__rules">
                     <button title="{{ 'results.results_on_map' | translate }}"
-                            type="button"
+                            type="button"  role="button"
                             class="b-results__list-box__body__top__icon"
                             ng-click="viewMap()">
                         <span class="fa fa-globe"></span>
                     </button>
                     <button title="{{ 'results.results_on_chart' | translate }}"
                             type="button"
-
+                            role="button"
                             class="b-results__list-box__body__top__icon"
                             ng-click="modalResultsChart()">
                         <span class="fa fa-bar-chart"></span>
                     </button>
-                    <button type="submit" value="" class="b-results__list-box__body__top__icon"
+                    <button type="submit" role="button"
+                            value="" class="b-results__list-box__body__top__icon"
                             title="{{ 'results.Export_results' | translate }}"
                             dropdown-menu="dropdownList"
                             dropdown-model="dropdownSelect"
@@ -31,6 +32,7 @@
                     </button>
                     <button title="{{ 'results.Delete_results' | translate }}"
                             type="button"
+                            role="button"
                             class="b-results__list-box__body__top__icon"
                             ng-click="deleteResults()">
                         <span class="fa fa-trash-o"></span>
@@ -50,7 +52,7 @@
                 <thead>
                 <tr class="b-table__header">
                     <th class="b-table__header__item">
-                        <input type="checkbox" ng-model="allChecked" ng-click="formSelectedResults()">
+                        <input type="checkbox" role="checkbox" ng-model="allChecked" ng-click="formSelectedResults()">
                     </th>
                     <th class="b-table__header__item">
                         <span>{{ 'results.RESULT_TITLE' | translate }}</span>
@@ -82,7 +84,7 @@
                     ng-class="{ 'b-results__list-box__body__selected-result': $state.includes('page.results.list.details') && $stateParams.resultId === result._id }">
 
                     <td class="b-table__body__row__col">
-                        <input type="checkbox" ng-click="formSelectedResults(result._id)"
+                        <input type="checkbox" role="checkbox" ng-click="formSelectedResults(result._id)"
                                ng-checked="selectedResults.indexOf(result._id) !== -1 ? true : false">
                     </td>
                     <td class="b-table__body__row__col"

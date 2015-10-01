@@ -20,11 +20,8 @@
       }
 
       .b-table__body__row__col--text {
-        max-width: 200px;
-        overflow: hidden;
         display: inline-block;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include text-ellipsis(200px);
       }
 
       &__new-group {
@@ -44,7 +41,8 @@
 
           &:active {
             outline: none;
-          }        }
+          }
+        }
 
         &--button {
           background: transparent;
@@ -127,50 +125,100 @@
       overflow: hidden;
       height: 100%;
 
+      &__info {
+        &__row {
+          overflow: hidden;
+          clear: both;
+          margin-bottom: 4px;
+
+          &--label {
+            float: left;
+            color: $gray-text;
+            font-size: 16px;
+            font-weight: lighter;
+          }
+
+          &--text {
+            float: left;
+            color: $gray-text;
+            font-size: 16px;
+          }
+
+          &--move-to {
+            float: right;
+
+            .e-select {
+              @include select(140px, 24px, white, 16px);
+              float: left;
+            }
+
+            &--icon {
+              margin-left: 4px;
+              font-size: 20px;
+              color: $green;
+            }
+          }
+        }
+      }
+
       &.ui-sortable-helper {
         display: block;
         overflow: hidden;
         height: 72px !important;
-        .b-content__users__users-box__user-item--info {
+
+        .b-content__users__users-box__user-item__info {
           display: none;
         }
-
-
       }
 
-      &--name:hover {
-        position: relative;
 
-        &:before {
-          border: 2px dotted rgb(102, 102, 102);
-          width: 2px;
-          height: calc(100% - 25px);
-          content: '';
-          position: absolute;
-          left: 8px;
-          top: 11px;
-          cursor: move;
+      &__name {
+
+        &--title {
+          overflow: hidden;
         }
+
+        &:hover {
+          position: relative;
+
+          &:before {
+            border: 2px dotted rgb(102, 102, 102);
+            width: 2px;
+            height: calc(100% - 25px);
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 11px;
+            cursor: move;
+          }
+        }
+      }
+
+      &__permission {
+        vertical-align: top;
       }
 
       .b-table__body__row__col--text {
-        max-width: 200px;
-        overflow: hidden;
         display: inline-block;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include text-ellipsis(200px);
       }
 
       &--rules {
         float: right;
         font-size: 18px;
 
-        .fa {
+        .fa:not(.fa-book) {
           margin-right: 3px;
           &:hover {
             color: $green;
             cursor: pointer;
           }
+        }
+
+        &__arrow  {
+          margin-right: 0;
+          font-size: 16px;
+          width: 12px;
         }
 
         &__button {
@@ -215,8 +263,10 @@
 }
 
 .b-new-user {
-  height: 736px;
+  height: 760px;
   width: 720px;
+  margin-left: -(720px/2);
+  margin-bottom: 40px;
 
   .e-select {
     @include select(292px, 42px, $gray-light);
@@ -286,7 +336,7 @@
     width: 100%;
     padding: 12px;
     min-height: 40px;
-    background: rgba($red, 0.8);
+    background: $red-error;
     color: white;
     font-size: 12px;
     position: absolute;
@@ -305,7 +355,7 @@
     }
 
     &:after {
-      border-bottom-color: rgba($red, 0.8);
+      border-bottom-color: $red-error;
       border-width: 6px;
       margin-left: -6px;
     }
@@ -316,6 +366,7 @@
 .b-send-sms {
   height: 330px;
   width: 600px;
+  margin-left: -(600px/2);
 
   &--label {
     display: block;
@@ -357,7 +408,7 @@
   width: calc(100% - 24px);
   padding: 12px;
   min-height: 40px;
-  background: rgba($red, 0.8);
+  background: $red-error;
   color: white;
   font-size: 12px;
   position: absolute;
@@ -376,7 +427,7 @@
   }
 
   &:after {
-    border-bottom-color: rgba($red, 0.8);
+    border-bottom-color: $red-error;
     border-width: 6px;
     margin-left: -6px;
   }

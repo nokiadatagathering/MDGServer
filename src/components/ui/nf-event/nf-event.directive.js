@@ -10,9 +10,9 @@ angular.module('mdg.ui.nfEvent', [])
         nfEvent: '='
       },
       controller: [
-        '$scope', '$rootScope', '$element', '$attrs', '$timeout', 
+        '$scope', '$rootScope', '$element', '$attrs', '$timeout',
         'resultsService', 'usersService', 'groupsService', 'surveysService',
-        function ($scope, $rootScope, $element, $attrs, $timeout, 
+        function ($scope, $rootScope, $element, $attrs, $timeout,
                   resultsService, usersService, groupsService, surveysService) {
           $scope.nfEvent.show = true;
           $scope.nfEvent.time = $scope.nfEvent.time ? $scope.nfEvent.time : 10;
@@ -107,7 +107,7 @@ angular.module('mdg.ui.nfEvent', [])
       template: '<div ng-show="nfEvent.show">' +
       '<span translate="{{nfEvent.label}}" translate-values="{{nfEvent.translateValues}}"></span>' +
       '<br>' +
-      '<a ng-click="cancelTimeout(nfEvent.action)">{{nfEvent.action}}{{nfEvent.hideCounter ? "" : "&nbsp;" + nfEvent.time}}</a>' +
+      '<a ng-click="cancelTimeout(nfEvent.action)" href="">{{nfEvent.action}}{{nfEvent.hideCounter ? "" : "&nbsp;" + nfEvent.time}}</a>' +
       '</div>'
     };
 });

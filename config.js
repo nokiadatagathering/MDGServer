@@ -3,7 +3,7 @@ module.exports = {
   general: {
     siteName: 'Microsoft Data Gathering',
     protocolType: 'http',
-    port: 3000,
+    port: 3001,
     mongodbUrl: 'mongodb://127.0.0.1:27017/MDG-test'
   },
   basicAuth: {

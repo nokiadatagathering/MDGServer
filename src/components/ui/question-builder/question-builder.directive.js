@@ -5,6 +5,7 @@ angular.module('mdg.ui.questionBuilder', [])
     'use strict';
     return {
       restrict: 'A',
+      require: '^dateRange',
       scope: {
         question: '=questionData',
         type: '=questionType',
