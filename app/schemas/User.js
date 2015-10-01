@@ -36,7 +36,7 @@ Schema =  new mongoose.Schema({
     set: toLower
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
     set: setPhone
   },
@@ -204,7 +204,7 @@ Schema.path('company').validate(function (company) {
 
 function setPhone (phone) {
   if (UserService.checkPhoneNumberFormat(phone)) {
-    return parseInt(phone.replace(new RegExp("[^0-9]", 'g'), ''), 10);
+    return phone.replace(new RegExp("[^0-9]", 'g'), '');
   }
 
   return phone;

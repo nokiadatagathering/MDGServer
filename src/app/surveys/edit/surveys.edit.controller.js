@@ -85,6 +85,44 @@ angular.module('mdg.app.surveys')
         }
       }
     };
+
+    $scope.moveQuestion = function(category, question, index) {
+      if (index < 0) {return};
+
+      var length = $scope.surveyData._categories.length,
+          cIndex = $scope.surveyData._categories.indexOf(category),
+          qIndex = category._questions.indexOf(question);
+
+
+      $scope.surveyData._categories[cIndex]._questions = _($scope.surveyData._categories[cIndex]._questions).without(question);
+      $scope.surveyData._categories[cIndex]._questions.splice(index, 0, question);
+
+      surveyDirty = true;
+
+      deleteSLSelect(question.id, length);
+
+      if (question.type === 'select1' || question.type === 'int') {
+        $scope.selectQuestionType(question, cIndex, qIndex, true);
+      }
+    };
+
+    $scope.moveQuestionToCategory = function(category, question, i) {
+      var cIndex = $scope.surveyData._categories.indexOf(category),
+          qIndex = category._questions.indexOf(question);
+
+      if (!$scope.surveyData._categories[cIndex + i]) {
+        return;
+      }
+
+      if (category._questions.length === 1) {
+        $rootScope.$broadcast('empty_category');
+        return;
+      }
+
+      $scope.surveyData._categories[cIndex]._questions = _($scope.surveyData._categories[cIndex]._questions).without(question);
+      $scope.surveyData._categories[cIndex + i]._questions.push(question);
+    };
+
     $scope.sortableCategoriesOptions = {
       placeholder: 'sortable-placeholder',
       forcePlaceholderSize: true,
@@ -111,6 +149,24 @@ angular.module('mdg.app.surveys')
           }
         });
       }
+    };
+
+    $scope.moveCategory = function(category, index) {
+      if (index < 0) {return};
+      var length = $scope.surveyData._categories.length;
+
+      $scope.surveyData._categories = _($scope.surveyData._categories).without(category);
+      $scope.surveyData._categories.splice(index, 0, category);
+
+      surveyDirty = true;
+
+      deleteSLSelect(category.id, length, true);
+
+      _.each(category._questions, function (q, qIndex) {
+        if (q.type === 'select1' || q.type === 'int') {
+          $scope.selectQuestionType(q, cIndex, qIndex, true);
+        }
+      });
     };
 
     var

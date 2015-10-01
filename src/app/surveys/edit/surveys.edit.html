@@ -16,12 +16,16 @@
                ng-blur="editItemTitle(surveyData, 'survey', 'title')"
                ng-keypress="editItemTitle(surveyData, 'survey', 'title', null, $event)"/>
 
-        <button ng-click="editItemTitle(surveyData, 'survey', 'title')"  class="transparent-button">
+        <button ng-click="editItemTitle(surveyData, 'survey', 'title')"  role="button"
+                class="transparent-button">
                     <span class="fa b-surveys-edit__header__name--edit"
                           ng-class="{'fa-check': surveyData.titleEdit, 'fa-pencil' : !surveyData.titleEdit}"></span>
+          <span class="button-title">{{ 'survey_builder.Edit_survey_title' | translate }}</span>
         </button>
 
-        <button class="b-surveys-edit__header__save-btn" ng-click="saveSurvey(true)">
+        <button class="b-surveys-edit__header__save-btn"
+                role="button"
+                ng-click="saveSurvey(true)">
           <span class="fa fa-check b-surveys-edit__header__save-btn--icon"></span>
           <span class="b-surveys-edit__header__save-btn--text">{{ 'survey_builder.Save_survey' | translate }}</span>
         </button>
@@ -49,50 +53,81 @@
           <div class="b-surveys-edit__category__top"
                ng-init="category.titleEdit = false">
 
-            <span title="{{category.title}}"
-                  ng-if="!category.titleEdit">
-              <button class="transparent-button"
-                      ng-click="category.isVisible = !category.isVisible">
-                <span class="fa g-pointer"
-                      ng-class="{'fa-caret-down': category.isVisible , 'fa-caret-right':!category.isVisible}"></span>
-              </button>
-                {{category.title}}
-            </span>
+            <button class="transparent-button b-surveys-edit__category__top--caret"
+                    aria-expanded="{{category.isVisible}}"
+                    role="button"
+                    ng-click="category.isVisible = !category.isVisible">
+              <span class="fa g-pointer"
+                    ng-class="{'fa-caret-down': category.isVisible , 'fa-caret-right':!category.isVisible}"></span>
+              <span class="button-title">Expand category</span>
+            </button>
+
+            <span ng-if="!category.titleEdit" title="{{category.title}}"
+                  class="b-surveys-edit__category__top--title">{{category.title}}</span>
 
             <input type="text"
                    placeholder="{{ 'survey_builder.Category_Name' | translate }}"
                    value="{{category.title}}"
                    class="b-surveys-edit__category__top--edit-input"
                    ng-model="category.title"
-                   ng-show="category.titleEdit"
+                   ng-if="category.titleEdit"
                    ng-blur="editItemTitle(category, 'category', 'title', $index)"
                    ng-keypress="editItemTitle(category, 'category', 'title', $index, $event)">
 
             <button class="transparent-button"
+                    role="button"
                     ng-click="editItemTitle(category, 'category', 'title', $index)">
               <span class="fa"
                     ng-class="{'fa-check': category.titleEdit, 'fa-pencil' : !category.titleEdit}"></span>
+              <span class="button-title">{{ 'survey_builder.Edit_category_title' | translate }}</span>
             </button>
 
             <button class="transparent-button"
+                    role="button"
                     ng-click="copyCategory(category)">
               <span class="fa fa-files-o"
                     title="{{ 'survey_builder.Duplicate_category' | translate }} "></span>
+              <span class="button-title">{{ 'survey_builder.Duplicate_category' | translate }}</span>
             </button>
 
             <button class="transparent-button"
+                    role="button"
                     ng-click="deleteCategory(category)">
               <span class="fa fa-trash-o"
                     title="{{ 'survey_builder.Delete_category' | translate }}"></span>
+              <span class="button-title">{{ 'survey_builder.Delete_category' | translate }}</span>
             </button>
 
+            <div class="b-surveys-edit__category__top--move-btns">
+              <button class="transparent-button"
+                      role="button"
+                      ng-disabled="$index === (surveyData._categories.length - 1)"
+                      aria-disabled="{{$index === (surveyData._categories.length - 1)}}"
+                      ng-click="moveCategory(category, $index + 1)">
+                <span class="fa fa-arrow-down"></span>
+                <span class="button-title">{{ 'survey_builder.Move_category_down' | translate }}</span>
+              </button>
+              <button class="transparent-button"
+                      role="button"
+                      ng-disabled="$index === 0"
+                      aria-disabled="{{$index === 0}}"
+                      ng-click="moveCategory(category, $index - 1)">
+                <span class="fa fa-arrow-up"></span>
+                <span class="button-title">{{ 'survey_builder.Move_category_up' | translate }}</span>
+              </button>
+            </div>
+
             <button class="b-surveys-edit__category__top__new-question-btn"
+                    role="button"
                     ng-click="addQuestion(category)">
               <span class="fa fa-plus"></span>
               {{ 'survey_builder.Add_question' | translate }}
             </button>
+
+
           </div>
           <div ng-show="category.isVisible"
+               aria-expanded="{{category.isVisible}}"
                class="questions-box"
                ui-sortable="sortableQuestionsOptions"
                ng-model="category._questions">
@@ -106,48 +141,90 @@
 
                 <div class="b-surveys-edit__category__question__header__title">
 
-                  <span ng-if="!question.titleEdit">
-                    <button class="transparent-button"
-                            ng-click="question.isVisible = !question.isVisible">
-                      <span class="fa g-pointer"
-                            ng-class="{'fa-caret-down' : question.isVisible, 'fa-caret-right': !question.isVisible }"></span>
-                    </button>
 
-                    <span title="{{question.label}}">{{question.label}}</span>
+                    <span title="{{question.label}}">
 
-                    <button class="transparent-button"
-                            ng-click="editItemTitle(question, 'question', 'label', $parent.$index)">
-                      <span class="fa fa-pencil"></span>
-                    </button>
+                      <button class="transparent-button b-surveys-edit__category__question__header__title--caret"
+                              role="button"
+                              aria-expanded="{{question.isVisible}}"
+                              ng-click="question.isVisible = !question.isVisible">
+                        <span class="fa g-pointer"
+                              ng-class="{'fa-caret-down' : question.isVisible, 'fa-caret-right': !question.isVisible }"></span>
+                        <span class="button-title" >Expand question</span>
+                      </button>
 
-                    <button class="transparent-button"
-                            ng-click="copyQuestion(category, question, $parent.$index)">
-                      <span class="fa fa-files-o"
-                            title="{{ 'survey_builder.Duplicate_question' | translate }} "></span>
-                    </button>
+                      <span ng-if="!question.titleEdit"
+                            class="b-surveys-edit__category__question__header__title--text">
+                            {{question.label}}
+                      </span>
 
-                    <button class="transparent-button"
-                            ng-click="deleteQuestion(category, question, $parent.$index)">
-                      <span class="fa fa-trash-o"
-                            title="{{ 'survey_builder.Delete_question' | translate }}"></span>
-                    </button>
-                  </span>
-
-                  <span ng-if="question.titleEdit">
                       <input type="text"
                              class="b-surveys-edit__category__question__header__title--edit-input"
                              placeholder="Question label"
                              ng-model="question.label"
                              ng-show="question.titleEdit"
                              ng-blur="editItemTitle(question, 'question', 'label', $parent.$index)"
-                             ng-keypress="editItemTitle(question, 'question', 'label', $parent.$index, $event)">
+                             ng-keypress="editItemTitle(question, 'question', 'label', $parent.$index, $event)"/>
+
+                       <button class="transparent-button"
+                               role="button"
+                               ng-click="editItemTitle(question, 'question', 'label', $parent.$index)">
+                         <span class="fa " ng-class="{'fa-pencil' : !question.titleEdit, 'fa-check' : question.titleEdit}"></span>
+                         <span class="button-title">{{ 'survey_builder.Edit_question_title' | translate }}</span>
+                       </button>
+                    </span>
 
                     <button class="transparent-button"
-                            ng-click="editItemTitle(question, 'question', 'label', $parent.$index)">
-                      <span class="fa fa-check"></span>
+                            role="button"
+                            ng-click="copyQuestion(category, question, $parent.$index)">
+                      <span class="fa fa-files-o"
+                            title="{{ 'survey_builder.Duplicate_question' | translate }} "></span>
+                      <span class="button-title">{{ 'survey_builder.Duplicate_question' | translate }} </span>
                     </button>
 
-                  </span>
+                    <button class="transparent-button"
+                            role="button"
+                            ng-click="deleteQuestion(category, question, $parent.$index)">
+                      <span class="fa fa-trash-o"
+                            title="{{ 'survey_builder.Delete_question' | translate }}"></span>
+                      <span class="button-title">{{ 'survey_builder.Delete_question' | translate }}</span>
+                    </button>
+
+                    <div class="b-surveys-edit__category__question__header--move-btns">
+                      <button class="transparent-button"
+                              role="button"
+                              ng-disabled="$index == (category._questions.length + 1)"
+                              aria-disabled="{{$index == (category._questions.length + 1)}}"
+                              ng-click="moveQuestion(category, question, $index + 1)">
+                        <span class="fa fa-arrow-down"></span>
+                        <span class="button-title">{{ 'survey_builder.Move_question_down' | translate }}</span>
+                      </button>
+                      <button class="transparent-button"
+                              role="button"
+                              ng-disabled="$index == 0"
+                              aria-disabled="{{$index == 0}}"
+                              ng-click="moveQuestion(category, question, $index - 1)">
+                        <span class="fa fa-arrow-up"></span>
+                        <span class="button-title">{{ 'survey_builder.Move_question_up' | translate }}</span>
+                      </button>
+
+                      <button class="transparent-button"
+                              role="button"
+                              ng-disabled="(category._questions.length == 1)"
+                              aria-disabled="{{(category._questions.length == 1)}}"
+                              ng-click="moveQuestionToCategory(category, question, 1)">
+                        <span class="fa fa-arrow-circle-down"></span>
+                        <span class="button-title">{{ 'survey_builder.Delete_question' | translate }}</span>
+                      </button>
+                      <button class="transparent-button"
+                              role="button"
+                              ng-disabled="(category._questions.length == 1)"
+                              aria-disabled="{{(category._questions.length == 1)}}"
+                              ng-click="moveQuestionToCategory(category, question, -1)">
+                        <span class="fa fa-arrow-circle-up"></span>
+                        <span class="button-title">{{ 'survey_builder.Delete_question' | translate }}</span>
+                      </button>
+                    </div>
 
                 </div>
                 <div class="b-surveys-edit__category__question__header__rules">
@@ -159,15 +236,20 @@
                   </div>
                   <!--div>DROPDOWNS TRANSLATE</div-->
                   <button ng-if="question.isVisible"
-                       dropdown-select="dropdownList"
-                       dropdown-model="question.dropdownSelect"
-                       dropdown-item-label="text"
-                       dropdown-onchange="selectQuestionType(question, $parent.$parent.$index, $index)">
+                          role="select"
+                          dropdown-select="dropdownList"
+                          dropdown-model="question.dropdownSelect"
+                          dropdown-item-label="text"
+                          dropdown-onchange="selectQuestionType(question, $parent.$parent.$index, $index)">
                   </button>
 
                   <div class="b-surveys-edit__category__question__header__rules__checkbox">
-                    <button class="transparent-button" ng-click="question.required = !question.required">
-                      <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon" ng-class="{'fa-circle-o':!question.required, 'fa-check-circle-o': question.required}"></span>
+                    <button class="transparent-button"
+                            role="checkbox"
+                            aria-checked="{{question.required}}"
+                            ng-click="question.required = !question.required">
+                      <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
+                            ng-class="{'fa-circle-o':!question.required, 'fa-check-circle-o': question.required}"></span>
                       <label
                         class="b-surveys-edit__category__question__header__rules__checkbox--label">Mandatory</label>
                     </button>
@@ -193,6 +275,8 @@
 
                     <h5 class="b-skip-logic__header__title">
                       <button class="transparent-button"
+                              role="button"
+                              aria-expanded="{{question.isVisibleSkip}}"
                               ng-click="question.isVisibleSkip = !question.isVisibleSkip">
                         <span class="fa g-pointer"
                               ng-class="{'fa-caret-down':question.isVisibleSkip, 'fa-caret-right':!question.isVisibleSkip}"></span>
@@ -201,7 +285,9 @@
                       <span>{{ 'survey_builder.SL_OPTIONS' | translate }}</span>
                     </h5>
                   </div>
-                  <div class="b-skip-logic__body" ng-show="question.isVisibleSkip">
+                  <div class="b-skip-logic__body"
+                       ng-show="question.isVisibleSkip"
+                       aria-expanded="{{question.isVisibleSkip}}">
                         <span class="b-skip-logic__body__error-message"
                               ng-show="question.slOptionError || question.slQuestionError || question.slValueError">
                             <span class="fa fa-exclamation-triangle"></span>
@@ -217,6 +303,7 @@
                         }}</label>
 
                       <button dropdown-select="question.skipLogicList"
+                              role="select"
                            dropdown-model="question.skipLogicSelect"
                            dropdown-item-label="text"
                            ng-click="updateSLDropDown(question, $parent.$parent.$parent.$parent.$index, $parent.$parent.$parent.$index)"
@@ -277,13 +364,15 @@
                       </div>
 
                       <button type="button"
+                              role="button"
                               class="b-skip-logic__body__del-option transparent-button"
                               ng-click="deleteSLOption(question, $index, $parent.$parent.$parent.$parent.$index)">
                         <span class="fa fa-times"></span>
                       </button>
                     </div>
 
-                    <button
+                    <button role="button"
+                      aria-disabled="{{question.type == 'select1' ? question.items.length <= question.skipLogicOptions.length : false}}"
                       ng-disabled="question.type == 'select1' ? question.items.length <= question.skipLogicOptions.length : false"
                       type="button"
                       class="b-skip-logic__body__add-option"
@@ -301,6 +390,8 @@
                         class="b-mask-input__header--title">
                       {{'survey_builder.MASK_INPUT'| translate }}
                         <button type="button" class="transparent-button"
+                                role="button"
+                                aria-expanded="{{question.isVisibleMascInput}}"
                                 ng-click="question.isVisibleMascInput = !question.isVisibleMascInput">
                           <span class="fa g-pointer"
                                 ng-class="{'fa-caret-right': !question.isVisibleMascInput,
@@ -308,7 +399,8 @@
                         </button>
                     </h5>
                   </div>
-                  <div class="b-mask-input__body" ng-show="question.isVisibleMascInput">
+                  <div class="b-mask-input__body" ng-show="question.isVisibleMascInput"
+                       aria-expanded="{{question.isVisibleMascInput}}">
                     <p class="b-mask-input__body__label">{{ 'survey_builder.MASK_INPUT_DESCRIPTION' | translate }}</p>
                     <input class="b-mask-input__body__input"
                            type="text" placeholder="E.g. WW-BB-1234"
@@ -321,7 +413,7 @@
                 </div>
 
                 <button class="b-surveys-edit__category__question__body__done-btn"
-
+                        role="button"
                         ng-click="question.isVisible = false">
                   {{ 'survey_builder.Done' | translate }}
                 </button>
@@ -332,6 +424,7 @@
       </div>
 
       <button class="b-surveys-edit__add-category-btn"
+              role="button"
               ng-click="addCategory(true)">
         <span class="fa fa-plus b-surveys-edit__add-category-btn--icon"></span>
                           <span class="b-surveys-edit__add-category-btn--text">

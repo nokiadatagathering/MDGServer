@@ -1,11 +1,15 @@
-<div class="b-modal-window">
-    <div class="b-modal-window__main-block b-new-user">
+<div class="b-modal-window"  role="dialog">
+  <div class="b-modal-window__overlay"></div>
+  <div class="b-modal-window__main-block b-new-user" focus-modal>
         <div class="b-modal-window__main-block__header">
-            <h2 class="b-modal-window__main-block__header--title">
+            <h2 class="b-modal-window__main-block__header--title" id="dialogTitle"
+                role="heading">
                 {{ 'users.Add_User' | translate }}
             </h2>
-            <span class="b-modal-window__main-block__header--icon-close" ui-sref="^">
-                <span class="fa fa-times" ui-sref="^"></span>
+            <span class="b-modal-window__main-block__header--icon-close">
+              <a class="transparent-button"  ui-sref="^" tabindex="1">
+                    <span class="fa fa-times"></span>
+              </a>
             </span>
         </div>
         <div class="b-modal-window__main-block__body">
@@ -17,10 +21,12 @@
                 <div class="b-new-user__form__row">
                     <div class="b-new-user__form__row__col">
                         <div class="b-new-user__form__item">
-                            <label class="b-new-user__form__item__label">
+                            <label class="b-new-user__form__item__label" for="firstName">
                                 {{ 'edit_user.FIRST_NAME' | translate}}
                             </label>
                             <input class="b-new-user__form__item__field" type="text"
+                                   id="firstName"
+                                   tabindex="2"
                                    name="firstName" required
                                    placeholder="{{ 'edit_user.placeholder.FIRST_NAME' | translate }}"
                                    ng-model="user.firstName"
@@ -33,8 +39,12 @@
                     </div>
                     <div class="b-new-user__form__row__col">
                         <div class="b-new-user__form__item">
-                            <label class="b-new-user__form__item__label">{{ 'edit_user.LAST_NAME' | translate }}</label>
+                            <label class="b-new-user__form__item__label" for="lastName">
+                              {{ 'edit_user.LAST_NAME' | translate }}
+                            </label>
                             <input class="b-new-user__form__item__field" type="text"
+                                   id="lastName"
+                                   tabindex="3"
                                    name="lastName" required
                                    placeholder="{{ 'edit_user.placeholder.LAST_NAME' | translate }}"
                                    ng-model="user.lastName"
@@ -51,13 +61,13 @@
                 <div class="b-new-user__form__row">
                     <div class="b-new-user__form__row__col">
                         <div class="b-new-user__form__item">
-                            <label class="b-new-user__form__item__label">
+                            <label class="b-new-user__form__item__label" for="permission">
                                 {{ 'edit_user.PERMISSION' | translate}}
                             </label>
 
                             <div class="e-select">
                                 <label class="e-select__label">
-                                    <select name="permission" id=""
+                                    <select name="permission" id="permission" tabindex="4"
                                             class="e-select__box" ng-model="user.permission">
                                         <option selected="selected" value="admin">Admin</option>
                                         <option value="operator">Operator</option>
@@ -70,8 +80,12 @@
                     </div>
                     <div class="b-new-user__form__row__col">
                         <div class="b-new-user__form__item">
-                            <label class="b-new-user__form__item__label">{{ 'edit_user.USERNAME' | translate }}</label>
+                            <label class="b-new-user__form__item__label" for="username">
+                              {{ 'edit_user.USERNAME' | translate }}
+                            </label>
                             <input class="b-new-user__form__item__field" type="text"
+                                   id="username"
+                                   tabindex="5"
                                    name="username" required
                                    placeholder="{{ 'edit_user.placeholder.USERNAME' | translate }}"
                                    ng-model="user.username"
@@ -88,8 +102,12 @@
 
                 <div class="b-new-user__form__row">
                     <div class="b-new-user__form__item">
-                        <label class="b-new-user__form__item__label">{{ 'edit_user.PHONE_NUMBER' | translate }}</label>
+                        <label class="b-new-user__form__item__label" for="phone">
+                          {{ 'edit_user.PHONE_NUMBER' | translate }}
+                        </label>
                         <input class="b-new-user__form__item__field" type="text"
+                               id="phone"
+                               tabindex="6"
                                name="phone" required
                                placeholder="{{ 'edit_user.placeholder.PHONE_NUMBER' | translate }}"
                                ng-model="user.phone"
@@ -103,8 +121,12 @@
 
                 <div class="b-new-user__form__row">
                     <div class="b-new-user__form__item" ng-if="user.permission !== 'fieldWorker'">
-                        <label class="b-new-user__form__item__label">{{ 'edit_user.EMAIL' | translate }}</label>
+                        <label class="b-new-user__form__item__label" for="email">
+                          {{ 'edit_user.EMAIL' | translate }}
+                        </label>
                         <input class="b-new-user__form__item__field b-new-user__form__item__field--long"
+                               id="email"
+                               tabindex="7"
                                type="email"
                                name="email" required
                                placeholder="{{ 'edit_user.placeholder.EMAIL' | translate }}"
@@ -121,8 +143,13 @@
                 <div class="b-new-user__form__row">
                     <div class="b-new-user__form__row__col">
                         <div class="b-new-user__form__item">
-                            <label class="b-new-user__form__item__label">{{ 'edit_user.PASSWORD' | translate }}</label>
-                            <input class="b-new-user__form__item__field" type="password" name="password" required
+                            <label class="b-new-user__form__item__label" for="password">
+                              {{ 'edit_user.PASSWORD' | translate }}
+                            </label>
+                            <input class="b-new-user__form__item__field" type="password"
+                                   id="password"
+                                   name="password" required
+                                   tabindex="8"
                                    placeholder="{{ 'edit_user.placeholder.PASSWORD' | translate }}"
                                    ng-model="user.password"
                                    ng-minlength="8"
@@ -135,10 +162,12 @@
                     </div>
                     <div class="b-new-user__form__row__col">
                         <div class="b-new-user__form__item">
-                            <label class="b-new-user__form__item__label">
+                            <label class="b-new-user__form__item__label" for="confirmpass">
                                 {{ 'edit_user.CONFIRM_PASSWORD' | translate}}
                             </label>
                             <input class="b-new-user__form__item__field" type="password"
+                                   id="confirmpass"
+                                   tabindex="9"
                                    name="confirmpass" required
                                    placeholder="{{ 'edit_user.placeholder.CONFIRM_PASSWORD' | translate }}"
                                    ng-model="user.confirmpass"
@@ -159,7 +188,11 @@
                 {{ 'edit_user.info_was_changed' | translate }}
             </span>
                 </div>
-                <button class="e-create-btn b-content__users--bnt-top" type="submit">
+                <button class="e-create-btn b-content__users--bnt-top"
+                        role="button"
+                        type="submit"
+                        tabindex="10">
+
                     <span class="fa fa-check e-create-btn--icon"></span>
                     <span class="e-create-btn--title">{{ 'edit_user.Save_user' | translate }}</span>
                 </button>

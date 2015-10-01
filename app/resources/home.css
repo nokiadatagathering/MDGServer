@@ -443,6 +443,7 @@ body {
 .b-content__col-right__item__caption {
   vertical-align: middle;
   display: table-cell;
+  width: 400px;
 }
 
 .b-content__col-left__item__caption__number,
@@ -607,7 +608,7 @@ body {
   width: calc(100% - 24px);
   padding: 12px;
   min-height: 40px;
-  background: rgba(242, 80, 34, 0.8);
+  background: rgba(194, 0, 0, 0.8);
   color: white;
   font-size: 12px;
   position: absolute;
@@ -626,7 +627,7 @@ body {
 }
 
 .e-form .error > span:after {
-  border-bottom-color: rgba(242, 80, 34, 0.8);
+  border-bottom-color: rgba(194, 0, 0, 0.8);
   border-width: 6px;
   margin-left: -6px;
 }

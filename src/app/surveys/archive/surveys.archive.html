@@ -7,6 +7,7 @@
                     <div class="b-surveys-table__top">
                         <span class="b-surveys-table__top--title">
                           <button class="b-surveys-table__top--back"
+                                  role="button"
                                   ui-sref="page.surveys.list">
                             <span class="fa fa-arrow-circle-left"></span>
                           </button>
@@ -50,23 +51,27 @@
                                     <span class="b-table__body__row__col--text">{{survey.title}}</span>
                                     <div class="e-options">
                                         <button class="e-options__item"
+                                                role="button"
                                                 ng-if="!survey.published"
                                                 ui-sref="page.surveys.edit({surveyId: survey.id})"
                                                 title="{{ 'surveys.Edit_survey' | translate }}">
                                             <span class="fa fa-share-square-o"></span>
                                         </button>
                                         <button class="e-options__item"
+                                                role="button"
                                                 ng-click="archive(survey._id, survey.title)"
                                                 ng-disabled="survey.published"
                                                 title="{{ 'surveys.Restore' | translate }}">
                                             <span class="fa fa-download"></span>
                                         </button>
                                         <button class="e-options__item"
+                                                role="button"
                                                 ui-sref="page.surveys.archive.sendsurvey({surveyId: survey.id})"
                                                 title="{{ 'surveys.Publish_survey' | translate }}">
                                             <span class="fa fa-share"></span>
                                         </button>
                                         <button class="e-options__item"
+                                                role="button"
                                                 ng-click="duplicateSurvey(survey.id, survey.title)"
                                                 ng-disabled="offlineMode"
                                                 title="{{ 'surveys.Duplicate_survey' | translate }}">

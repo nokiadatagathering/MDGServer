@@ -7,18 +7,18 @@ body {
   font-family: Segoe UI;
 }
 
-.g-pointer {
-  cursor: pointer;
-}
+.g-pointer { cursor: pointer; }
+.g-hide    { display: none; }
 
-.g-hide {
-  display: none;
-}
+.g-left    { float: left; }
+.g-right   { float: right; }
 
 
 
 .g-page-wrapper {
   min-height: 100vh;
+  position: relative;
+
   &:after {
     content:' ';
     display:block;
@@ -154,13 +154,10 @@ body {
           margin: 0;
           text-decoration: none;
           color: inherit;
-          max-width: 280px;
-          text-overflow: ellipsis;
-          overflow: hidden;
           line-height: 24px;
-          white-space: nowrap;
           display: block;
           float: left;
+          @include text-ellipsis(280px);
 
           &--results {
             color: $green;
@@ -213,22 +210,25 @@ body {
 
 // styles for MODAL WINDOWS AND POPUPS
 .b-modal-window {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.65);
-  z-index: 2000;
+
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: 2000;
+    overflow: auto;
+  }
 
   &__main-block {
     background-color: #ffffff;
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+    top: 120px;
+    left: 50%;
+    z-index: 2020;
 
     &__header {
       color: $gray-text;
@@ -280,6 +280,7 @@ body {
   .b-sync {
     width: 300px;
     height: 200px;
+    margin-left: -(300px/2);
   }
 }
 
@@ -342,7 +343,8 @@ body {
     font-weight: normal;
     transition: all 0.2s ease-in;
     list-style: none;
-    opacity: 0;
+    //opacity: 0;
+    visibility: hidden;
     pointer-events: none;
 
     li {
@@ -381,8 +383,10 @@ body {
   &.active{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+
     .dropdown {
-      opacity: 1;
+      //opacity: 1;
+      visibility: visible;
       pointer-events: auto;
     }
   }
@@ -529,5 +533,25 @@ body {
   background: none;
   border: none;
   color: inherit;
+  padding: 0;
   font-size: inherit;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:focus {
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.5);
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.5);
+    box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.5);
+  }
+
+  .button-title {
+    width: 1px;
+    height: 1px;
+    display: inline-block;
+    overflow: hidden;
+    opacity: 0;
+  }
 }
