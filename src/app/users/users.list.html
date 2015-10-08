@@ -53,25 +53,31 @@
                           <span class="fa b-content__users__users-box__user-item--rules__arrow"
                                 ng-class="{'fa-angle-right': user.hidden, 'fa-angle-down': !user.hidden}"></span>
                         </button>
-                        <button class="b-content__users__users-box__user-item--rules__button"
+                        <button class="transparent-button
+                                       b-content__users__users-box__user-item--rules__button"
                                 role="button"
                                 title="{{ 'users.Send_SMS_user' | translate }}"
                                 ui-sref="page.users.group.smstouser({userId: user._id})">
                             <span class="fa fa-envelope-o"></span>
+                            <span class="button-title">{{ 'users.Send_SMS_user' | translate }}</span>
                         </button>
-                        <button class="b-content__users__users-box__user-item--rules__button"
+                        <button class="transparent-button
+                                       b-content__users__users-box__user-item--rules__button"
                                 role="button"
                                 ng-disabled="user.permission === 'superAdmin' && loggedInUser.permission !== 'superAdmin'"
                                 ui-sref="page.users.group.edituser({userId: user._id})"
                                 title="{{ 'users.Edit_details' | translate }}">
                             <span class="fa fa-pencil"></span>
+                          <span class="button-title">{{ 'users.Edit_details' | translate }}</span>
                         </button>
-                        <button class="b-content__users__users-box__user-item--rules__button"
+                        <button class="transparent-button
+                                       b-content__users__users-box__user-item--rules__button"
                                 role="button"
                                 title="{{user.permission === 'superAdmin' ? ('users.Cannot_delete' | translate) : ('users.Delete_user' | translate) }}"
                                 ng-click="deleteUser(user._id, user.username)"
                                 ng-disabled="!$stateParams.groupId && (user.permission === 'superAdmin')">
                             <span class="fa fa-trash-o"></span>
+                          <span class="button-title">{{user.permission === 'superAdmin' ? ('users.Cannot_delete' | translate) : ('users.Delete_user' | translate) }}</span>
                         </button>
                     </span>
                 </p>
@@ -144,6 +150,7 @@
     <div class="e-search-box">
         <span class="fa fa-search e-search-box__icon"></span>
         <input type="search" class="e-search-box__input"
+               role="search"
                ng-model="q"
                placeholder="{{ 'users.Search' | translate }}">
     </div>

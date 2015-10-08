@@ -208,6 +208,8 @@
     "maskError": "If Mask Input is used, the Default Answer value should match the mask.",
     "maxLengthError": "The Default Answer should not exceed the Maximum Answer Length",
     "Add_option": "Add a new option",
+    "Edit_option": "Edit an option",
+    "Delete_option": "Delete an option",
     "Import_existing_option": "Import existing option...",
     "Notes_description": "Notes are no-input text prompts which can provide notes, hints, instructions or messages to the surveyor or respondent"
   },

@@ -208,6 +208,8 @@
     "maskError": "Nếu Mask Input được sử dụng , mặc định giá trị trả lời phải phù hợp với mặt nạ.",
     "maxLengthError": "Default trả lời không được vượt quá các trả lời Chiều dài tối đa.",
     "Add_option": "Thêm một lựa chọn",
+    "Edit_option": "Hiệu chỉnh tùy chọn",
+    "Delete_option": "Xóa một lựa chọn",
     "Import_existing_option": "Chèn lựa chọn sẵn có...",
     "Notes_description": "Ghi chú là các hướng dẫn văn bản không đầu vào cung cấp các lưu ý, gợi ý, hướng dẫn hoặc lời nhắn cho khảo sát hoặc người trả lời"
   },

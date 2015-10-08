@@ -208,6 +208,8 @@
     "maskError": "如果屏蔽輸入時，默認回答值應符合口罩",
     "maxLengthError": "默認回答不應超過最大長度答案",
     "Add_option": "添加新选项",
+    "Edit_option": "編輯選項",
+    "Delete_option": "刪除選項",
     "Import_existing_option": "导入现有选项...",
     "Notes_description": "“提示”是指无输入提示文字，能够为被调查者或答题者提供注释，提醒，介绍或者信息。"
   },
