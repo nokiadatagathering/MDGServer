@@ -486,6 +486,14 @@ $modalH: 400px;
       font-size: 15px;
       color: $gray-text;
       line-height: 20px;
+      overflow: hidden;
+
+      &--label {
+        float: left;
+        display: inline-block;
+        min-width: 200px;
+        @include text-ellipsis(200px);
+      }
 
       &__edit-input {
         float: left;
@@ -505,7 +513,6 @@ $modalH: 400px;
       }
 
       &__edit-variants {
-        display: none;
         cursor: pointer;
         font-size: 18px;
         line-height: 18px;
@@ -518,11 +525,6 @@ $modalH: 400px;
         }
       }
 
-      &:hover {
-        .b-question-builder__variants__item__edit-variants {
-          display: inline-block;
-        }
-      }
     }
   }
 }
@@ -693,7 +695,7 @@ $modalH: 400px;
   }
 
   &__cascade-subs {
-    max-width: 230px;
+    max-width: 270px;
     float: left;
     display: inline-block;
   }

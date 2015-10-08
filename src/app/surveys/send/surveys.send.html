@@ -1,92 +1,103 @@
-<div class="b-modal-window "  role="dialog">
+<div class="b-modal-window " role="dialog">
   <div class="b-modal-window__overlay"></div>
-    <div class="b-modal-window__main-block b-send-survey" focus-modal>
-        <div class="b-modal-window__main-block__header">
-            <h2 class="b-modal-window__main-block__header--title"
-                role="heading">
-                {{ 'surveys.Publish_survey_title' | translate }}
-            </h2>
+  <div class="b-modal-window__main-block b-send-survey" focus-modal>
+    <div class="b-modal-window__main-block__header">
+      <h2 class="b-modal-window__main-block__header--title"
+          role="heading">
+        {{ 'surveys.Publish_survey_title' | translate }}
+      </h2>
             <span class="b-modal-window__main-block__header--icon-close">
-              <a  ui-sref="^" class="transparent-button" tabindex="1">
+              <a ui-sref="^" class="transparent-button" tabindex="1">
                 <span class="fa fa-times"></span>
               </a>
             </span>
-        </div>
-        <div class="b-modal-window__main-block__body">
-            <form name="sendSurveyForm" ng-model="sendSurveyForm" id="send-survey-form" ng-submit="sendSms($stateParams.groupId)">
-                <ul class="b-send-survey__all-groups">
-                    <h4>
-                        <input type="checkbox" role="checkbox"
-                               tabindex="2"
-                               ng-model="allUsers.checked"
-                               ng-checked="allUsers.checked"
-                               ng-change="checkAllUsers(allUsers)">
-
-                        <label class="expand close"
-                               tabindex="3"
-                               click="showUsers"
-                               visible="allUsers.isVisible"
-                               ng-click="showUsers()">
+    </div>
+    <div class="b-modal-window__main-block__body">
+      <form name="sendSurveyForm" ng-model="sendSurveyForm" id="send-survey-form"
+            ng-submit="sendSms($stateParams.groupId)">
+        <ul class="b-send-survey__all-groups">
+          <h4>
+            <button class="transparent-button"
+                    ng-init="allUsers.checked = false"
+                    ng-click="allUsers.checked = !allUsers.checked; checkAllUsers(allUsers)"
+                    id="allUsers"
+                    tabindex="2">
+              <span class="fa"
+                    ng-class="{'fa-square-o ': !allUsers.checked, 'fa-check-square-o': allUsers.checked}"></span>
+            </button>
+            <label for="allUsers">
+              <button class="transparent-button" ng-click="allUsers.isVisible = !allUsers.isVisible"
+                      tabindex="3">
                             <span class="fa" ng-class="{'fa-caret-down': allUsers.isVisible,
                             'fa-caret-right': !allUsers.isVisible}"></span>
-                            ({{allUsers.length}}) {{ 'users.All_users' | translate }}
-                        </label>
-                    </h4>
-                    <div class="b-send-survey__all-users b-send-survey__groups-list__group" ng-show="allUsers.isVisible">
-                        <li ng-repeat="user in allUsers" class="b-send-survey__all-groups__user">
-                            <input type="checkbox" role="checkbox" name="{{user.username}}" id="{{user.username}}"
-                                   tabindex="4"
-                                   ng-model="user.checked"
-                                   ng-checked="user.checked"
-                                   ng-change="checkUser(allUsers, user, 'allUsers')">
-                            <label for="{{user.username}}">{{user.name}}</label>
-                        </li>
-                    </div>
-                </ul>
-                <div class="b-send-survey__groups-list">
-                    <ul  ng-repeat="group in groups">
-                        <h4>
-                            <input type="checkbox" role="checkbox" name="{{group.name}}" id="{{group.name}}"
-                                   tabindex="5"
-                                   ng-model="group.users.checked"
-                                   ng-change="checkAllUsersInGroup(group.users)"
-                                   ng-disabled="allUsers.checked || !group.users.length">
-                            <label class="expand"
-                                   for="{{group.name}}"
-                                   tabindex="6"
-                                   click="showUsersInGroup"
-                                   visible="group.isVisible"
-                                   ng-click="showUsersInGroup()"
-                                   ng-class="{void: !group.users.length}">
+                ({{allUsers.length}}) {{ 'users.All_users' | translate }}
+              </button>
+            </label>
+          </h4>
+          <div class="b-send-survey__all-users b-send-survey__groups-list__group" ng-show="allUsers.isVisible">
+            <li ng-repeat="user in allUsers" class="b-send-survey__all-groups__user">
+              <button class="transparent-button"
+                      ng-click="user.checked = !user.checked; checkUser(allUsers, user, 'allUsers')"
+                      id="{{user.username}}"
+                      role="checkbox"
+                      tabindex="3">
+              <span class="fa"
+                    ng-class="{'fa-square-o ': !user.checked, 'fa-check-square-o': user.checked}"></span>
+              </button>
+              <label for="{{user.username}}">{{user.name}}</label>
+            </li>
+          </div>
+        </ul>
+        <div class="b-send-survey__groups-list">
+          <ul ng-repeat="group in groups">
+            <h4>
+              <button class="transparent-button"
+                      tabindex="5"
+                      id="{{group.name}}"
+                      role="checkbox"
+                      ng-click="group.users.checked = !group.users.checked; checkAllUsersInGroup(group.users)"
+                      ng-disabled="allUsers.checked || !group.users.length">
+                <span class="fa"
+                      ng-class="{'fa-square-o ': !group.users.checked, 'fa-check-square-o': group.users.checked}"></span>
+              </button>
+
+              <button class="transparent-button"
+                      tabindex="5"
+                      ng-disabled="allUsers.checked || !group.users.length"
+                      ng-click="group.isVisible = !group.isVisible">
                                 <span class="fa" ng-show="group.users.length"
                                       ng-class="{'fa-caret-down': group.isVisible, 'fa-caret-right': !group.isVisible}"></span>
+                ({{group.users.length}}) {{group.name}}
+              </button>
 
-                                ({{group.users.length}}) {{group.name}}</label>
-                        </h4>
-                        <div class="{{group.name}} b-send-survey__groups-list__group" ng-show="group.isVisible">
-                            <li ng-repeat="user in group.users" class="b-send-survey__all-groups__user">
-                                <input type="checkbox" role="checkbox" name="{{user.username}}" id="{{user.username}}"
-                                       tabindex="7"
-                                       ng-model="user.checked"
-                                       ng-checked="user.checked"
-                                       ng-change="checkUser(group.users, user, 'group')"
-                                       ng-disabled="allUsers.checked">
-                                <label for="{{user.username}}">{{user.name}}</label>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-
-                <button type="button" class="b-modal-window__main-block__body__button"
-                        role="button"
-                        tabindex="8"
-                        ng-disabled="usersIds"
-                        ng-click="sendSurvey($stateParams.surveyId)">
-                    <span class="fa fa-share b-modal-window__main-block__body__button--icon" ></span>
-                    <span>{{ 'surveys.Publish_survey' | translate }}</span>
+            </h4>
+            <div class="{{group.name}} b-send-survey__groups-list__group" ng-show="group.isVisible">
+              <li ng-repeat="user in group.users" class="b-send-survey__all-groups__user">
+                <button class="transparent-button"
+                        tabindex="5"
+                        id="{{user.username}}"
+                        role="checkbox"
+                        ng-click="user.checked = !user.checked; checkUser(group.users, user, 'group')"
+                        ng-disabled="allUsers.checked">
+                <span class="fa"
+                      ng-class="{'fa-square-o ': !user.checked, 'fa-check-square-o': user.checked}"></span>
                 </button>
-
-            </form>
+                <label for="{{user.username}}">{{user.name}}</label>
+              </li>
+            </div>
+          </ul>
         </div>
+
+        <button type="button" class="b-modal-window__main-block__body__button"
+                role="button"
+                tabindex="8"
+                ng-disabled="usersIds"
+                ng-click="sendSurvey($stateParams.surveyId)">
+          <span class="fa fa-share b-modal-window__main-block__body__button--icon"></span>
+          <span>{{ 'surveys.Publish_survey' | translate }}</span>
+        </button>
+
+      </form>
     </div>
+  </div>
 </div>
