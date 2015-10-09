@@ -14,6 +14,12 @@ body {
 .g-right   { float: right; }
 
 
+.g-aria-hide {
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  display: inline-block;
+}
 
 .g-page-wrapper {
   min-height: 100vh;

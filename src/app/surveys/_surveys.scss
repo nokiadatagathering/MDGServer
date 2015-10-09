@@ -244,6 +244,7 @@
           &--text {
             display: inline-block;
             float: left;
+            margin-right: 12px;
             @include text-ellipsis(500px);
           }
 
