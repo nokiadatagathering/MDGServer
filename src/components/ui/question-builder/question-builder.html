@@ -67,47 +67,52 @@
     {{ 'survey_builder.defaultValueError' | translate}}
   </div>
   <div class="b-question-builder__input-box">
+    <label for="minValue"
+           class="g-aria-hide">
+      {{ 'survey_builder.MINIMUM_RANGE' | translate }}
+    </label>
+    <input type="text"
+           name="{{ 'survey_builder.MINIMUM_RANGE' | translate }}"
+           id="minValue"
+           class="b-question-builder__input-box--input b-question-builder__input-box--input--small"
+           value="{{question.minValue}}"
+           ng-disabled="!question.minChecked"
+           validate-pattern
+           regexp="digitsPattern"
+           value-to-check="question.minValue"
+           ng-blur="checkMinMaxValues(question)"
+           ng-model="question.minValue">
 
-        <span focus-me="question.minValueFocus">
-            <input type="text"
-                   class="b-question-builder__input-box--input b-question-builder__input-box--input--small"
-                   value="{{question.minValue}}"
-                   ng-disabled="!question.minChecked"
-                   validate-pattern
-                   regexp="digitsPattern"
-                   value-to-check="question.minValue"
-                   ng-blur="checkMinMaxValues(question)"
-                   ng-model="question.minValue">
-        </span>
+    <span class="b-question-builder__input-box--caption">
+      <button class="transparent-button"
+              role="checkbox"
+              aria-checked="{{question.minChecked}}"
+              ng-click="question.minValueFocus = true; checkMinMaxValues(question, 'minChecked')">
 
-        <span class="b-question-builder__input-box--caption">
-          <button class="transparent-button"
-                  role="checkbox"
-                  aria-checked="{{question.minChecked}}"
-                  ng-click="question.minValueFocus = true; checkMinMaxValues(question, 'minChecked')">
-
-            <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
-                  ng-class="{'fa-circle-o':!question.minChecked, 'fa-check-circle-o': question.minChecked}"></span>
-            <label
+        <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
+              ng-class="{'fa-circle-o':!question.minChecked, 'fa-check-circle-o': question.minChecked}"></span>
+        <span for="minValue"
               class="b-surveys-edit__category__question__header__rules__checkbox--label">
-              {{ 'survey_builder.MINIMUM_RANGE' | translate }}
-            </label>
-
-          </button>
+          {{ 'survey_builder.MINIMUM_RANGE' | translate }}
         </span>
+
+      </button>
+    </span>
   </div>
   <div class="b-question-builder__input-box">
-        <span focus-me="question.maxValueFocus">
-            <input type="text"
-                   class="b-question-builder__input-box--input b-question-builder__input-box--input--small"
-                   value="{{question.maxValue}}"
-                   ng-disabled="!question.maxChecked"
-                   validate-pattern
-                   regexp="digitsPattern"
-                   value-to-check="question.maxValue"
-                   ng-blur="checkMinMaxValues(question)"
-                   ng-model="question.maxValue">
-        </span>
+        <label for="maxValue" class="g-aria-hide">{{ 'survey_builder.MAXIMUM_RANGE' | translate }}</label>
+        <input type="text"
+               focus-me="question.maxValueFocus"
+               name="{{ 'survey_builder.MAXIMUM_RANGE' | translate }}"
+               id="maxValue"
+               class="b-question-builder__input-box--input b-question-builder__input-box--input--small"
+               value="{{question.maxValue}}"
+               ng-disabled="!question.maxChecked"
+               validate-pattern
+               regexp="digitsPattern"
+               value-to-check="question.maxValue"
+               ng-blur="checkMinMaxValues(question)"
+               ng-model="question.maxValue">
 
         <span class="b-question-builder__input-box--caption">
 
@@ -118,10 +123,10 @@
 
             <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
                   ng-class="{'fa-circle-o':!question.maxChecked, 'fa-check-circle-o': question.maxChecked}"></span>
-            <label
-              class="b-surveys-edit__category__question__header__rules__checkbox--label">
+            <span for="maxvalue"
+                  class="b-surveys-edit__category__question__header__rules__checkbox--label">
               {{ 'survey_builder.MAXIMUM_RANGE' | translate }}
-            </label>
+            </span>
 
           </button>
 
@@ -135,9 +140,9 @@
 <div class="b-question-builder__{{question.type}}" ng-if="question.type == 'decimal'">
   <div class="b-question-builder__input-box">
     <h5 class="b-question-builder__input-box--label">
-      {{ 'survey_builder.DEFAULT_ANSWER' | translate }}
+      <label for="defaultValue">{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</label>
     </h5>
-    <input type="text"
+    <input type="text" id="defaultValue"
            class="b-question-builder__input-box--input"
            placeholder="{{ 'survey_builder.DEFAULT_ANSWER_placeholder' | translate }}"
            value="{{question.defaultValue}}"
@@ -152,8 +157,11 @@
     {{ 'survey_builder.defaultValueError' | translate}}
   </div>
   <div class="b-question-builder__input-box">
-          <span focus-me="question.minValueFocus">
-            <input type="text"
+            <label for="minValue"
+                   class="g-aria-hide">
+              {{ 'survey_builder.MINIMUM_RANGE' | translate }}
+            </label>
+            <input type="text" id="minValue" name="minValue"  focus-me="question.minValueFocus"
                    class="b-question-builder__input-box--input b-question-builder__input-box--input--small"
                    value="{{question.minValue}}"
                    ng-disabled="!question.minChecked"
@@ -162,26 +170,27 @@
                    value-to-check="question.minValue"
                    ng-blur="checkMinMaxValues(question)"
                    ng-model="question.minValue">
-        </span>
         <span class="b-question-builder__input-box--caption">
-
             <button class="transparent-button"
                     role="checkbox"
                     aria-checked="{{question.minChecked}}"
                     ng-click="question.minValueFocus = true; checkMinMaxValues(question, 'minChecked')">
               <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
                     ng-class="{'fa-circle-o':!question.minChecked, 'fa-check-circle-o': question.minChecked}"></span>
-              <label
-                class="b-surveys-edit__category__question__header__rules__checkbox--label">
+
+              <span class="b-surveys-edit__category__question__header__rules__checkbox--label">
                 {{ 'survey_builder.MINIMUM_RANGE' | translate }}
-              </label>
+              </span>
             </button>
         </span>
 
   </div>
   <div class="b-question-builder__input-box">
-         <span focus-me="question.maxValueFocus">
-            <input type="text"
+           <label for="maxValue"
+                  class="g-aria-hide">
+             {{ 'survey_builder.MAXIMUM_RANGE' | translate }}
+           </label>
+            <input type="text" id="maxValue" name="maxValue"  focus-me="question.maxValueFocus"
                    class="b-question-builder__input-box--input b-question-builder__input-box--input--small"
                    value="{{question.maxValue}}"
                    ng-disabled="!question.maxChecked"
@@ -190,7 +199,6 @@
                    value-to-check="question.maxValue"
                    ng-blur="checkMinMaxValues(question)"
                    ng-model="question.maxValue">
-        </span>
         <span class="b-question-builder__input-box--caption">
           <button class="transparent-button"
                   role="checkbox"
@@ -198,10 +206,10 @@
                   ng-click="question.maxValueFocus = true; checkMinMaxValues(question, 'maxChecked')">
             <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
                   ng-class="{'fa-circle-o':!question.maxChecked, 'fa-check-circle-o': question.maxChecked}"></span>
-            <label
-              class="b-surveys-edit__category__question__header__rules__checkbox--label">
+
+            <span class="b-surveys-edit__category__question__header__rules__checkbox--label">
               {{ 'survey_builder.MAXIMUM_RANGE' | translate }}
-            </label>
+            </span>
           </button>
         </span>
 
@@ -213,24 +221,24 @@
 </div>
 <div class="b-question-builder__{{question.type}}" ng-if="question.type == 'date'">
   <div class="b-question-builder__input-box">
-    <h5 class="b-question-builder__input-box--label">
-      {{ 'survey_builder.DEFAULT_ANSWER' | translate }}
-    </h5>
+    <div class="b-question-builder__input-box--label">
+      <label for="defaultDate">{{ 'survey_builder.DEFAULT_ANSWER' | translate }}</label>
+    </div>
 
     <input class="b-question-builder__input-box--input"
+           id="defaultDate"
            date-input="question.defaultValue"
            ng-model="question.defaultValue"
-           readonly="readonly"
            min-range="question.minValue"
            max-range="question.maxValue">
 
-    <p class="b-question-builder__input-box__clear-message">
-            <span ng-if="question.defaultValue"
-                  ng-click="deleteDefaultDate(question)"
-                  class="fa fa-times"></span>
-            <span ng-if="question.defaultValue">
+    <p class="b-question-builder__input-box__clear-message" ng-if="question.defaultValue">
+      <button ng-click="deleteDefaultDate(question)" class="transparent-button">
+        <span class="fa fa-times"></span>
+            <span>
                 {{ 'survey_builder.Clear_default_field' | translate }}
             </span>
+      </button>
     </p>
 
   </div>
@@ -272,18 +280,18 @@
             <input type="radio" name="choice" disabled="disabled" class="g-left">
             <span class="b-question-builder__variants__item--label">{{item.text}}</span>
           </label>
-                    <span class="b-question-builder__variants__item__edit-variants">
-                      <button class="transparent-button" ng-click="item.edit = true; item.focus = true;"
-                              title="{{ 'survey_builder.Edit_option' | translate }}">
-                        <span class="fa fa-pencil"></span>
-                        <span class="button-title">{{ 'survey_builder.Edit_option' | translate }}</span>
-                      </button>
-                      <button class="transparent-button" ng-click="deleteOption(question, $index)"
-                              title="{{ 'survey_builder.Delete_option' | translate }}">
-                        <span class="fa fa-trash-o"></span>
-                        <span class="button-title">{{ 'survey_builder.Delete_option' | translate }}</span>
-                      </button>
-                    </span>
+          <span class="b-question-builder__variants__item__edit-variants">
+            <button class="transparent-button" ng-click="item.edit = true; item.focus = true;"
+                    title="{{ 'survey_builder.Edit_option' | translate }}">
+              <span class="fa fa-pencil"></span>
+              <span class="button-title">{{ 'survey_builder.Edit_option' | translate }}</span>
+            </button>
+            <button class="transparent-button" ng-click="deleteOption(question, $index)"
+                    title="{{ 'survey_builder.Delete_option' | translate }}">
+              <span class="fa fa-trash-o"></span>
+              <span class="button-title">{{ 'survey_builder.Delete_option' | translate }}</span>
+            </button>
+          </span>
         </div>
         <div ng-if="item.edit">
           <div focus-me="item.focus">
@@ -297,10 +305,10 @@
                     <span class="fa b-question-builder__variants__item__edit-input--icon"
                           ng-class="{'fa-check-circle-o': item.edit}"></span>
           </button>
-                    <span class="b-question-builder__input-box__error-message" ng-show="item.error">
-                            {{ 'survey_builder.Duplicated_option_value' | translate }}
-                      <span class="button-title"></span>
-                    </span>
+          <span class="b-question-builder__input-box__error-message" ng-show="item.error">
+                  {{ 'survey_builder.Duplicated_option_value' | translate }}
+            <span class="button-title"></span>
+          </span>
         </div>
       </li>
       <li ng-show="question.addOption" class="b-question-builder__variants__item">
@@ -311,9 +319,9 @@
                  ng-keypress="addOption(newOption.text, $event)">
 
         </div>
-                <span class="fa b-question-builder__variants__item__edit-input--icon"
-                      ng-class="{'fa-check-circle-o': question.addOption}"
-                      ng-click="addOption(newOption.text)"></span>
+        <span class="fa b-question-builder__variants__item__edit-input--icon"
+              ng-class="{'fa-check-circle-o': question.addOption}"
+              ng-click="addOption(newOption.text)"></span>
 
         <p class="b-question-builder__input-box__error-message" ng-show="newOption.error">
           {{ 'survey_builder.Duplicated_option_value' | translate }}
@@ -353,18 +361,18 @@
                    class="g-left">
             <span class="b-question-builder__variants__item--label">{{item.text}}</span>
           </label>
-                    <span class="b-question-builder__variants__item__edit-variants">
-                      <button class="transparent-button" ng-click="item.edit = true; item.focus = true;"
-                              title="{{ 'survey_builder.Edit_option' | translate }}">
-                        <span class="fa fa-pencil"></span>
-                        <span class="button-title">{{ 'survey_builder.Edit_option' | translate }}</span>
-                      </button>
-                      <button class="transparent-button" ng-click="deleteOption(question, $index)"
-                              title="{{ 'survey_builder.Delete_option' | translate }}">
-                        <span class="fa fa-trash-o"></span>
-                        <span class="button-title">{{ 'survey_builder.Delete_option' | translate }}</span>
-                      </button>
-                    </span>
+            <span class="b-question-builder__variants__item__edit-variants">
+              <button class="transparent-button" ng-click="item.edit = true; item.focus = true;"
+                      title="{{ 'survey_builder.Edit_option' | translate }}">
+                <span class="fa fa-pencil"></span>
+                <span class="button-title">{{ 'survey_builder.Edit_option' | translate }}</span>
+              </button>
+              <button class="transparent-button" ng-click="deleteOption(question, $index)"
+                      title="{{ 'survey_builder.Delete_option' | translate }}">
+                <span class="fa fa-trash-o"></span>
+                <span class="button-title">{{ 'survey_builder.Delete_option' | translate }}</span>
+              </button>
+            </span>
         </div>
         <div ng-if="item.edit">
           <div focus-me="item.focus">
@@ -408,31 +416,29 @@
           ng-repeat="item in question.items"
           ng-init="item.edit = false; item.error = false; item.prevText = item.text">
         <div ng-if="!item.edit">
-          <label class="">
-            <input type="radio" name="choice"
-                   class="g-left"
-                   ng-click="selectOption(item)"
-                   ng-checked="question.selectedOption == item.value">
-                        <span title="{{item.text}}"
-                              class="b-question-builder__variants__item--label"
-                              ng-class="{selected : question.selectedOption == item.value }">
-                            {{item.text}}
-                        </span>
-          </label>
+          <input type="radio" name="choice"
+                 class="g-left"
+                 ng-click="selectOption(item)"
+                 ng-checked="question.selectedOption == item.value">
 
-                  <span class="b-question-builder__variants__item__edit-variants">
-                      <button class="transparent-button" ng-click="item.edit = true; item.focus = true;"
-                              title="{{ 'survey_builder.Edit_option' | translate }}">
-                        <span class="fa fa-pencil"></span>
-                        <span class="button-title">{{ 'survey_builder.Edit_option' | translate }}</span>
-                      </button>
-                      <button class="transparent-button" ng-click="deleteCascadeOption(item)"
-                              title="{{ 'survey_builder.Delete_option' | translate }}">
-                        <span class="fa fa-trash-o"></span>
-                        <span class="button-title">{{ 'survey_builder.Delete_option' | translate }}</span>
-                      </button>
-                    </span>
+          <span title="{{item.text}}"
+                class="b-question-builder__variants__item--label"
+                ng-class="{selected : question.selectedOption == item.value }">
+              {{item.text}}
+          </span>
 
+          <span class="b-question-builder__variants__item__edit-variants">
+            <button class="transparent-button" ng-click="item.edit = true; item.focus = true;"
+                    title="{{ 'survey_builder.Edit_option' | translate }}">
+              <span class="fa fa-pencil"></span>
+              <span class="button-title">{{ 'survey_builder.Edit_option' | translate }}</span>
+            </button>
+            <button class="transparent-button" ng-click="deleteCascadeOption(item)"
+                    title="{{ 'survey_builder.Delete_option' | translate }}">
+              <span class="fa fa-trash-o"></span>
+              <span class="button-title">{{ 'survey_builder.Delete_option' | translate }}</span>
+            </button>
+          </span>
 
         </div>
         <div ng-if="item.edit">
@@ -442,12 +448,12 @@
                    ng-change="item.error = false"
                    ng-keypress="editOption(item, $index, $event)">
           </div>
-                    <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
-                          ng-class="{'fa-check-circle-o': item.edit}"
-                          ng-click="editOption(item, $index)"></span>
-                    <span class="caption error" ng-show="item.error">
-                            {{ 'survey_builder.Duplicated_option_value' | translate }}
-                    </span>
+          <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
+                ng-class="{'fa-check-circle-o': item.edit}"
+                ng-click="editOption(item, $index)"></span>
+          <span class="caption error" ng-show="item.error">
+                  {{ 'survey_builder.Duplicated_option_value' | translate }}
+          </span>
         </div>
       </li>
       <li ng-show="question.addOption" class="b-question-builder__variants__item">
@@ -457,13 +463,13 @@
                  ng-change="newOption.error = false"
                  ng-keypress="addOption(newOption.text, $event)">
         </div>
-                <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
-                      ng-class="{'fa-check-circle-o': question.addOption}"
-                      ng-click="addOption(newOption.text)"></span>
+        <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
+              ng-class="{'fa-check-circle-o': question.addOption}"
+              ng-click="addOption(newOption.text)"></span>
 
-                <span class="b-question-builder__input-box__error-message" ng-show="newOption.error">
-                        {{ 'survey_builder.Duplicated_option_value' | translate }}
-                </span>
+        <span class="b-question-builder__input-box__error-message" ng-show="newOption.error">
+                {{ 'survey_builder.Duplicated_option_value' | translate }}
+        </span>
       </li>
     </ul>
 
@@ -472,16 +478,16 @@
               role="button"
               ng-click="question.addOption = true; addOptionFocus = true;">
         <span class="fa fa-plus b-question-builder__input-box__button--icon"></span>
-                <span class="b-question-builder__input-box__button--label">
-                    {{ 'survey_builder.Add_option' | translate }}
-                </span>
+          <span class="b-question-builder__input-box__button--label">
+              {{ 'survey_builder.Add_option' | translate }}
+          </span>
       </button>
       <div class="b-question-builder__input-box__button"
            ng-click="question.addOption = false">
         <span class="fa fa-download b-question-builder__input-box__button--icon"></span>
-                <span class="b-question-builder__input-box__button--label">
-                    {{ 'survey_builder.Import_existing_option' | translate }}
-                </span>
+          <span class="b-question-builder__input-box__button--label">
+              {{ 'survey_builder.Import_existing_option' | translate }}
+          </span>
         <input type="file" csv-options-import question="question"
                class="b-question-builder__input-box__button--file">
       </div>
