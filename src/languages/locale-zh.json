@@ -15,7 +15,8 @@
     "Name": "姓名",
     "Results": "结果",
     "Publisher": "发布者",
-    "Date": "日期"
+    "Date": "日期",
+    "Sort_by": "排序"
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",

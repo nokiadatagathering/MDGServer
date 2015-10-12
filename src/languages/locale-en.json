@@ -15,7 +15,8 @@
     "Name": "Name",
     "Results": "Results",
     "Publisher": "Publisher",
-    "Date": "Date"
+    "Date": "Date",
+    "Sort_by": "Sort by "
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",

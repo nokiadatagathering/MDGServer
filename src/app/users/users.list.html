@@ -17,6 +17,9 @@
                         role="button"
                         ng-click="predicate = 'name'; reverse=!reverse">
                   <span class="fa fa-caret-down g-pointer"></span>
+                  <span class="button-title">
+                    {{'table_header.Sort_by'| translate }} {{ 'users.NAME' | translate }}
+                  </span>
                 </button>
             </th>
             <th class="b-table__header__item">
@@ -27,6 +30,9 @@
                       role="button"
                       ng-click="predicate = 'permission'; reverse=!reverse">
                 <span class="fa fa-caret-down g-pointer"></span>
+                  <span class="button-title">
+                    {{'table_header.Sort_by'| translate }} {{ 'users.PERMISSION' | translate }}
+                  </span>
               </button>
             </th>
         </tr>
@@ -40,7 +46,7 @@
             id="{{user._id}}"
             ng-model="users" ng-init="user.hidden = true">
             <td class="b-table__body__row__col b-content__users__users-box__user-item__name">
-                <p class="b-content__users__users-box__user-item__name--title">
+                <div class="b-content__users__users-box__user-item__name--title">
                     <span class="b-table__body__row__col--text"
                         title="{{user.name}}">
                         {{user.name}}
@@ -52,6 +58,7 @@
                           <span class="fa fa-book"></span>
                           <span class="fa b-content__users__users-box__user-item--rules__arrow"
                                 ng-class="{'fa-angle-right': user.hidden, 'fa-angle-down': !user.hidden}"></span>
+                          <span class="button-title">{{ 'users.View_details' | translate }}</span>
                         </button>
                         <button class="transparent-button
                                        b-content__users__users-box__user-item--rules__button"
@@ -80,7 +87,7 @@
                           <span class="button-title">{{user.permission === 'superAdmin' ? ('users.Cannot_delete' | translate) : ('users.Delete_user' | translate) }}</span>
                         </button>
                     </span>
-                </p>
+                </div>
                 <div ng-show="!user.hidden" class="b-content__users__users-box__user-item__info">
                     <div class="b-content__users__users-box__user-item__info__row">
                       <span class="b-content__users__users-box__user-item__info__row--label">
@@ -98,6 +105,9 @@
                         </div>
                         <button class="transparent-button" ng-click="moveToGroup(user.group._id, user._id)"  role="button">
                           <span class="fa fa-check-circle b-content__users__users-box__user-item__info__row--move-to--icon"></span>
+                          <span class="button-title">
+                             {{ 'users.MOVE_TO' | translate }}
+                          </span>
                         </button>
                       </div>
                     </div>
