@@ -69,7 +69,7 @@ body {
 }
 
 .b-line-bit--red {
-  background-color: #D3441c;
+  background-color: #B32E09;
 }
 
 .b-line-bit--green {
@@ -299,7 +299,7 @@ body {
 }
 
 .b-content-header__title {
-  color: #D3441c;
+  color: #B32E09;
   margin: 0;
   font-size: 54px;
   font-weight: normal;
@@ -336,7 +336,7 @@ body {
 .b-content-title {
   margin-top: 0;
   font-size: 36px;
-  color: #D3441c;
+  color: #B32E09;
 }
 
 .b-content__paragraph {
@@ -454,7 +454,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #D3441c;
+  background-color: #B32E09;
   font-size: 24px;
   line-height: 36px;
   display: inline-block;
@@ -494,7 +494,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #D3441c;
+  background-color: #B32E09;
   font-size: 24px;
   line-height: 36px;
   display: inline-block;
@@ -521,7 +521,7 @@ body {
 .b-content__col-left__item__photo-caption,
 .b-content__col-right__item__photo-caption {
   margin: 24px 0;
-  color: #D3441c;
+  color: #B32E09;
   font-style: italic;
   font-size: 18px;
   font-weight: lighter;
@@ -667,7 +667,7 @@ body {
 }
 
 .e-form .e-select__box.ng-dirty.ng-invalid {
-  color: #D3441c;
+  color: #B32E09;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
@@ -732,7 +732,7 @@ body {
 }
 
 .b-step__right__title__count {
-  color: #D3441c;
+  color: #B32E09;
   margin-right: 6px;
 }
 
