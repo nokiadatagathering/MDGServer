@@ -15,7 +15,8 @@
     "Name": "TÊN",
     "Results": "KẾT QUẢ",
     "Publisher": "NGƯỜI GỬI",
-    "Date": "NGÀY"
+    "Date": "NGÀY",
+    "Sort_by": "Sắp xếp theo"
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",

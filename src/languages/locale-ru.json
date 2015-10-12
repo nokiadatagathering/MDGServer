@@ -15,7 +15,8 @@
     "Name": "Имя",
     "Results": "Результаты",
     "Publisher": "Отправитель",
-    "Date": "Дата"
+    "Date": "Дата",
+    "Sort_by": "Сортировать "
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",

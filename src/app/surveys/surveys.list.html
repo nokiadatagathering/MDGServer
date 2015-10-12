@@ -13,6 +13,7 @@
 
               <span class="b-surveys-table__top__icon b-surveys-table__top__icon--upload" >
                 <input file-select="surveyXML" type="file" title="{{'surveys.Upload_XML_survey'| translate }}"
+                       tabindex="0"
                        class="b-surveys-table__top__icon--upload--file"
                        name="files" ng-disabled="offlineMode">
               </span>
@@ -42,7 +43,9 @@
                 <button class="transparent-button"  role="button"
                         ng-click="predicate = 'title'; reverse=!reverse">
                   <span class="fa fa-caret-down g-pointer"></span>
-                  <span class="button-title">Sort surveys by name</span>
+                  <span class="button-title">
+                    {{'table_header.Sort_by'| translate }} {{'table_header.Name'| translate }}
+                  </span>
                 </button>
 
               </th>
@@ -51,7 +54,9 @@
                 <button class="transparent-button" role="button"
                         ng-click="predicate = 'resultsCount'; reverse=!reverse">
                   <span class="fa fa-caret-down  g-pointer"></span>
-                  <span class="button-title">Sort surveys by results</span>
+                  <span class="button-title">
+                    {{'table_header.Sort_by'| translate }} {{'table_header.Results'| translate }}
+                  </span>
                 </button>
 
 
@@ -61,7 +66,9 @@
                 <button class="transparent-button" role="button"
                         ng-click="predicate = '_creator.name'; reverse=!reverse">
                   <span class="fa fa-caret-down  g-pointer"></span>
-                  <span class="button-title">Sort surveys by creator</span>
+                  <span class="button-title">
+                    {{'table_header.Sort_by'| translate }} {{'table_header.Publisher'| translate }}
+                  </span>
                 </button>
               </th>
               <th class="b-table__header__item">
@@ -69,7 +76,9 @@
                 <button class="transparent-button" role="button"
                         ng-click="predicate = 'dateCreated'; reverse=!reverse">
                   <span class="fa fa-caret-down g-pointer"></span>
-                  <span class="button-title">Sort surveys by date</span>
+                  <span class="button-title">
+                    {{'table_header.Sort_by'| translate }} {{'table_header.Date'| translate }}
+                  </span>
                 </button>
               </th>
             </tr>

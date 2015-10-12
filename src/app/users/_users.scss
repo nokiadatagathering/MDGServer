@@ -127,7 +127,6 @@
 
       &__info {
         &__row {
-          overflow: hidden;
           clear: both;
           margin-bottom: 4px;
 
@@ -173,10 +172,6 @@
 
 
       &__name {
-
-        &--title {
-          overflow: hidden;
-        }
 
         &:hover {
           position: relative;
