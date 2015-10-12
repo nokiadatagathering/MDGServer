@@ -37,7 +37,7 @@ angular.module('mdg.ui.dateInput', [])
 
         element.datepicker( "setDate",  scope.dateInput);
       },
-      template: '<input type="text" class="select-field">'
+      template: '<input type="text" class="select-field" placeholder="">'
     };
   }
 );

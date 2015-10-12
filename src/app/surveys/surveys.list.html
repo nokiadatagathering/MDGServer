@@ -15,7 +15,10 @@
                 <input file-select="surveyXML" type="file" title="{{'surveys.Upload_XML_survey'| translate }}"
                        tabindex="0"
                        class="b-surveys-table__top__icon--upload--file"
-                       name="files" ng-disabled="offlineMode">
+                       name="files" ng-disabled="offlineMode"/>
+                <!--Fix For Edge Tab-Navigation -->
+                <span class="button-title">{{'surveys.Upload_XML_survey'| translate }}</span>
+                <span class="fake-focus"></span>
               </span>
             </div>
 

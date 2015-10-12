@@ -52,6 +52,10 @@
     line-height: initial;
     -webkit-appearance: none; /* remove the strong OSX influence from Webkit */
 
+    &:focus {
+      outline: 1px dashed $gray;
+    }
+
     &.ng-dirty.ng-invalid {
       color: $red;
     }
@@ -125,4 +129,36 @@
   white-space: nowrap;
   overflow: hidden;
 
+}
+
+/*
+  Mixins for button titles tooltips
+*/
+
+@mixin button-title ($bg-color: #000000, $color: #ffffff, $width: 200px){
+  visibility: hidden;
+  width: $width;
+  padding: 6px;
+  background: $bg-color;
+  color: $color;
+  font-size: 12px;
+  position: absolute;
+  left: calc(50%/2 - #{$width/2});
+  bottom: 115%;
+  z-index: 1;
+
+  &:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: $bg-color;
+    border-width: 6px;
+    margin-left: -6px;
+  }
 }

@@ -38,7 +38,6 @@ body {
 .e-search-box {
   background-color: $gray-light;
   height: 42px;
-  overflow: hidden;
 
   &__icon.fa {
     color: $gray-icon;
@@ -563,31 +562,7 @@ body {
   }
 
   .button-title {
-    visibility: hidden;
-    width: 200px;
-    padding: 6px;
-    background: #000000;
-    color: white;
-    font-size: 12px;
-    position: absolute;
-    left: calc(-100px + 50%/2);
-    bottom: 115%;
-    z-index: 1;
-
-    &:after {
-      top: 100%;
-      left: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-color: rgba(0, 0, 0, 0);
-      border-top-color: #000000;
-      border-width: 6px;
-      margin-left: -6px;
-    }
+    @include button-title;
   }
 
 }
