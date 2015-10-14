@@ -15,7 +15,8 @@
     "Name": "Имя",
     "Results": "Результаты",
     "Publisher": "Отправитель",
-    "Date": "Дата"
+    "Date": "Дата",
+    "Sort_by": "Сортировать "
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",
@@ -208,6 +209,8 @@
     "maskError": "In case Mask Input is used, the Default Answer value should match the mask.",
     "maxLengthError": "Длина значения по умолчанию не может превышать максимальную длину ответа.",
     "Add_option": "Добавить опцию",
+    "Edit_option": "Редактировать опцию",
+    "Delete_option": "Удалить опцию",
     "Import_existing_option": "Импорт опции...",
     "Notes_description": "Вопрос типа 'заметка' представляет собой сообщение, подсказку или инструкцию для человека, который заполняет опрос. Данный тип вопроса носит сугубо информативный характер и не предусматривает возможность ответа."
   },

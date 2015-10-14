@@ -14,6 +14,12 @@ body {
 .g-right   { float: right; }
 
 
+.g-aria-hide {
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  display: inline-block;
+}
 
 .g-page-wrapper {
   min-height: 100vh;
@@ -32,7 +38,6 @@ body {
 .e-search-box {
   background-color: $gray-light;
   height: 42px;
-  overflow: hidden;
 
   &__icon.fa {
     color: $gray-icon;
@@ -110,6 +115,7 @@ body {
       height: 42px;
       font-size: 18px;
       font-weight: lighter;
+      white-space: nowrap;
     }
   }
 
@@ -174,7 +180,8 @@ body {
         }
 
         &__title {
-          overflow: hidden;
+          width: 100%;
+          display: inline-block;
           clear: both;
 
           .e-options {
@@ -535,7 +542,7 @@ body {
   color: inherit;
   padding: 0;
   font-size: inherit;
-
+  position: relative;
   &:disabled {
     opacity: 0.5;
   }
@@ -547,11 +554,15 @@ body {
     box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.5);
   }
 
-  .button-title {
-    width: 1px;
-    height: 1px;
-    display: inline-block;
-    overflow: hidden;
-    opacity: 0;
+  &:hover,
+  &:focus  {
+    .button-title {
+      visibility: visible;
+    }
   }
+
+  .button-title {
+    @include button-title;
+  }
+
 }

@@ -193,8 +193,8 @@
                     <div class="b-surveys-edit__category__question__header--move-btns">
                       <button class="transparent-button"
                               role="button"
-                              ng-disabled="$index == (category._questions.length + 1)"
-                              aria-disabled="{{$index == (category._questions.length + 1)}}"
+                              ng-disabled="$index == (category._questions.length - 1)"
+                              aria-disabled="{{$index == (category._questions.length - 1)}}"
                               ng-click="moveQuestion(category, question, $index + 1)">
                         <span class="fa fa-arrow-down"></span>
                         <span class="button-title">{{ 'survey_builder.Move_question_down' | translate }}</span>
@@ -210,19 +210,23 @@
 
                       <button class="transparent-button"
                               role="button"
-                              ng-disabled="(category._questions.length == 1)"
-                              aria-disabled="{{(category._questions.length == 1)}}"
+                              ng-disabled="(category._questions.length == 1)
+                                        || (surveyData._categories.length == 1)
+                                        || ($parent.$index === (surveyData._categories.length - 1))")
+                              aria-disabled="{{(category._questions.length == 1) || (surveyData._categories.length == 1)}}"
                               ng-click="moveQuestionToCategory(category, question, 1)">
                         <span class="fa fa-arrow-circle-down"></span>
-                        <span class="button-title">{{ 'survey_builder.Delete_question' | translate }}</span>
+                        <span class="button-title">{{ 'survey_builder.Move_question_to_category_above' | translate }}</span>
                       </button>
                       <button class="transparent-button"
                               role="button"
-                              ng-disabled="(category._questions.length == 1)"
-                              aria-disabled="{{(category._questions.length == 1)}}"
+                              ng-disabled="(category._questions.length == 1)
+                                        || (surveyData._categories.length == 1)
+                                        || ($parent.$index === 0)"
+                              aria-disabled="{{(category._questions.length == 1) || (surveyData._categories.length == 1)}}"
                               ng-click="moveQuestionToCategory(category, question, -1)">
                         <span class="fa fa-arrow-circle-up"></span>
-                        <span class="button-title">{{ 'survey_builder.Delete_question' | translate }}</span>
+                        <span class="button-title">{{ 'survey_builder.Move_question_to_category_below' | translate }}</span>
                       </button>
                     </div>
 

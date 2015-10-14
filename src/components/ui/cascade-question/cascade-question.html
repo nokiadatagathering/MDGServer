@@ -1,77 +1,76 @@
-
 <div class="b-cascade-question__cascade-subs">
-    <div class="b-question-builder__input-box">
-        <ul class="b-question-builder__variants">
-            <li class="b-question-builder__variants__item"
-                ng-repeat="item in cascades[selectedOption].items"
-                ng-init="item.edit = false; item.error = false; item.prevText = item.text">
-                <div ng-if="!item.edit">
-                    <form name="cascade-form-{{selectedOption}}">
-                        <label>
-                            <input type="radio" name="choice"
-                                   ng-click="selectOption(item)"
-                                   ng-checked="cascades.selectedOption == item.value">
-                            <span title="{{item.text}}"
-                                  class="b-question-builder__variants__item--label"
-                                  ng-class="{selected : cascades.selectedOption == item.value}">
-                              {{item.text}}
-                            </span>
-                        </label>
-                    </form>
-
-                    <span class="b-question-builder__variants__item__edit-variants">
-                        <span class="fa fa-pencil" ng-click="item.edit = true; item.focus = true"></span>
-                        <span class="fa fa-trash-o" ng-click="deleteOption(item)"></span>
-                    </span>
-                </div>
-                <div ng-if="item.edit">
-                    <div focus-me="item.focus">
-                        <input type="text" ng-model="item.text"
-                               class="b-question-builder__variants__item__edit-input"
-                               ng-change="item.error = false"
-                               ng-keypress="editOption(item, $index, $event)">
-                    </div>
-                    <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
-                           ng-class="{'fa-check-circle-o': item.edit}"
-                           ng-click="editOption(item, $index)"></span>
-                    <span class="b-question-builder__input-box__error-message" ng-show="item.error">
-                            {{ 'survey_builder.Duplicated_option_value' | translate }}
-                    </span>
-                </div>
-            </li>
-            <li ng-show="showAddOption" class="b-question-builder__variants__item">
-                <div focus-me="focus">
-                    <input type="text" ng-model="newOption.text"
-                           class="b-question-builder__variants__item__edit-input"
-                           ng-change="newOption.error = false"
-                           ng-keypress="addOption(newOption.text, $event)">
-                </div>
-                <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
-                       ng-class="{'fa-check-circle-o': showAddOption}" ng-click="addOption(newOption.text)"></span>
-                <span class="b-question-builder__input-box__error-message" ng-show="newOption.error">
-                        {{ 'survey_builder.Duplicated_option_value' | translate }}
-                </span>
-        </li>
-        </ul>
-        <div class="rules">
-            <button class="b-question-builder__input-box__button" role="button"
-                    ng-click="showAddOption = true; focus = true; newOption.error=false">
-                <span class="fa fa-plus b-question-builder__input-box__button--icon"></span>
-                <span class="b-question-builder__input-box__button--label">
-                    {{ 'survey_builder.Add_option' | translate }}
-                </span>
-            </button>
-            <div class="b-question-builder__input-box__button"
-                 ng-click="question.addOption = false">
-                <span class="fa fa-download b-question-builder__input-box__button--icon"></span>
-                <span class="b-question-builder__input-box__button--label">
-                    {{ 'survey_builder.Import_existing_option' | translate }}
-                </span>
-                <input type="file" csv-options-import question="cascades[selectedOption]" addoption="addOption"
-                       class="b-question-builder__input-box__button--file">
-            </div>
+  <div class="b-question-builder__input-box">
+    <ul class="b-question-builder__variants">
+      <li class="b-question-builder__variants__item"
+          ng-repeat="item in cascades[selectedOption].items"
+          ng-init="item.edit = false; item.error = false; item.prevText = item.text">
+        <div ng-if="!item.edit">
+          <form name="cascade-form-{{selectedOption}}">
+            <label>
+              <input type="radio" name="choice"
+                     ng-click="selectOption(item)"
+                     class="g-left"
+                     ng-checked="cascades.selectedOption == item.value">
+                        <span title="{{item.text}}"
+                              class="b-question-builder__variants__item--label"
+                              ng-class="{selected : cascades.selectedOption == item.value}">
+                          {{item.text}}
+                        </span>
+            </label>
+          </form>
+          <span class="b-question-builder__variants__item__edit-variants">
+              <span class="fa fa-pencil" ng-click="item.edit = true; item.focus = true"></span>
+              <span class="fa fa-trash-o" ng-click="deleteOption(item)"></span>
+          </span>
         </div>
+        <div ng-if="item.edit">
+          <div focus-me="item.focus">
+            <input type="text" ng-model="item.text"
+                   class="b-question-builder__variants__item__edit-input"
+                   ng-change="item.error = false"
+                   ng-keypress="editOption(item, $index, $event)">
+          </div>
+            <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
+                  ng-class="{'fa-check-circle-o': item.edit}"
+                  ng-click="editOption(item, $index)"></span>
+            <span class="b-question-builder__input-box__error-message" ng-show="item.error">
+                    {{ 'survey_builder.Duplicated_option_value' | translate }}
+            </span>
+        </div>
+      </li>
+      <li ng-show="showAddOption" class="b-question-builder__variants__item">
+        <div focus-me="focus">
+          <input type="text" ng-model="newOption.text"
+                 class="b-question-builder__variants__item__edit-input"
+                 ng-change="newOption.error = false"
+                 ng-keypress="addOption(newOption.text, $event)">
+        </div>
+          <span type="button" class="fa b-question-builder__variants__item__edit-input--icon"
+                ng-class="{'fa-check-circle-o': showAddOption}" ng-click="addOption(newOption.text)"></span>
+          <span class="b-question-builder__input-box__error-message" ng-show="newOption.error">
+                  {{ 'survey_builder.Duplicated_option_value' | translate }}
+          </span>
+      </li>
+    </ul>
+    <div class="rules">
+      <button class="b-question-builder__input-box__button" role="button"
+              ng-click="showAddOption = true; focus = true; newOption.error=false">
+        <span class="fa fa-plus b-question-builder__input-box__button--icon"></span>
+          <span class="b-question-builder__input-box__button--label">
+              {{ 'survey_builder.Add_option' | translate }}
+          </span>
+      </button>
+      <div class="b-question-builder__input-box__button"
+           ng-click="question.addOption = false">
+        <span class="fa fa-download b-question-builder__input-box__button--icon"></span>
+          <span class="b-question-builder__input-box__button--label">
+              {{ 'survey_builder.Import_existing_option' | translate }}
+          </span>
+        <input type="file" csv-options-import question="cascades[selectedOption]" addoption="addOption"
+               class="b-question-builder__input-box__button--file">
+      </div>
     </div>
+  </div>
 </div>
 <div class="{{cascadeNextName}}-tmpl b-cascade-question__cascade-tmpl"></div>
 
