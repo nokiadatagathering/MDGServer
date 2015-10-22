@@ -19,9 +19,14 @@
 
   background-color: $gray-light;
 
-  .e-select {
-    @include select;
+  &__dropdown {
+    width: 200px;
+    height: 30px;
+    background: #FFF;
+    font-size: 16px;
     float: left;
+    line-height: 32px;
+    padding-right: 16px;
   }
 
   &__top {

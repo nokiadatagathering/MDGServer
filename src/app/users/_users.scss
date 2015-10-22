@@ -146,9 +146,14 @@
           &--move-to {
             float: right;
 
-            .e-select {
-              @include select(140px, 24px, white, 16px);
+            &__dropdown {
+              width: 140px;
+              height: 24px;
+              background: #FFFFFF;
+              font-size: 16px;
               float: left;
+              line-height: 16px;
+              padding-right: 16px;
             }
 
             &--icon {
