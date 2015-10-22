@@ -93,16 +93,14 @@
                       <span class="b-content__users__users-box__user-item__info__row--label">
                         {{ 'users.MOVE_TO' | translate }}
                       </span>
-                      <div class="b-content__users__users-box__user-item__info__row--move-to">
-                        <div class="e-select" ng-init="user.group = group[0]">
-                          <label class="e-select__label">
-                            <select name="" id="" class="e-select__box"
-                                    ng-model="user.group"
-                                    ng-options="group as group.name for group in groups">
-                              <option value="">Select Group</option>
-                            </select>
-                          </label>
-                        </div>
+                      <div class="b-content__users__users-box__user-item__info__row--move-to"
+                           ng-init="user.group = {name: 'Select Group'}">
+                          <div dropdown-select="groups"
+                               dropdown-model="user.group"
+                               dropdown-item-label="name"
+                               dropdown-onchange="user.group"
+                               class="b-content__users__users-box__user-item__info__row--move-to__dropdown">
+                          </div>
                         <button class="transparent-button" ng-click="moveToGroup(user.group._id, user._id)"  role="button">
                           <span class="fa fa-check-circle b-content__users__users-box__user-item__info__row--move-to--icon"></span>
                           <span class="button-title">
