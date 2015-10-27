@@ -21,7 +21,6 @@
     function getUserPermission () {
       return $http.get(GET_USER_PERMISSION_URL + '?t=' + cacheBuster)
         .success(function (result) {
-          console.log('result', result);
         });
     }
 
