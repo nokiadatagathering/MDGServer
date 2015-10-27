@@ -303,8 +303,7 @@
                          ng-if="question.type==='select1'">
                       <span
                         class="b-skip-logic__body__option--label">{{ 'survey_builder.DEFAULT' | translate }}</span>
-                      <label class="b-skip-logic__body__option--label">{{ 'survey_builder.Go_to' | translate
-                        }}</label>
+                      <label class="b-skip-logic__body__option--label">{{ 'survey_builder.Go_to' | translate }}</label>
 
                       <button dropdown-select="question.skipLogicList"
                               role="select"
@@ -356,8 +355,7 @@
                              ng-blur="checkSLIntValueError(question)"
                              ng-model="slOpt.secondInput">
 
-                      <label class="b-skip-logic__body__input--label">{{ 'survey_builder.then_skip_to' | translate
-                        }} </label>
+                      <label class="b-skip-logic__body__input--label">{{ 'survey_builder.then_skip_to' | translate}} </label>
 
                       <div class="b-skip-logic__body__question-select"
                            dropdown-select="slOpt.ddListQuestions"
@@ -369,9 +367,9 @@
 
                       <button type="button"
                               role="button"
-                              class="b-skip-logic__body__del-option transparent-button"
+                              class="transparent-button"
                               ng-click="deleteSLOption(question, $index, $parent.$parent.$parent.$parent.$index)">
-                        <span class="fa fa-times"></span>
+                        <span class="fa fa-times b-skip-logic__body__del-option"></span>
                       </button>
                     </div>
 

@@ -25,6 +25,7 @@
     $scope.getGroupList = function () {
       groupsService.groupList().then(
         function success(config) {
+          console.log('config.data',config.data);
           $scope.groups = config.data;
         },
 
@@ -69,6 +70,7 @@
     };
 
     $scope.saveNewGroup = function (groupName) {
+      console.log('groupName',groupName);
       if (groupName) {
         groupsService.createGroup(groupName).then(
           function success(config) {
@@ -83,7 +85,6 @@
             console.log("error:", err);
           });
       } else {
-
         $scope.showNewGroup = false;
       }
     };

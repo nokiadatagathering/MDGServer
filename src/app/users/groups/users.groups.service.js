@@ -3,16 +3,18 @@
 
   angular.module('mdg.app.users').service('groupsService', function ($q, $http) {
     /** @const */
-    var GROUPS_URL = '/groups/';
+    var GROUPS_URL = '/groups';
 
     function groupList() {
-      return $http.get(GROUPS_URL)
+
+      return $http.get(GROUPS_URL + '?cacheBuster=' +  new Date().getTime())
         .success(function (result) {
+          console.log('result', result);
         });
     }
 
     function groupData(groupId) {
-      var group_url = GROUPS_URL + groupId;
+      var group_url = GROUPS_URL +'/' + groupId;
       return $http.get(group_url)
         .success(function (result) {
         });
@@ -32,7 +34,7 @@
     }
 
     function deleteGroup(groupId) {
-      var delete_group_url = GROUPS_URL + groupId;
+      var delete_group_url = GROUPS_URL +'/' + groupId;
       return $http.delete(delete_group_url)
         .success(function (result) {
         });

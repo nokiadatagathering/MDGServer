@@ -29,8 +29,7 @@
           <div ng-if="showNewGroup"
                class="b-content__users__groups-box__group-table__new-group new-group">
             <form id="newGroup"
-                  name="newGroup"
-                  ng-submit="saveNewGroup(groupName)">
+                  name="newGroup">
                       <span focus-me="groupName">
                           <input type="text"
                                  form="newGroup"
@@ -45,14 +44,12 @@
                                  ng-model="groupName">
 
                         <button type="submit" form="newGroup"
+                                ng-click="saveNewGroup(groupName)"
                                 role="button"
-                                class="b-content__users__groups-box__group-table__new-group--button">
+                                class="b-content__users__groups-box__group-table__new-group--button transparent-button">
                           <span class="fa fa-check-circle"></span>
+                          <span class="button-title">{{ 'users.save_group' | translate }}</span>
                         </button>
-                          <span class="b-content__users__groups-box__group-table__new-group--tooltip"
-                                ng-if="showNewGroup && newGroup.$valid && !errorExistingGroupName">
-                              {{ 'users.save_group' | translate }}
-                          </span>
                           <div errorsblock="errors.groupName"></div>
                       </span>
             </form>

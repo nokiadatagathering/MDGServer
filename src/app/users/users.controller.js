@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('mdg.app.users').controller('UsersController',
-    function ($scope, $http, $location, $window, $stateParams, $rootScope, $state,
+    function ($scope, $location, $window, $stateParams, $rootScope, $state,
               usersService,
               groupsService,
               smsService,
