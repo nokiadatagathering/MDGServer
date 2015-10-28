@@ -5,8 +5,8 @@ angular.module('mdg.ui.fileSelect', [])
     return function (scope, elem, attrs) {
       elem.bind('change', function (event) {
         scope.$apply(function () {
-          scope[attrs.fileSelect] = event.originalEvent.target.files[0];
-          scope.uploadSurvey();
+          scope.$parent[attrs.fileSelect] = event.originalEvent.target.files[0];
+          scope.$parent.uploadSurvey();
           elem.val(null);
         });
       });

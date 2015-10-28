@@ -13,10 +13,9 @@
 
               <span class="b-surveys-table__top__icon b-surveys-table__top__icon--upload" >
                 <input file-select="surveyXML" type="file" title="{{'surveys.Upload_XML_survey'| translate }}"
-                       tabindex="0"
+                       on-change="uploadSurvey()"
                        class="b-surveys-table__top__icon--upload--file"
                        name="files" ng-disabled="offlineMode"/>
-                <!--Fix For Edge Tab-Navigation -->
                 <span class="button-title">{{'surveys.Upload_XML_survey'| translate }}</span>
               </span>
             </div>

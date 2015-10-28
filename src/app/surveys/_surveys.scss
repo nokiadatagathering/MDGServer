@@ -43,11 +43,11 @@
     &--title {
 
       color: $blue;
-      font-size: 24px;
+      font-size: 36px;
       font-weight: 100;
 
       .fa {
-        font-size: 24px;
+        font-size: 36px;
         margin-right: 36px;
         cursor: pointer;
       }
@@ -87,7 +87,7 @@
           &:focus {
             opacity: 1;
             width: 0;
-            
+
           }
 
           &:focus, &:hover {

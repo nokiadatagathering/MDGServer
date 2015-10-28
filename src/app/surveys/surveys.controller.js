@@ -79,6 +79,7 @@ angular.module('mdg.app.surveys')
       };
 
       $scope.uploadSurvey = function () {
+
         if (!$scope.surveyXML) {
           return;
         }
