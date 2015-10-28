@@ -123,9 +123,8 @@
         }
 
         $rootScope.deletedItems.results = _.flatten([$rootScope.deletedItems.results, $rootScope.selectedResults]);
-
-        $state.go('page.results');
         $rootScope.$broadcast('deleted_result', $scope.survey._id, $rootScope.selectedResults, $scope.survey.title);
+        $state.go('page.results.list');
       };
 
       $scope.getSubscriptions = function () {

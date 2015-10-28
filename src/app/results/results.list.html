@@ -2,12 +2,12 @@
 
 <div class="b-results__list-box">
     <div class="b-results__list-box__body">
-        <form name="exportForm" ng-submit="exportResults()">
+        <form name="exportForm">
             <div class="b-results__list-box__body__top">
-                <div class="b-results__list-box__body__top__arrow-back"
+                <button class="b-results__list-box__body__top__arrow-back transparent-button"
                      ui-sref="page.surveys.list">
                     <span class="fa fa-arrow-left"></span>
-                </div>
+                </button>
                 <div class="b-results__list-box__body__top__rules">
                     <button title="{{ 'results.results_on_map' | translate }}"
                             type="button"  role="button"
@@ -56,23 +56,33 @@
                     </th>
                     <th class="b-table__header__item">
                         <span>{{ 'results.RESULT_TITLE' | translate }}</span>
-                                    <span class="fa fa-caret-down g-pointer"
-                                          ng-click="predicate = 'title'; reverse=!reverse"></span>
+                        <button class="transparent-button"
+                                ng-click="predicate = 'title'; reverse=!reverse">
+                          <span class="fa fa-caret-down g-pointer"></span>
+                        </button>
+
                     </th>
                     <th class="b-table__header__item">
                         <span>{{ 'results.DATE_SENT' | translate }}</span>
-                                    <span class="fa fa-caret-down g-pointer"
-                                          ng-click="predicate = 'timeCreated'; reverse=!reverse"></span>
+                      <button class="transparent-button"
+                              ng-click="predicate = 'timeCreated'; reverse=!reverse">
+                        <span class="fa fa-caret-down g-pointer"></span>
+                      </button>
+
                     </th>
                     <th class="b-table__header__item">
                         <span> {{ 'results.GPS' | translate }}</span>
-                                    <span class="fa fa-caret-down g-pointer"
-                                          ng-click="predicate = 'geostamp'; reverse=!reverse"></span>
+                      <button class="transparent-button"
+                              ng-click="predicate = 'geostamp'; reverse=!reverse">
+                        <span class="fa fa-caret-down g-pointer"></span>
+                      </button>
                     </th>
                     <th class="b-table__header__item">
                         <span>{{ 'results.DATA_COLLECTOR' | translate }} </span>
-                                    <span class="fa fa-caret-down g-pointer"
-                                          ng-click="predicate = '_user.name'; reverse=!reverse"></span>
+                      <button class="transparent-button"
+                              ng-click="predicate = '_user.name'; reverse=!reverse">
+                        <span class="fa fa-caret-down g-pointer"></span>
+                      </button>
                     </th>
                 </tr>
                 </thead>
@@ -87,10 +97,10 @@
                         <input type="checkbox" role="checkbox" ng-click="formSelectedResults(result._id)"
                                ng-checked="selectedResults.indexOf(result._id) !== -1 ? true : false">
                     </td>
-                    <td class="b-table__body__row__col"
-                        ui-sref="page.results.list.details({resultId: result._id})">
-                        <h4 title="{{result.title}}" class="b-table__body__row__col--text">
-                            {{result.title}}</h4>
+                    <td class="b-table__body__row__col">
+                        <a title="{{result.title}}" class="b-table__body__row__col--text"
+                           ui-sref="page.results.list.details({resultId: result._id})">
+                            {{result.title}}</a>
                     </td>
                     <td class="b-table__body__row__col">
                         <span class="b-table__body__row__col--text">{{result.timeCreated | date: 'MM/dd/yy'}}</span>

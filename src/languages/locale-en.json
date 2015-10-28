@@ -2,6 +2,7 @@
   "offlineMode": "You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode",
   "offlineNotSupport": "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode.",
   "Synchronize": "Synchronize",
+  "Close_popup": "Close popup",
   "header": {
     "surveys": "Surveys",
     "users": "Users",

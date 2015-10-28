@@ -85,6 +85,7 @@ body {
     font-size: 30px;
     float: left;
     font-weight: bold;
+    @include text-ellipsis;
   }
 
   &--icon.fa {
