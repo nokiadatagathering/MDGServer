@@ -83,7 +83,6 @@
             console.log("error:", err);
           });
       } else {
-
         $scope.showNewGroup = false;
       }
     };

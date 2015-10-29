@@ -145,17 +145,17 @@
 
   angular.module('mdg').filter('selectPublished', function () {
     return function (array, selectVal) {
-      if (!selectVal) {
+      if (selectVal === 'all') {
         return array;
       }
 
-      if (selectVal === 'Published') {
+      if (selectVal === 'published') {
         return _(array).filter(function (item) {
           return item.published;
         });
       }
 
-      if (selectVal === 'Unpublished') {
+      if (selectVal === 'unpublished') {
         return _(array).filter(function (item) {
           return !item.published;
         });
@@ -254,6 +254,7 @@
         authorizationService.logout().then(
           function success() {
             localStorage.clear();
+            sessionStorage.clear();
             window.document.location.href = '/home';
           },
 

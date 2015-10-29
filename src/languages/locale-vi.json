@@ -2,6 +2,7 @@
   "offlineMode": "Bạn đang làm việc trong chế độ offline. Chỉ trang Khảo sát và Builder Khảo sát có sẵn trong chế độ offline",
   "offlineNotSupport": "Trình duyệt của bạn không hỗ trợ webSQL . Vui lòng sử dụng trình duyệt Google Chrome để làm việc ở chế độ offline.",
   "Synchronize": "Synchronize",
+  "Close_popup": "gần cửa sổ bật lên",
   "header": {
     "surveys": "Khảo sát",
     "users": "Người dùng",

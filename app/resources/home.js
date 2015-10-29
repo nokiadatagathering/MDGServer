@@ -257,6 +257,7 @@
 
         form.addEventListener('submit', function (evt) {
             evt.preventDefault();
+
             if (evt.target.password.value.length !== 0 && evt.target.username.value.length !== 0) {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {

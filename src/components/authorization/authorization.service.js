@@ -9,7 +9,7 @@
       GET_USER_PERMISSION_URL = '/userPermission',
       LOGOUT_URL = '/logout';
 
-    function getLanguages () {
+      function getLanguages () {
       return $http.get(LANGUAGES_URL);
     }
 
@@ -18,7 +18,7 @@
     }
 
     function getUserPermission () {
-      return $http.get(GET_USER_PERMISSION_URL)
+      return $http.get(GET_USER_PERMISSION_URL + '?cacheBuster=' + new Date().getTime())
         .success(function (result) {
         });
     }

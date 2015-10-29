@@ -12,19 +12,14 @@ angular.module('mdg.app.surveys')
       $scope.deletedSurveys = [];
       $scope.surveyXML = null;
       $scope.fileTypeError = false;
+
       $scope.dropdownList = [
         { translateId: 'surveys.All', value: 'all' },
         { translateId: 'surveys.Published', value: 'published' },
-        { translateId: 'surveys.Unpublished', value: 'unpublished' }
+        { translateId: 'surveys.Unpublished', value: 'unpublished'}
       ];
 
-      $scope.select = [
-        {label: 'All', value: ''},
-        {label: 'Published', value: 'Published'},
-        {label: 'Unpublished', value: 'Unpublished'}
-      ];
-
-      $scope.selectVal = $scope.select[0];
+    $scope.dropdownSelect =  { translateId: 'surveys.All', value: 'all' };
 
       $scope.dropdownSelect =  { translateId: 'surveys.All', value: 'all' };
 
@@ -84,6 +79,7 @@ angular.module('mdg.app.surveys')
       };
 
       $scope.uploadSurvey = function () {
+
         if (!$scope.surveyXML) {
           return;
         }

@@ -42,7 +42,6 @@
                         <tbody class="b-table__body">
                         <tr class="b-table__body__row" ng-repeat="survey in archivedSurveys
                                                             | deletedItemsFilter : 'surveys'
-                                                            | selectPublished : selectVal.value
                                                             | filter:search
                                                             | orderBy:predicate:reverse">
                             <td class="b-table__body__row__col">
@@ -83,10 +82,10 @@
                             </td>
 
                             <td class="b-table__body__row__col">
-                                <p class="b-table__body__row__col--text "
+                                <a class="b-table__body__row__col--text "
                                    ng-class="{'b-table__body__row__col--text--results':survey.resultsCount}"
                                    ui-sref="page.results.list({surveyId : survey.id})"
-                                   title="{{survey.resultsCount}}">{{survey.resultsCount}}</p>
+                                   title="{{survey.resultsCount}}">{{survey.resultsCount}}</a>
                             </td>
 
                             <td class="b-table__body__row__col">
