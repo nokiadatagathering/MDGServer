@@ -39,6 +39,11 @@
       font-size: 18px;
       color: $gray-text;
       clear: both;
+
+      &__link {
+        font-weight: bold;
+        cursor: pointer;
+      }
     }
   }
 
