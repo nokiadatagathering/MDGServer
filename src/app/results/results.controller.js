@@ -12,12 +12,14 @@
       $scope.path = $location.$$path;
       $scope.results = {};
       $scope.schedule = {};
-      $rootScope.selectedResults = $rootScope.selectedResults ? $rootScope.selectedResults : [];
       $scope.survey = {};
       $scope.subscriptions = {};
       $scope.exportForm = {};
       $scope.errors = {};
 
+      $scope.selected = {
+        results : ($scope.selected && $scope.selected.results) ? $scope.selected.results : []
+      };
       $scope.dropdownList = [
         {text: 'Export to:', value: ''},
         {text: 'KML', value: 'kml'},
@@ -26,30 +28,10 @@
       ];
       $scope.dropdownSelect = {};
 
-      //$('#from').datepicker({
-      //  dateFormat: 'dd/mm/yy',
-      //  defaultDate: '+0d',
-      //  onClose: function (selectedDate) {
-      //    $('#to').datepicker('option', 'minDate', selectedDate);
-      //  }
-      //});
-      //
-      //$('#to').datepicker({
-      //  dateFormat: 'dd/mm/yy',
-      //  defaultDate: '+0d',
-      //  onClose: function (selectedDate) {
-      //    $('#from').datepicker('option', 'maxDate', selectedDate);
-      //  }
-      //});
-
       $scope.getResultList = function () {
         resultsService.resultList($stateParams.surveyId).then(
           function success(config) {
             $scope.results = config.data;
-
-            if ($scope.results.length === $rootScope.selectedResults.length) {
-              $scope.allChecked = true;
-            }
           },
 
           function failed(err) {
@@ -73,7 +55,7 @@
       };
 
       $scope.viewMap = function () {
-        if ($rootScope.selectedResults.length === 0) {
+        if ($scope.selected.results.length === 0) {
           $rootScope.$broadcast('choose_results', 'view_map');
           return;
         }
@@ -86,7 +68,7 @@
       };
 
       $scope.modalResultsChart = function () {
-        if ($rootScope.selectedResults.length === 0) {
+        if ($scope.selected.results.length === 0) {
           $rootScope.$broadcast('choose_results', 'view_charts');
           return;
         }
@@ -94,36 +76,31 @@
 
       };
 
-      $scope.formSelectedResults = function (resultId) {
-        if (resultId) {
-          var index = $rootScope.selectedResults.indexOf(resultId);
-
-          if (index !== -1) {
-            $rootScope.selectedResults.splice(index, 1);
-          } else {
-            $rootScope.selectedResults.push(resultId);
-          }
+      $scope.selectAllResults = function () {
+        if ($scope.selected.results.length > 0) {
+          $scope.selected.results = [];
         } else {
-          if (!$scope.allChecked && $scope.results.length !== $rootScope.selectedResults.length) {
-            $rootScope.selectedResults = [];
+          $scope.selected.results = _($scope.results).pluck('_id');
+        }
+      };
 
-            _.each($scope.results, function (result) {
-              $rootScope.selectedResults.push(result._id);
-            });
-          } else {
-            $rootScope.selectedResults = [];
-          }
+      $scope.formSelectedResults = function (resultId) {
+        if (_($scope.selected.results).contains(resultId)) {
+          $scope.selected.results = _($scope.selected.results).without(resultId);
+
+        } else {
+          $scope.selected.results.push(resultId);
         }
       };
 
       $scope.deleteResults = function () {
-        if ($rootScope.selectedResults.length === 0) {
+        if ($scope.selected.results.length === 0) {
           $rootScope.$broadcast('choose_results', 'delete');
           return;
         }
 
-        $rootScope.deletedItems.results = _.flatten([$rootScope.deletedItems.results, $rootScope.selectedResults]);
-        $rootScope.$broadcast('deleted_result', $scope.survey._id, $rootScope.selectedResults, $scope.survey.title);
+        $rootScope.deletedItems.results = _.flatten([$rootScope.deletedItems.results, $scope.selected.results]);
+        $rootScope.$broadcast('deleted_result', $scope.survey._id, $scope.selected.results, $scope.survey.title);
         $state.go('page.results.list');
       };
 
@@ -139,14 +116,14 @@
       };
 
       $scope.exportResults = function (type) {
-        if ($rootScope.selectedResults.length === 0) {
+        if ($scope.selected.results.length === 0) {
           $rootScope.$broadcast('choose_results', 'export');
         } else if ($scope.dropdownSelect.value) {
 
           var fakeForm = $('<form>')
             .attr('method', 'POST')
             .attr('action', '/export/' + $stateParams.surveyId + '/?type=' + type)
-            .append($rootScope.selectedResults.map(function (id, index) {
+            .append($scope.selected.results.map(function (id, index) {
                 return $('<input type="hidden">')
                   .attr('name', 'results[' + index + ']')
                   .attr('value', id)
@@ -156,24 +133,6 @@
           fakeForm.appendTo("body").submit();
         }
       };
-
-      //$scope.addFieldsErrors = function () {
-      //  var fields = {
-      //    email: ['required', 'email', 'errorEmailPattern'],
-      //    from: ['required'],
-      //    to: ['required']
-      //  };
-      //
-      //  _.map(_.pairs(fields), function (field) {
-      //    $scope.errors[field[0]] = errorsService.getFieldErrorsHtml(field[0], field[1], 'exportScheduleForm');
-      //  });
-      //};
-      //
-      //$scope.$on("$destroy", function () {
-      //  $('#ui-datepicker-div').css('display', 'none');
-      //});
-
-      //$scope.addFieldsErrors();
 
       $scope.getResultList();
       $scope.getSurveyInfo();

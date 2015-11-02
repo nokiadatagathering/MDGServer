@@ -224,7 +224,7 @@
       resultsChartService.getChartData({
         survey: $stateParams.surveyId,
         question: $scope.questions[index].id,
-        results: $rootScope.selectedResults
+        results: $scope.selected.results
       }).then(
         function success (config) {
           if (type === 'bar') {
@@ -243,7 +243,7 @@
       resultsChartService.getChartUrl({
         survey: $stateParams.surveyId,
         question: $scope.questions[index].id,
-        results: $rootScope.selectedResults
+        results: $scope.selected.results
       }).then(
         function success (config) {
           $scope.questions[index].chart.url = config.data.imageUrl;

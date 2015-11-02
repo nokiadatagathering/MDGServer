@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('mdg.app.users').controller('GroupSmsController',
-    function ($scope, $stateParams,
+    function ($scope, $stateParams, $state,
               smsService) {
 
       $scope.smsText = '';

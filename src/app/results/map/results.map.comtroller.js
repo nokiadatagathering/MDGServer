@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   angular.module('mdg.app.results').controller('resultsMapController',
-    function ($scope, $rootScope, $http, $stateParams, resultMapService, nokia_app_id, nokia_app_code) {
+    function ($scope, $rootScope, $http, $stateParams, $state, resultMapService, nokia_app_id, nokia_app_code) {
     var
       mapContainer,
       markers = [],
@@ -29,20 +29,19 @@
       nokia.Settings.set("secureConnection", "force");
     }
 
-    if ($rootScope.selectedResults.length !== 0) {
-      $scope.selectedResults = $rootScope.selectedResults;
+    if ($scope.selected.results.length !== 0) {
 
-      localStorage.setItem('selectedResults', $rootScope.selectedResults);
+      localStorage.setItem('selectedResults', $scope.selected.results);
     } else {
       if (localStorage.getItem('selectedResults')) {
-        $scope.selectedResults = localStorage.getItem('selectedResults').split(',');
+        $scope.selected.results = localStorage.getItem('selectedResults').split(',');
       } else {
-        $state.go('page.results', { surveyId: $stateParams.surveyId });
+        $state.go('page.results.list.details', { surveyId: $stateParams.surveyId, resultId:  $stateParams.resultId});
       }
     }
 
     $scope.getMapData = function () {
-      resultMapService.getChartData({ survey: $stateParams.surveyId, results: $scope.selectedResults }).then(
+      resultMapService.getChartData({ survey: $stateParams.surveyId, results: $scope.selected.results }).then(
         function success (config) {
           clusterDataPoints(config.data);
         },

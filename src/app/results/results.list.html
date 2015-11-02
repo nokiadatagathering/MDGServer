@@ -1,122 +1,135 @@
-
-
 <div class="b-results__list-box">
-    <div class="b-results__list-box__body">
-        <form name="exportForm">
-            <div class="b-results__list-box__body__top">
-                <button class="b-results__list-box__body__top__arrow-back transparent-button"
-                     ui-sref="page.surveys.list">
-                    <span class="fa fa-arrow-left"></span>
-                </button>
-                <div class="b-results__list-box__body__top__rules">
-                    <button title="{{ 'results.results_on_map' | translate }}"
-                            type="button"  role="button"
-                            class="b-results__list-box__body__top__icon"
-                            ng-click="viewMap()">
-                        <span class="fa fa-globe"></span>
-                    </button>
-                    <button title="{{ 'results.results_on_chart' | translate }}"
-                            type="button"
-                            role="button"
-                            class="b-results__list-box__body__top__icon"
-                            ng-click="modalResultsChart()">
-                        <span class="fa fa-bar-chart"></span>
-                    </button>
-                    <button type="submit" role="button"
-                            value="" class="b-results__list-box__body__top__icon"
-                            title="{{ 'results.Export_results' | translate }}"
-                            dropdown-menu="dropdownList"
-                            dropdown-model="dropdownSelect"
-                            dropdown-onchange="exportResults(dropdownSelect.value)">
-                        <span class="fa fa-external-link-square"></span>
-                    </button>
-                    <button title="{{ 'results.Delete_results' | translate }}"
-                            type="button"
-                            role="button"
-                            class="b-results__list-box__body__top__icon"
-                            ng-click="deleteResults()">
-                        <span class="fa fa-trash-o"></span>
-                    </button>
-                </div>
-                <div class="b-results__list-box__body__top__search">
-                    <div class="e-search-box">
-                        <span class="fa fa-search e-search-box__icon"></span>
-                        <input type="search" class="e-search-box__input"
-                               placeholder="{{ 'results.Search' | translate }}"
-                               ng-model="q">
-                    </div>
-                </div>
-            </div>
+  <div class="b-results__list-box__body">
+    <form name="exportForm">
+      <div class="b-results__list-box__body__top">
+        <button class="b-results__list-box__body__top__arrow-back transparent-button"
+                ui-sref="page.surveys.list">
+          <span class="fa fa-arrow-left"></span>
+        </button>
+        <div class="b-results__list-box__body__top__rules">
+          <button title="{{ 'results.results_on_map' | translate }}"
+                  type="button" role="button"
+                  class="b-results__list-box__body__top__icon"
+                  ng-click="viewMap()">
+            <span class="fa fa-globe"></span>
+          </button>
+          <button title="{{ 'results.results_on_chart' | translate }}"
+                  type="button"
+                  role="button"
+                  class="b-results__list-box__body__top__icon"
+                  ng-click="modalResultsChart()">
+            <span class="fa fa-bar-chart"></span>
+          </button>
+          <button type="submit" role="button"
+                  value="" class="b-results__list-box__body__top__icon"
+                  title="{{ 'results.Export_results' | translate }}"
+                  dropdown-menu="dropdownList"
+                  dropdown-model="dropdownSelect"
+                  dropdown-onchange="exportResults(dropdownSelect.value)">
+            <span class="fa fa-external-link-square"></span>
+          </button>
+          <button title="{{ 'results.Delete_results' | translate }}"
+                  type="button"
+                  role="button"
+                  class="b-results__list-box__body__top__icon"
+                  ng-click="deleteResults()">
+            <span class="fa fa-trash-o"></span>
+          </button>
+        </div>
+        <div class="b-results__list-box__body__top__search">
+          <div class="e-search-box">
+            <span class="fa fa-search e-search-box__icon"></span>
+            <input type="search" class="e-search-box__input"
+                   placeholder="{{ 'results.Search' | translate }}"
+                   ng-model="q">
+          </div>
+        </div>
+      </div>
 
-            <table class="b-table__box">
-                <thead>
-                <tr class="b-table__header">
-                    <th class="b-table__header__item">
-                        <input type="checkbox" role="checkbox" ng-model="allChecked" ng-click="formSelectedResults()">
-                    </th>
-                    <th class="b-table__header__item">
-                        <span>{{ 'results.RESULT_TITLE' | translate }}</span>
-                        <button class="transparent-button"
-                                ng-click="predicate = 'title'; reverse=!reverse">
-                          <span class="fa fa-caret-down g-pointer"></span>
-                        </button>
+      <table class="b-table__box">
+        <thead>
+        <tr class="b-table__header">
+          <th class="b-table__header__item">
+            <button class="transparent-button"
+                    role="checkbox"
+                    aria-checked="selected.results.length === results.length"
+                    ng-click="selectAllResults()">
+              <span class="fa" ng-class="{'fa-square-o': selected.results.length !== results.length,
+                                          'fa-check-square-o': selected.results.length === results.length}"></span>
+            </button>
 
-                    </th>
-                    <th class="b-table__header__item">
-                        <span>{{ 'results.DATE_SENT' | translate }}</span>
-                      <button class="transparent-button"
-                              ng-click="predicate = 'timeCreated'; reverse=!reverse">
-                        <span class="fa fa-caret-down g-pointer"></span>
-                      </button>
+          </th>
+          <th class="b-table__header__item">
+            <span>{{ 'results.RESULT_TITLE' | translate }}</span>
+            <button class="transparent-button"
+                    ng-click="predicate = 'title'; reverse=!reverse">
+              <span class="fa fa-caret-down g-pointer"></span>
+            </button>
 
-                    </th>
-                    <th class="b-table__header__item">
-                        <span> {{ 'results.GPS' | translate }}</span>
-                      <button class="transparent-button"
-                              ng-click="predicate = 'geostamp'; reverse=!reverse">
-                        <span class="fa fa-caret-down g-pointer"></span>
-                      </button>
-                    </th>
-                    <th class="b-table__header__item">
-                        <span>{{ 'results.DATA_COLLECTOR' | translate }} </span>
-                      <button class="transparent-button"
-                              ng-click="predicate = '_user.name'; reverse=!reverse">
-                        <span class="fa fa-caret-down g-pointer"></span>
-                      </button>
-                    </th>
-                </tr>
-                </thead>
+          </th>
+          <th class="b-table__header__item">
+            <span>{{ 'results.DATE_SENT' | translate }}</span>
+            <button class="transparent-button"
+                    ng-click="predicate = 'timeCreated'; reverse=!reverse">
+              <span class="fa fa-caret-down g-pointer"></span>
+            </button>
 
-                <tbody class="b-table__body">
-                <tr class="b-table__body__row" id={{result._id}}
-                    style=" display: {{result.hidden ? 'none' : 'table-row'}};"
-                    ng-repeat="result in filtered = (results | deletedItemsFilter : 'results') | filter:q | orderBy:predicate:reverse"
-                    ng-class="{ 'b-results__list-box__body__selected-result': $state.includes('page.results.list.details') && $stateParams.resultId === result._id }">
+          </th>
+          <th class="b-table__header__item">
+            <span> {{ 'results.GPS' | translate }}</span>
+            <button class="transparent-button"
+                    ng-click="predicate = 'geostamp'; reverse=!reverse">
+              <span class="fa fa-caret-down g-pointer"></span>
+            </button>
+          </th>
+          <th class="b-table__header__item">
+            <span>{{ 'results.DATA_COLLECTOR' | translate }} </span>
+            <button class="transparent-button"
+                    ng-click="predicate = '_user.name'; reverse=!reverse">
+              <span class="fa fa-caret-down g-pointer"></span>
+            </button>
+          </th>
+        </tr>
+        </thead>
 
-                    <td class="b-table__body__row__col">
-                        <input type="checkbox" role="checkbox" ng-click="formSelectedResults(result._id)"
-                               ng-checked="selectedResults.indexOf(result._id) !== -1 ? true : false">
-                    </td>
-                    <td class="b-table__body__row__col">
-                        <a title="{{result.title}}" class="b-table__body__row__col--text"
-                           ui-sref="page.results.list.details({resultId: result._id})">
-                            {{result.title}}</a>
-                    </td>
-                    <td class="b-table__body__row__col">
-                        <span class="b-table__body__row__col--text">{{result.timeCreated | date: 'MM/dd/yy'}}</span>
-                    </td>
-                    <td class="b-table__body__row__col">
-                        <span class="fa b-table__body__row__col--text" ng-class="{'fa-check': result.geostamp,'fa-times': !result.geostamp }"></span>
-                    </td>
-                    <td class="b-table__body__row__col">
-                        <span class="b-table__body__row__col--text">{{result._user.name}}</span>
-                    </td>
-                </tr>
+        <tbody class="b-table__body">
+        <tr class="b-table__body__row" id={{result._id}}
+            style=" display: {{result.hidden ? 'none' : 'table-row'}};"
+            ng-repeat="result in filtered = (results | deletedItemsFilter : 'results') | filter:q | orderBy:predicate:reverse"
+            ng-class="{ 'b-results__list-box__body__selected-result': $state.includes('page.results.list.details') && $stateParams.resultId === result._id }">
 
-                </tbody>
-            </table>
+          <td class="b-table__body__row__col">
+            <button class="transparent-button"
+                    role="checkbox"
+                    ng-click="formSelectedResults(result._id)"
+                    aria-checked="selected.results.indexOf(result._id) !== -1">
+              <span class="fa"
+                    ng-class="{'fa-square-o': selected.results.indexOf(result._id) == -1,
+                               'fa-check-square-o': selected.results.indexOf(result._id) !== -1}"></span>
+            </button>
 
-        </form>
-    </div>
+          </td>
+          <td class="b-table__body__row__col">
+            <a title="{{result.title}}" class="b-table__body__row__col--text"
+               ui-sref="page.results.list.details({resultId: result._id})">
+              {{result.title}}</a>
+          </td>
+          <td class="b-table__body__row__col">
+            <span class="b-table__body__row__col--text">{{result.timeCreated | date: 'MM/dd/yy'}}</span>
+          </td>
+          <td class="b-table__body__row__col">
+            <span class="fa b-table__body__row__col--text"
+                  ng-class="{'fa-check': result.geostamp,'fa-times': !result.geostamp }"></span>
+          </td>
+          <td class="b-table__body__row__col">
+            <span class="b-table__body__row__col--text">{{result._user.name}}</span>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </form>
+  </div>
 </div>
 <div ui-view class="b-results__details"></div>
