@@ -62,6 +62,7 @@
           <th class="b-table__header__item">
             <span>{{ 'results.RESULT_TITLE' | translate }}</span>
             <button class="transparent-button"
+                    title=" {{'table_header.Sort_by'| translate }} {{ 'results.RESULT_TITLE' | translate }}"
                     ng-click="predicate = 'title'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
             </button>
@@ -70,6 +71,7 @@
           <th class="b-table__header__item">
             <span>{{ 'results.DATE_SENT' | translate }}</span>
             <button class="transparent-button"
+                    title=" {{'table_header.Sort_by'| translate }} {{ 'results.DATE_SENT' | translate }}"
                     ng-click="predicate = 'timeCreated'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
             </button>
@@ -78,6 +80,7 @@
           <th class="b-table__header__item">
             <span> {{ 'results.GPS' | translate }}</span>
             <button class="transparent-button"
+                    title=" {{'table_header.Sort_by'| translate }} {{ 'results.GPS' | translate }}"
                     ng-click="predicate = 'geostamp'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
             </button>
@@ -85,6 +88,7 @@
           <th class="b-table__header__item">
             <span>{{ 'results.DATA_COLLECTOR' | translate }} </span>
             <button class="transparent-button"
+                    title=" {{'table_header.Sort_by'| translate }} {{ 'results.DATA_COLLECTOR' | translate }}"
                     ng-click="predicate = '_user.name'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
             </button>
