@@ -42,6 +42,8 @@ html(manifest="mdgcache.manifest")
         script(src='bower_components/less/dist/less-1.6.2.min.js', type='text/javascript')
         script(src='bower_components/requirejs/require.js', 'data-main'='/main')
 
+        script(src="https://js.cit.api.here.com/ee/2.5.3/jsl.js?with=all")
+
         if (version)
             script.
                 window.version = '!{version}';
