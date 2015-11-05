@@ -1,5 +1,6 @@
 <div ng-controller="resultsMapController" class="b-map-panel">
     <input class="b-map-panel__search" type="search"
+           aria-label="{{ 'results.Search' | translate }}"
            placeholder="{{ 'results.Search' | translate }}"
            ng-model="searchQuery">
     <div class="b-map-panel__close">

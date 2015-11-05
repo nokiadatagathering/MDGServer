@@ -6,7 +6,8 @@
           <div class="b-surveys-table__top">
             <span class="b-surveys-table__top--title">
               <button class="b-surveys-table__top--back"
-                      role="button"
+                      role="link"
+                      title="Go back to Surveys Page"
                       ui-sref="page.surveys.list">
                 <span class="fa fa-arrow-circle-left"></span>
               </button>
@@ -19,29 +20,37 @@
               <th class="b-table__header__item">
                 {{'table_header.Name'| translate }}
                 <button class="transparent-button"
+                        title=" {{'table_header.Sort_by'| translate }} {{'table_header.Name'| translate }}"
                         ng-click="predicate = 'title'; reverse=!reverse">
                   <span class="fa fa-caret-down g-pointer"></span>
+                  <span class="button-title"> {{'table_header.Sort_by'| translate }} {{'table_header.Name'| translate }}</span>
                 </button>
               </th>
               <th class="b-table__header__item">
                 {{'table_header.Results'| translate }}
                 <button class="transparent-button"
+                        title=" {{'table_header.Sort_by'| translate }} {{'table_header.Results'| translate }}"
                         ng-click="predicate = 'resultsCount'; reverse=!reverse">
                   <span class="fa fa-caret-down  g-pointer"></span>
+                  <span class="button-title">{{'table_header.Sort_by'| translate }} {{'table_header.Results'| translate }}</span>
                 </button>
               </th>
               <th class="b-table__header__item">
                 {{ 'table_header.Publisher'| translate }}
                 <button class="transparent-button"
+                        title=" {{'table_header.Sort_by'| translate }} {{'table_header.Publisher'| translate }}"
                         ng-click="predicate = '_creator.name'; reverse=!reverse">
                   <span class="fa fa-caret-down  g-pointer"></span>
+                  <span class="button-title"> {{'table_header.Sort_by'| translate }} {{'table_header.Publisher'| translate }}</span>
                 </button>
               </th>
               <th class="b-table__header__item">
                 {{'table_header.Date'| translate }}
                 <button class="transparent-button"
+                        title=" {{'table_header.Sort_by'| translate }} {{'table_header.Date'| translate }}"
                         ng-click="predicate = 'dateCreated'; reverse=!reverse">
                   <span class="fa fa-caret-down g-pointer"></span>
+                  <span class="button-title"> {{'table_header.Sort_by'| translate }} {{'table_header.Date'| translate }}</span>
                 </button>
               </th>
             </tr>
@@ -119,6 +128,7 @@
         <div class="e-search-box">
           <span class="fa fa-search e-search-box__icon"></span>
           <input type="search" class="e-search-box__input"
+                 aria-label="{{ 'surveys.Search_Name_Publisher' | translate }}"
                  placeholder="{{ 'surveys.Search_Name_Publisher' | translate }}"
                  ng-model="search">
         </div>

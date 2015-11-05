@@ -118,6 +118,7 @@
   &__details {
     display: table-cell;
     width: 50%;
+    max-width: 50vw;
     vertical-align: top;
     padding-left: 24px;
   }
@@ -176,6 +177,10 @@
             font-size: 18px;
             font-weight: 100;
           }
+        }
+
+        &--image {
+          max-width: 100%;
         }
       }
     }
