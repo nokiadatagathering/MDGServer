@@ -10,6 +10,15 @@ angular.module('mdg.ui.fileSelect', [])
           elem.val(null);
         });
       });
+
+      // fix for invisible input element
+
+      elem.bind('focus', function() {
+        $(this.parentElement).addClass('selected');
+      });
+      elem.bind('blur', function() {
+        $(this.parentElement).removeClass('selected');
+      });
     };
   }
 );

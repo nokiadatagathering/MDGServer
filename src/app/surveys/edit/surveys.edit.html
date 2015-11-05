@@ -54,7 +54,8 @@
                ng-init="category.titleEdit = false">
 
             <button class="transparent-button b-surveys-edit__category__top--caret"
-                    aria-expanded="{{category.isVisible}}"
+                    aria-expanded="{{category.isVisible || false}}"
+                    aria-label="Expand category"
                     role="button"
                     ng-click="category.isVisible = !category.isVisible">
               <span class="fa g-pointer"
@@ -127,7 +128,6 @@
 
           </div>
           <div ng-show="category.isVisible"
-               aria-expanded="{{category.isVisible}}"
                class="questions-box"
                ui-sortable="sortableQuestionsOptions"
                ng-model="category._questions">
@@ -146,7 +146,8 @@
 
                       <button class="transparent-button b-surveys-edit__category__question__header__title--caret"
                               role="button"
-                              aria-expanded="{{question.isVisible}}"
+                              aria-label="Expand question"
+                              aria-expanded="{{question.isVisible || false}}"
                               ng-click="question.isVisible = !question.isVisible">
                         <span class="fa g-pointer"
                               ng-class="{'fa-caret-down' : question.isVisible, 'fa-caret-right': !question.isVisible }"></span>
@@ -240,7 +241,6 @@
                   </div>
                   <!--div>DROPDOWNS TRANSLATE</div-->
                   <button ng-if="question.isVisible"
-                          role="select"
                           dropdown-select="dropdownList"
                           dropdown-model="question.dropdownSelect"
                           dropdown-item-label="text"
@@ -280,7 +280,8 @@
                     <h5 class="b-skip-logic__header__title">
                       <button class="transparent-button"
                               role="button"
-                              aria-expanded="{{question.isVisibleSkip}}"
+                              aria-label="Expand Skip Logic"
+                              aria-expanded="{{question.isVisibleSkip || false}}"
                               ng-click="question.isVisibleSkip = !question.isVisibleSkip">
                         <span class="fa g-pointer"
                               ng-class="{'fa-caret-down':question.isVisibleSkip, 'fa-caret-right':!question.isVisibleSkip}"></span>
@@ -290,8 +291,7 @@
                     </h5>
                   </div>
                   <div class="b-skip-logic__body"
-                       ng-show="question.isVisibleSkip"
-                       aria-expanded="{{question.isVisibleSkip}}">
+                       ng-show="question.isVisibleSkip">
                         <span class="b-skip-logic__body__error-message"
                               ng-show="question.slOptionError || question.slQuestionError || question.slValueError">
                             <span class="fa fa-exclamation-triangle"></span>
@@ -306,11 +306,10 @@
                       <label class="b-skip-logic__body__option--label">{{ 'survey_builder.Go_to' | translate }}</label>
 
                       <button dropdown-select="question.skipLogicList"
-                              role="select"
-                           dropdown-model="question.skipLogicSelect"
-                           dropdown-item-label="text"
-                           ng-click="updateSLDropDown(question, $parent.$parent.$parent.$parent.$index, $parent.$parent.$parent.$index)"
-                           dropdown-onchange="checkSLQuestionError(question)">
+                              dropdown-model="question.skipLogicSelect"
+                              dropdown-item-label="text"
+                              ng-click="updateSLDropDown(question, $parent.$parent.$parent.$parent.$index, $parent.$parent.$parent.$index)"
+                              dropdown-onchange="checkSLQuestionError(question)">
                       </button>
                     </div>
                     <div class="b-skip-logic__body__option b-skip-logic__body__option--{{question.type}}"
@@ -393,7 +392,8 @@
                       {{'survey_builder.MASK_INPUT'| translate }}
                         <button type="button" class="transparent-button"
                                 role="button"
-                                aria-expanded="{{question.isVisibleMascInput}}"
+                                aria-label="Expand Mask Input"
+                                aria-expanded="{{question.isVisibleMascInput || false}}"
                                 ng-click="question.isVisibleMascInput = !question.isVisibleMascInput">
                           <span class="fa g-pointer"
                                 ng-class="{'fa-caret-right': !question.isVisibleMascInput,
@@ -401,8 +401,7 @@
                         </button>
                     </h5>
                   </div>
-                  <div class="b-mask-input__body" ng-show="question.isVisibleMascInput"
-                       aria-expanded="{{question.isVisibleMascInput}}">
+                  <div class="b-mask-input__body" ng-show="question.isVisibleMascInput">
                     <p class="b-mask-input__body__label">{{ 'survey_builder.MASK_INPUT_DESCRIPTION' | translate }}</p>
                     <input class="b-mask-input__body__input"
                            type="text" placeholder="E.g. WW-BB-1234"

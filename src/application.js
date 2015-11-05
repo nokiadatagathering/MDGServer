@@ -322,11 +322,12 @@
       '<button class="transparent-button selected">',
       '<span class="my-selected-class">{{dropdownModel[labelField]}}</span>',
       '</button>',
-      '<ul class="dropdown">',
+      '<ul class="dropdown" role="listbox">',
       '<li ng-repeat="item in dropdownSelect"',
       ' class="dropdown-item"',
       ' dropdown-select-item="item"',
-      ' dropdown-item-label="labelField">',
+      ' dropdown-item-label="labelField" ' +
+      'role="option">',
       '</li>',
       '</ul>',
       '</div>'

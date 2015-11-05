@@ -3,43 +3,50 @@
     <form name="exportForm">
       <div class="b-results__list-box__body__top">
         <button class="b-results__list-box__body__top__arrow-back transparent-button"
-                ui-sref="page.surveys.list">
+                ui-sref="page.surveys.list"
+                role="link"
+                title="Go back to Surveys Page">
           <span class="fa fa-arrow-left"></span>
         </button>
         <div class="b-results__list-box__body__top__rules">
           <button title="{{ 'results.results_on_map' | translate }}"
                   type="button" role="button"
-                  class="b-results__list-box__body__top__icon"
+                  class="b-results__list-box__body__top__icon transparent-button"
                   ng-click="viewMap()">
             <span class="fa fa-globe"></span>
+            <span class="button-title">{{ 'results.results_on_map' | translate }}</span>
           </button>
           <button title="{{ 'results.results_on_chart' | translate }}"
                   type="button"
                   role="button"
-                  class="b-results__list-box__body__top__icon"
+                  class="b-results__list-box__body__top__icon transparent-button"
                   ng-click="modalResultsChart()">
             <span class="fa fa-bar-chart"></span>
+            <span class="button-title">{{ 'results.results_on_chart' | translate }}</span>
           </button>
           <button type="submit" role="button"
-                  value="" class="b-results__list-box__body__top__icon"
+                  value="" class="b-results__list-box__body__top__icon transparent-button"
                   title="{{ 'results.Export_results' | translate }}"
                   dropdown-menu="dropdownList"
                   dropdown-model="dropdownSelect"
                   dropdown-onchange="exportResults(dropdownSelect.value)">
             <span class="fa fa-external-link-square"></span>
+            <span class="button-title">{{ 'results.Export_results' | translate }}</span>
           </button>
           <button title="{{ 'results.Delete_results' | translate }}"
                   type="button"
                   role="button"
-                  class="b-results__list-box__body__top__icon"
+                  class="b-results__list-box__body__top__icon transparent-button"
                   ng-click="deleteResults()">
             <span class="fa fa-trash-o"></span>
+            <span class="button-title">{{ 'results.Delete_results' | translate }}</span>
           </button>
         </div>
         <div class="b-results__list-box__body__top__search">
           <div class="e-search-box">
             <span class="fa fa-search e-search-box__icon"></span>
             <input type="search" class="e-search-box__input"
+                   aria-label="{{ 'results.Search' | translate }}"
                    placeholder="{{ 'results.Search' | translate }}"
                    ng-model="q">
           </div>
@@ -52,7 +59,8 @@
           <th class="b-table__header__item">
             <button class="transparent-button"
                     role="checkbox"
-                    aria-checked="selected.results.length === results.length"
+                    aria-label="Select all results"
+                    aria-checked="{{selected.results.length === results.length}}"
                     ng-click="selectAllResults()">
               <span class="fa" ng-class="{'fa-square-o': selected.results.length !== results.length,
                                           'fa-check-square-o': selected.results.length === results.length}"></span>
@@ -65,6 +73,7 @@
                     title=" {{'table_header.Sort_by'| translate }} {{ 'results.RESULT_TITLE' | translate }}"
                     ng-click="predicate = 'title'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
+              <span class="button-title"> {{'table_header.Sort_by'| translate }} {{ 'results.RESULT_TITLE' | translate }}</span>
             </button>
 
           </th>
@@ -74,6 +83,7 @@
                     title=" {{'table_header.Sort_by'| translate }} {{ 'results.DATE_SENT' | translate }}"
                     ng-click="predicate = 'timeCreated'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
+              <span class="button-title">{{'table_header.Sort_by'| translate }} {{ 'results.DATE_SENT' | translate }}</span>
             </button>
 
           </th>
@@ -83,6 +93,7 @@
                     title=" {{'table_header.Sort_by'| translate }} {{ 'results.GPS' | translate }}"
                     ng-click="predicate = 'geostamp'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
+              <span class="button-title"> {{'table_header.Sort_by'| translate }} {{ 'results.GPS' | translate }}</span>
             </button>
           </th>
           <th class="b-table__header__item">
@@ -91,6 +102,7 @@
                     title=" {{'table_header.Sort_by'| translate }} {{ 'results.DATA_COLLECTOR' | translate }}"
                     ng-click="predicate = '_user.name'; reverse=!reverse">
               <span class="fa fa-caret-down g-pointer"></span>
+              <span class="button-title"> {{'table_header.Sort_by'| translate }} {{ 'results.DATA_COLLECTOR' | translate }}</span>
             </button>
           </th>
         </tr>
@@ -106,7 +118,8 @@
             <button class="transparent-button"
                     role="checkbox"
                     ng-click="formSelectedResults(result._id)"
-                    aria-checked="selected.results.indexOf(result._id) !== -1">
+                    aria-label="Select result {{result.title}}"
+                    aria-checked="{{selected.results.indexOf(result._id) !== -1}}">
               <span class="fa"
                     ng-class="{'fa-square-o': selected.results.indexOf(result._id) == -1,
                                'fa-check-square-o': selected.results.indexOf(result._id) !== -1}"></span>

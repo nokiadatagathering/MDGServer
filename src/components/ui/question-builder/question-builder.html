@@ -33,6 +33,7 @@
     </p>
         <textarea class="b-question-builder__input-box--textarea"
                   role="textbox"
+                  aria-label="{{ 'survey_builder.NOTE_placeholder' | translate }}"
                   type="text" placeholder="{{ 'survey_builder.NOTE_placeholder' | translate }}"
                   ng-model="question.defaultValue"
                   value="{{question.defaultValue}}"></textarea>
@@ -267,17 +268,23 @@
                     {{ 'survey_builder.Import_existing_option' | translate }}
                 </span>
         <input type="file" csv-options-import question="question"
+               aria-label="Select CSV file to import"
                class="b-question-builder__input-box__button--file">
       </div>
     </div>
 
-    <ul class="b-question-builder__variants">
+    <ul class="b-question-builder__variants" role="radiogroup">
       <li class="b-question-builder__variants__item"
           ng-repeat="item in question.items"
           ng-init="item.edit = false;">
         <div ng-if="!item.edit">
           <label class="tooltip" title="{{item.text}}">
-            <input type="radio" name="choice" disabled="disabled" class="g-left">
+            <input type="radio"
+                   name="choice"
+                   disabled="disabled"
+                   class="g-left"
+                   role="radio"
+                   aria-label="{{item.text}}">
             <span class="b-question-builder__variants__item--label">{{item.text}}</span>
           </label>
           <span class="b-question-builder__variants__item__edit-variants">
@@ -297,6 +304,7 @@
           <div focus-me="item.focus">
             <input class="b-question-builder__variants__item__edit-input"
                    type="text" ng-model="item.text"
+                   aria-label="Item value"
                    ng-change="item.error = false"
                    ng-keypress="updateOption(question, item, $index, $event)">
           </div>
@@ -314,6 +322,7 @@
       <li ng-show="question.addOption" class="b-question-builder__variants__item">
         <div focus-me="addOptionFocus">
           <input type="text" ng-model="newOption.text"
+                 aria-label="Item Value"
                  class="b-question-builder__variants__item__edit-input"
                  ng-change="newOption.error = false"
                  ng-keypress="addOption(newOption.text, $event)">
@@ -348,6 +357,7 @@
                     {{ 'survey_builder.Import_existing_option' | translate }}
                 </span>
         <input type="file" csv-options-import question="question"
+               aria-label="CSV Import Options"
                class="b-question-builder__input-box__button--file">
       </div>
     </div>
@@ -357,7 +367,11 @@
           ng-init="item.edit = false;">
         <div ng-if="!item.edit">
           <label class="tooltip" title="{{item.text}}">
-            <input type="checkbox" name="choice" disabled="disabled" role="checkbox"
+            <input type="checkbox"
+                   name="choice"
+                   aria-label="{{item.text}}"
+                   disabled="disabled"
+                   role="checkbox"
                    class="g-left">
             <span class="b-question-builder__variants__item--label">{{item.text}}</span>
           </label>
@@ -489,6 +503,7 @@
               {{ 'survey_builder.Import_existing_option' | translate }}
           </span>
         <input type="file" csv-options-import question="question"
+               aria-label="Select CSV file to import"
                class="b-question-builder__input-box__button--file">
       </div>
     </div>
