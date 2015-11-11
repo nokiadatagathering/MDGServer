@@ -14,8 +14,8 @@
                 </a>
             </div>
 
-            <div class="b-menu">
-                <nav class="b-menu-nav" role="tabpanel">
+            <div class="b-menu" role="tabpanel">
+                <nav class="b-menu-nav" role="tablist">
                     <a href="#/surveys/list" class="b-menu-nav__link"
                        role="tab"
                        ng-class="{ 'b-menu-nav__link--active':  $state.includes('page.surveys') ||
@@ -45,7 +45,6 @@
             <div class="b-account-menu">
                 <a class="b-account-menu__locale"
                    href=""
-                   role="select"
                    dropdown-menu="langauges"
                    dropdown-onchange="changeLanguage(selected)">
                     {{'header.language' | translate}}
@@ -53,7 +52,6 @@
 
                 <a class="b-account-menu__user"
                    href=""
-                   role="select"
                    dropdown-menu="dropdownList"
                    dropdown-model="dropdownSelect"
                    dropdown-onchange="selectMenu(selected)">

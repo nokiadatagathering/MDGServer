@@ -78,6 +78,13 @@
       &--upload {
         background: url("../assets/icons/upload.png") no-repeat;
 
+        /* outline styles for focused invisible input element */
+        &.selected {
+          outline-color: $gray;
+          outline-style: dashed;
+          outline-width: 1px;
+        }
+
         &--file {
           width: 42px;
           height: 42px;
@@ -85,10 +92,7 @@
           cursor: pointer;
 
           &:focus {
-            opacity: 1;
-            width: 42px;
-            height: 42px;
-
+            opacity: 0;
           }
 
           &:focus, &:hover {
