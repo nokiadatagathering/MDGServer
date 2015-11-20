@@ -315,6 +315,9 @@
         &--long {
           width: 590px;
         }
+        &:focus {
+          outline: 1px dotted $gray;
+        }
       }
     }
 
