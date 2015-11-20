@@ -8,11 +8,12 @@ angular.module('mdg.ui.focusModal', [])
         elements[0].focus();
 
         elements[elements.length - 1].addEventListener('blur', function () {
+
           elements[0].focus();
         });
 
-        elements[0].addEventListener('blur', function (e) {
-          if (!_.contains(elements, e.relatedTarget)) {
+        elements[0].addEventListener('focusout', function (e) {
+          if (!_.contains($(elements), e.relatedTarget)) {
             elements[0].focus();
           }
 
