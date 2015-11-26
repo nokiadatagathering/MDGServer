@@ -1,6 +1,19 @@
 <div class="content">
 
     <div class="survey-panel" ng-controller="SurveysCtrl">
+        <div class="modal" ng-if="responseFrame.url">
+            <div class="overlay" ng-click="responseFrame.url=undefined"></div>
+            <div class="window results-chart">
+                <div class="window-header">
+                    <h2>{{ 'surveys.modal_title' | translate : '{survey : responseFrame.title }'}}</h2>
+                    <div class="close-window" ng-click="responseFrame.url=undefined">&#10006;</div>
+                </div>
+                <div class="window-body">
+                    <iframe width="100%" height="500px" ng-src="{{responseFrame.url}}"></iframe>
+                </div>
+            </div>
+        </div>
+
         <div class="function-bar">
             <input class="button-plus left" type="button" value="{{ 'surveys.Create_Survey' | translate }}" ng-click="goState('page.builder')">
             <input file-select="surveyXML" type="file" class="button-icon single" name="files" ng-disabled="offlineMode">
@@ -81,20 +94,22 @@
                                 ng-click="downloadSurvey(survey.id)" ng-disabled="offlineMode">
                             <span class="caption">{{ 'surveys.Download_survey' | translate }}</span>
                         </li><li>
-                        <input type="button" class="send"
-                               ng-click="goState('page.surveys.sendsurvey',{surveyId: survey.id})">
-                        <span class="caption">{{ 'surveys.Publish_survey' | translate }}</span>
-                    </li><li>
-                        <input type="button" class="copy"
-                               ng-click="duplicateSurvey(survey.id, survey.title)" ng-disabled="offlineMode">
-                        <span class="caption">{{ 'surveys.Duplicate_survey' | translate }}</span>
-                    </li><li>
-                        <input type="button" class="delete"
-                               ng-click="deleteSurvey(survey)" ng-disabled="survey.published">
-                        <span class="caption" ng-if="!survey.published">{{ 'surveys.Delete_survey' | translate }}</span>
-                        <span class="caption surveypublished" ng-if="survey.published">{{ 'surveys.Can_not_be_deleted' | translate }}</span>
-
-                    </li>
+                            <input type="button" class="send"
+                                   ng-click="goState('page.surveys.sendsurvey',{surveyId: survey.id})">
+                            <span class="caption">{{ 'surveys.Publish_survey' | translate }}</span>
+                        </li><li>
+                            <input type="button" class="copy"
+                                   ng-click="duplicateSurvey(survey.id, survey.title)" ng-disabled="offlineMode">
+                            <span class="caption">{{ 'surveys.Duplicate_survey' | translate }}</span>
+                        </li><li ng-if="survey.published">
+                            <input type="button" class="response"
+                                   ng-click="openResponseFrame(survey)">
+                            <span class="caption" ng-if="survey.published">{{ 'surveys.Fill_out_survey' | translate }}</span>
+                        </li><li ng-if="!survey.published">
+                            <input type="button" class="delete"
+                                   ng-click="deleteSurvey(survey)">
+                            <span class="caption" ng-if="!survey.published">{{ 'surveys.Delete_survey' | translate }}</span>
+                        </li>
                     </ul>
                 </div>
                 <ul class="data">

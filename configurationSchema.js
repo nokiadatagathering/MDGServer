@@ -53,6 +53,18 @@ module.exports = {
       }
     }
   },
+  enketo: {
+    title: 'Enketo',
+    description: 'Parameters for Enketo',
+    children: {
+      token: {
+        type: String,
+        title: 'enketo token',
+        description: 'enketo token',
+        defaults: '5aslore4vgmvlsor'
+      }
+    }
+  },
   languages: {
     title: 'Languages',
     description: 'Parameters for Digest Authorization. Do NOT change these unless you know what you are doing',

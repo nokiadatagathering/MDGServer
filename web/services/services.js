@@ -13,7 +13,8 @@ define([
   'services/errorsManager',
   'services/validateManager',
   'services/offlineManager',
-  'services/syncManager'
+  'services/syncManager',
+  'services/enketoManager'
 
 ], function (
   autocompleteManager,
@@ -30,7 +31,8 @@ define([
   errorsManager,
   validateManager,
   offlineManager,
-  syncManager
+  syncManager,
+  enketoManager
   ) {
   'use strict';
 
@@ -49,7 +51,8 @@ define([
       errorsManager:       errorsManager,
       validateManager:     validateManager,
       offlineManager:      offlineManager,
-      syncManager:         syncManager
+      syncManager:         syncManager,
+      enketoManager:       enketoManager
     },
 
     initialize = function (angModule) {

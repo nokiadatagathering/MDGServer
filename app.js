@@ -32,7 +32,7 @@ var
   validationsCntr = require('./app/controllers/web/validations'),
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
-
+  enketoCntr = require('./app/controllers/web/enketo'),
   manifestCntr = require('./app/controllers/web/manifest'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
@@ -180,6 +180,11 @@ exports.run = function (mongoUrl, port, callback) {
     });
 
     app.get('/home', getStartedCntr.home);
+
+    app.get('/enketoSurveyUrl/:survey', ACLService.checkPermission, enketoCntr.getEnketoSurveyUrl);
+    app.get('/enketo/:userId/formList', enketoCntr.formList);
+    app.get('/enketo/:userId/:survey', enketoCntr.form);
+    app.post('/enketo/:userId/submission', enketoCntr.submission);
 
     app.get('/', function (req, res) {
       if (req.method === 'HEAD') {

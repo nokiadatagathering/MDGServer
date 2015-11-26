@@ -1,6 +1,6 @@
 define (function () {
     'use strict';
-    return function ($scope, $http, $location, $window, $rootScope, $state, $translate, surveysManager) {
+    return function ($scope, $http, $location, $window, $rootScope, $state, $translate, $sce, surveysManager, enketoManager) {
 
       $scope.surveys = {};
       $scope.predicate = 'dateCreated';
@@ -90,6 +90,17 @@ define (function () {
           } else {
             $scope.getSurveyList();
           }
+        });
+      };
+
+      $scope.openResponseFrame = function (survey) {
+        survey.url = 'https://gk7qn.enketo.org/webform';
+
+        enketoManager.getResponseFrameUrl(survey._id).then(function (response) {
+          $scope.responseFrame = {
+            url: $sce.trustAsResourceUrl(response.data),
+            title: survey.title
+          };
         });
       };
 
