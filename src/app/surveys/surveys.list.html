@@ -1,13 +1,21 @@
 <div class="b-page__line">
   <div class="b-content">
-    <div class="modal" ng-if="responseFrame.url">
-      <div class="overlay" ng-click="responseFrame.url=undefined"></div>
-      <div class="window results-chart">
-        <div class="window-header">
-          <h2>{{ 'surveys.modal_title' | translate : '{survey : responseFrame.title }'}}</h2>
-          <div class="close-window" ng-click="responseFrame.url=undefined">&#10006;</div>
+    <div class="b-modal-window" ng-if="responseFrame.url">
+      <div class="b-modal-window__overlay" ng-click="responseFrame.url=undefined"></div>
+      <div class="b-modal-window__main-block results-chart">
+        <div class="b-modal-window__main-block__header">
+          <h2 class="b-modal-window__main-block__header--title"
+              role="heading">
+            {{ 'surveys.modal_title' | translate : '{survey : responseFrame.title }'}}
+          </h2>
+            <span class="b-modal-window__main-block__header--icon-close">
+              <a ng-click="responseFrame.url=undefined" class="transparent-button" tabindex="1">
+                <span class="fa fa-times"></span>
+              </a>
+            </span>
         </div>
-        <div class="window-body">
+
+        <div class="b-modal-window__main-block__body">
           <iframe width="100%" height="500px" ng-src="{{responseFrame.url}}"></iframe>
         </div>
       </div>
