@@ -1,5 +1,18 @@
 <div class="b-page__line">
   <div class="b-content">
+    <div class="modal" ng-if="responseFrame.url">
+      <div class="overlay" ng-click="responseFrame.url=undefined"></div>
+      <div class="window results-chart">
+        <div class="window-header">
+          <h2>{{ 'surveys.modal_title' | translate : '{survey : responseFrame.title }'}}</h2>
+          <div class="close-window" ng-click="responseFrame.url=undefined">&#10006;</div>
+        </div>
+        <div class="window-body">
+          <iframe width="100%" height="500px" ng-src="{{responseFrame.url}}"></iframe>
+        </div>
+      </div>
+    </div>
+
     <div class="b-surveys">
       <div class="b-surveys__left-content">
         <div class="b-surveys-table">
@@ -148,10 +161,20 @@
                             <button class="e-options__item transparent-button"
                                     role="button"
                                     ng-click="deleteSurvey(survey)"
-                                    ng-disabled="survey.published"
-                                    title="{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}">
+                                    ng-if="!survey.published"
+                                    ng-disabled="offlineMode"
+                                    title="{{'surveys.Delete_survey' | translate }}">
                                 <span class="fa fa-trash-o"></span>
-                                <span class="button-title">{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}</span>
+                                <span class="button-title">{{ 'surveys.Delete_survey' | translate }}</span>
+                            </button>
+                            <button class="e-options__item transparent-button"
+                                    role="button"
+                                    ng-click="openResponseFrame(survey)"
+                                    ng-if="survey.published"
+                                    ng-disabled="offlineMode"
+                                    title="{{ 'surveys.Fill_out_survey' | translate }}">
+                              <span class="fa fa-edit"></span>
+                              <span class="button-title">{{ 'surveys.Fill_out_survey' | translate }}</span>
                             </button>
                         </div>
                     </div>

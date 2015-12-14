@@ -171,6 +171,10 @@
           });
       }
 
+      function getResponseFrameUrl (surveyId) {
+        return $http.get('/enketoSurveyUrl/' + surveyId);
+      }
+
       return {
         surveyList:             surveyList,
         getArchivedSurveys:     getArchivedSurveys,
@@ -183,7 +187,8 @@
         uploadXML:              uploadXML,
         downloadXML:            downloadXML,
         checkFileType:          checkFileType,
-        archiveSurvey:          archiveSurvey
+        archiveSurvey:          archiveSurvey,
+        getResponseFrameUrl:    getResponseFrameUrl
       };
     });
 })();
