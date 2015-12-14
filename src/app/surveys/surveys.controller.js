@@ -3,7 +3,7 @@
 
 angular.module('mdg.app.surveys')
   .controller('SurveysController',
-  function ($scope, $location, $window, $rootScope, $state, $translate,
+  function ($scope, $location, $window, $rootScope, $state, $translate, $sce,
                                              surveysService, surveys) {
       $scope.surveys = surveys;
 
@@ -19,9 +19,18 @@ angular.module('mdg.app.surveys')
         { translateId: 'surveys.Unpublished', value: 'unpublished'}
       ];
 
-    $scope.dropdownSelect =  { translateId: 'surveys.All', value: 'all' };
-
       $scope.dropdownSelect =  { translateId: 'surveys.All', value: 'all' };
+
+      $scope.openResponseFrame = function (survey) {
+        survey.url = 'https://gk7qn.enketo.org/webform';
+
+        surveysService.getResponseFrameUrl(survey._id).then(function (response) {
+          $scope.responseFrame = {
+            url: $sce.trustAsResourceUrl(response.data),
+            title: survey.title
+          };
+        });
+      };
 
       $scope.getSurveyList = function () {
         $rootScope.archive = false;

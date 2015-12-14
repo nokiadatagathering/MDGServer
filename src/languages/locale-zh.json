@@ -32,13 +32,14 @@
     "Publish_survey": "发布调查问卷",
     "Duplicate_survey": "复制调查问卷",
     "Delete_survey": "删除调查问卷",
-    "Can_not_be_deleted": "不能删除",
+    "Fill_out_survey": "Fill out this survey",
     "Create_Survey": "创建一个新调查",
     "Search_Name_Publisher": "搜索发布者姓名...",
     "All": "全部",
     "Published": "已发布",
     "Unpublished": "未发布",
-    "Publish_survey_title": "发布调查标题"
+    "Publish_survey_title": "发布调查标题",
+    "modal_title": "Fill out {survey} survey"
   },
   "results": {
     "SUBTITLE": "Results Home",
