@@ -199,6 +199,10 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/enketo/:userId/:survey', enketoCntr.form);
     app.post('/enketo/:userId/submission', enketoCntr.submission);
 
+    app.post('/public/makeSurveyPublic/:survey', enketoCntr.makeSurveyPublic);
+    app.get('/public/getPublicLink/:survey', enketoCntr.getPublicLink);
+    app.get('/public/:survey', enketoCntr.getPublicSurvey);
+
     app.get('/', function (req, res) {
       console.log('------------------req.user      ', req.user);
       if (req.method === 'HEAD') {
