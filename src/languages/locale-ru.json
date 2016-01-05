@@ -32,14 +32,17 @@
     "Publish_survey": "Опубликовать опрос",
     "Duplicate_survey": "Дублировать опрос",
     "Delete_survey": "Удалить опрос",
-    "Fill_out_survey": "Fill out this survey",
+    "Get_public_link": "Get public link",
+    "Public_link": "Public link for this survey is:",
+    "Make_survey_public": "Make this survey public",
+    "Select_expire_date": "Select the expire date",
+    "Save": "Save",
     "Create_Survey": "Создать опрос",
     "Search_Name_Publisher": "Название или Отправитель...",
     "All": "Все",
     "Published": "Опубликованные",
     "Unpublished": "Неопубликованные",
-    "Publish_survey_title": "Опубликовать опрос",
-    "modal_title": "Fill out {survey} survey"
+    "Publish_survey_title": "Опубликовать опрос"
   },
   "results": {
     "SUBTITLE": "Results Home",

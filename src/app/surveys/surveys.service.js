@@ -171,8 +171,12 @@
           });
       }
 
-      function getResponseFrameUrl (surveyId) {
-        return $http.get('/enketoSurveyUrl/' + surveyId);
+      function makeSurveyPublic (surveyId, expire) {
+        return $http.post('/public/makeSurveyPublic/' + surveyId, { expire: expire });
+      }
+
+      function getPublicLink (surveyId, expire) {
+        return $http.get('/public/getPublicLink/' + surveyId);
       }
 
       return {
@@ -188,7 +192,8 @@
         downloadXML:            downloadXML,
         checkFileType:          checkFileType,
         archiveSurvey:          archiveSurvey,
-        getResponseFrameUrl:    getResponseFrameUrl
+        getPublicLink:          getPublicLink,
+        makeSurveyPublic:       makeSurveyPublic
       };
     });
 })();
