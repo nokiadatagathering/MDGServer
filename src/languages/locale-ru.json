@@ -32,13 +32,14 @@
     "Publish_survey": "Опубликовать опрос",
     "Duplicate_survey": "Дублировать опрос",
     "Delete_survey": "Удалить опрос",
-    "Can_not_be_deleted": "Опубликованный опрос не может быть удален",
+    "Fill_out_survey": "Fill out this survey",
     "Create_Survey": "Создать опрос",
     "Search_Name_Publisher": "Название или Отправитель...",
     "All": "Все",
     "Published": "Опубликованные",
     "Unpublished": "Неопубликованные",
-    "Publish_survey_title": "Опубликовать опрос"
+    "Publish_survey_title": "Опубликовать опрос",
+    "modal_title": "Fill out {survey} survey"
   },
   "results": {
     "SUBTITLE": "Results Home",

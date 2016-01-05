@@ -32,13 +32,14 @@
     "Publish_survey": "Gửi bản khảo sát này",
     "Duplicate_survey": "Sao chép khảo sát này",
     "Delete_survey": "Xóa khảo sát này",
-    "Can_not_be_deleted": "Không thể xóa Khảo sát đã được gửi",
+    "Fill_out_survey": "Fill out this survey",
     "Create_Survey": "Tạo một Khảo sát mới",
     "Search_Name_Publisher": "Tìm Tên hoặc Người gửi",
     "All": "Tất cả",
     "Published": "Đã được gửi",
     "Unpublished": "Chưa được gửi",
-    "Publish_survey_title": "Tên bản Khảo sát đã gửi"
+    "Publish_survey_title": "Tên bản Khảo sát đã gửi",
+    "modal_title": "Fill out {survey} survey"
   },
   "results": {
     "SUBTITLE": "Results Home",
