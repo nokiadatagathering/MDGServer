@@ -43,6 +43,9 @@ Schema =  new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
+  },
+  publicExpire: {
+    type: Date
   }
 }, {
   toObject: { virtuals: true }
@@ -65,7 +68,7 @@ Schema.pre('save', function (next) {
 
   if (me.get('__v') !== undefined &&
     (me.published !== me.isModified('published')) &&
-    (!me.isModified('archive'))) {
+    (!me.isModified('archive') && !me.isModified('publicExpire'))) {
     var error = new ValidationError(this);
 
     error.errors.published = new ValidatorError('published', 'Can not edit the published survey', me.published);

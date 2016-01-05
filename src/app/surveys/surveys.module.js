@@ -25,6 +25,11 @@
           controller: 'SendSurveyController',
           templateUrl: 'app/surveys/send/surveys.send.html'
         })
+        .state('page.surveys.list.publiclink', {
+          url: '/publiclink:{surveyId}',
+          controller: 'SurveyPublicLinkController',
+          templateUrl: 'app/surveys/publicLink/surveys.publicLink.html'
+        })
         .state('page.surveys.new', {
           url: '/new',
           templateUrl: 'app/surveys/edit/surveys.edit.html',

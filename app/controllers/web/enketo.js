@@ -1,5 +1,6 @@
 var
   _ = require('underscore'),
+  moment = require('moment'),
   request = require('request'),
   fs = require('fs'),
   Survey = require('../../models/Survey'),
@@ -18,6 +19,66 @@ var
 function parseJXONTree (jxonTree) {
   return new ResultsParserService.ResultsParser(jxonTree);
 }
+
+exports.getPublicLink = function (req, res, next) {
+  var
+    owner = req.user.owner.toString(),
+    surveyId = req.params.survey;
+
+  Survey.findOne({ _id: surveyId, _owner: owner }).exec(function (err, survey) {
+    if (err) {
+      next({ status: 500, body: err });
+      return;
+    }
+
+    if (survey.publicExpire && survey.publicExpire > new Date()) {
+      res.send(200, {
+        expire: survey.publicExpire,
+        publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
+      });
+    } else {
+      res.send(204);
+    }
+  });
+};
+
+exports.makeSurveyPublic = function (req, res, next) {
+  var
+    owner = req.user.owner.toString(),
+    surveyId = req.params.survey,
+    surveyPublicExpire = req.body.expire;
+
+  Survey.findOne({ _id: surveyId, _owner: owner }).exec(function (err, survey) {
+    if (err) {
+      next({ status: 500, body: err });
+      return;
+    }
+
+    if (!survey) {
+      next({ status: 400, body: { name: 'ValidatorError', path: 'survey', type: 'unknown' } });
+      return;
+    }
+
+    survey.publicExpire = surveyPublicExpire ? moment(surveyPublicExpire, 'DD/MM/YYYY').toDate() : null;
+    survey.increment();
+
+    survey.save(function (err, survey) {
+      if (err) {
+        next({ status: 400, body: err });
+        return;
+      }
+
+      res.send(200, {
+        expire: survey.publicExpire,
+        publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
+      });
+    });
+  });
+};
+
+exports.getPublicSurvey = function (req, res, next) {
+
+};
 
 exports.getEnketoSurveyUrl = function (req, res, next) {
   var

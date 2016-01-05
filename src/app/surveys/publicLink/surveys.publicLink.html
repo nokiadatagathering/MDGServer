@@ -1,0 +1,55 @@
+<div class="b-modal-window " role="dialog">
+  <div class="b-modal-window__overlay"></div>
+  <div class="b-modal-window__main-block b-send-survey" focus-modal>
+    <div class="b-modal-window__main-block__header">
+      <h2 class="b-modal-window__main-block__header--title"
+          role="heading">
+        {{ 'surveys.Get_public_link' | translate }}
+      </h2>
+            <span class="b-modal-window__main-block__header--icon-close">
+              <a ui-sref="^" class="transparent-button" tabindex="1">
+                <span class="fa fa-times"></span>
+              </a>
+            </span>
+    </div>
+    <div class="b-modal-window__main-block__body">
+      <form name="getPublicLinkForm" id="get-public-link-form">
+
+        <div>
+          <button class="transparent-button"
+                  ng-click="public.checked = !public.checked;"
+                  id="public-link"
+                  role="checkbox"
+                  tabindex="2">
+                <span class="fa"
+                      ng-class="{'fa-square-o ': !public.checked, 'fa-check-square-o': public.checked}"></span>
+          </button>
+          <label for="public-link">{{ 'surveys.Make_survey_public' | translate }}</label>
+        </div>
+
+        <div>
+          <label for="expire-date">
+            {{ 'surveys.Select_expire_date' | translate }}
+          </label>
+          <input type="text" name="expire-date" id="expire-date"
+                 tabindex="3"
+                 required
+                 placeholder="{{today| date: 'dd/MM/yyyy'}}"
+                 ng-model="public.expireDate">
+        </div>
+
+        <div ng-if="public.url">{{ 'surveys.Public_link' | translate }} {{public.url}}</div>
+
+        <button class="b-modal-window__main-block__body__button"
+                role="button"
+                tabindex="8"
+                ng-disabled="!public.expireDate"
+                ng-click="makeSurveyPublic($stateParams.surveyId, public.expireDate)">
+          <span class="fa fa-share b-modal-window__main-block__body__button--icon"></span>
+          <span>{{ 'surveys.Save' | translate }}</span>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
