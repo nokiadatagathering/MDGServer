@@ -62,6 +62,12 @@ module.exports = {
         title: 'enketo token',
         description: 'enketo token',
         defaults: '5aslore4vgmvlsor'
+      },
+      server: {
+        type: String,
+        title: 'enketo server url',
+        description: 'enketo server',
+        defaults: 'http://mdg-test.wookieelabs.com:9090/api/v1/survey'
       }
     }
   },

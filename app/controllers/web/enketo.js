@@ -77,7 +77,36 @@ exports.makeSurveyPublic = function (req, res, next) {
 };
 
 exports.getPublicSurvey = function (req, res, next) {
+  var user;
+  var survey = req.params.survey;
 
+  Survey.findOne({ _id: survey }).exec(function (err, survey) {
+    if (err) {
+      next({ status: 500, body: err });
+      return;
+    }
+
+    if (!survey) {
+      next({ status: 400, body: { name: 'ValidatorError', path: 'survey', type: 'unknown' } });
+      return;
+    }
+
+    if (!survey.publicExpire && survey.publicExpire < new Date()) {
+      res.next({ status: 400, body: { name: 'ValidatorError', path: 'survey', type: 'expired' } });
+    }
+
+    user = req.user ? req.user._id : survey._owner.id;
+
+    request
+      .post(config.enketo.server, { form :{
+        server_url: req.protocol + '://' + req.get('host') + '/enketo/' + user,
+        form_id: survey
+      }},
+      function(err, response, body) {
+        res.redirect(JSON.parse(body).url);
+      })
+      .auth(Configuration.get('enketo.token'), Configuration.get('enketo.token'), false);
+  });
 };
 
 exports.getEnketoSurveyUrl = function (req, res, next) {
@@ -86,7 +115,7 @@ exports.getEnketoSurveyUrl = function (req, res, next) {
     survey = req.params.survey;
 
   request
-    .post('https://enketo.org/api_v1/survey', {form :{
+    .post(config.enketo.server, {form :{
       server_url: req.protocol + '://' + req.get('host') + '/enketo/' + user,
       form_id: survey
     }},
