@@ -9,6 +9,8 @@
         defaultDate: '+0d'
       });
 
+      new Clipboard('#linkcopy');
+
       $scope.public = {};
 
       surveysService.getPublicLink($stateParams.surveyId).then(function (resp) {
@@ -30,6 +32,7 @@
             $scope.public.expireDate = $filter('date')(resp.data.expire, 'dd/MM/yyyy');
           } else {
             $scope.public.url = null;
+            $scope.public.expireDate = null;
           }
         });
       }

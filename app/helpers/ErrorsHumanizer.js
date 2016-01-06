@@ -23,7 +23,8 @@ var
     unknown: 'Unknown entity',
     invalidVersion: 'Entity info has been already updated.',
     published: 'Can not edit the published survey',
-    unpublished: 'Can not post results for unpublished survey'
+    unpublished: 'Can not post results for unpublished survey',
+    expired: 'This link is invalid or has expired'
   },
 
   permissionError = 'You do not have permission to perform given operation';

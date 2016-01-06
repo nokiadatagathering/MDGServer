@@ -243,6 +243,12 @@ exports.SurveysToJxonTree = function (surveys, url) {
         attrs: {},
         items: [],
         value: url + '/' + survey._id
+      },
+      {
+        tagName: 'hash',
+        attrs: {},
+        items: [],
+        value: survey._id
       }
     ]
   }
