@@ -38,7 +38,15 @@
                  ng-model="public.expireDate">
         </div>
 
-        <div ng-if="public.url">{{ 'surveys.Public_link' | translate }} {{public.url}}</div>
+        <div ng-if="public.url" style="width: 100%">
+          <input tabindex="4" id="link" name="link" type="text" style="width: 100%" value="{{public.url}}" readonly/>
+
+          <button data-clipboard-target="#link" id="linkcopy">
+            <i class="fa fa-clipboard" alt="Copy to clipboard"/>
+          </button>
+        </div>
+        <hr/>
+
 
         <button class="b-modal-window__main-block__body__button"
                 role="button"
