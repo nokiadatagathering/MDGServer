@@ -4,7 +4,7 @@
     <div class="b-modal-window__main-block__header">
       <h2 class="b-modal-window__main-block__header--title"
           role="heading">
-        {{ 'surveys.Get_public_link' | translate }}
+        {{ 'surveys.Get_public_link' | translate:'{title:survey.title}' }}
       </h2>
             <span class="b-modal-window__main-block__header--icon-close">
               <a ui-sref="^" class="transparent-button" tabindex="1">
@@ -38,7 +38,7 @@
                  ng-model="public.expireDate">
         </div>
 
-        <div ng-if="public.url" style="width: 100%">
+        <div style="width: 100%">
           <input tabindex="4" id="link" name="link" type="text" style="width: 100%" value="{{public.url}}" readonly/>
 
           <button data-clipboard-target="#link" id="linkcopy">

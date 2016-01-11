@@ -31,14 +31,11 @@ exports.getPublicLink = function (req, res, next) {
       return;
     }
 
-    if (survey.publicExpire && survey.publicExpire > new Date()) {
-      res.send(200, {
-        expire: survey.publicExpire,
-        publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
-      });
-    } else {
-      res.send(204);
-    }
+    res.send(200, {
+      expire: (survey.publicExpire && survey.publicExpire > new Date()) ? survey.publicExpire : null,
+      title: survey.title,
+      publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
+    });
   });
 };
 
@@ -60,6 +57,7 @@ exports.makeSurveyPublic = function (req, res, next) {
     }
 
     survey.publicExpire = surveyPublicExpire ? moment(surveyPublicExpire, 'DD/MM/YYYY').toDate() : null;
+    survey.published = true;
     survey.increment();
 
     survey.save(function (err, survey) {
