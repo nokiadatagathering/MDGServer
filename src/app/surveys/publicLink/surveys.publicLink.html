@@ -1,6 +1,6 @@
-<div class="b-modal-window " role="dialog">
+<div class="b-modal-window" role="dialog">
   <div class="b-modal-window__overlay"></div>
-  <div class="b-modal-window__main-block b-send-survey" focus-modal>
+  <div class="b-modal-window__main-block b-public-link" focus-modal>
     <div class="b-modal-window__main-block__header">
       <h2 class="b-modal-window__main-block__header--title"
           role="heading">
@@ -15,7 +15,7 @@
     <div class="b-modal-window__main-block__body">
       <form name="getPublicLinkForm" id="get-public-link-form">
 
-        <div>
+        <div class="b-public-link_make_public">
           <button class="transparent-button"
                   ng-click="public.checked = !public.checked;"
                   id="public-link"
@@ -27,28 +27,40 @@
           <label for="public-link">{{ 'surveys.Make_survey_public' | translate }}</label>
         </div>
 
-        <div>
+        <div class="b-public-link_expire_date">
           <label for="expire-date">
             {{ 'surveys.Select_expire_date' | translate }}
           </label>
           <input type="text" name="expire-date" id="expire-date"
+                 class="b-public-link_expire_date__input"
                  tabindex="3"
                  required
                  placeholder="{{today| date: 'dd/MM/yyyy'}}"
                  ng-model="public.expireDate">
         </div>
 
-        <div style="width: 100%">
-          <input tabindex="4" id="link" name="link" type="text" style="width: 100%" value="{{public.url}}" readonly/>
+        <div ng-if="public.url" class="b-public-link__link">
+          <span>{{ 'surveys.Public_link' | translate }}</span>
 
-          <button data-clipboard-target="#link" id="linkcopy">
-            <i class="fa fa-clipboard" alt="Copy to clipboard"/>
-          </button>
+          <div class="b-public-link_copy_to_clipboard">
+          <span data-clipboard-target="#link" id="linkcopy" class="b-public-link_copy_to_clipboard__icon fa fa-clipboard transparent-button">
+            <span class="button-title">{{ 'surveys.Copy_to_clipboard' | translate }}</span>
+          </span>
+
+            <input class="b-public-link_copy_to_clipboard__input"
+                   tabindex="4"
+                   id="link"
+                   name="link"
+                   type="text"
+                   value="{{public.url}}"
+                   readonly/>
+          </div>
         </div>
+
         <hr/>
 
 
-        <button class="b-modal-window__main-block__body__button"
+        <button class="b-modal-window__main-block__body__button b-public-link_save_button"
                 role="button"
                 tabindex="8"
                 ng-disabled="!public.expireDate"
