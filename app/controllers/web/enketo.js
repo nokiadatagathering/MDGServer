@@ -31,11 +31,14 @@ exports.getPublicLink = function (req, res, next) {
       return;
     }
 
-    res.send(200, {
-      expire: (survey.publicExpire && survey.publicExpire > new Date()) ? survey.publicExpire : null,
-      title: survey.title,
-      publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
-    });
+    if (survey.publicExpire && survey.publicExpire > new Date()) {
+      res.send(200, {
+        expire: survey.publicExpire,
+        publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
+      });
+    } else {
+      res.send(204);
+    }
   });
 };
 
