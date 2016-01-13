@@ -46,6 +46,12 @@ Schema =  new mongoose.Schema({
   },
   publicExpire: {
     type: Date
+  },
+  customLogo: {
+    type: String
+  },
+  customMessage: {
+    type: String
   }
 }, {
   toObject: { virtuals: true }
@@ -60,7 +66,8 @@ Schema.pre('save', function (next) {
     me.published = false;
   }
 
-  if (me.published && me.isModified('resultsCount') && !me.isModified('title') && !me.isModified('_categories')) {
+  if (me.published && (me.isModified('resultsCount') || me.isModified('publicExpire') || me.isModified('customLogo') || me.isModified('customMessage') || me.isModified('__v'))
+    && !me.isModified('title') && !me.isModified('_categories')) {
     next();
 
     return;
@@ -68,7 +75,7 @@ Schema.pre('save', function (next) {
 
   if (me.get('__v') !== undefined &&
     (me.published !== me.isModified('published')) &&
-    (!me.isModified('archive') && !me.isModified('publicExpire'))) {
+    (!me.isModified('archive'))) {
     var error = new ValidationError(this);
 
     error.errors.published = new ValidatorError('published', 'Can not edit the published survey', me.published);

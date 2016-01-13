@@ -396,7 +396,7 @@ $modalH: 400px;
 }
 
 $publicModalW: 600px;
-$publicModalH: 400px;
+$publicModalH: 700px;
 
 .b-public-link {
   width: $publicModalW;
@@ -421,6 +421,31 @@ $publicModalH: 400px;
       width: 120px;
       font-weight: lighter;
       color: $gray-text;
+    }
+  }
+
+  &_custom_message {
+    font-size: 22px;
+    margin-bottom: 20px;
+
+    &__label {
+      display: block;
+    }
+
+    &__input {
+      width: 100%;
+      height: 50px;
+      display: block;
+    }
+  }
+
+  &_custom_logo {
+    font-size: 22px;
+    margin-bottom: 20px;
+
+    &__image {
+      width: 100px;
+      height: 100px;
     }
   }
 

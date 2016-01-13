@@ -33,6 +33,7 @@ var
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
   adminPageCntr = require('./app/controllers/web/adminPage'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
+  customLogoCntr = require('./app/controllers/web/customLogos'),
 
   enketoCntr = require('./app/controllers/web/enketo'),
 
@@ -202,6 +203,8 @@ exports.run = function (mongoUrl, port, callback) {
     app.post('/public/makeSurveyPublic/:survey', enketoCntr.makeSurveyPublic);
     app.get('/public/getPublicLink/:survey', enketoCntr.getPublicLink);
     app.get('/public/:survey', enketoCntr.getPublicSurvey);
+
+    app.get('/customlogos/:survey', customLogoCntr.getLogo);
 
     app.get('/', function (req, res) {
       console.log('------------------req.user      ', req.user);

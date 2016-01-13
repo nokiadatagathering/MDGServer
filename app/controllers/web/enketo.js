@@ -3,6 +3,8 @@ var
   moment = require('moment'),
   request = require('request'),
   fs = require('fs'),
+  generatePassword = require('password-generator'),
+
   Survey = require('../../models/Survey'),
   Result = require('../../models/Result'),
   User = require('../../models/User'),
@@ -14,7 +16,8 @@ var
   SurveyParserService = require('../../services/SurveyParser'),
   ResultsParserService = require('../../services/ResultsParser'),
   ResultsService = require('../../services/Results'),
-  SurveyService = require('../../services/Survey');
+  SurveyService = require('../../services/Survey'),
+  ImagesService = require('../../services/Images');
 
 function parseJXONTree (jxonTree) {
   return new ResultsParserService.ResultsParser(jxonTree);
@@ -34,6 +37,8 @@ exports.getPublicLink = function (req, res, next) {
     if (survey.publicExpire && survey.publicExpire > new Date()) {
       res.send(200, {
         expire: survey.publicExpire,
+        customMessage: survey.customMessage,
+        customLogoLink: survey.customLogo ? req.protocol + '://' + req.get('host') + '/customlogos/' + survey._id : null,
         publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
       });
     } else {
@@ -46,7 +51,8 @@ exports.makeSurveyPublic = function (req, res, next) {
   var
     owner = req.user.owner.toString(),
     surveyId = req.params.survey,
-    surveyPublicExpire = req.body.expire;
+    surveyPublicExpire = req.body.expire,
+    customMessage = req.body.customMessage;
 
   Survey.findOne({ _id: surveyId, _owner: owner }).exec(function (err, survey) {
     if (err) {
@@ -61,6 +67,25 @@ exports.makeSurveyPublic = function (req, res, next) {
 
     survey.publicExpire = surveyPublicExpire ? moment(surveyPublicExpire, 'DD/MM/YYYY').toDate() : null;
     survey.published = true;
+
+    if (req.files && req.files.logo) {
+      var logoId = surveyId + '_' + generatePassword(10, false);
+
+      fs.readFile(req.files.logo.path, function (err, data) {
+        if (err) {
+          callback(err, null);
+          return;
+        }
+
+        ImagesService.saveImage(data, logoId);
+        fs.unlink(req.files.logo.path);
+      });
+
+      survey.customLogo = logoId;
+    }
+
+    survey.customMessage = customMessage;
+
     survey.increment();
 
     survey.save(function (err, survey) {
@@ -71,6 +96,7 @@ exports.makeSurveyPublic = function (req, res, next) {
 
       res.send(200, {
         expire: survey.publicExpire,
+        customMessage: survey.customMessage,
         publicUrl: req.protocol + '://' + req.get('host') + '/public/' + survey._id
       });
     });
