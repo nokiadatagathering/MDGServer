@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('mdg', ['ui.router', 'ui.sortable',
-    'ngDragDrop', 'ngSanitize', 'ngDropdowns',
+    'ngDragDrop', 'ngSanitize', 'ngDropdowns', 'ngFileUpload',
     'config', 'base64', 'ngCookies', 'pascalprecht.translate',
 
     'mdg.app.authorization',
@@ -31,6 +31,7 @@
     'mdg.ui.nfEvent',
     'mdg.ui.onEnter',
 
+    'mdg.ui.selectCustomLogo',
     'mdg.ui.fileSelect',
     'mdg.ui.focusMe',
     'mdg.ui.focusModal',

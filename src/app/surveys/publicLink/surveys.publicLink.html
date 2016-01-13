@@ -6,11 +6,12 @@
           role="heading">
         {{ 'surveys.Get_public_link' | translate:'{title:survey.title}' }}
       </h2>
-            <span class="b-modal-window__main-block__header--icon-close">
-              <a ui-sref="^" class="transparent-button" tabindex="1">
-                <span class="fa fa-times"></span>
-              </a>
-            </span>
+
+      <span class="b-modal-window__main-block__header--icon-close">
+        <a ui-sref="^" class="transparent-button" tabindex="1">
+          <span class="fa fa-times"></span>
+        </a>
+      </span>
     </div>
     <div class="b-modal-window__main-block__body">
       <form name="getPublicLinkForm" id="get-public-link-form">
@@ -39,32 +40,55 @@
                  ng-model="public.expireDate">
         </div>
 
-        <div ng-if="public.url" class="b-public-link__link">
+        <div ng-show="public.checked" class="b-public-link_custom_message">
+          <label for="custom_message" class="b-public-link_custom_message__label">{{'surveys.Custom_Survey_Message'| translate }}</label>
+          <textarea class="b-public-link_custom_message__input"
+                    title="{{'surveys.Custom_Survey_Message'| translate }}"
+                    ng-model="public.customMessage"
+                    tabindex="4"
+                    id="custom_message"/>
+        </div>
+
+        <div ng-show="public.checked" class="b-public-link_custom_logo">
+          <label for="custom_logo">{{'surveys.Custom_Survey_Logo'| translate }}</label>
+          <input select-custom-logo="customLogo"
+                 type="file"
+                 title="{{'surveys.Custom_Survey_Logo'| translate }}"
+                 class=""
+                 tabindex="5"
+                 id="custom_logo"
+                 name="files" />
+        </div>
+
+        <div ng-show="public.checked && public.customLogoLink" class="b-public-link_custom_logo">
+          <img ng-src="{{public.customLogoLink}}" class="b-public-link_custom_logo__image">
+        </div>
+
+        <div ng-show="public.url" class="b-public-link__link">
           <span>{{ 'surveys.Public_link' | translate }}</span>
 
           <div class="b-public-link_copy_to_clipboard">
-          <span data-clipboard-target="#link" id="linkcopy" class="b-public-link_copy_to_clipboard__icon fa fa-clipboard transparent-button">
+          <span data-clipboard-target="#link" id="linkcopy" class="b-public-link_copy_to_clipboard__icon fa fa-clipboard transparent-button"  tabindex="6">
             <span class="button-title">{{ 'surveys.Copy_to_clipboard' | translate }}</span>
           </span>
 
-            <input class="b-public-link_copy_to_clipboard__input"
-                   tabindex="4"
-                   id="link"
-                   name="link"
-                   type="text"
-                   value="{{public.url}}"
-                   readonly/>
+          <input class="b-public-link_copy_to_clipboard__input"
+                 id="link"
+                 name="link"
+                 type="text"
+                 value="{{public.url}}"
+                 readonly/>
           </div>
         </div>
 
         <hr/>
 
-
         <button class="b-modal-window__main-block__body__button b-public-link_save_button"
                 role="button"
-                tabindex="8"
+                tabindex="7"
+                type="submit"
                 ng-disabled="!public.expireDate"
-                ng-click="makeSurveyPublic($stateParams.surveyId, public.expireDate)">
+                ng-click="makeSurveyPublic($stateParams.surveyId, public.expireDate, public.customMessage)">
           <span class="fa fa-share b-modal-window__main-block__body__button--icon"></span>
           <span>{{ 'surveys.Save' | translate }}</span>
         </button>

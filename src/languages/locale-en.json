@@ -35,6 +35,8 @@
     "Can_not_be_deleted": "Published survey can not be deleted",
     "Get_public_link": "Get public link for {title} survey",
     "Public_link": "Public link for this survey is:",
+    "Custom_Survey_Message": "Custom Thank You Message",
+    "Custom_Survey_Logo": "Custom Survey Logo",
     "Copy_to_clipboard": "Copy to clipboard",
     "Make_survey_public": "Make this survey public",
     "Select_expire_date": "Select the expire date",
