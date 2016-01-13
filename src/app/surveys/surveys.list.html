@@ -147,21 +147,19 @@
                             </button>
                             <button class="e-options__item transparent-button"
                                     role="button"
-                                    ng-click="deleteSurvey(survey)"
-                                    ng-if="!survey.published"
-                                    ng-disabled="offlineMode"
-                                    title="{{'surveys.Delete_survey' | translate }}">
-                                <span class="fa fa-trash-o"></span>
-                                <span class="button-title">{{ 'surveys.Delete_survey' | translate }}</span>
-                            </button>
-                            <button class="e-options__item transparent-button"
-                                    role="button"
-                                    ui-sref="page.surveys.list.publiclink({surveyId: survey.id})"
-                                    ng-if="survey.published"
+                                    ui-sref="page.surveys.list.publiclink({surveyId: survey.id, survey: survey})"
                                     ng-disabled="offlineMode"
                                     title="{{ 'surveys.Get_public_link' | translate }}">
                               <span class="fa fa-edit"></span>
                               <span class="button-title">{{ 'surveys.Get_public_link' | translate }}</span>
+                            </button>
+                            <button class="e-options__item transparent-button"
+                                    role="button"
+                                    ng-click="deleteSurvey(survey)"
+                                    ng-disabled="survey.published"
+                                    title="{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}">
+                              <span class="fa fa-trash-o"></span>
+                              <span class="button-title">{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}</span>
                             </button>
                         </div>
                     </div>

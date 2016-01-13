@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('mdg.app.surveys')
-    .service('surveysService', function ($q, $http, $rootScope, offlineService) {
+    .service('surveysService', function ($q, $http, Upload, $rootScope, offlineService) {
       /** @const */
       var
         SURVEYS_URL = '/surveys/',
@@ -171,11 +171,14 @@
           });
       }
 
-      function makeSurveyPublic (surveyId, expire) {
-        return $http.post('/public/makeSurveyPublic/' + surveyId, { expire: expire });
+      function makeSurveyPublic (surveyId, body) {
+          return Upload.upload({
+            url: '/public/makeSurveyPublic/' + surveyId,
+            data: body
+          });
       }
 
-      function getPublicLink (surveyId, expire) {
+      function getPublicLink (surveyId) {
         return $http.get('/public/getPublicLink/' + surveyId);
       }
 
