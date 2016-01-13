@@ -288,6 +288,8 @@ exports.submission = function (req, res, next) {
           results._owner = user.owner;
           results._user = user._id;
 
+          resultsData.instanceID = resultsData.instanceID || 'web form response';
+
           results = ResultsService.composeResults(results, resultData, survey, function (results) {
             results.save(function (err, results) {
               if (err) {
