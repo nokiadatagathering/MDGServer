@@ -4,6 +4,8 @@ var
   cronJob = require('cron').CronJob,
   passport = require('passport'),
   mongoose = require('mongoose'),
+  jwt = require('express-jwt'),
+  cors = require('cors'),
   http = require('http'),
   https = require('https'),
 
@@ -37,14 +39,12 @@ var
 
   enketoCntr = require('./app/controllers/web/enketo'),
 
-  manifestCntr = require('./app/controllers/web/manifest'),
-
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
   checkServerCntr = require('./app/controllers/mobile/checkServer'),
   postResultsCntr = require('./app/controllers/mobile/postResults'),
   receiveSurveyCntr = require('./app/controllers/mobile/receiveSurvey'),
   localeCntr = require('./app/controllers/mobile/locale'),
-
+  User = require('./app/models/User'),
   fs = require('fs'),
 
   ACLService = require('./app/services/ACL'),
@@ -105,32 +105,28 @@ exports.run = function (mongoUrl, port, callback) {
   }
 
   app.use(cookieParser());
-
-  var sessionStore = new MongoStore({ url: Configuration.get('general.mongodbUrl') });
-
-  app.use(express.session({
-    store: sessionStore,
-    secret: 'secret'
-  }));
+  app.use(cors());
 
   app.use(passport.initialize());
-  app.use(passport.session());
   app.use(express.urlencoded());
   app.use(express.json());
   app.use(multipart());
   app.use(methodOverride());
-
-  if (app.settings.env === 'development') {
-    app.use(express.static(__dirname + '/.tmp'));
-    app.use('/src', express.static(__dirname + '/src'));
-    app.use('/.tmp', express.static(__dirname + '/.tmp'));
-    app.use('/bower_components', express.static(__dirname + '/bower_components'));
-  }
-
-  if (app.settings.env === 'production') {
-    app.use(express.static(__dirname + '/dist'));
-  }
-
+  app.use(jwt({secret: 'secret', credentialsRequired: false }));
+  app.use(function(req, res, next) {
+    if (req.user) {
+      User.findById(req.user).exec(function (err, user) {
+        if (err || !user) {
+          delete req.user;
+          return;
+        } else {
+          console.log('upgrading user');
+          req.user = user;
+        }
+        next();
+       });
+    } else next();
+  });
   app.use(app.router);
   app.use(ErrorHandler);
   app.use(getStartedCntr.error404);
@@ -205,39 +201,6 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/public/:survey', enketoCntr.getPublicSurvey);
 
     app.get('/customlogos/:survey', customLogoCntr.getLogo);
-
-    app.get('/', function (req, res) {
-      console.log('------------------req.user      ', req.user);
-      if (req.method === 'HEAD') {
-        res.send();
-      } else {
-        if (req.user) {
-
-          if (app.settings.env === 'production') {
-            app.get('/mdgcache.manifest', manifestCntr.getManifest);
-
-            res.render('dist/index', {
-              title: Configuration.get('general.siteName'),
-              version: version,
-              manifest: 'mdgcache.manifest'
-            });
-          } else {
-            app.get('/mdgcache-dev.manifest', manifestCntr.getManifest);
-
-            res.render('.tmp/serve/index', {
-              title: Configuration.get('general.siteName'),
-              version: version,
-              manifest: 'mdgcache-dev.manifest'
-            });
-          }
-
-        } else {
-          console.log(('redirect').yellow);
-          res.redirect('/home');
-        }
-      }
-    });
-
 
     if (Configuration.get('general.protocolType') === 'https') {
       httpsOptions.pfx = fs.readFileSync(Configuration.get('general.httpspfx'));

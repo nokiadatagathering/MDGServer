@@ -1,6 +1,7 @@
 var
   _ = require('underscore'),
   passport = require('passport'),
+  jsonwebtoken = require('jsonwebtoken'),
 
   MailService = require('../../services/Mail'),
 
@@ -13,18 +14,11 @@ exports.login = function (req, res, next) {
     }
 
     if (!user) {
-      req.session.messages =  [ info ];
-      next({ status: 401, body: info });
+      next({ status: 401, body: {success: false} });
       return;
     }
 
-    req.logIn(user, function (err) {
-      if (err) {
-        return next(err);
-      }
-
-      return res.send(200);
-    });
+    return res.json({success: true, token: jsonwebtoken.sign(user.id, 'secret')});
   })(req, res, next);
 };
 
