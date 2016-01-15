@@ -94,7 +94,7 @@
             </thead>
             <tbody class="b-table__body">
             <tr class="b-table__body__row" id="{{survey._id}}"
-                ng-repeat="survey in filtered = (surveys | deletedItemsFilter : 'surveys')
+                ng-repeat="survey in filtered = (surveys.list | deletedItemsFilter : 'surveys')
                                                             | selectPublished : dropdownSelect.value
                                                             | filter:search
                                                             | orderBy:predicate:reverse"
