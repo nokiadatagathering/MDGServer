@@ -13,7 +13,8 @@
 
       $scope.public = {};
 
-      $scope.survey = $scope.$parent.filtered.find(function (survey) {
+      $scope.survey = $scope.surveys.list.find(function (survey) {
+
         return survey.id === $stateParams.surveyId;
       });
 

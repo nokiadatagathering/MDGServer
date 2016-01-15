@@ -5,7 +5,9 @@ angular.module('mdg.app.surveys')
   .controller('SurveysController',
   function ($scope, $location, $window, $rootScope, $state, $translate, $sce,
                                              surveysService, surveys) {
-      $scope.surveys = surveys;
+      $scope.surveys = {
+        list: surveys
+      };
 
       $scope.predicate = 'dateCreated';
       $scope.reverse = true;
@@ -30,7 +32,7 @@ angular.module('mdg.app.surveys')
 
         surveysService.surveyList($rootScope.archive).then(
           function success (result) {
-            $scope.surveys = result;
+            $scope.surveys.list = result;
           },
 
           function failed (err) {
