@@ -122,7 +122,7 @@
           console.log('$scope.usersIds', $scope.usersIds);
           surveysService.sendSurvey(surveyId, {users: $scope.usersIds}).then(
             function success() {
-              var survey = _.find($scope.$parent.$parent.surveys, function (survey) {
+              var survey = _.find($scope.surveys.list, function (survey) {
                 return survey._id === surveyId;
               });
 
