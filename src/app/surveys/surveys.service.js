@@ -14,7 +14,9 @@
       function surveyList () {
 
         if ($rootScope.offlineMode) {
-          return offlineService.getSurveys();
+          return offlineService.getSurveys().then(function(result) {
+            return result.data;
+          });
         }
 
         return $http.get(SURVEYS_URL).then(function (result) {

@@ -2,22 +2,21 @@
   'use strict';
   angular.module('mdg.app.offline', [])
     .service('offlineService', function ($q, $http, $rootScope) {
+      var db;
       try {
-        db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024);
-
+        db = openDatabase('mdg', '1.0', 'MDG', 2 * 1024 * 1024);
         db.transaction(function (tx) {
           tx.executeSql('CREATE TABLE IF NOT EXISTS requests (id INTEGER PRIMARY KEY AUTOINCREMENT, _id TEXT, type TEXT, body TEXT)');
         });
-      } catch (e)  {
+      } catch (e) {
         $rootScope.offlineNotSupport = true;
       }
 
       function saveRequest(type, body, id) {
-        var
-          deferred = $q.defer();
+        var deferred = $q.defer();
 
         if ($rootScope.offlineNotSupport) {
-          return $q.reject({ error: "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode."});
+          return $q.reject({error: "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode."});
         }
 
         var ids = localStorage.getItem('survey_ids') ? localStorage.getItem('survey_ids').split(',') : [],
@@ -78,10 +77,9 @@
       }
 
       function getSurveys() {
-        var
-          deferred = $q.defer(),
-          surveys = [],
-          ids = localStorage.getItem('survey_ids') ? localStorage.getItem('survey_ids').split(',') : [];
+        var deferred = $q.defer();
+        var surveys = [];
+        var ids = localStorage.getItem('survey_ids') ? localStorage.getItem('survey_ids').split(',') : [];
 
         _.each(ids, function (id) {
           surveys.push(JSON.parse(localStorage.getItem(id)));

@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="status">Syncronization complete</div>
-                <input type="button" value="Close" ui-sref="page.surveys.list({ reload : true })" tabindex="2">
+                <input type="button" value="Close" ng-click="close()" tabindex="2">
             </div>
             <div ng-show="failedSync">
                 <div class="status">Error: {{syncError}}</div>
