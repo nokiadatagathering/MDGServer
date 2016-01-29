@@ -1,0 +1,41 @@
+<div class="b-date-range">
+    <div class="b-date-range__small-field">
+        <div ng-if="checkboxes">
+          <div class="b-date-range__label">
+            <button class="transparent-button"
+                    role="checkbox"
+                    aria-checked="{{minChecked}}"
+                    ng-click="disableInput('min')">
+            <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
+                  ng-class="{'fa-circle-o':!minChecked, 'fa-check-circle-o': minChecked}"></span>
+              <label
+                class="b-surveys-edit__category__question__header__rules__checkbox--label">
+                {{ 'survey_builder.MINIMUM_RANGE' | translate }}
+              </label>
+            </button>
+          </div>
+
+        </div>
+        <label ng-if="!checkboxes">{{ 'schedule_export.FROM' | translate }}</label>
+        <input date-input="minRange" class="b-date-range__input">
+    </div>
+    <div class="b-date-range__small-field">
+        <div ng-if="checkboxes">
+            <label class="b-date-range__label">
+              <button class="transparent-button"
+                      role="checkbox"
+                      aria-checked="{{maxChecked}}"
+                      ng-click="disableInput('max')">
+            <span class="fa b-surveys-edit__category__question__header__rules__checkbox--icon"
+                  ng-class="{'fa-circle-o':!maxChecked, 'fa-check-circle-o': maxChecked}"></span>
+                <label
+                  class="b-surveys-edit__category__question__header__rules__checkbox--label">
+                  {{ 'survey_builder.MAXIMUM_RANGE' | translate }}
+                </label>
+              </button>
+            </label>
+        </div>
+        <label ng-if="!checkboxes">{{ 'schedule_export.TO' | translate }}</label>
+        <input date-input="maxRange" class="b-date-range__input">
+    </div>
+</div>

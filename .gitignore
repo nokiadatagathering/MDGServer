@@ -1,6 +1,5 @@
-node_modules
-bower_components
-version.json
-dist
-release
-
+node_modules/
+bower_components/
+.sass-cache/
+.tmp/
+dist/

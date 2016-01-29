@@ -6,6 +6,7 @@ exports.checkPhoneNumberFormat = function (phone) {
   if (!phoneRe.test(phone)) {
     return false;
   }
+
 };
 
 exports.checkPhoneNumberLength = function (phone) {

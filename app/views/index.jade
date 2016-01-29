@@ -1,0 +1,49 @@
+doctype html
+html( ng-app='mdg' manifest = manifest )
+    head
+        title= title
+        meta(charset='utf-8')
+        meta('http-equiv'='X-UA-Compatible', content='IE=edge,chrome=1')
+        meta(name='viewport', content='initial-scale=1.0')
+
+        link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+
+        // build:css({.tmp/serve,src}) styles/app.css
+        link(rel='stylesheet', href='../bower_components/jquery-ui/themes/excite-bike/jquery-ui.css')
+
+        // bower:css
+        // endbower
+        //- inject:css
+        //- endinject
+        // endbuild
+
+        script(src="https://js.cit.api.here.com/ee/2.5.3/jsl.js?with=all")
+
+        // build:js(src) scripts/vendor.js
+        //- bower:js
+        // run `gulp wiredep` to automaticaly populate bower script dependencies
+        //- endbower
+        // endbuild
+
+        // build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js
+
+        script(src="../../src/application.js")
+        script(src="../../src/config.js")
+        //- inject:js
+        // js files will be automaticaly insert here
+        //- endinject
+
+        //- inject:partials
+        //- endinject
+
+        script(src='../../bower_components/messageformat/locale/en.js')
+        script(src='../../bower_components/messageformat/locale/ru.js')
+        script(src='../../bower_components/messageformat/locale/zh.js')
+        script(src='../../bower_components/messageformat/locale/vi.js')
+        // endbuild
+    if (version)
+            script.
+                window.version = '!{version}';
+    body.b-page
+        div('ui-view'='' class='templates')
+

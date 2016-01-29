@@ -61,7 +61,7 @@ exports.resetPassword = function (req, res, next) {
     }
 
     if (!user) {
-      res.redirect('/#/resetPasswordError');
+      res.redirect('/home#/resetPasswordError');
       return;
     }
 

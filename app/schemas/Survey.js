@@ -43,6 +43,15 @@ Schema =  new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
+  },
+  publicExpire: {
+    type: Date
+  },
+  customLogo: {
+    type: String
+  },
+  customMessage: {
+    type: String
   }
 }, {
   toObject: { virtuals: true }
@@ -57,7 +66,8 @@ Schema.pre('save', function (next) {
     me.published = false;
   }
 
-  if (me.published && me.isModified('resultsCount') && !me.isModified('title') && !me.isModified('_categories')) {
+  if (me.published && (me.isModified('resultsCount') || me.isModified('publicExpire') || me.isModified('customLogo') || me.isModified('customMessage') || me.isModified('__v'))
+    && !me.isModified('title') && !me.isModified('_categories')) {
     next();
 
     return;

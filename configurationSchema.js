@@ -7,7 +7,7 @@ module.exports = {
         type: String,
         title: 'Site Name',
         description: '',
-        defaults: 'NOKIA DATA GATHERING'
+        defaults: 'MICROSOFT DATA GATHERING'
       },
       protocolType: {
         type: String,
@@ -53,6 +53,24 @@ module.exports = {
       }
     }
   },
+  enketo: {
+    title: 'Enketo',
+    description: 'Parameters for Enketo',
+    children: {
+      token: {
+        type: String,
+        title: 'enketo token',
+        description: 'enketo token',
+        defaults: '5aslore4vgmvlsor'
+      },
+      server: {
+        type: String,
+        title: 'enketo server url',
+        description: 'enketo server',
+        defaults: 'http://mdg-test.wookieelabs.com:9090/api/v1/survey'
+      }
+    }
+  },
   languages: {
     title: 'Languages',
     description: 'Parameters for Digest Authorization. Do NOT change these unless you know what you are doing',
@@ -68,10 +86,10 @@ module.exports = {
         title: 'Supported languages',
         description: '',
         defaults: [
-          {value: 'en', text: 'English'},
-          {value: 'ru', text: 'Русский'},
-          {value: 'zh', text: '中文'},
-          {value: 'vi', text: 'Việt' }
+          {value: 'en', text: 'English', title: 'English'},
+          {value: 'ru', text: 'Русский', title: 'Russian'},
+          {value: 'zh', text: '中文', title: 'Chinese'},
+          {value: 'vi', text: 'Việt', title: 'Vietnamese' }
         ]
       },
       supported_languages_mobile: {
@@ -208,7 +226,7 @@ module.exports = {
             type: String,
             title: 'Registration Email from',
             description: '',
-            defaults: 'registration@nokiadatagathering.net'
+            defaults: 'mdgspprt@microsoft.com'
           },
           subscription: {
             type: String,
@@ -246,7 +264,7 @@ module.exports = {
         type: String,
         title: 'Mandrill Api Key',
         description: 'Defines Mandrill Api Key',
-        defaults: ''
+        defaults: 'WO6r_NFfdABIKOTEgdvuvQ'         /* test api KEY */
       },
       emailsForUsersReport: {
         type: Object,

@@ -1,0 +1,14 @@
+<div ng-controller="resultsMapController" class="b-map-panel">
+    <input class="b-map-panel__search" type="search"
+           aria-label="{{ 'results.Search' | translate }}"
+           placeholder="{{ 'results.Search' | translate }}"
+           ng-model="searchQuery">
+    <div class="b-map-panel__close">
+        <button class="transparent-button"  ui-sref="page.results.list" title="Close the map">
+          <span class="fa fa-times-circle-o"></span>
+        </button>
+    </div>
+    <div id="mapContainer"></div>
+    <div id="uiContainer"></div>
+</div>
+<div class="modal map-details" ui-view></div>

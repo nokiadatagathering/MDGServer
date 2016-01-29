@@ -79,7 +79,7 @@ function getCategoryResults (resultsData, survey, resultId) {
 }
 
 exports.composeResults = function (results, resultsData, survey, cb) {
-  Result.find({ _survey: survey._id, instanceID: resultsData.instanceID })
+  Result.find({ _survey: survey._id, instanceID: resultsData.instanceID || 'No name' })
     .sort('count')
     .exec(function (err, sameTitleResults) {
     results._survey = survey._id;
@@ -205,18 +205,20 @@ function checkRelevant (relevantValue, results) {
 exports.gatherCategoryResults = function (result, survey) {
   var
     results = [],
-    surveyCategory = {},
+    categoryResult = {},
     category = {},
-    surveyQuestion = {},
+    questionResult = {},
     question = {},
     index;
 
-  _.each(result._categoryResults, function (categoryResult, categoryIndex) {
+  _.each(survey._categories, function (surveyCategory) {
     category = {
       _questionResults: []
     };
 
-    surveyCategory =  survey._categories[categoryIndex];
+    categoryResult = _.find(result._categoryResults, function (c) {
+      return c.id === surveyCategory.id;
+    });
 
     if (surveyCategory.relevant && !checkRelevant(surveyCategory.relevant, result)) {
       return;
@@ -225,12 +227,12 @@ exports.gatherCategoryResults = function (result, survey) {
     category.title = surveyCategory.title;
     category.id = categoryResult.id;
 
-    _.each(categoryResult._questionResults, function (questionResult, questionIndex) {
+    _.each(surveyCategory._questions, function (surveyQuestion) {
       question = {};
 
-      surveyQuestion = _.find(surveyCategory._questions, function (question) {
-        return question.id == questionResult.id;
-      });
+      questionResult = _.find(categoryResult._questionResults, function (q) {
+        return q.id == surveyQuestion.id;
+      }) || {};
 
       if (Configuration.get('general.questionsTypes').indexOf(surveyQuestion.type) == -1 && !/cascade/.test(surveyQuestion.type)) {
         return;

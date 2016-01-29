@@ -66,6 +66,9 @@ exports.configure = configure = {
   },
   userPermission: {
     show: 'operator'
+  },
+  enketoSurveyUrl: {
+    show: 'fieldWorker'
   }
 };
 

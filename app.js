@@ -31,7 +31,11 @@ var
   exportCntr = require('./app/controllers/web/export'),
   validationsCntr = require('./app/controllers/web/validations'),
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
+  adminPageCntr = require('./app/controllers/web/adminPage'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
+  customLogoCntr = require('./app/controllers/web/customLogos'),
+
+  enketoCntr = require('./app/controllers/web/enketo'),
 
   manifestCntr = require('./app/controllers/web/manifest'),
 
@@ -79,12 +83,12 @@ if (process.platform === 'win32') {
 
 
 exports.run = function (mongoUrl, port, callback) {
+
   app = express();
   app.enable('trust proxy');
-
   require('./app/services/Auth');
 
-  app.set('views', __dirname + '/app/views');
+  app.set('views', __dirname);
   app.set('view engine', 'jade');
   app.set('controllers', __dirname + '/app/controllers/web');
   if (app.settings.env === 'production') {
@@ -115,12 +119,18 @@ exports.run = function (mongoUrl, port, callback) {
   app.use(express.json());
   app.use(multipart());
   app.use(methodOverride());
+
   if (app.settings.env === 'development') {
-    app.use(express.static(__dirname + '/web'));
+    app.use(express.static(__dirname + '/.tmp'));
+    app.use('/src', express.static(__dirname + '/src'));
+    app.use('/.tmp', express.static(__dirname + '/.tmp'));
     app.use('/bower_components', express.static(__dirname + '/bower_components'));
-  } else {
+  }
+
+  if (app.settings.env === 'production') {
     app.use(express.static(__dirname + '/dist'));
   }
+
   app.use(app.router);
   app.use(ErrorHandler);
   app.use(getStartedCntr.error404);
@@ -141,6 +151,7 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/checkAuthorization', checkAuthorizationCntr.checkAuthorization);
     app.get('/autocomplete/company', autocompleteCntr.getCompanies);
     app.get('/autocomplete/industry', autocompleteCntr.getIndustries);
+    app.get('/autocomplete/user', autocompleteCntr.getUsers);
 
     app.post('/signup', loginCntr.signup);
 
@@ -167,6 +178,9 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.getReportPage);
     app.post('/monthlyReport', passport.authenticate('basic', { session: false }), monthlyReportCntr.sendReport);
 
+    app.get('/adminPage', passport.authenticate('basic', { session: false }),adminPageCntr.getAdminPage);
+    app.post('/adminPage/deleteUser', passport.authenticate('basic', { session: false }), adminPageCntr.deleteUser);
+
     app.post('/forgotPassword', passwordResetCntr.forgotPassword);
     app.post('/resetPassword/:token', passwordResetCntr.resetPassword);
 
@@ -181,22 +195,49 @@ exports.run = function (mongoUrl, port, callback) {
 
     app.get('/home', getStartedCntr.home);
 
+    app.get('/enketoSurveyUrl/:survey', ACLService.checkPermission, enketoCntr.getEnketoSurveyUrl);
+    app.get('/enketo/:userId/formList', enketoCntr.formList);
+    app.get('/enketo/:userId/:survey', enketoCntr.form);
+    app.post('/enketo/:userId/submission', enketoCntr.submission);
+
+    app.post('/public/makeSurveyPublic/:survey', enketoCntr.makeSurveyPublic);
+    app.get('/public/getPublicLink/:survey', enketoCntr.getPublicLink);
+    app.get('/public/:survey', enketoCntr.getPublicSurvey);
+
+    app.get('/customlogos/:survey', customLogoCntr.getLogo);
+
     app.get('/', function (req, res) {
+      console.log('------------------req.user      ', req.user);
       if (req.method === 'HEAD') {
         res.send();
       } else {
         if (req.user) {
-          res.render('index-' + app.settings.env, {
-            title: Configuration.get('general.siteName'),
-            version: version
-          });
+
+          if (app.settings.env === 'production') {
+            app.get('/mdgcache.manifest', manifestCntr.getManifest);
+
+            res.render('dist/index', {
+              title: Configuration.get('general.siteName'),
+              version: version,
+              manifest: 'mdgcache.manifest'
+            });
+          } else {
+            app.get('/mdgcache-dev.manifest', manifestCntr.getManifest);
+
+            res.render('.tmp/serve/index', {
+              title: Configuration.get('general.siteName'),
+              version: version,
+              manifest: 'mdgcache-dev.manifest'
+            });
+          }
+
         } else {
+          console.log(('redirect').yellow);
           res.redirect('/home');
         }
       }
     });
 
-    app.get('/mdgcache.manifest', manifestCntr.getManifest);
 
     if (Configuration.get('general.protocolType') === 'https') {
       httpsOptions.pfx = fs.readFileSync(Configuration.get('general.httpspfx'));

@@ -34,7 +34,7 @@ exports.sendSubscriptionEmail = function () {
 
         _.each(subscription._survey._categories, function (category) {
           _.each(category._questions, function (question) {
-            if (/cascade/.test(question.type) && questions[questions.length - 1].type === question.type) {
+            if (/cascade/.test(question.type) && questions[questions.length - 1] && questions[questions.length - 1].type === question.type) {
               questions[questions.length-1].items = questions[questions.length-1].items.concat(question.items);
               return;
             }

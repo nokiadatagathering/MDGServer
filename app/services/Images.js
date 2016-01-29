@@ -4,12 +4,14 @@ var
   streamBuffers = require("stream-buffers"),
   grid = require('gridfs-stream');
 
-exports.saveImage = function (fileData, fileName) {
+exports.saveImage = function (fileData, fileName, ifBuffer) {
   var
-    buf = new Buffer(fileData, 'base64'),
+    buf,
     gridfs,
     readstream,
     writestream;
+
+  buf = ifBuffer ? fileData : new Buffer(fileData, 'base64');
 
   gridfs = grid(mongoose.connection.db, mongoose.mongo);
 

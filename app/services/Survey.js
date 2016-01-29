@@ -73,6 +73,42 @@ function getCategories (surveyData) {
   });
 }
 
+function transformRelevantForEnketo (relevantValue) {
+  if (!relevantValue) {
+    return;
+  }
+
+  var
+    relevant = '',
+    xpath = '',
+    value,
+    match,
+    conditionRegexp = new RegExp("\\. (>=|<=|<|>|=) ([\\d-]+( and)?)(|$|\\))", 'g'),
+    relevantRegexp = new RegExp("(/data/.+/.+)='(.+)'");
+
+  xpath = relevantValue.match(relevantRegexp)[1];
+  value = relevantValue.match(relevantRegexp)[2];
+
+  if (value.match(/\(.+?\)/)) {
+    _.each(value.split(') ('), function (option, index) {
+      conditionRegexp.lastIndex = 0;
+
+      relevant += index !== 0 ? ' or' : '';
+
+      while ((match = conditionRegexp.exec(option)) !== null) {
+        relevant += ' int(' + xpath + ')' + match[1] + match[2];
+      }
+    });
+  } else {
+    _.each(value.split(' '), function (value, index) {
+      relevant += index !== 0 ? ' or ' : '';
+      relevant += 'selected(' + xpath + ", '"   + value + "')";
+    });
+  }
+
+  return relevant;
+}
+
 exports.composeSurvey = function (survey, surveyData) {
   survey.title = surveyData.title;
   survey._categories = getCategories(surveyData);
@@ -80,7 +116,7 @@ exports.composeSurvey = function (survey, surveyData) {
   return survey;
 };
 
-exports.composeSurveyData = function (survey) {
+exports.composeSurveyData = function (survey, enketo) {
   var surveyData = {
     title: survey.title,
     instance: {
@@ -112,7 +148,7 @@ exports.composeSurveyData = function (survey) {
     if (surveyCategory.relevant !== undefined) {
       surveyData.__binds["/data/" + surveyCategory.id] = {
         type: "group",
-        relevant: surveyCategory.relevant
+        relevant: enketo ? transformRelevantForEnketo(surveyCategory.relevant) : surveyCategory.relevant
       };
 
       group.ref = "/data/" + surveyCategory.id;
@@ -134,7 +170,7 @@ exports.composeSurveyData = function (survey) {
 
       surveyData.__binds["/data/" + surveyCategory.id + "/" + surveyQuestion.id] = {
         type: surveyQuestion.type,
-        relevant: surveyQuestion.relevant,
+        relevant: enketo ? transformRelevantForEnketo(surveyQuestion.relevant) : surveyQuestion.relevant,
         constraint: surveyQuestion.constraint,
         required: surveyQuestion.required
       };
@@ -155,7 +191,7 @@ exports.composeSurveyData = function (survey) {
       group.inputs.push({
         type: surveyQuestion.type,
         required: surveyQuestion.required,
-        relevant: surveyQuestion.relevant,
+        relevant: enketo ? transformRelevantForEnketo(surveyQuestion.relevant) : surveyQuestion.relevant,
         constraint: surveyQuestion.constraint,
         mediatype: surveyQuestion.mediatype,
         label: "/data/" + surveyCategory.id + "/" + surveyQuestion.id + ":label",
@@ -165,7 +201,6 @@ exports.composeSurveyData = function (survey) {
         items: items,
         id: surveyQuestion.id
       });
-
     });
 
     surveyData.instance.categories.push(category);
@@ -173,4 +208,28 @@ exports.composeSurveyData = function (survey) {
   });
 
   return surveyData;
+};
+
+exports.sortSurveyQuestions = function (survey) {
+  _.each(survey._categories, function (c) {
+    var questions = [];
+
+    _.each(c._questions, function (q) {
+      if (/cascade/.test(q.type)) {
+        if (q.type === 'cascade1') {
+          questions.push(q);
+          questions = questions.concat(_.filter(c._questions, function (item) {
+            return item.parentid === q.id;
+          }));
+        }
+      } else {
+        questions.push(q);
+      }
+    });
+
+    c._questions = questions;
+
+  });
+
+  return survey;
 };
