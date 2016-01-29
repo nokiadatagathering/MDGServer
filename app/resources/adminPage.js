@@ -15,6 +15,7 @@
     el.addEventListener('focus', function (evt) {
       setTimeout(function(){
         hideError();
+        hideSuccessMsg();
       }, 500);
     }, true);
 
@@ -111,6 +112,24 @@
     }
   }
 
+  function showSuccessMsg (msg) {
+    var
+      successEl = document.querySelector('div.success'),
+      usernameEl = document.querySelector('div.success .username');
+
+    usernameEl.innerHTML = msg;
+    successEl.style.display = 'block';
+  }
+
+  function hideSuccessMsg () {
+    var
+      successEl = document.querySelector('div.success'),
+      usernameEl = document.querySelector('div.success .username');
+
+    usernameEl.innerHTML = '';
+    successEl.style.display = 'none';
+  }
+
   function showError () {
     var div = document.querySelector('div.error');
     div.style.display = 'block';
@@ -126,6 +145,7 @@
 
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 204) {
+        showSuccessMsg(userEl.value);
         userEl.value = '';
         userEl.setAttribute('userid', '');
       }
@@ -144,7 +164,8 @@
       return;
     }
 
-    var confirmUserDelete = window.confirm('Are you sure you want to delete user "' + userEl.value + '"?');
+    var confirmUserDelete = window.confirm('Are you sure you want to delete user "' + userEl.value + '"?' +
+    '\n\rPlease note that this operation can not be undone.');
 
     if (confirmUserDelete) {
       deleteUser(userEl);
