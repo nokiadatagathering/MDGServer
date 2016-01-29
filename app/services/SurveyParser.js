@@ -203,6 +203,59 @@ function Survey (jxonTree) {
   }
 }
 
+exports.SurveysToJxonTree = function (surveys, url) {
+  var res = {
+    attrs: {
+      xmlns: "http://openrosa.org/xforms/xformsList"
+    },
+    tagName: 'xforms',
+    value: null,
+    items: getItems()
+  };
+
+  function getItems () {
+    return surveys.map(function (survey) {
+      return {
+        tagName: 'xform',
+        value: null,
+        attrs: {},
+        items: getItem(survey)
+      };
+    });
+  }
+
+  function getItem (survey) {
+    return [
+      {
+        tagName: 'formID',
+        attrs: {},
+        items: [],
+        value: survey._id
+      },
+      {
+        tagName: 'name',
+        attrs: {},
+        items: [],
+        value: survey.title
+      },
+      {
+        tagName: 'downloadUrl',
+        attrs: {},
+        items: [],
+        value: url + '/' + survey._id
+      },
+      {
+        tagName: 'hash',
+        attrs: {},
+        items: [],
+        value: survey._id
+      }
+    ]
+  }
+
+  return res;
+};
+
 exports.SurveyToJxonTree = function (me) {
   var
     res = {

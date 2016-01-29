@@ -7,7 +7,7 @@
                 Sync with server
             </h2>
             <span class="b-modal-window__main-block__header--icon-close">
-              <a  ui-sref="^" class="transparent-button" tabindex="1"  title="{{ 'Close_popup' | translate}}">
+              <a  ui-sref="page.surveys.list" class="transparent-button" tabindex="1"  title="{{ 'Close_popup' | translate}}">
                 <span class="fa fa-times"></span>
               </a>
             </span>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="status">Syncronization complete</div>
-                <input type="button" value="Close" ui-sref="page.surveys.list({ reload : true })" tabindex="2">
+                <input type="button" value="Close" ng-click="close()" tabindex="2">
             </div>
             <div ng-show="failedSync">
                 <div class="status">Error: {{syncError}}</div>

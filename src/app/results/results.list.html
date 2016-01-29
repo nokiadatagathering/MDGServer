@@ -129,7 +129,7 @@
           <td class="b-table__body__row__col">
             <a title="{{result.title}}" class="b-table__body__row__col--text"
                ui-sref="page.results.list.details({resultId: result._id})">
-              {{result.title}}</a>
+              {{result.title.length ? result.title : '(no  title)'}}</a>
           </td>
           <td class="b-table__body__row__col">
             <span class="b-table__body__row__col--text">{{result.timeCreated | date: 'MM/dd/yy'}}</span>

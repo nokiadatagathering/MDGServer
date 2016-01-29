@@ -79,7 +79,7 @@ function getCategoryResults (resultsData, survey, resultId) {
 }
 
 exports.composeResults = function (results, resultsData, survey, cb) {
-  Result.find({ _survey: survey._id, instanceID: resultsData.instanceID })
+  Result.find({ _survey: survey._id, instanceID: resultsData.instanceID || 'No name' })
     .sort('count')
     .exec(function (err, sameTitleResults) {
     results._survey = survey._id;

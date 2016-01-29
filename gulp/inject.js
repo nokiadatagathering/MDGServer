@@ -33,10 +33,11 @@ gulp.task('inject', ['partials', 'styles', 'home_inject', 'lang_inject', 'adminp
   };
 
   var wiredepOptions = {
-    src: paths.tmp + '/serve/index.jade',
+    src: [paths.tmp + '/serve/index.jade', '/async/lib/async.js'],
     directory: 'bower_components',
     ignorePath: ['/..'],
-    exclude: ['/angular-dropdowns/angular-dropdowns.css', '/angular-dropdowns/dist/angular-dropdowns.css' ]
+    exclude: ['/angular-dropdowns/angular-dropdowns.css', '/angular-dropdowns/dist/angular-dropdowns.css',
+              '/angular-dropdowns/angular-dropdowns.min.css', '/angular-dropdowns/dist/angular-dropdowns.min.css']
   };
 
   return gulp.src(paths.jade + '/index.jade')

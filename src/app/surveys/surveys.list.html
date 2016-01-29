@@ -94,7 +94,7 @@
             </thead>
             <tbody class="b-table__body">
             <tr class="b-table__body__row" id="{{survey._id}}"
-                ng-repeat="survey in filtered = (surveys | deletedItemsFilter : 'surveys')
+                ng-repeat="survey in filtered = (surveys.list | deletedItemsFilter : 'surveys')
                                                             | selectPublished : dropdownSelect.value
                                                             | filter:search
                                                             | orderBy:predicate:reverse"
@@ -147,11 +147,19 @@
                             </button>
                             <button class="e-options__item transparent-button"
                                     role="button"
+                                    ui-sref="page.surveys.list.publiclink({surveyId: survey.id, survey: survey})"
+                                    ng-disabled="offlineMode"
+                                    title="{{ 'surveys.Get_public_link' | translate }}">
+                              <span class="fa fa-edit"></span>
+                              <span class="button-title">{{ 'surveys.Get_public_link' | translate }}</span>
+                            </button>
+                            <button class="e-options__item transparent-button"
+                                    role="button"
                                     ng-click="deleteSurvey(survey)"
                                     ng-disabled="survey.published"
                                     title="{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}">
-                                <span class="fa fa-trash-o"></span>
-                                <span class="button-title">{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}</span>
+                              <span class="fa fa-trash-o"></span>
+                              <span class="button-title">{{ survey.published ? 'surveys.Can_not_be_deleted':'surveys.Delete_survey' | translate }}</span>
                             </button>
                         </div>
                     </div>

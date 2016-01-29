@@ -33,6 +33,9 @@ var
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
   adminPageCntr = require('./app/controllers/web/adminPage'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
+  customLogoCntr = require('./app/controllers/web/customLogos'),
+
+  enketoCntr = require('./app/controllers/web/enketo'),
 
   manifestCntr = require('./app/controllers/web/manifest'),
 
@@ -191,6 +194,17 @@ exports.run = function (mongoUrl, port, callback) {
     });
 
     app.get('/home', getStartedCntr.home);
+
+    app.get('/enketoSurveyUrl/:survey', ACLService.checkPermission, enketoCntr.getEnketoSurveyUrl);
+    app.get('/enketo/:userId/formList', enketoCntr.formList);
+    app.get('/enketo/:userId/:survey', enketoCntr.form);
+    app.post('/enketo/:userId/submission', enketoCntr.submission);
+
+    app.post('/public/makeSurveyPublic/:survey', enketoCntr.makeSurveyPublic);
+    app.get('/public/getPublicLink/:survey', enketoCntr.getPublicLink);
+    app.get('/public/:survey', enketoCntr.getPublicSurvey);
+
+    app.get('/customlogos/:survey', customLogoCntr.getLogo);
 
     app.get('/', function (req, res) {
       console.log('------------------req.user      ', req.user);

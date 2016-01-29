@@ -53,6 +53,24 @@ module.exports = {
       }
     }
   },
+  enketo: {
+    title: 'Enketo',
+    description: 'Parameters for Enketo',
+    children: {
+      token: {
+        type: String,
+        title: 'enketo token',
+        description: 'enketo token',
+        defaults: '5aslore4vgmvlsor'
+      },
+      server: {
+        type: String,
+        title: 'enketo server url',
+        description: 'enketo server',
+        defaults: 'http://mdg-test.wookieelabs.com:9090/api/v1/survey'
+      }
+    }
+  },
   languages: {
     title: 'Languages',
     description: 'Parameters for Digest Authorization. Do NOT change these unless you know what you are doing',

@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('mdg', ['ui.router', 'ui.sortable',
-    'ngDragDrop', 'ngSanitize', 'ngDropdowns',
+    'ngDragDrop', 'ngSanitize', 'ngDropdowns', 'ngFileUpload',
     'config', 'base64', 'ngCookies', 'pascalprecht.translate',
 
     'mdg.app.authorization',
@@ -31,6 +31,7 @@
     'mdg.ui.nfEvent',
     'mdg.ui.onEnter',
 
+    'mdg.ui.selectCustomLogo',
     'mdg.ui.fileSelect',
     'mdg.ui.focusMe',
     'mdg.ui.focusModal',
@@ -98,7 +99,7 @@
           window.document.location.href = '/home';
         }
 
-        if (status === 404 || status >= 500 || status === 0) {
+        if (status === 0) {
           $scope.offlineMode = true;
           localStorage.setItem('offlineMode', true);
           return response;
@@ -215,6 +216,43 @@
       return 'id_' + UUIDjs.create().toString().replace(/-/g, '_');
     };
 
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
+      $rootScope.offlineMode == JSON.parse(localStorage.getItem('offlineMode'));
+      console.log('$stateChangeStart');
+      console.log('$rootScope.offlineMode', $rootScope.offlineMode);
+
+      if (!$rootScope.loggedInUser) {
+        $rootScope.offlineMode = false;
+        localStorage.clear();
+      }
+
+      if ($rootScope.offlineMode && $state.includes('page.users')) {
+        event.preventDefault();
+      } else {
+        authorizationService.getUserPermission().then(
+          function success(config) {
+            if (!$rootScope.offlineMode) {
+              $rootScope.loggedInUser = config.data;
+              localStorage.setItem('user', JSON.stringify(config.data));
+            }
+
+            if ($rootScope.loggedInUser && toState.name === 'page') {
+              event.preventDefault();
+              $state.go('page.surveys.list');
+            }
+          },
+
+          function failed(err) {
+            if (toState.name === 'page') {
+              event.preventDefault();
+              window.document.location.href = '/home';
+            }
+
+            console.log("error:", err);
+          });
+      }
+    });
+
     $rootScope.$on('$stateChangeSuccess', function () {
       $location.hash($rootScope.scrollTo);
       $anchorScroll();
@@ -228,13 +266,7 @@
     $rootScope.version = window.version;
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.goState = function (state, stateParams) {
-      $rootScope.scrollTo = stateParams ? stateParams.scrollTo : undefined;
-      $state.go(state, stateParams);
-    };
-    $rootScope.setRoute = function (route) {
-      $location.path(route);
-    };
+
     $rootScope.back = function () {
       window.history.back();
     };
@@ -275,40 +307,7 @@
       }
     };
 
-    $rootScope.$on('$stateChangeStart', function (event, toState) {
-      if (!$rootScope.loggedInUser) {
-        $rootScope.offlineMode = false;
-        localStorage.clear();
-      }
 
-      if ($rootScope.offlineMode &&
-        toState.name !== 'page.surveys.list' && toState.name !== 'page.surveys.edit' && toState.name !== 'page.surveys.new' &&
-        toState.name !== 'page.surveys.sync' && toState.name !== 'page.builder.sync' && toState.name !== 'page.editsurvey.sync') {
-        event.preventDefault();
-      } else {
-        authorizationService.getUserPermission().then(
-          function success(config) {
-            if (!$rootScope.offlineMode) {
-              $rootScope.loggedInUser = config.data;
-              localStorage.setItem('user', JSON.stringify(config.data));
-            }
-
-            if ($rootScope.loggedInUser && toState.name === 'page') {
-              event.preventDefault();
-              $state.go('page.surveys');
-            }
-          },
-
-          function failed(err) {
-            if (toState.name === 'page') {
-              event.preventDefault();
-              window.document.location.href = '/home';
-            }
-
-            console.log("error:", err);
-          });
-      }
-    });
 
     $templateCache.put('ngDropdowns/templates/dropdownMenuItem.html',
       "<li ng-class='{divider: dropdownMenuItem.divider}'>\n    <a href='' class='dropdown-item'\n   tabindex='0'     ng-if='!dropdownMenuItem.divider'\n        ng-href='{{dropdownMenuItem.href}}'\n   on-enter='selectItem()'     ng-click='selectItem()'>\n        " +
@@ -348,8 +347,6 @@
       '</span>',
       '</li>'
     ].join(''));
-
-
   });
 
 })();

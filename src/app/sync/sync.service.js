@@ -6,7 +6,8 @@
       var db;
 
       try {
-        db = openDatabase('ndg', '1.0', 'NDG', 2 * 1024 * 1024);
+        db = openDatabase('mdg', '1.0', 'MDG', 2 * 1024 * 1024);
+
       } catch (e) {
         $rootScope.offlineNotSupport = true;
       }
