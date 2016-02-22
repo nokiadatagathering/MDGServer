@@ -4,10 +4,9 @@ var
 
 exports.getLogo = function (req, res, next) {
   var
-    owner = req.user.owner.toString(),
     surveyId = req.params.survey;
 
-  Survey.findOne({ _id: surveyId, _owner: owner }).exec(function (err, survey) {
+  Survey.findOne({ _id: surveyId }).exec(function (err, survey) {
     if (err) {
       next({status: 500, body: err});
       return;

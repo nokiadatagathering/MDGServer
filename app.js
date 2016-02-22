@@ -196,9 +196,9 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/home', getStartedCntr.home);
 
     app.get('/enketoSurveyUrl/:survey', ACLService.checkPermission, enketoCntr.getEnketoSurveyUrl);
-    app.get('/enketo/:userId/formList', enketoCntr.formList);
+    app.get('/formList', passport.authenticate('digest', { session: false }), enketoCntr.formList);
     app.get('/enketo/:userId/:survey', enketoCntr.form);
-    app.post('/enketo/:userId/submission', enketoCntr.submission);
+    app.post('/submission', passport.authenticate('digest', { session: false }), enketoCntr.submission);
 
     app.post('/public/makeSurveyPublic/:survey', enketoCntr.makeSurveyPublic);
     app.get('/public/getPublicLink/:survey', enketoCntr.getPublicLink);
@@ -207,7 +207,6 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/customlogos/:survey', customLogoCntr.getLogo);
 
     app.get('/', function (req, res) {
-      console.log('------------------req.user      ', req.user);
       if (req.method === 'HEAD') {
         res.send();
       } else {
