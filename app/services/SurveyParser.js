@@ -203,7 +203,7 @@ function Survey (jxonTree) {
   }
 }
 
-exports.SurveysToJxonTree = function (surveys, url) {
+exports.SurveysToJxonTree = function (surveys, url, userId) {
   var res = {
     attrs: {
       xmlns: "http://openrosa.org/xforms/xformsList"
@@ -242,14 +242,32 @@ exports.SurveysToJxonTree = function (surveys, url) {
         tagName: 'downloadUrl',
         attrs: {},
         items: [],
-        value: url + '/' + survey._id
+        value: url + '/enketo/' + userId + '/' + survey._id
       },
       {
         tagName: 'hash',
         attrs: {},
         items: [],
         value: survey._id
-      }
+      },
+      {
+        tagName: 'version',
+        attrs: {},
+        items: [],
+        value: '1'
+      },
+      {
+        tagName: 'customLogo',
+        attrs: {},
+        items: [],
+        value: survey.customLogo ? '/customlogos/' + survey._id : null
+      },
+      {
+        tagName: 'customMessage',
+        attrs: {},
+        items: [],
+        value: survey.customMessage
+      },
     ]
   }
 
@@ -393,6 +411,11 @@ exports.SurveyToJxonTree = function (me) {
 
       if (me.__binds[bindKey].relevant) {
         res.attrs.relevant = me.__binds[bindKey].relevant;
+      }
+
+      if (me.__binds[bindKey].type === 'note') {
+        res.attrs.readonly = 'true()';
+        res.attrs.type = 'string';
       }
 
       return res;

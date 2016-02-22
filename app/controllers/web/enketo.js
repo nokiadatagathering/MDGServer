@@ -25,10 +25,9 @@ function parseJXONTree (jxonTree) {
 
 exports.getPublicLink = function (req, res, next) {
   var
-    owner = req.user.owner.toString(),
     surveyId = req.params.survey;
 
-  Survey.findOne({ _id: surveyId, _owner: owner }).exec(function (err, survey) {
+  Survey.findOne({ _id: surveyId }).exec(function (err, survey) {
     if (err) {
       next({ status: 500, body: err });
       return;
@@ -122,15 +121,15 @@ exports.getPublicSurvey = function (req, res, next) {
       res.next({ status: 400, body: { name: 'ValidatorError', path: 'survey', type: 'expired' } });
     }
 
-    user = req.user ? req.user._id : survey._owner.id;
+    user = survey._owner;
 
     request
-      .post(config.enketo.server, { form :{
+      .post(Configuration.get('enketo.server'), { form :{
         server_url: req.protocol + '://' + req.get('host') + '/enketo/' + user,
-        form_id: survey
+        form_id: survey.id
       }},
       function(err, response, body) {
-        res.redirect(JSON.parse(body).url);
+        res.redirect(JSON.parse(body).url.replace('http://mdg-test.wookieelabs.com:9090/', 'https://www.microsoftdatagathering.net/webform/'));
       })
       .auth(Configuration.get('enketo.token'), Configuration.get('enketo.token'), false);
   });
@@ -159,7 +158,7 @@ exports.getEnketoSurveyUrl = function (req, res, next) {
 
 exports.formList = function (req, res, next) {
   var
-    userId = req.params.userId,
+    userId = req.user._id,
     jxonTree;
 
   User.findById(userId, '_owner').exec(function (err, user) {
@@ -179,8 +178,8 @@ exports.formList = function (req, res, next) {
         return;
       }
 
-      jxonTree = SurveyParserService.SurveysToJxonTree(surveys, req.protocol + '://' + req.get('host') + '/enketo/' + userId);
-
+      jxonTree = SurveyParserService.SurveysToJxonTree(surveys, req.protocol + '://' + req.get('host'), userId);
+      res.setHeader('X-OpenRosa-Version', '1.0');
       res.setHeader('Content-type', 'text/xml');
       res.send(JXON.serialize(jxonTree));
     });
@@ -234,7 +233,7 @@ exports.form = function (req, res, next) {
 
 exports.submission = function (req, res, next) {
   var
-    userId = req.params.userId,
+    userId = req.user._id,
     results = new Result();
 
   if (!req.files || !req.files.xml_submission_file) {
@@ -288,7 +287,7 @@ exports.submission = function (req, res, next) {
           results._owner = user.owner;
           results._user = user._id;
 
-          resultsData.instanceID = resultsData.instanceID || 'web form response';
+          resultData.instanceID = resultData.instanceID || 'web form response';
 
           results = ResultsService.composeResults(results, resultData, survey, function (results) {
             results.save(function (err, results) {
