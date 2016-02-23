@@ -123,6 +123,7 @@ exports.run = function (mongoUrl, port, callback) {
   if (app.settings.env === 'development') {
     app.use(express.static(__dirname + '/.tmp'));
     app.use('/src', express.static(__dirname + '/src'));
+    app.use('/assets', express.static(__dirname + '/src/assets'));
     app.use('/.tmp', express.static(__dirname + '/.tmp'));
     app.use('/bower_components', express.static(__dirname + '/bower_components'));
   }
