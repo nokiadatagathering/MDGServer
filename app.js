@@ -200,6 +200,13 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/formList', passport.authenticate('digest', { session: false }), enketoCntr.formList);
     app.get('/enketo/:userId/:survey', enketoCntr.form);
     app.post('/submission', passport.authenticate('digest', { session: false }), enketoCntr.submission);
+    app.head('/submission', passport.authenticate('digest', { session: false }), function (req, res, next) {
+      res.set({
+        'X-OpenRosa-Version': '1.0',
+        'Location': req.protocol + '://' + req.headers.host + req.originalUrl
+      });
+      res.send(204);
+    });
 
     app.post('/public/makeSurveyPublic/:survey', enketoCntr.makeSurveyPublic);
     app.get('/public/getPublicLink/:survey', enketoCntr.getPublicLink);
