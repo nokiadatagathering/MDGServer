@@ -1539,6 +1539,8 @@ angular.module('mdg.app.surveys')
       if ($stateParams.surveyId) {
         return surveysService.editSurvey({ id: $stateParams.surveyId, body: clearSurveyData(survey) }).then(
           function success (config) {
+            $state.go('page.surveys.edit', { surveyId: config.data.id }, {reload: true});
+
             $rootScope.$broadcast('saved_survey', survey.title);
             surveyDirty = false;
             $scope.editSurveyForm.$dirty = false;
@@ -1558,9 +1560,7 @@ angular.module('mdg.app.surveys')
       } else {
         return surveysService.createSurvey({ body: clearSurveyData(survey) }).then(
           function success (config) {
-            if (buttonClick) {
-              $state.go('page.surveys.edit', { surveyId: config.data.id }, {reload: true})
-            }
+            $state.go('page.surveys.edit', { surveyId: config.data.id }, {reload: true});
 
             $rootScope.$broadcast('saved_survey', survey.title);
             surveyDirty = false;
