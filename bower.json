@@ -12,7 +12,7 @@
     "angular-cache-buster": "0.3.1",
     "angular-ui-sortable": "0.12.6",
     "angular-translate": "~2.2.0",
-    "angular-translate-storage-local": "~2.2.gulp0",
+    "angular-translate-storage-local": "~2.2.0",
     "angular-translate-loader-static-files": "~2.2.0",
     "angular-translate-interpolation-messageformat": "~2.1.0",
     "angular-cookies": "~1.2.19",
