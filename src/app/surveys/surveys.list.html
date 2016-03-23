@@ -149,9 +149,9 @@
                                     role="button"
                                     ui-sref="page.surveys.list.publiclink({surveyId: survey.id, survey: survey})"
                                     ng-disabled="offlineMode"
-                                    title="{{ 'surveys.Get_public_link' | translate }}">
+                                    title="{{ 'surveys.Get_public_link' | translate:'{title:survey.title}' }}">
                               <span class="fa fa-edit"></span>
-                              <span class="button-title">{{ 'surveys.Get_public_link' | translate }}</span>
+                              <span class="button-title">{{ 'surveys.Get_public_link' | translate:'{title:survey.title}' }}</span>
                             </button>
                             <button class="e-options__item transparent-button"
                                     role="button"
