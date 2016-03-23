@@ -118,7 +118,7 @@
       $scope.exportResults = function (type) {
         if ($scope.selected.results.length === 0) {
           $rootScope.$broadcast('choose_results', 'export');
-        } else if ($scope.dropdownSelect.value) {
+        } else if (type) {
 
           var fakeForm = $('<form>')
             .attr('method', 'POST')
