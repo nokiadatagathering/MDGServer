@@ -88,8 +88,16 @@
           }
         }
 
-        .dropdown {
-          margin-top: 100%;
+        .wrap-dd-menu {
+          width: auto;
+          margin-right: 0;
+
+          .dropdown {
+            transform: translateX(-50%);
+            margin-right: 0;
+            margin-left: 0;
+            left: 28px;
+          }
         }
 
         &__arrow-back {
