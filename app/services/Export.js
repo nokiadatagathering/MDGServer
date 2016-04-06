@@ -242,11 +242,8 @@ exports.exportUserRegistrations = function (email, requestedDate) {
     filename =  'MDG_monthly_report_' + date.subtract('months', 1).format('MM_YYYY') + '.xlsx',
     workbook = excelBuilder.createWorkbook('./', filename);
 
-  User.findOne({}).sort({ timeCreated: -1 }).exec(function (err, user) {
+  User.findOne({}, null, { sort: { timeCreated: 1 } }).exec(function (err, user) {
     oldest = moment(user.timeCreated).startOf('month');
-
-    console.log('user', user);
-    console.log('oldest', oldest);
 
     while (date >= oldest) {
       months.push({
