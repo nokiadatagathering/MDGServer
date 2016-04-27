@@ -37,6 +37,8 @@ var
 
   enketoCntr = require('./app/controllers/web/enketo'),
 
+  liveIdAuthCntr = require('./app/controllers/web/liveIdAuth'),
+
   manifestCntr = require('./app/controllers/web/manifest'),
 
   checkAuthorizationCntr = require('./app/controllers/mobile/checkAuthorization'),
@@ -213,6 +215,8 @@ exports.run = function (mongoUrl, port, callback) {
     app.get('/public/:survey', enketoCntr.getPublicSurvey);
 
     app.get('/customlogos/:survey', customLogoCntr.getLogo);
+
+    app.get(Configuration.get('OAuth.redirectUrl'), liveIdAuthCntr.auth);
 
     app.get('/', function (req, res) {
       if (req.method === 'HEAD') {

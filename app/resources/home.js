@@ -183,6 +183,29 @@
         }, true);
         setAutocomlete(document.querySelector('#register form input[name="company"]'));
         setAutocomlete(document.querySelector('#register form input[name="industry"]'));
+        setRegistrationFormValues();
+    }
+
+    function setRegistrationFormValues () {
+      var searchString =  window.location.search.substr(1);
+      var searchParams = searchString ? searchString.split('&') : null;
+
+      searchParams.forEach(function(searchParam) {
+        var param = searchParam.split('=');
+
+        if (param.length < 2 ) {
+          return;
+        }
+
+        var key = param[0];
+        var value = param[1];
+
+        var inputElement = document.querySelector('#register form input[name="' + key + '"]');
+
+        if (inputElement) {
+          inputElement.value = value;
+        }
+      });
     }
 
     function closeModal () {
