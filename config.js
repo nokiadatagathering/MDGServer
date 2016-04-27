@@ -10,6 +10,11 @@ module.exports = {
     password: null,
     username: null
   },
+  OAuth: {
+    clientId: null,
+    clientSecret: null,
+    redirectUrl: null
+  },
   twilio: {
     accountSid: null,
     authToken: null,

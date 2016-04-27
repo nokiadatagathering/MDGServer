@@ -1,4 +1,5 @@
 var
+  querystring = require('querystring'),
   Configuration = require('../../helpers/Configuration'),
   languages = Configuration.get('languages.supported_languages'),
   preferred = Configuration.get('languages.preferred');
@@ -17,6 +18,8 @@ exports.home = function (req, res, next) {
 
   res.render('app/views/getStarted/jade/' + lang + '/home', {
     title: Configuration.get('general.siteName'),
+    clientId: Configuration.get('OAuth.clientId'),
+    redirect_uri: querystring.stringify({ redirect_uri: req.protocol + '://' + req.get('host') + Configuration.get('OAuth.redirectUrl') }),
     countries:  Configuration.get('general.countries'),
     language: lang,
     languages: languages

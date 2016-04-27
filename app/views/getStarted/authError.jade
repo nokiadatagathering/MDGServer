@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta('http-equiv'='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='viewport', content='initial-scale=1.0')
+    link(rel="stylesheet" type="text/css" href="/styles/404.css")
+  body
+    div(class="content")
+      div(class="logo")
+        div(class="error")
+          span Auth Error
+            br
+            | #{errorMessage}
+          a(href="/home") Return to homepage

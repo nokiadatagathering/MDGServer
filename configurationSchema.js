@@ -142,6 +142,37 @@ module.exports = {
       }
     }
   },
+  OAuth: {
+    title: 'OAuth',
+    description: 'Parameters for OAuth.',
+    children: {
+      clientId: {
+        type: String,
+        title: 'CLIENT_ID',
+        defaults: ''
+      },
+      clientSecret: {
+        type: String,
+        title: 'CLIENT_SECRET',
+        defaults: ''
+      },
+      redirectUrl: {
+        type: String,
+        title: 'redirect url',
+        defaults: '/api/auth'
+      },
+      tokenUrl: {
+        type: String,
+        title: 'token url',
+        defaults: 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
+      },
+      authUrl: {
+        type: String,
+        title: 'token url',
+        defaults: 'https://graph.microsoft.com/v1.0/me'
+      }
+    }
+  },
   tests: {
     title: 'Tests',
     description: '',
