@@ -291,11 +291,23 @@ module.exports = {
           }
         }
       },
-      mandrillApiKey: {
+      transport: {
         type: String,
-        title: 'Mandrill Api Key',
-        description: 'Defines Mandrill Api Key',
-        defaults: 'WO6r_NFfdABIKOTEgdvuvQ'         /* test api KEY */
+        title: 'Mail transport',
+        description: 'Defines mail transport protocol',
+        defaults: 'Direct'
+      },
+      transportOptions: {
+        title: 'Mail transport Options',
+        description: 'Defines method for sending e-mails',
+        children: {
+          service: {
+            type: String,
+            title: 'Service',
+            description: 'The name of send mail service',
+            defaults: 'Sendmail'
+          }
+        }
       },
       emailsForUsersReport: {
         type: Object,
