@@ -188,7 +188,7 @@
 
     function setRegistrationFormValues () {
       var searchString =  window.location.search.substr(1);
-      var searchParams = searchString ? searchString.split('&') : null;
+      var searchParams = searchString ? searchString.split('&') : [];
 
       searchParams.forEach(function(searchParam) {
         var param = searchParam.split('=');
@@ -224,6 +224,7 @@
         form.addEventListener('blur', function (evt) {
             validate(evt.target);
         }, true);
+
         form.addEventListener('submit', function (evt) {
             evt.preventDefault();
             if (validateForm(evt.target)) {
