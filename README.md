@@ -66,7 +66,7 @@ repository from link above to install mongoDB__
 First of all, let's install some global tools
 ```
 # sudo npm install -g bower
-# sudo npm install -g grunt-cli
+# sudo npm install -g gulp
 ```
 
 Now clone the source and install project dependencies:
@@ -75,11 +75,9 @@ Now clone the source and install project dependencies:
 # cd MDGServer
 # npm install
 # bower install
-# grunt build
-# grunt testing
+# gulp
 ```
 
-```grunt testing``` should report about all tests passing. If it fails - check you have appropriate version of MongoDB running and all previous steps completed successfully
 
 Now you are ready for test run.
 ```
