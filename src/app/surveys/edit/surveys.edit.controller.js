@@ -1015,7 +1015,7 @@ angular.module('mdg.app.surveys')
       });
     };
 
-    $scope.selectQuestionType = function (question, cIndex, qIndex, copy) {
+    $scope.selectQuestionType = function (selected, question, cIndex, qIndex, copy) {
       var
         questionId,
         categoryId = $scope.surveyData._categories[cIndex].id,
@@ -1032,7 +1032,7 @@ angular.module('mdg.app.surveys')
         };
 
       surveyDirty = true;
-      question.type = question.dropdownSelect.value;
+      question.type = selected.value;
       delete question.mediatype;
 
       switch (question.type) {
