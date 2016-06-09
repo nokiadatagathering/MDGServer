@@ -35,6 +35,7 @@
     "msexcel-builder": "0.0.2",
     "nodemailer": "^2.3.2",
     "nodemailer-direct-transport": "^3.0.7",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "0.1.17",
     "passport-http": "~0.2.2",
     "passport-local": "0.1.6",

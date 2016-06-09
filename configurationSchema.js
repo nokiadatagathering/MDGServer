@@ -291,21 +291,21 @@ module.exports = {
           }
         }
       },
-      transport: {
-        type: String,
-        title: 'Mail transport',
-        description: 'Defines mail transport protocol',
-        defaults: 'Direct'
-      },
       transportOptions: {
         title: 'Mail transport Options',
         description: 'Defines method for sending e-mails',
         children: {
-          service: {
+          user: {
             type: String,
-            title: 'Service',
-            description: 'The name of send mail service',
-            defaults: 'Sendmail'
+            title: 'Api user',
+            description: 'Username for SendGrid',
+            defaults: ''
+          },
+          key: {
+            type: String,
+            title: 'Api key',
+            description: 'Password for SendGrid',
+            defaults: ''
           }
         }
       },

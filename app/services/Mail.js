@@ -1,5 +1,5 @@
 var
-  directTransport = require('nodemailer-direct-transport'),
+  sgTransport = require('nodemailer-sendgrid-transport'),
   nodemailer = require('nodemailer'),
   Configuration = require('../helpers/Configuration'),
   fs = require('fs'),
@@ -28,7 +28,6 @@ function getOptionsForRegistrationEmail (params, fileName, subject) {
     from: Configuration.get('mail.from.' + subject),
     to: params.user.email,
     subject: "Activate your account",
-    generateTextFromHTML: true,
     html: html
   };
 }
@@ -48,12 +47,11 @@ function getOptionsForSubscriptionEmail (params, fileName, subject) {
     from: Configuration.get('mail.from.' + subject),
     to: params.subscription.email,
     subject: "MDG schedule export",
-    generateTextFromHTML: true,
     html: html,
     attachments: [
       {
-        fileName: 'survey_' + params.subscription._survey._id + '.zip',
-        contents: new Buffer(params.data, 'binary')
+        filename: 'survey_' + params.subscription._survey._id + '.zip',
+        content: new Buffer(params.data, 'binary')
       }
     ]
   };
@@ -72,12 +70,11 @@ function getOptionsForReportEmail (params, fileName, subject) {
     from: Configuration.get('mail.from.' + subject),
     to: params.email,
     subject: "MDG account report",
-    generateTextFromHTML: true,
     html: html,
     attachments: [
       {
-        fileName: params.filename,
-        contents: params.data,
+        filename: params.filename,
+        content: params.data,
         contentType: 'application/vnd.ms-excel'
       }
     ]
@@ -98,7 +95,6 @@ function getOptionsForForgotUsernameEmail (params, fileName, subject) {
     from: Configuration.get('mail.from.' + subject),
     to: params.email,
     subject: "Your MDG usernames",
-    generateTextFromHTML: true,
     html: html
   };
 }
@@ -117,7 +113,6 @@ function getOptionsForResetPasswordEmail (params, fileName, subject) {
     from: Configuration.get('mail.from.' + subject),
     to: params.user.email,
     subject: "MDG reset password link",
-    generateTextFromHTML: true,
     html: html
   };
 }
@@ -138,14 +133,19 @@ function getOptionsForPasswordChangedEmail (params, fileName, subject) {
     from: Configuration.get('mail.from.' + subject),
     to: params.user.email,
     subject: "MDG reset password confirmation",
-    generateTextFromHTML: true,
     html: html
   };
 }
 
 exports.sendMail = function (params, subject) {
   var
-    mailTransport = nodemailer.createTransport(directTransport({})),
+    options = {
+      auth: {
+        api_user: Configuration.get('mail.transportOptions.user'),
+        api_key: Configuration.get('mail.transportOptions.key')
+      }
+    },
+    mailTransport = nodemailer.createTransport(sgTransport(options)),
     fileName = process.cwd() + Configuration.get('mail.' + subject),
     sendMailOptions = {};
 
