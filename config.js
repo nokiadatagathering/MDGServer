@@ -26,6 +26,10 @@ module.exports = {
       subscription: 'noreply@nokiadatagathering.net',
       report: 'report@nokiadatagathering.net'
     },
+    transportOptions: {
+      user: '',
+      key: ''
+    },
     emailsForUsersReport: null,
     emailsForUsersReport: []
   }
