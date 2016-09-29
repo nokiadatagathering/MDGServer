@@ -100,7 +100,7 @@
         }
 
         if (status === 404 || status >= 500 || status === 0) {
-          $scope.offlineMode = true;
+//          $scope.offlineMode = true;
           localStorage.setItem('offlineMode', true);
           return response;
         }
@@ -240,7 +240,7 @@
       window.history.back();
     };
 
-    $rootScope.offlineMode = JSON.parse(localStorage.getItem('offlineMode'));
+    $rootScope.offlineMode = false; //JSON.parse(localStorage.getItem('offlineMode'));
     $rootScope.loggedInUser = JSON.parse(localStorage.getItem('user'));
 
     $rootScope.deletedItems = {

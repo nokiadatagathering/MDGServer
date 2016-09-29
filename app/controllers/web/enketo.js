@@ -129,7 +129,8 @@ exports.getPublicSurvey = function (req, res, next) {
         form_id: survey.id
       }},
       function(err, response, body) {
-        res.redirect(JSON.parse(body).url.replace('http://mdg-test.wookieelabs.com:9090/', 'https://www.microsoftdatagathering.net/webform/'));
+        console.log(body);
+        res.redirect(JSON.parse(body).url);
       })
       .auth(Configuration.get('enketo.token'), Configuration.get('enketo.token'), false);
   });
@@ -158,8 +159,13 @@ exports.getEnketoSurveyUrl = function (req, res, next) {
 
 exports.formList = function (req, res, next) {
   var
-    userId = req.user._id,
+    userId = req.params.userId || req.user._id,
     jxonTree;
+
+  if (req.method === 'HEAD') {
+    res.send(204);
+    return;
+  }
 
   User.findById(userId, '_owner').exec(function (err, user) {
     if (err) {
@@ -233,7 +239,7 @@ exports.form = function (req, res, next) {
 
 exports.submission = function (req, res, next) {
   var
-    userId = req.user._id,
+    userId = req.params.userId || req.user._id,
     results = new Result();
 
   if (!req.files || !req.files.xml_submission_file) {

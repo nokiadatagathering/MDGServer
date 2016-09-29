@@ -1,5 +1,6 @@
 var
   directTransport = require('nodemailer-direct-transport'),
+  smtpTransport = require('nodemailer-smtp-transport'),
   nodemailer = require('nodemailer'),
   Configuration = require('../helpers/Configuration'),
   fs = require('fs'),
@@ -145,7 +146,7 @@ function getOptionsForPasswordChangedEmail (params, fileName, subject) {
 
 exports.sendMail = function (params, subject) {
   var
-    mailTransport = nodemailer.createTransport(directTransport({})),
+    mailTransport = nodemailer.createTransport(smtpTransport({})),
     fileName = process.cwd() + Configuration.get('mail.' + subject),
     sendMailOptions = {};
 
